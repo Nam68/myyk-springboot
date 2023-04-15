@@ -1,5 +1,7 @@
 package yk.web.myyk.backend;
 
-public class BaseMvc {
+import yk.web.myyk.util.BaseApp;
+
+public class BaseMvc extends BaseApp {
 
 }

@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
+import yk.web.myyk.util.enumerated.MemberType;
+import yk.web.myyk.util.enumerated.Region;
 
 /**
  * <p>회원 엔티티.</p>
