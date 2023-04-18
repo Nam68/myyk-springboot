@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+.pc-header{
+	margin: 0;
+	display:flex;
+	padding-top: 0.3rem;
+	width: 100%;
+	flex-wrap:wrap;
+	background-color: white;
+	z-index: 100005;
+	border-bottom: 0.01rem solid var(--primary-color-300);
+	
+	position: static;
+	top: 0;
+	left: 0;
+	margin-bottom: 5%;
+	transition-property:top;
+    transition-duration:0.5s;
+}
+
+.mobile-header {
+	display: none;
+}
+.mobile-footer {
+	display: none;
+}
+
+.selected-header{
+	color: rgb(13,110,253);
+}
+.selected-header-button {
+	background-color: rgb(13,110,253);
+}
+.selected-header-icon {
+	border: solid 0.3rem rgb(13,110,253);
+}
+
+.nav-link > strong {
+	vertical-align: middle;
+}
+.main-bi {
+	font-size: 1.5rem;
+}
+
+.header-toggle-button {
+	position: absolute;
+	bottom: -1.5rem;
+	left: 70%;
+	color: #fff;
+	background-color: var(--primary-color-100);
+	
+	height: 1.5rem;
+	width: 7rem;
+	text-align: center;
+	
+	display: none;
+}
+.header-toggle-button:active {
+	background-color: var(--primary-color-100);
+}
+
+@media (pointer:coarse) {
+	.pc-header {
+		display: none;
+	}
+	.mobile-header {
+		display: inline-block;
+		width: 100%;
+		background-color: var(--primary-color-100);
+		color: white;
+		
+		transition: 0.5s;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+	.mobile-header > div > a {
+		width: 25%;
+	}
+	.mobile-header > div > div {
+		width: 70%;
+	}
+	.login-btn-div > .btn-outline-primary {
+		color: white;
+		border-color: white;
+	}
+	.login-btn-div > .btn-outline-primary:focus,
+	.login-btn-div > .btn-outline-primary:hover {
+		color: white;
+		border-color: white;
+	}
+	.login-btn-div > .btn-primary {
+		color: var(--primary-color-100);
+		background-color: white;
+		border-color: white;
+	}
+	.login-btn-div > .btn-primary:focus,
+	.login-btn-div > .btn-primary:hover {
+		color: var(--primary-color-100);
+		background-color: white;
+		border-color: white;
+	}
+	
+	.login-btn-div{
+   		margin: 0 0 0 auto;
+   		flex:0 0 auto;
+   		width:100%;
+	}
+	.login-account {
+	    display: inline-block;
+	    padding-right: 2rem;
+	}
+	
+	.main-bi {
+		font-size: 2.5rem;
+	}
+	
+	
+	/* FOOTER */
+	.mobile-footer {
+		display: flex;
+		background-color: var(--primary-color-100);
+		color: white;
+		
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		
+		padding: 1%;
+		font-size: 1.3rem;
+	}
+	.mobile-footer-color {
+		font-style:normal;
+		color: white;
+	}
+}
+
+.login-account {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.login-picture {
+	width: 3rem;
+	height: 3rem;
+}
+.login-account-phone {
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+
+.password-form {
+	position: relative;
+}
+.password-form > i {
+	position: absolute;
+	top: 0;
+	right: 3%;
+	height: 100%;
+	vertical-align: middle;
+	font-size: 1.5rem;
+}
+.password-form > i:hover {
+	cursor: pointer;
+}
+
+
+/* FOOTER */
+.mobile-footer {
+
+}
+

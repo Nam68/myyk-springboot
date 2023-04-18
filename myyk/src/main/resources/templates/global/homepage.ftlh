@@ -1,3 +1,15 @@
+<!DOCTYPE html>
 <html>
-	<h1>hello world@?@@@ddd</h1>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+</head>
+<#include "/global/header.ftlh"> 
+<body>
+<a href="/sample/signin.do">signin page</a>
+<br>
+<a href="/email/checkInput.do">email check</a>
+</body>
+<#include "/global/footer.ftlh">
 </html>
