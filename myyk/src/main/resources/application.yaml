@@ -1,15 +1,12 @@
 spring: 
-  freemarker: 
-    template-loader-path: classpath:/templates
-    suffix: .ftlh
-    cache: false
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://210.114.6.196/epoche02
-    username: epoche02
-    password: Tractatus@Witt
+  config:
+    import: application-data.yaml
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     generate-ddl: true
+  freemarker: 
+    template-loader-path: classpath:/templates
+    suffix: .ftlh
+    cache: false
