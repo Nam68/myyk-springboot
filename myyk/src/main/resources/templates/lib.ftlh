@@ -12,3 +12,4 @@
 <!-- custom --> 
 <link href="/css/global/globalCss.css" rel="stylesheet">
 <link href="/css/global/headerFooterCss.css" rel="stylesheet">
+<#include "macro.ftlh">

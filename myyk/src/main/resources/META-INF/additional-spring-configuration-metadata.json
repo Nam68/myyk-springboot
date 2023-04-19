@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "spring.config.messages.basename",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.config.messages.basename'"
+  },
+  {
+    "name": "spring.config.messages.encoding",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.config.messages.encoding'"
+  }
+]}

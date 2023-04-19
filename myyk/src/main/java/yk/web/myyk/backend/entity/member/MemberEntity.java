@@ -41,12 +41,6 @@ public class MemberEntity extends BaseEntityWithTime {
 	@Column(name = "EMAIL")
 	private String email;
 	
-	@Column(name = "LOCAL_PART_EMAIL")
-	private String localPartEmail;
-	
-	@Column(name = "DOMAIN_PART_EMAIL")
-	private String domainPartEmail;
-	
 	@Column(name = "NICKNAME")
 	private String nickname;
 	

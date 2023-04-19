@@ -27,6 +27,9 @@ dependencies {
 	
 	// MySQL
 	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+	
+	// Language
+	implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
 }
 
 tasks.named('test') {

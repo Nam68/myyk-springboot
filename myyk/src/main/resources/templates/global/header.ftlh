@@ -77,34 +77,6 @@
 			<button type="button" class="btn btn-primary" onclick="location.href='/email/checkInput.do'">header.signup</button>
 		</div>
 	</#if>
-	<#--
-	<c:if test="${sessionScope.login_info == null }">
-		<div class="login-btn-div text-end pb-2 col-md-3 d-flex align-items-center">
-			<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#login-modal"><s:message code="header.login"/></button>
-			<button type="button" class="btn btn-primary" onclick="location.href='/email/checkInput.do'"><s:message code="header.signup"/></button>
-		</div>     
-	</c:if>
-	<c:if test="${sessionScope.login_info != null }">
-		<div id="login-icon-div" class="dropdown text-end pb-2 col-md-3 d-flex align-items-center">
-			<div class="login-account">
-			<span class="primary-dark-color-not-hover me-3">${sessionScope.login_info.nickname }<s:message code="header.welcome" /></span>
-			<a href="#" class="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-				<img src="${sessionScope.login_info.memberIcon }" alt="mdo" class="rounded-circle login-picture ${headerValue == 'MEMBER' ? 'selected-header-icon' : ''}">
-			</a>
-			<ul class="dropdown-menu text-small">
-				<c:if test="${sessionScope.login_info.memberType == 'ADMIN' }">
-				<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><s:message code="header.member.admin"/></a></li>
-				</c:if>
-				<li><a class="dropdown-item" href="#">New project...</a></li>
-				<li><a class="dropdown-item" href="#">Settings</a></li>
-				<li><a class="dropdown-item" href="#"><s:message code="header.member.myinfo"/></a></li>
-				<li><hr class="dropdown-divider"></li>
-				<li><a href="#" class="header-logout-menu dropdown-item"><s:message code="header.member.logout"/></a></li>
-			</ul>
-		</div>
-	</div> 
-	</c:if>
-	-->
 </header>
     
 <!-- 
@@ -112,41 +84,38 @@
 	모바일 환경에서의 헤더
     
 -->
-<#--
 <header class="mobile-header header-component fixed-top align-items-center">
 	<div class="row">
 		<a href="/" class="d-flex text-dark text-decoration-none">
 			<i class="bi bi-bootstrap-fill main-bi d-block m-auto"></i>
 		</a>
-	<c:if test="${sessionScope.login_info == null }">
-	<div class="login-btn-div text-end p-2 pe-4">
-		<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#login-modal"><s:message code="header.login"/></button>
-		<button type="button" class="btn btn-primary" onclick="location.href='/email/checkInput.do'"><s:message code="header.signup"/></button>
-	</div>     
-	</c:if>
-	<c:if test="${sessionScope.login_info != null }">
+	<#if login_info?exists>
 		<div class="dropdown text-end pb-2 pt-2 pe-2">
 			<div class="login-account">
-				<span class="me-3">${sessionScope.login_info.nickname }<s:message code="header.welcome" /></span>
+				<span class="me-3">${login_info.nickname }header.welcome</span>
 				<a href="#" class="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-					<img src="${sessionScope.login_info.memberIcon }" alt="mdo" class="rounded-circle login-picture">
+					<img src="${login_info.memberIcon }" alt="mdo" class="rounded-circle login-picture">
 				</a>
 				<ul class="dropdown-menu text-small">
-					<c:if test="${sessionScope.login_info.memberType == 'ADMIN' }">
-					<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><s:message code="header.member.admin"/></a></li>
-					</c:if>
+					<#if login_info.memberType == 'ADMIN'>
+					<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do">header.member.admin</a></li>
+					</#if>
 					<li><a class="dropdown-item" href="#">New project...</a></li>
 					<li><a class="dropdown-item" href="#">Settings</a></li>
-					<li><a class="dropdown-item" href="#"><s:message code="header.member.myinfo"/></a></li>
+					<li><a class="dropdown-item" href="#">header.member.myinfo</a></li>
 					<li><hr class="dropdown-divider"></li>
-					<li><a href="#" class="header-logout-menu dropdown-item"><s:message code="header.member.logout"/></a></li>
+					<li><a href="#" class="header-logout-menu dropdown-item">header.member.logout</a></li>
 				</ul>
 			</div>
 		</div> 
-		</c:if>
+	<#elseif !login_info?exists>
+		<div class="login-btn-div text-end p-2 pe-4">
+			<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#login-modal">header.login</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='/email/checkInput.do'">header.signup</button>
+		</div>
+	</#if>
 	</div>
 </header>
--->
     
     
 <!-- Login Modal -->
