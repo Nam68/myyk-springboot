@@ -1,2 +1,19 @@
 alert:
   confirm: "확인"
+  close: "닫기"
+
+category:
+  memory: "메모리"
+  wishPlace: "여행지"
+  map: "지도"
+  request: "요청사항"
+  calendar: "달력"
+  
+header:
+  login: "로그인"
+  autoLogin: "다음부터는 자동으로 로그인합니다."
+  signup: "회원가입"
+  
+member:
+  email: "이메일"
+  password: "비밀번호"

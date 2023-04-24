@@ -1,2 +1,19 @@
 alert:
-  confirm: "확인dd"
+  confirm: "確認"
+  close: "閉じる"
+
+category:
+  memory: "メモリー"
+  wishPlace: "旅行先"
+  map: "マップ"
+  request: "リクエスト"
+  calendar: "カレンダー"
+  
+header: 
+  login: "ログイン"
+  autoLogin: "次からは自動でログインします。"
+  signup: "アカウント登録"
+  
+member:
+  email: "メール"
+  password: "パスワード"

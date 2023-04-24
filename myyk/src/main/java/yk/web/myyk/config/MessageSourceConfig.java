@@ -23,7 +23,7 @@ public class MessageSourceConfig implements WebMvcConfigurer {
 	@Bean // 세션에 지역설정. default는 KOREAN = 'ko'
 	public LocaleResolver localeResolver() {
     	SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.KOREAN);
+//        slr.setDefaultLocale(Locale.KOREAN); // 이게 있으면 세션값이 null이 되는듯?
         return slr;
 	}
     

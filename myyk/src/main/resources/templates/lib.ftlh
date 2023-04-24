@@ -12,4 +12,5 @@
 <!-- custom --> 
 <link href="/css/global/globalCss.css" rel="stylesheet">
 <link href="/css/global/headerFooterCss.css" rel="stylesheet">
+<script src="/js/globalJs.js"></script> 
 <#include "macro.ftlh">
