@@ -11,8 +11,13 @@ category:
   
 header: 
   login: "ログイン"
+  logout: "ログアウト"
   autoLogin: "次からは自動でログインします。"
   signup: "アカウント登録"
+  welcome: "様、ようこそ"
+  member:
+    myInfo: "会員情報"
+    admin: "管理者メニュ"
   
 member:
   email: "メール"

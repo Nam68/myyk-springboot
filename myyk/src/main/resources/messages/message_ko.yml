@@ -11,8 +11,13 @@ category:
   
 header:
   login: "로그인"
+  logout: "로그아웃"
   autoLogin: "다음부터는 자동으로 로그인합니다."
   signup: "회원가입"
+  welcome: "님, 환영합니다"
+  member:
+    myInfo: "회원정보"
+    admin: "관리자 메뉴"
   
 member:
   email: "이메일"

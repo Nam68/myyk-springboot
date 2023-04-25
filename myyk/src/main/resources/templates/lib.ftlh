@@ -14,3 +14,5 @@
 <link href="/css/global/headerFooterCss.css" rel="stylesheet">
 <script src="/js/globalJs.js"></script> 
 <#include "macro.ftlh">
+<!-- 다국어설정 -->
+<#import "/spring.ftl" as spring/>

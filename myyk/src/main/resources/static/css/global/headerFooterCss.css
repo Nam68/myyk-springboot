@@ -5,7 +5,6 @@
 	display:flex;
 	padding-top: 0.3rem;
 	width: 100%;
-	flex-wrap:wrap;
 	background-color: white;
 	z-index: 100005;
 	border-bottom: 0.01rem solid var(--primary-color-300);
