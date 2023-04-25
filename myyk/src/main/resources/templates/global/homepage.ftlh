@@ -7,7 +7,6 @@
 </head>
 <#include "/global/header.ftlh"> 
 <body>
-<#import "/spring.ftl" as spring/>
 <@spring.message "alert.confirm"/>
 <a href="/sample/signin.do">signin page</a>
 <br>
