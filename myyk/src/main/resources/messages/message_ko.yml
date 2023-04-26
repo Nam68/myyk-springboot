@@ -1,6 +1,8 @@
 alert:
   confirm: "확인"
   close: "닫기"
+  error:
+    constraint: "잘못된 형식입니다."
 
 category:
   memory: "메모리"
@@ -20,5 +22,12 @@ header:
     admin: "관리자 메뉴"
   
 member:
-  email: "이메일"
-  password: "비밀번호"
+  attr:
+    email: "이메일"
+    password: "비밀번호"
+  email:
+    input: "이메일 확인"
+    error:
+      empty: "이메일을 입력해주세요."
+      constraint: "이메일은 '@'를 반드시 포함해야 합니다."
+ 

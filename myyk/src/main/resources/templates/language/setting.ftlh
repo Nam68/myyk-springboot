@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Language setting</title>
 </head>
-</head>
 <#include "/lib.ftlh"> 
 <link href="/css/language/languageCss.css" rel="stylesheet">
 <body>

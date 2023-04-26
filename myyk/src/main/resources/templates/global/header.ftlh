@@ -131,7 +131,7 @@
 			<form>
 				<div class="modal-body">
 					<div class="mb-3">
-						<label for="login-local-part-email" class="form-label"><@spring.message "member.email"/></label>
+						<label for="login-local-part-email" class="form-label"><@spring.message "member.attr.email"/></label>
 						<div class="input-group mb-4">
 							<input id="login-local-part-email" type="text" class="form-control" name="localPartEmail" placeholder="example">
 							<span class="input-group-text">@</span>

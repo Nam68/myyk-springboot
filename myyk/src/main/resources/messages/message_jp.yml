@@ -1,6 +1,8 @@
 alert:
   confirm: "確認"
   close: "閉じる"
+  error:
+    constraint: "잘못된 형식입니다."
 
 category:
   memory: "メモリー"
@@ -18,7 +20,13 @@ header:
   member:
     myInfo: "会員情報"
     admin: "管理者メニュ"
-  
+
 member:
-  email: "メール"
-  password: "パスワード"
+  attr:
+    email: "メール"
+    password: "パスワード"
+  email:
+    input: "メール確認"
+    error:
+      empty: "メールを入力してください。"
+      constraint: "メールは'@'を必ず含めてください。"
