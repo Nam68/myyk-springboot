@@ -4,15 +4,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
+import yk.web.myyk.util.annotation.CategorySetter;
+import yk.web.myyk.util.enumerated.Category;
 
 @Controller
+@CategorySetter(Category.HOME)
 public class GlobalController extends BaseController {
 	
 	@RequestMapping({"/", "/global/homepage"})
 	public String homepage(HttpServletRequest request) {
-		
-		request.setAttribute("category", "MEMBER");
-		
 		return "global/homepage";
 	}
 
