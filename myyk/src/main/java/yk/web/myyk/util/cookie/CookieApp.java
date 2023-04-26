@@ -6,4 +6,6 @@ public class CookieApp {
 	
 	public static final String LANGUAGE_SETTING = SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME;
 	
+	public static final String CATEGORY = "category";
+	
 }
