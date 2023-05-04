@@ -8,9 +8,11 @@
 <#include "/global/header.ftlh"> 
 <body>
 <@spring.message "alert.confirm"/>
-<a href="/sample/signin.do">signin page</a>
+<a href="/not/exist/page">not exist page</a>
 <br>
-<a href="/email/checkInput.do">email check</a>
+<a href="/sample/signin">signin page</a>
+<br>
+<a href="/member/emailCheckInput">email check</a>
 <br>
 <a href="/global/homepage?lang=ko">korean setting</a>
 <br>

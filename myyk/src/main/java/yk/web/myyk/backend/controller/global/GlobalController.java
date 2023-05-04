@@ -12,7 +12,7 @@ import yk.web.myyk.util.enumerated.Category;
 public class GlobalController extends BaseController {
 	
 	@RequestMapping({"/", "/global/homepage"})
-	public String homepage(HttpServletRequest request) {
+	public String homepage() {
 		return "global/homepage";
 	}
 

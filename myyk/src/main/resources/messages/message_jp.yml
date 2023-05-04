@@ -3,6 +3,12 @@ alert:
   close: "閉じる"
   error:
     constraint: "잘못된 형식입니다."
+    
+error:
+  page:
+    title: "エラー"
+    message: "エラーが発生しました"
+    code: "エラー内容"
 
 category:
   memory: "メモリー"

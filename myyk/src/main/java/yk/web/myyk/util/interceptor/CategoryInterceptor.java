@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import yk.web.myyk.util.annotation.CategorySetter;
 import yk.web.myyk.util.cookie.CookieApp;
+import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
 /**
@@ -39,7 +40,7 @@ public class CategoryInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		
-		throw new SystemException("Category Annotation is missing.");
+		throw new SystemException(ErrorCode.getErrorMessage(ErrorCode.IC_101, getClass()));
 	}
 	
 }
