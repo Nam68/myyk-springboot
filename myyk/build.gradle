@@ -30,6 +30,9 @@ dependencies {
 	
 	// Language
 	implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
+	
+	// Mail
+	implementation 'org.springframework.boot:sprint-boot-starter-mail'
 }
 
 tasks.named('test') {
