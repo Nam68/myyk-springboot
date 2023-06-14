@@ -17,6 +17,10 @@
 <a href="/global/homepage?lang=ko">korean setting</a>
 <br>
 <a href="/global/homepage?lang=jp">japanese setting</a>
+<br>
+<a href="/email/sendCheckEmail">email send check</a>
+<br>
+<a href="/test/signupMailTest">sign up mail test</a>
 </body>
 <#include "/global/footer.ftlh">
 </html>

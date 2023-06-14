@@ -3,6 +3,7 @@ alert:
   close: "닫기"
   error:
     constraint: "잘못된 형식입니다."
+    ajax: "통신 중 문제가 발생했습니다.<br>관리자에게 문의 바랍니다."
     
 error:
   page:
@@ -31,9 +32,29 @@ member:
   attr:
     email: "이메일"
     password: "비밀번호"
+    passwordCheck: "비밀번호 확인"
+    nickname: "닉네임"
+    region: "지역"
+  region:
+    ko: "대한민국"
+    jp: "일본"
   email:
     input: "이메일 확인"
     error:
       empty: "이메일을 입력해주세요."
       constraint: "이메일은 '@'를 반드시 포함해야 합니다."
- 
+  tmp:
+    title: "확인코드 입력"
+    message: "메일에 기재되어 있는 확인코드를 입력해주세요"
+    code: "확인코드"
+    error: "확인코드가 일치하지 않거나, 유효기간이 지났습니다."
+  create:
+    input:
+      title: "회원가입"
+    error:
+      password:
+        length: "비밀번호는 8~20자로 입력해주세요."
+        letter: "비밀번호에는 영문 대문자, 소문자, 숫자가 포함되어야 합니다."
+        check: "비밀번호가 일치하지 않습니다."
+      nickname:
+        length: "닉네임은 10자 이내로 입력해주세요."
