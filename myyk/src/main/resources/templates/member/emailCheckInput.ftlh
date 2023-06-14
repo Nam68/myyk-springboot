@@ -15,11 +15,11 @@
 		<form action="/member/emailCheckConfirm" method="post" class="g-3 needs-validation" novalidate>
 			<div class="mb-4">
 				<label class="form-label">
-					<s:message code="member.email"/>
+					<@spring.message "member.attr.email"/>
 				</label>
 				<input type="text" class="form-control" name="email" required>
 	      		<div class="invalid-feedback">
-	        		<!--에러시 들어갈 내용-->
+	        		<#--에러시 들어갈 내용-->
 	      		</div>
 			</div>
 			<div class="pt-2 d-grid mx-auto">
@@ -31,6 +31,8 @@
 <#include "/global/footer.ftlh">
 <script type="text/javascript">
 	$('.needs-validation').on('submit', function(e) {
+	 
+	 	openLoading();
 		
 		var email = $(this).find('input[name="email"]');
 		
@@ -41,6 +43,7 @@
 			
 			e.preventDefault();
 			e.stopPropagation();
+			closeLoading();
 			
 			return;
 		} else {
@@ -54,6 +57,7 @@
 			
 			e.preventDefault();
 			e.stopPropagation();
+			closeLoading();
 			
 			return;
 		} else {

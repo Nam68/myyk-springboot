@@ -3,75 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <#include "/lib.ftlh"> 
-<title>Sample</title>
+<title><@spring.message "member.create.input.title"/></title>
 </head>
-<#include "/js/checkerJs.js"> 
+<script src="/js/checkerJs.js"></script> 
+<#include "/global/header.ftlh">
 <body>
 	<div class="col-lg-8 mx-auto">
 		<h1 class="title">
-			<s:message code="member.create.title"/>
+			<@spring.message "member.create.input.title"/>
 		</h1>
 		<form class="g-3 needs-validation" novalidate>
-			<!-- 이메일 -->
+			<#-- 이메일 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<s:message code="member.attr.email"/>
+					<@spring.message "member.attr.email"/>
 				</label>
 				<input type="text" class="form-control" name="email" required>
 			</div>
-			<!-- 비밀번호 -->
+			<#-- 비밀번호 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<s:message code="member.password"/>
+					<@spring.message "member.attr.password"/>
 				</label>
 				<input id="create-member-password" type="password" class="form-control" name="password" required>
 				<div class="invalid-feedback password-length">
-	        		<!--에러시 들어갈 내용-->
-	        		<!-- <s:message code="error.member.create.password.length"/> -->
+	        		<#--에러시 들어갈 내용-->
+	        		<#-- <@spring.message "member.create.error.password.length"/> -->
 	      		</div>
 	      		<div class="invalid-feedback password-letter">
-	        		<!--에러시 들어갈 내용-->
-	        		<!-- <s:message code="error.member.create.password.letter"/> -->
+	        		<#--에러시 들어갈 내용-->
+	        		<#-- <@spring.message "member.create.error.password.letter"/> -->
 	      		</div>
 			</div>
-			<!-- 비밀번호 확인 -->
+			<#-- 비밀번호 확인 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<s:message code="member.passwordCheck"/>
+					<@spring.message "member.attr.passwordCheck"/>
 				</label>
 				<input id="create-member-password-check" type="password" class="form-control" name="password-check" required>
 				<div class="invalid-feedback">
-	        		<s:message code="error.member.create.password.check"/>
+	        		<@spring.message "member.create.error.password.check"/>
 	      		</div>
 			</div>
-			<!-- 닉네임 -->
+			<#-- 닉네임 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<s:message code="member.nickname"/>
+					<@spring.message "member.attr.nickname"/>
 				</label>
 				<input type="text" class="form-control" name="nickname" required>
 				<div class="invalid-feedback">
-					<s:message code="error.member.create.nickname.length"/>
+					<@spring.message "member.create.error.nickname.length"/>
 	      		</div>
 			</div>
-			<!-- 지역 -->
+			<#-- 지역 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<s:message code="member.region"/>
+					<@spring.message "member.attr.region"/>
 				</label>
 				<select class="form-select" required>
+				<#-- 
 					<c:forEach items="${enums.region }" var="r" varStatus="status">
 					<option value="r.name" <c:if test="${status.index == 0}">selected="selected"</c:if>><s:message code="enum.region.${r.value}"/></option>
 					</c:forEach>
+					 -->
 				</select>
 			</div>
-			<!-- 버튼 -->
+			<#-- 버튼 -->
 			<div class="pt-2 d-grid mx-auto">
-				<button class="btn btn-primary submit-button" type="submit"><s:message code="message.ok"/></button>
+				<button class="btn btn-primary submit-button" type="submit"><@spring.message "alert.confirm"/></button>
 			</div>
 		</form>
 	</div>
 </body>
+<#include "/global/footer.ftlh">
 <script type="text/javascript">
 	$('input[name=password]').on('keyup', function(e) {
 		var val = $(this).val();
@@ -80,14 +84,14 @@
 		var letter = allLetterChecker(val);
 		
 		if (!length) {
-			$('.password-length').html('<s:message code="error.member.create.password.length"/>');
+			$('.password-length').html('<@spring.message "member.create.error.password.length"/>');
 			$(this).addClass('is-invalid');
 			$(this).removeClass('is-valid');
 		} else {
 			$('.password-length').html('');
 		}
 		if (!letter) {
-			$('.password-letter').html('<s:message code="error.member.create.password.letter"/>');
+			$('.password-letter').html('<@spring.message "member.create.error.password.letter"/>');
 			$(this).addClass('is-invalid');
 			$(this).removeClass('is-valid');
 		} else {

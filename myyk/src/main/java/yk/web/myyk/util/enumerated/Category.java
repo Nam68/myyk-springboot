@@ -12,6 +12,7 @@ public enum Category implements BaseEnum {
 	MAP,
 	REQUEST,
 	CALENDAR,
+	TEST,
 	;
 	
 	@Override

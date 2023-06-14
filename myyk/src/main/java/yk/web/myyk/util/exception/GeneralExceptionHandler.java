@@ -16,6 +16,9 @@ public class GeneralExceptionHandler {
 		mav.setViewName("global/globalError");
 		mav.addObject("errorMessage", e.getMessage());
 		mav.addObject(CookieApp.CATEGORY, Category.HOME);
+		
+		e.printStackTrace();
+		
 		return mav;
 	}
 	

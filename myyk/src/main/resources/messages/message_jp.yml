@@ -2,7 +2,8 @@ alert:
   confirm: "確認"
   close: "閉じる"
   error:
-    constraint: "잘못된 형식입니다."
+    constraint: "間違った形式です。"
+    ajax: "通信中に問題が発生しました。<br>管理者にお問い合わせください。"
     
 error:
   page:
@@ -31,8 +32,30 @@ member:
   attr:
     email: "メール"
     password: "パスワード"
+    passwordCheck: "パスワード確認"
+    nickname: "ニックネーム"
+    region: "地域"
+  region:
+    ko: "韓国"
+    jp: "日本"
   email:
     input: "メール確認"
     error:
       empty: "メールを入力してください。"
       constraint: "メールは'@'を必ず含めてください。"
+  tmp:
+    title: "確認コード入力"
+    message: "メールに記載されている確認コードを入力してください"
+    code: "確認コード"
+    error: "確認コードが一致していないか、期限が切れています。"
+  create:
+    input:
+      title: "アカウント登録"
+    error:
+      password:
+        length: "パスワードは８～２０文字に入力してください。"
+        letter: "パスワードにローマ字の大文字、小文字、数字を含めてください。"
+        check: "パスワードが一致していません。"
+      nickname:
+        length: "ニックネームは１０文字以内で入力してください。"
+        

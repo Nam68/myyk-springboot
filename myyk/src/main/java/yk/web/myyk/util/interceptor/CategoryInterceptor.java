@@ -3,6 +3,7 @@ package yk.web.myyk.util.interceptor;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +21,10 @@ public class CategoryInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
+		// 자원에 대한 핸들러면 통과시키기
+		if (handler.getClass().equals(ResourceHttpRequestHandler.class)) {
+			return true;
+		}
 		HandlerMethod handlerMethod = (HandlerMethod) handler;  
 		
 		// API용 컨트롤러면 건너뛰기

@@ -1,6 +1,10 @@
 spring: 
   config:
-    import: application-data.yaml
+    import: 
+      - application-data.yaml
+      - application-mail.yaml
+      - classpath:/mail/yaml/mail-template-ko.yaml
+      - classpath:/mail/yaml/mail-template-jp.yaml
   jpa:
     show-sql: true
     hibernate:
@@ -17,3 +21,9 @@ spring:
   messages:
     basename: messages/message
     encoding: UTF-8
+    
+---
+# 기타 고정값
+value:
+  tmpCode:
+    limit: 20 #분 단위
