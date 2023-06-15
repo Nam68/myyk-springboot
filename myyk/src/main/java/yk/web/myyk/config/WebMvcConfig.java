@@ -1,8 +1,12 @@
 package yk.web.myyk.config;
 
+import java.time.Duration;
+
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import yk.web.myyk.util.interceptor.CategoryInterceptor;
 import yk.web.myyk.util.interceptor.LanguageInterceptor;
@@ -17,6 +21,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		
 		registry.addInterceptor(new CategoryInterceptor())
 			.excludePathPatterns("/css/**", "/images/**", "/js/**");
+		
+		// POST 뒤로가기 방지
+		CacheControl cacheControl = CacheControl.maxAge(Duration.ofDays(365));
+	    WebContentInterceptor webContentInterceptor = new WebContentInterceptor();
+	    webContentInterceptor.addCacheMapping(cacheControl, "/**");
+	    registry.addInterceptor(webContentInterceptor);
 	}
 	
 }
