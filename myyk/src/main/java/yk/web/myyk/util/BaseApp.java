@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import yk.web.myyk.util.config.AppConstants;
+import yk.web.myyk.config.AppConstants;
 
 public class BaseApp {
 	

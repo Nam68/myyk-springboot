@@ -1,4 +1,4 @@
-package yk.web.myyk.util.config;
+package yk.web.myyk.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
