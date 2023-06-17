@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import yk.web.myyk.util.annotation.CategorySetter;
 import yk.web.myyk.util.cookie.CookieApp;
+import yk.web.myyk.util.enumerated.Category;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -22,7 +23,7 @@ public class CategoryInterceptor implements HandlerInterceptor {
 			throws Exception {
 		
 		// 자원에 대한 핸들러면 통과시키기
-		if (handler.getClass().equals(ResourceHttpRequestHandler.class)) {
+		if (!(handler instanceof HandlerMethod)) {
 			return true;
 		}
 		HandlerMethod handlerMethod = (HandlerMethod) handler;  
@@ -44,8 +45,9 @@ public class CategoryInterceptor implements HandlerInterceptor {
 			request.setAttribute(CookieApp.CATEGORY, category.value().toString());
 			return true;
 		}
-		
-		throw new SystemException(ErrorCode.getErrorMessage(ErrorCode.IC_101, getClass()));
+		request.setAttribute(CookieApp.CATEGORY, Category.HOME.getValue());
+		return true;	
+//		throw new SystemException(ErrorCode.getErrorMessage(ErrorCode.IC_101, getClass()));
 	}
 	
 }

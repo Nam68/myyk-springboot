@@ -27,7 +27,9 @@
 			</div>
 			
 		</form>
-		<form action="/member/createInput" method="post" class="next-page"></form>
+		<form action="/member/createInput" method="post" class="next-page">
+			<input type="hidden" name="email">
+		</form>
 	</div>
 </body>
 <script>
@@ -51,6 +53,7 @@
 	   			$('.invalid-feedback').html('<@spring.message "member.tmp.error"/>');
 				$('input[name=tmpCode]').addClass('is-invalid');
 	   		} else {
+	   			$('input[name=email]').val(data);
 	   			$('.next-page').submit();
 	   		}
 	   	})

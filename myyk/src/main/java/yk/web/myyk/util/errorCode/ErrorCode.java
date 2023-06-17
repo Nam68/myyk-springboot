@@ -8,7 +8,12 @@ public enum ErrorCode {
 	/**
 	 * <p>URL 혹은 컨트롤러에 카테고리 이넘이 세팅되지 않았을 경우의 에러.</p>
 	 */
-	IC_101("category enum is missing or url is not exist.");
+	IC_101("category enum is missing or url is not exist."),
+	
+	/**
+	 * <p>지역에 관한 이넘의 이름이 잘못되었을 경우의 에러.</p>
+	 */
+	EN_101("this region do not exist.")
 	
 	;
 	private String codeExplain;
@@ -17,11 +22,11 @@ public enum ErrorCode {
 	}
 	
 	/**
-	 * <p>에러의 설명을 반환한다.</p>
+	 * <p>에러의 설명을 반환한다. 반드시 {@link getErrorMessage}와 함께 사용할 것.</p>
 	 * 
 	 * @return 에러 설명
 	 */
-	public String getCodeExplain() {
+	private String getCodeExplain() {
 		return codeExplain;
 	}
 	

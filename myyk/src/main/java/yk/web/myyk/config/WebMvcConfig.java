@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import yk.web.myyk.util.interceptor.CategoryInterceptor;
 import yk.web.myyk.util.interceptor.LanguageInterceptor;
+import yk.web.myyk.util.interceptor.RegionInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -17,16 +18,22 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new LanguageInterceptor())
-			.excludePathPatterns("/css/**", "/images/**", "/js/**"); //해당 리소스는 인터셉트하지 않음
+			.excludePathPatterns("/css/**", "/img/**", "/js/**"); //해당 리소스는 인터셉트하지 않음
 		
 		registry.addInterceptor(new CategoryInterceptor())
-			.excludePathPatterns("/css/**", "/images/**", "/js/**");
+			.excludePathPatterns("/css/**", "/img/**", "/js/**");
 		
-		// POST 뒤로가기 방지
-		CacheControl cacheControl = CacheControl.maxAge(Duration.ofDays(365));
-	    WebContentInterceptor webContentInterceptor = new WebContentInterceptor();
-	    webContentInterceptor.addCacheMapping(cacheControl, "/**");
-	    registry.addInterceptor(webContentInterceptor);
+		registry.addInterceptor(new RegionInterceptor())
+			.excludePathPatterns("/css/**", "/img/**", "/js/**");
+		
+//		registry.addInterceptor(new WebContentInterceptor())
+//			.excludePathPatterns("/css/**", "/images/**", "/js/**");
+//		
+//		// POST 뒤로가기 방지
+//		CacheControl cacheControl = CacheControl.maxAge(Duration.ofDays(365));
+//	    WebContentInterceptor webContentInterceptor = new WebContentInterceptor();
+//	    webContentInterceptor.addCacheMapping(cacheControl, "/**");
+//	    registry.addInterceptor(webContentInterceptor);
 	}
 	
 }

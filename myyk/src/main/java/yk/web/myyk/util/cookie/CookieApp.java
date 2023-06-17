@@ -8,4 +8,6 @@ public class CookieApp {
 	
 	public static final String CATEGORY = "category";
 	
+	public static final String REGION = "region";
+	
 }
