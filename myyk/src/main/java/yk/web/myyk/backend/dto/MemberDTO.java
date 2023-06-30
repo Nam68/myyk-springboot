@@ -17,6 +17,12 @@ public class MemberDTO {
 		// nop
 	}
 	
+	public MemberDTO(String email, String nickname, Region region) {
+		this.email = email;
+		this.nickname = nickname;
+		this.region = region;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

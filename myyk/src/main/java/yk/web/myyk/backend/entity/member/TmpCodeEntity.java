@@ -18,7 +18,7 @@ public class TmpCodeEntity extends BaseEntityWithTime {
 	private Long tmpCodeIdx;
 
 	@Column(name = "TMP_CODE")
-	private int tmpCode;
+	private String tmpCode;
 
 	@Column(name = "EMAIL")
 	private String email;
@@ -28,9 +28,9 @@ public class TmpCodeEntity extends BaseEntityWithTime {
 		// nop
 	}
 	
-	public TmpCodeEntity(int tmpCode, String email) {
+	public TmpCodeEntity(String tmpCode, String email) {
 		this.tmpCode = tmpCode;
-		this.email = email;
+		this.email = encode(email);
 	}
 	
 	public String getEmail() {

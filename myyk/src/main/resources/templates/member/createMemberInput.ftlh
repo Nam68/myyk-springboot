@@ -55,6 +55,11 @@
 				<div class="invalid-feedback">
 					<@spring.message "member.create.error.nickname.length"/>
 	      		</div>
+	      		<#if errors?has_content && errors.nickname?has_content>
+	      		<div class="alert alert-danger mt-2" role="alert">
+					<@spring.message "error.member.create.nickname"/>
+				</div>
+				</#if>
 			</div>
 			<#-- 지역 -->
 			<div class="mb-4">

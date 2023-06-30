@@ -10,6 +10,10 @@ error:
     title: "エラー"
     message: "エラーが発生しました"
     code: "エラー内容"
+  member:
+    create:
+      email: "メールアドレスが重複されています。"
+      nickname: "ニックネームが重複されています。"
 
 category:
   memory: "メモリー"

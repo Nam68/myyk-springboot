@@ -10,6 +10,9 @@ import yk.web.myyk.util.mail.MailTemplate;
 
 public class BaseLogic extends BaseMvc {
 	
+	protected static final String EMAIL_DUPLICATION_ERROR = "error.member.create.email";
+	protected static final String NICKNAME_DUPLICATION_ERROR = "error.member.create.nickname";
+	
 	@Autowired
 	private MailTemplate mailTemplate;
 	

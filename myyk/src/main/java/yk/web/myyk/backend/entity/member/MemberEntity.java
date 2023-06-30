@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
@@ -20,11 +21,6 @@ import yk.web.myyk.util.enumerated.Region;
 @Entity
 @Table(name = "MEMBER_TBL")
 public class MemberEntity extends BaseEntityWithTime {
-
-	/**
-	 * <p>솔트값의 길이.</p>
-	 */
-	private static final int SALT_SIZE = 16;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,4 +51,16 @@ public class MemberEntity extends BaseEntityWithTime {
 	@Column(name = "MEMBER_ICON")
 	private String memberIcon;
 	
+	@Deprecated
+	public MemberEntity() {
+		// nop
+	}
+	
+	public MemberEntity(MemberDTO dto, int saltLength, int hashingTimes) {
+		this.email = dto.getEmail();
+		this.passwordSalt = getRandomString(saltLength);
+		this.password = hashing(dto.getPassword(), passwordSalt, hashingTimes);
+		this.nickname = dto.getNickname();
+		this.region = dto.getRegion();
+	}
 }

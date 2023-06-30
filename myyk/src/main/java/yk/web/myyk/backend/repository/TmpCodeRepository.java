@@ -14,6 +14,6 @@ public interface TmpCodeRepository extends JpaRepository<TmpCodeEntity, Long> {
 	 * @param tmpCode 확인코드
 	 * @return 임시멤버 엔티티
 	 */
-	public Optional<TmpCodeEntity> findByTmpCode(int tmpCode);
+	public Optional<TmpCodeEntity> findByTmpCode(String tmpCode);
 	
 }

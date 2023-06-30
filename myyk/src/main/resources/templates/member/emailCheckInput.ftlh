@@ -21,6 +21,11 @@
 	      		<div class="invalid-feedback">
 	        		<#--에러시 들어갈 내용-->
 	      		</div>
+	      		<#if errors?has_content && errors.email?has_content>
+	      		<div class="alert alert-danger mt-2" role="alert">
+					<@spring.message "error.member.create.email"/>
+				</div>
+				</#if>
 			</div>
 			<div class="pt-2 d-grid mx-auto">
 				<button class="btn btn-primary" type="submit"><@spring.message "alert.confirm"/></button>
