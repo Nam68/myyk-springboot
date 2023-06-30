@@ -41,7 +41,7 @@ public class EmailLogic extends BaseLogic implements EmailService {
 		if (entity != null) {
 			if (entity.getRegisterdDate().isAfter(
 					LocalDateTime.now().minusMinutes(getConstants().getTmpCodeLImitMinute()))) {
-				return entity.getEmail();
+				return decode(entity.getEmail());
 			} else {
 				getRepository().getTmpCode().delete(entity);
 			}

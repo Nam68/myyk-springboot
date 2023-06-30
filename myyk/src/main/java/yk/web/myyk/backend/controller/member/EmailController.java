@@ -38,7 +38,7 @@ public class EmailController extends BaseController {
 	 */
 	@RequestMapping(path = "/emailCheckConfirm", method = RequestMethod.POST)
 	public String confirm(String email, HttpServletRequest request) throws SystemException {
-		Map<String, String> errors = getService().getMember().emailValidatio(email);
+		Map<String, String> errors = getService().getMember().emailValidate(email);
 		if (!errors.isEmpty()) {
 			request.setAttribute(ERRORS, errors);
 			return "member/emailCheckInput";

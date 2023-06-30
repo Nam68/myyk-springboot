@@ -16,9 +16,9 @@ import yk.web.myyk.util.exception.SystemException;
 public class MemberLogic extends BaseLogic implements MemberService {
 	
 	@Override
-	public Map<String, String> emailValidatio(String email) throws SystemException {
+	public Map<String, String> emailValidate(String email) throws SystemException {
 		Map<String, String> errors = new HashMap<>();
-		if (getRepository().getMember().findAllByEmail(email).size() > 0) {
+		if (getRepository().getMember().findAllByEmail(encode(email)).size() > 0) {
 			errors.put("email", EMAIL_DUPLICATION_ERROR);
 		}
 		return errors;
