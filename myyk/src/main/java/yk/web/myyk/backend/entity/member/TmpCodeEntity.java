@@ -29,7 +29,7 @@ public class TmpCodeEntity extends BaseEntityWithTime {
 	}
 	
 	public TmpCodeEntity(String tmpCode, String email) {
-		this.tmpCode = tmpCode;
+		this.tmpCode = encode(tmpCode);
 		this.email = encode(email);
 	}
 	

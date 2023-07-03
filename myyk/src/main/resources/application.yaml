@@ -29,7 +29,9 @@ value:
     times: 100 #기본 해싱 반복 횟수
     salt: "eK3jdn8Sl1kj"
   tmpCode:
-    limit: 20 #분 단위
+    limit: 
+      minutes: 20 #분 단위
+      times: 5 #반복해서 보낸 횟수
   member:
     password:
       saltLength: 16

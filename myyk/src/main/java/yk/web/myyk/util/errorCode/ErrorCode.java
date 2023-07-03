@@ -5,6 +5,12 @@ package yk.web.myyk.util.errorCode;
  */
 public enum ErrorCode {
 	
+	/*
+	 * IC : 인터셉터
+	 * EN : 이넘
+	 * CT : 컨트롤러
+	 */
+	
 	/**
 	 * <p>URL 혹은 컨트롤러에 카테고리 이넘이 세팅되지 않았을 경우의 에러.</p>
 	 */
@@ -13,7 +19,12 @@ public enum ErrorCode {
 	/**
 	 * <p>지역에 관한 이넘의 이름이 잘못되었을 경우의 에러.</p>
 	 */
-	EN_101("this region do not exist.")
+	EN_101("this region do not exist."),
+	
+	/**
+	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
+	 */
+	CT_101("mail send failed... too many mails were sended."),
 	
 	;
 	private String codeExplain;

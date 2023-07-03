@@ -12,8 +12,11 @@ public class AppConstants {
 	@Value("${value.hashing.salt}")
 	private String hashingSalt;
 
-	@Value("${value.tmpCode.limit}")
-	private int tmpCodeLimitMinute;
+	@Value("${value.tmpCode.limit.minutes}")
+	private int tmpCodeLimitMinutes;
+	
+	@Value("${value.tmpCode.limit.times}")
+	private int tmpCodeLimitTimes;
 	
 	@Value("${value.member.password.saltLength}")
 	private int memberPasswordSaltLength;
@@ -29,8 +32,12 @@ public class AppConstants {
 		return hashingSalt;
 	}
 	
-	public int getTmpCodeLImitMinute() {
-		return tmpCodeLimitMinute;
+	public int getTmpCodeLImitMinutes() {
+		return tmpCodeLimitMinutes;
+	}
+	
+	public int getTmpCodeLImitTimes() {
+		return tmpCodeLimitTimes;
 	}
 	
 	public int getMemberPasswordSaltLength() {
