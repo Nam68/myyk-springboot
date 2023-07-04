@@ -62,5 +62,7 @@ public class MemberEntity extends BaseEntityWithTime {
 		this.password = hashing(dto.getPassword(), passwordSalt, hashingTimes);
 		this.nickname = dto.getNickname();
 		this.region = dto.getRegion();
+		this.memberType = MemberType.TMP_MEMBER;
+		this.memberIcon = getConstants().getMemberIconDefault();
 	}
 }

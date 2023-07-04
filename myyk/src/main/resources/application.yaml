@@ -36,4 +36,6 @@ value:
     password:
       saltLength: 16
       hashingTimes: 20
+    icon:
+      default: "/img/profile-default.jpg"
   

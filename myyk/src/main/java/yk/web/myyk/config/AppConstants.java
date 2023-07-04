@@ -24,6 +24,9 @@ public class AppConstants {
 	@Value("${value.member.password.hashingTimes}")     
 	private int memberPasswordHashingTimes;
 	
+	@Value("${value.member.Icon.default}")
+	private String memberIconDefault;
+	
 	public int getHashingTimes() {
 		return hashingTimes;
 	}
@@ -46,6 +49,10 @@ public class AppConstants {
 	
 	public int getMemberPasswordHashingTimes() {
 		return memberPasswordHashingTimes;
+	}
+	
+	public String getMemberIconDefault() {
+		return memberIconDefault;
 	}
 	
 }
