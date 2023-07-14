@@ -9,6 +9,7 @@ public enum ErrorCode {
 	 * IC : 인터셉터
 	 * EN : 이넘
 	 * CT : 컨트롤러
+	 * CK : 쿠키
 	 */
 	
 	/**
@@ -25,6 +26,11 @@ public enum ErrorCode {
 	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
 	 */
 	CT_101("mail send failed... too many mails were sended."),
+	
+	/**
+	 * <p>쿠키가 존재하지 않을 경우의 에러.</p>
+	 */
+	CK_101("cookie do not exist.")
 	
 	;
 	private String codeExplain;

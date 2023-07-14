@@ -28,6 +28,9 @@ value:
   hashing:
     times: 100 #기본 해싱 반복 횟수
     salt: "eK3jdn8Sl1kj"
+  cookie:
+    defaultTime: 2592000 #한달
+    oneDay: 86400 #하루
   tmpCode:
     limit: 
       minutes: 20 #분 단위
