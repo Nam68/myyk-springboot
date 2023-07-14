@@ -3,14 +3,41 @@ package yk.web.myyk.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+
 @Component
 public class AppConstants {
+	
+	private static int staticHashingTimes;
+	private static String staticHashingSalt;
+	private static int staticCookieDefaultTime;
+	private static int staticCookieOneDay;
+	private static int staticMemberPasswordSaltLength;
+	private static int staticMemberPasswordHashingTimes;
+	private static String staticMemberIconDefault;
+	
+	@PostConstruct
+	public void init() {
+		AppConstants.staticHashingTimes = hashingTimes;
+		AppConstants.staticHashingSalt = hashingSalt;
+		AppConstants.staticCookieDefaultTime = cookieDefaultTime;
+		AppConstants.staticCookieOneDay = cookieOneDay;
+		AppConstants.staticMemberPasswordSaltLength = memberPasswordSaltLength;
+		AppConstants.staticMemberPasswordHashingTimes = memberPasswordHashingTimes;
+		AppConstants.staticMemberIconDefault = memberIconDefault;
+	}
 	
 	@Value("${value.hashing.times}")
 	private int hashingTimes;
 	
 	@Value("${value.hashing.salt}")
 	private String hashingSalt;
+	
+	@Value("${value.cookie.defaultTime}")
+	private int cookieDefaultTime;
+	
+	@Value("${value.cookie.oneDay}")
+	private int cookieOneDay;
 
 	@Value("${value.tmpCode.limit.minutes}")
 	private int tmpCodeLimitMinutes;
@@ -24,15 +51,23 @@ public class AppConstants {
 	@Value("${value.member.password.hashingTimes}")     
 	private int memberPasswordHashingTimes;
 	
-	@Value("${value.member.Icon.default}")
+	@Value("${value.member.icon.default}")
 	private String memberIconDefault;
 	
-	public int getHashingTimes() {
-		return hashingTimes;
+	public static int getHashingTimes() {
+		return staticHashingTimes;
 	}
 	
-	public String getHashingSalt() {
-		return hashingSalt;
+	public static String getHashingSalt() {
+		return staticHashingSalt;
+	}
+	
+	public static int getCookieDefaultTime() {
+		return staticCookieDefaultTime;
+	}
+	
+	public static int getCookieOneDay() {
+		return staticCookieOneDay;
 	}
 	
 	public int getTmpCodeLImitMinutes() {
@@ -43,16 +78,16 @@ public class AppConstants {
 		return tmpCodeLimitTimes;
 	}
 	
-	public int getMemberPasswordSaltLength() {
-		return memberPasswordSaltLength;
+	public static int getMemberPasswordSaltLength() {
+		return staticMemberPasswordSaltLength;
 	}
 	
-	public int getMemberPasswordHashingTimes() {
-		return memberPasswordHashingTimes;
+	public static int getMemberPasswordHashingTimes() {
+		return staticMemberPasswordHashingTimes;
 	}
 	
-	public String getMemberIconDefault() {
-		return memberIconDefault;
+	public static String getMemberIconDefault() {
+		return staticMemberIconDefault;
 	}
 	
 }

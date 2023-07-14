@@ -10,6 +10,7 @@ import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.member.MemberService;
+import yk.web.myyk.config.AppConstants;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service
@@ -36,10 +37,7 @@ public class MemberLogic extends BaseLogic implements MemberService {
 	@Override
 	@Transactional
 	public void create(MemberDTO dto) throws SystemException {
-		MemberEntity entity = new MemberEntity(
-				dto, 
-				getConstants().getMemberPasswordSaltLength(),
-				getConstants().getMemberPasswordHashingTimes());
+		MemberEntity entity = new MemberEntity(dto);
 		getRepository().getMember().save(entity);
 	}
 }

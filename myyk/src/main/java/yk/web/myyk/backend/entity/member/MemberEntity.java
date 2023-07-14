@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
+import yk.web.myyk.config.AppConstants;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
 
@@ -56,13 +57,21 @@ public class MemberEntity extends BaseEntityWithTime {
 		// nop
 	}
 	
-	public MemberEntity(MemberDTO dto, int saltLength, int hashingTimes) {
+	public MemberEntity(MemberDTO dto) {
+		this(dto, AppConstants.getMemberPasswordSaltLength(), AppConstants.getMemberPasswordHashingTimes(), AppConstants.getMemberIconDefault());
+	}
+	
+	public MemberEntity(MemberDTO dto, String memberIcon) {
+		this(dto, AppConstants.getMemberPasswordSaltLength(), AppConstants.getMemberPasswordHashingTimes(), memberIcon);
+	}
+
+	public MemberEntity(MemberDTO dto, int saltLength, int hashingTimes, String memberIcon) {
 		this.email = dto.getEmail();
 		this.passwordSalt = getRandomString(saltLength);
 		this.password = hashing(dto.getPassword(), passwordSalt, hashingTimes);
 		this.nickname = dto.getNickname();
 		this.region = dto.getRegion();
 		this.memberType = MemberType.TMP_MEMBER;
-		this.memberIcon = getConstants().getMemberIconDefault();
+		this.memberIcon = memberIcon;
 	}
 }
