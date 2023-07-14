@@ -8,10 +8,25 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import yk.web.myyk.util.cookie.CookieApp;
+import yk.web.myyk.util.cookie.CookieUtil;
 
 public class LanguageInterceptor implements HandlerInterceptor {
 
 	private static final String LANGUAGE_SETTING = "/language/setting";
+	
+	/**
+	 * <p>언어 설정의 URL.</p>
+	 * <p>컨테이너 변경 등의 이유로 유지보수가 어려울 수 있으므로 극도로 사용을 제한할 것.</p>
+	 * <p>사용하는 경우는 가급적 이 주석에 위치를 기재할 것.</p>
+	 * <ul>
+	 * <li>LanguageSettingInterceptor</li>
+	 * </ul>
+	 * 
+	 * @return 언어설정 컨테이너의 URL
+	 */
+	public static String getLanguageSetting() {
+		return LANGUAGE_SETTING;
+	}
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -22,14 +37,31 @@ public class LanguageInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		
-		// 자동으로 설정되는 쿠키가 없어도 강제로 언어설정으로 보낸다.
+		// 세션 언어 정보를 검색해서, 있으면 로컬쿠키에 등록한다
 		Locale locale = (Locale) request.getSession().getAttribute(CookieApp.LANGUAGE_SETTING);
-		if (locale == null && !request.getRequestURI().toString().contains(".")) { // 이미지 등의 주소도 변환되므로 .이 포함된 URI는 제외한다.
-			response.sendRedirect(LANGUAGE_SETTING);
-			return false;
+		if (locale != null && !request.getRequestURI().toString().contains(".")) { // 이미지 등의 주소도 변환되므로 .이 포함된 URI는 제외한다.
+			// 세션 언어 정보가 있는 경우
+			// 로컬 쿠키에 등록
+			CookieUtil.setCookie(CookieApp.LANGUAGE_SETTING_SAVE, locale.getLanguage(), response);
+			return true;
+		} else { // 
+			// 세션 언어 정보가 없는 경우
+			// 로컬 쿠키를 찾는다
+			String lang = CookieUtil.getValue(CookieApp.LANGUAGE_SETTING_SAVE, request);
+			if (lang == null || "".equals(lang)) {
+				// 로컬 쿠키 정보마저 없으면 언어설정으로 리다이렉트
+				response.sendRedirect(LanguageInterceptor.getLanguageSetting());
+				return false;
+			} else {
+				// 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅
+				if (Locale.KOREA.getLanguage().equals(lang)) {
+					request.getSession().setAttribute(CookieApp.LANGUAGE_SETTING, Locale.KOREAN);
+				} else if (Locale.JAPAN.getLanguage().equals(lang) || "jp".equals(lang) || "JP".equals(lang)) {
+					request.getSession().setAttribute(CookieApp.LANGUAGE_SETTING, Locale.JAPANESE);
+				}
+				return true;
+			}
 		}
-		
-		return true;
 	}
 	
 }
