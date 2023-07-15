@@ -3,10 +3,10 @@ package yk.web.myyk.util.interceptor;
 import java.util.Locale;
 
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import yk.web.myyk.config.MyLocale;
 import yk.web.myyk.util.cookie.CookieApp;
 import yk.web.myyk.util.cookie.CookieUtil;
 
@@ -42,7 +42,7 @@ public class LanguageInterceptor implements HandlerInterceptor {
 		if (locale != null && !request.getRequestURI().toString().contains(".")) { // 이미지 등의 주소도 변환되므로 .이 포함된 URI는 제외한다.
 			// 세션 언어 정보가 있는 경우
 			// 로컬 쿠키에 등록
-			CookieUtil.setCookie(CookieApp.LANGUAGE_SETTING_SAVE, locale.getLanguage(), response);
+			CookieUtil.setCookie(CookieApp.LANGUAGE_SETTING_SAVE, MyLocale.toLanguageCode(locale), response);
 			return true;
 		} else { // 
 			// 세션 언어 정보가 없는 경우
@@ -54,11 +54,7 @@ public class LanguageInterceptor implements HandlerInterceptor {
 				return false;
 			} else {
 				// 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅
-				if (Locale.KOREA.getLanguage().equals(lang)) {
-					request.getSession().setAttribute(CookieApp.LANGUAGE_SETTING, Locale.KOREAN);
-				} else if (Locale.JAPAN.getLanguage().equals(lang) || "jp".equals(lang) || "JP".equals(lang)) {
-					request.getSession().setAttribute(CookieApp.LANGUAGE_SETTING, Locale.JAPANESE);
-				}
+				request.getSession().setAttribute(CookieApp.LANGUAGE_SETTING, MyLocale.parseLocale(lang));
 				return true;
 			}
 		}

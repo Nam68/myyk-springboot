@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import yk.web.myyk.config.MyLocale;
 import yk.web.myyk.util.cookie.CookieUtil;
+import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
 @Component
@@ -21,12 +23,12 @@ public class MailConfig {
 	public MailText getTextConfig() {
 		Locale locale = CookieUtil.getLocale();
 
-		if (locale.getLanguage().equals("ko")) {
+		if (MyLocale.isKorean(locale)) {
 			return mailTextKo;
-		} else if (locale.getLanguage().equals("jp")) {
+		} else if (MyLocale.isJapanese(locale)) {
 			return mailTextJp;
 		} else {
-			throw new SystemException("can not find language setting.");
+			throw new SystemException(ErrorCode.CF_102, MailConfig.class);
 		}
 	}
 

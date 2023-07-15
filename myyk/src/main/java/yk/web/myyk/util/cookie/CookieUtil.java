@@ -10,8 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.config.AppConstants;
-import yk.web.myyk.util.errorCode.ErrorCode;
-import yk.web.myyk.util.exception.SystemException;
+import yk.web.myyk.config.MyLocale;
 
 public class CookieUtil {
 
@@ -23,7 +22,8 @@ public class CookieUtil {
 	}
 	
 	public static Locale getLocale() {
-		return (Locale) getCurrentSession().getAttribute(CookieApp.LANGUAGE_SETTING);
+		Locale locale = (Locale) getCurrentSession().getAttribute(CookieApp.LANGUAGE_SETTING);
+		return MyLocale.parseLocale(locale);
 	}
 	
 	/**
