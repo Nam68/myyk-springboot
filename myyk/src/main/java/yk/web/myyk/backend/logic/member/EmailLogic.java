@@ -43,10 +43,10 @@ public class EmailLogic extends BaseLogic implements EmailService {
 	
 	@Override
 	public String checkTmpCode(int tmpCode) throws SystemException {
-		String encodedTmpCode = encode(String.valueOf(tmpCode));
+		String encodedTmpCode = hashing(String.valueOf(tmpCode));
 		TmpCodeEntity entity = getRepository().getTmpCode().findByTmpCode(encodedTmpCode).orElse(null);
 		if (entity != null) {
-			return decode(entity.getEmail());
+			return String.valueOf(tmpCode);
 		} else {
 			return Error.ERROR.getValue();
 		}

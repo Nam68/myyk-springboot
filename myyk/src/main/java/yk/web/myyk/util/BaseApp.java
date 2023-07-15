@@ -1,18 +1,31 @@
 package yk.web.myyk.util;
 
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Random;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import yk.web.myyk.config.AppConstants;
+import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
 public class BaseApp {
 	
-	private static String SHA_256 = "SHA-256";
+	private static final String SHA_256 = "SHA-256";
+	
+	private static final String AES = "AES";
+	private static final int KEY_SIZE = 128;
 	
 	@Autowired
 	private AppConstants appConstants;
@@ -83,7 +96,7 @@ public class BaseApp {
 	 * @return 해싱된 문자
 	 */
 	protected String hashing(String target, String salt) {
-		int times = getConstants().getHashingTimes();
+		int times = AppConstants.getHashingTimes();
 		return hashing(target, salt, times);
 	}
 	
@@ -94,7 +107,7 @@ public class BaseApp {
 	 * @return 해싱된 문자
 	 */
 	protected String hashing(String target) {
-		String salt = getConstants().getHashingSalt();
+		String salt = AppConstants.getHashingSalt();
 		return hashing(target, salt);
 	}
 	
@@ -114,6 +127,63 @@ public class BaseApp {
 			sb.append(str);
 		}
 		return sb.toString();
+	}
+	
+	/**
+	 * <p>암호화 키를 반환한다.</p>
+	 * 
+	 * @return 암호화 키
+	 */
+	private SecretKey getKey() {
+		return new SecretKeySpec(AppConstants.getEncryptKey().getBytes(), AES);
+	}
+	
+	/**
+	 * <p>암호화한다.</p>
+	 * 
+	 * @param target 대상 문자열
+	 * @return 암호화된 문자열
+	 */
+	protected String encrypt(String target) {
+		try {
+			Cipher cipher = Cipher.getInstance(AES);
+			cipher.init(Cipher.ENCRYPT_MODE, getKey());
+			byte[] bytes = cipher.doFinal(target.getBytes());
+			
+			byte[] encodedBytes = encode(bytes);
+			return new String(encodedBytes);
+			
+		} catch (NoSuchAlgorithmException 
+				| NoSuchPaddingException 
+				| InvalidKeyException 
+				| IllegalBlockSizeException 
+				| BadPaddingException e) {
+			throw new SystemException(ErrorCode.CF_103, e.getClass());
+		}
+	}
+	
+	/**
+	 * <p>복호화한다.</p>
+	 * 
+	 * @param target 대상 문자열
+	 * @return 복호화된 문자열
+	 */
+	protected String decrypt(String target) {
+		try {			
+			Cipher cipher = Cipher.getInstance(AES);
+			cipher.init(Cipher.DECRYPT_MODE, getKey());
+			byte[] bytes = cipher.doFinal(decode(target.getBytes()));
+			
+			return new String(bytes);
+			
+		} catch (NoSuchAlgorithmException 
+				| NoSuchPaddingException 
+				| InvalidKeyException 
+				| IllegalBlockSizeException 
+				| BadPaddingException e) {
+			e.printStackTrace();
+			throw new SystemException(ErrorCode.CF_103, e.getClass());
+		}
 	}
 	
 	/**

@@ -8,6 +8,7 @@ public enum ErrorCode {
 	/*
 	 * IC : 인터셉터
 	 * EN : 이넘
+	 * ET : 엔티티
 	 * CT : 컨트롤러
 	 * CK : 쿠키
 	 * CF : 설정
@@ -24,6 +25,11 @@ public enum ErrorCode {
 	EN_101("this region do not exist."),
 	
 	/**
+	 * <p>존재해야할 엔티티 정보가 취득되지 않을 때의 에러.</p>
+	 */
+	ET_101("database is gone."),
+	
+	/**
 	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
 	 */
 	CT_101("mail send failed... too many mails were sended."),
@@ -37,6 +43,11 @@ public enum ErrorCode {
 	 * <p>언어 코드가 존재하지 않을 때의 에러.</p>
 	 */
 	CF_102("locale is not matched any languages."),
+	
+	/**
+	 * <p>암호화에 실패했을 때의 에러.</p>
+	 */
+	CF_103("encryption is failed."),
 	
 	;
 	private String codeExplain;

@@ -25,9 +25,6 @@ spring:
 ---
 # 기타 고정값
 value:
-  hashing:
-    times: 100 #기본 해싱 반복 횟수
-    salt: "eK3jdn8Sl1kj"
   cookie:
     defaultTime: 2592000 #한달
     oneDay: 86400 #하루
@@ -36,9 +33,6 @@ value:
       minutes: 20 #분 단위
       times: 5 #반복해서 보낸 횟수
   member:
-    password:
-      saltLength: 16
-      hashingTimes: 20
     icon:
       default: "/img/profile-default.jpg"
   

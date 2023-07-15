@@ -146,7 +146,7 @@
 				<h1 class="modal-title fs-5" id="login-modal-label"><@spring.message "header.login"/></h1>
 				<button type="button" class="btn-close" id="header-login-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form>
+			<form action="/member/login" method="post">
 				<div class="modal-body">
 					<div class="mb-3">
 						<label for="login-local-part-email" class="form-label"><@spring.message "member.attr.email"/></label>
@@ -157,7 +157,7 @@
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="login-password" class="form-label"><@spring.message "member.password"/></label>
+						<label for="login-password" class="form-label"><@spring.message "member.attr.password"/></label>
 						<div class="password-form">
 							<input id="login-password" name="password" type="password" class="form-control">
 							<i class="bi bi-eye-fill main-bi primary-color-not-hover"></i>
@@ -179,7 +179,7 @@
 <script>
 $('.language-setting').on('change', function(e) {
 	var lang = $(this).find('option:selected').val();
-	var flg = window.confirm('메인 화면으로 돌아갑니다. 언어를 변경하시겠습니까?\r\nメイン画面に戻ります。よろしいですか？');
+	var flg = window.confirm('메인 화면으로 돌아갑니다. 언어를 변경하시겠습니까?\r\nメイン画面に遷移します。よろしいですか？');
 	if (flg == true) {
 		location.href="/?lang=" + lang;
 	}

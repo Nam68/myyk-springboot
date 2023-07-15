@@ -66,7 +66,7 @@ public class MemberEntity extends BaseEntityWithTime {
 	}
 
 	public MemberEntity(MemberDTO dto, int saltLength, int hashingTimes, String memberIcon) {
-		this.email = dto.getEmail();
+		this.email = encrypt(dto.getEmail());
 		this.passwordSalt = getRandomString(saltLength);
 		this.password = hashing(dto.getPassword(), passwordSalt, hashingTimes);
 		this.nickname = dto.getNickname();

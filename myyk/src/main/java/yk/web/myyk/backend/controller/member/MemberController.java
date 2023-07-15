@@ -31,7 +31,8 @@ public class MemberController extends BaseController {
 	 */
 	@RequestMapping(path = "/createInput", method = RequestMethod.POST)
 	@RegionSetter
-	public String createInput(String email, HttpServletRequest request) throws SystemException {
+	public String createInput(String tmpCode, HttpServletRequest request) throws SystemException {
+		String email = getService().getMember().findMailWithTmpCode(tmpCode);
 		request.setAttribute("email", email);
 		return "member/createMemberInput";
 	}
