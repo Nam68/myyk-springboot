@@ -22,7 +22,7 @@ public class EmailLogic extends BaseLogic implements EmailService {
 		
 		// 로봇 대책
 		if (getRepository().getTmpCode().findAllByEmail(encode(email)).size() > getConstants().getTmpCodeLImitTimes()) {
-			throw new SystemException(ErrorCode.getErrorMessage(ErrorCode.CT_101, EmailLogic.class));
+			throw new SystemException(ErrorCode.CT_101, EmailLogic.class);
 		}
 		
 		// 중복된 코드를 생성하지 않음

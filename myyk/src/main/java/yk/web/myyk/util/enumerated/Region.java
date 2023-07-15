@@ -1,7 +1,5 @@
 package yk.web.myyk.util.enumerated;
 
-import java.util.List;
-
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -33,7 +31,7 @@ public enum Region implements BaseEnum {
 				return target;
 			}
 		}
-		throw new SystemException(ErrorCode.getErrorMessage(ErrorCode.EN_101, Region.class));
+		throw new SystemException(ErrorCode.EN_101, Region.class);
 	}
 	
 }

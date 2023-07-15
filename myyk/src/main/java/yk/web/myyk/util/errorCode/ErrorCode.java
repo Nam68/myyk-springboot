@@ -10,6 +10,7 @@ public enum ErrorCode {
 	 * EN : 이넘
 	 * CT : 컨트롤러
 	 * CK : 쿠키
+	 * CF : 설정
 	 */
 	
 	/**
@@ -28,9 +29,14 @@ public enum ErrorCode {
 	CT_101("mail send failed... too many mails were sended."),
 	
 	/**
-	 * <p>쿠키가 존재하지 않을 경우의 에러.</p>
+	 * <p>로케일이 존재하지 않을 때의 에러.</p>
 	 */
-	CK_101("cookie do not exist.")
+	CF_101("locale do not exist."),
+	
+	/**
+	 * <p>언어 코드가 존재하지 않을 때의 에러.</p>
+	 */
+	CF_102("locale is not matched any languages."),
 	
 	;
 	private String codeExplain;
