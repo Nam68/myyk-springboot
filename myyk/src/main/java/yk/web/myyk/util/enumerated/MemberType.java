@@ -29,4 +29,12 @@ public enum MemberType implements BaseEnum {
 	public String getValue() {
 		return value;
 	}
+	
+	public static boolean hasAdminAuthority(MemberType memberType) {
+		return ADMIN.equals(memberType);
+	}
+	
+	public static boolean hasMemberAuthority(MemberType memberType) {
+		return ADMIN.equals(memberType) || MEMBER.equals(memberType);
+	}
 }

@@ -49,6 +49,11 @@ public enum ErrorCode {
 	 */
 	CF_103("encryption is failed."),
 	
+	/**
+	 * <p>프리마커 설정에 실패했을 떄의 에러.</p>
+	 */
+	CF_104("freemarker do not work."),
+	
 	;
 	private String codeExplain;
 	ErrorCode(String codeExplain) {

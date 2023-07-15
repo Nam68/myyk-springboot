@@ -74,4 +74,34 @@ public class MemberEntity extends BaseEntityWithTime {
 		this.memberType = MemberType.TMP_MEMBER;
 		this.memberIcon = memberIcon;
 	}
+	
+	public long getMemberIdx() {
+		return memberIdx;
+	}
+	
+	public String getEmail() {
+		return decrypt(email);
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+	
+	public Region getRegion() {
+		return region;
+	}
+	
+	public MemberType getMemberType() {
+		return memberType;
+	}
+	
+	public String memberIcon() {
+		return memberIcon;
+	}
+	
+	public boolean passwordValidate(String password) {
+		String hashedPassword = hashing(password, passwordSalt, AppConstants.getMemberPasswordHashingTimes());
+		return hashedPassword.equals(this.password);
+	}
+	
 }

@@ -14,6 +14,8 @@ error:
     create:
       email: "メールアドレスが重複されています。"
       nickname: "ニックネームが重複されています。"
+    login:
+      failed: "ID とパスワードを確認してください。"
 
 category:
   memory: "メモリー"

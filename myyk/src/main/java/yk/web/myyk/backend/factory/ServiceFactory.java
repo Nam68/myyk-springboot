@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.member.EmailService;
+import yk.web.myyk.backend.service.member.LoginService;
 import yk.web.myyk.backend.service.member.MemberService;
 
 @Component
@@ -18,12 +19,19 @@ public class ServiceFactory {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private LoginService loginService;
+	
 	public EmailService getEmail() {
 		return emailService;
 	}
 	
 	public MemberService getMember() {
 		return memberService;
+	}
+	
+	public LoginService getLogin() {
+		return loginService;
 	}
 	
 }

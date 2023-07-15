@@ -14,6 +14,8 @@ error:
     create:
       email: "중복된 이메일입니다."
       nickname: "중복된 닉네임입니다."
+    login:
+      failed: "ID와 비밀번호를 확인해주세요."
 
 category:
   memory: "메모리"

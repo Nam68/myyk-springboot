@@ -72,10 +72,10 @@
 				<img src="${login_info.memberIcon }" alt="mdo" class="rounded-circle login-picture <#if category = 'MEMBER'>selected-header-icon</#if>">
 			</a>
 			<ul class="dropdown-menu text-small">
-				<c:if test="${login_info.memberType == 'ADMIN' }">
+				<#if login_info.isAdmin()>
 				<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><@spring.message "header.member.admin"/></a></li>
-				</c:if>
-				<li><a class="dropdown-item" href="#">New project...</a></li>
+				</#if>
+				<li><a class="dropdown-item" href="#">New project</a></li>
 				<li><a class="dropdown-item" href="#">Settings</a></li>
 				<li><a class="dropdown-item" href="#"><@spring.message "header.member.myInfo"/></a></li>
 				<li><hr class="dropdown-divider"></li>
@@ -146,43 +146,74 @@
 				<h1 class="modal-title fs-5" id="login-modal-label"><@spring.message "header.login"/></h1>
 				<button type="button" class="btn-close" id="header-login-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form action="/member/login" method="post">
-				<div class="modal-body">
-					<div class="mb-3">
-						<label for="login-local-part-email" class="form-label"><@spring.message "member.attr.email"/></label>
-						<div class="input-group mb-4">
-							<input id="login-local-part-email" type="text" class="form-control" name="localPartEmail" placeholder="example">
-							<span class="input-group-text">@</span>
-							<input id="login-domain-part-email" type="text" class="form-control" name="domainPartEmail" placeholder="domain.com">
-						</div>
+			<div class="modal-body text-start">
+				<div class="mb-3">
+					<label for="login-local-part-email" class="form-label"><@spring.message "member.attr.email"/></label>
+					<div class="input-group mb-4">
+						<input id="login-local-part-email" type="text" class="form-control" name="localPartEmail" placeholder="example">
+						<span class="input-group-text">@</span>
+						<input id="login-domain-part-email" type="text" class="form-control" name="domainPartEmail" placeholder="domain.com">
 					</div>
-					<div class="mb-3">
-						<label for="login-password" class="form-label"><@spring.message "member.attr.password"/></label>
-						<div class="password-form">
-							<input id="login-password" name="password" type="password" class="form-control">
-							<i class="bi bi-eye-fill main-bi primary-color-not-hover"></i>
-						</div>
-					</div>
-					<div class="form-check">
-						<input id="auto-login-check" name="autoLoginCheck" type="checkbox" class="form-check-input">
-			    		<label class="form-label" for="auto-login-check"><@spring.message "header.autoLogin"/></label>
-			  		</div>
-	      		</div>
-				<div class="d-grid gap-2 p-3">
-					<button id="header-login-submit" class="btn btn-primary" type="button"><@spring.message "header.login"/></button>
-					<button id="header-login-close" class="btn btn-outline-primary" type="button" data-bs-dismiss="modal"><@spring.message "alert.close"/></button>
 				</div>
-			</form>
+				<div class="mb-3">
+					<label for="login-password" class="form-label"><@spring.message "member.attr.password"/></label>
+					<div class="password-form">
+						<input id="login-password" name="password" type="password" class="form-control">
+						<i class="bi bi-eye-fill main-bi primary-color-not-hover"></i>
+					</div>
+				</div>
+				<div class="form-check">
+					<input id="auto-login-check" name="autoLoginCheck" type="checkbox" class="form-check-input">
+			   		<label class="form-label" for="auto-login-check"><@spring.message "header.autoLogin"/></label>
+			 		</div>
+	      	</div>
+			<div class="d-grid gap-2 p-3">
+				<button id="header-login-submit" class="btn btn-primary" type="button"><@spring.message "header.login"/></button>
+				<button id="header-login-close" class="btn btn-outline-primary" type="button" data-bs-dismiss="modal"><@spring.message "alert.close"/></button>
+			</div>
 		</div>
 	</div>
 </div>
 <script>
+// 언어 선택
 $('.language-setting').on('change', function(e) {
 	var lang = $(this).find('option:selected').val();
 	var flg = window.confirm('메인 화면으로 돌아갑니다. 언어를 변경하시겠습니까?\r\nメイン画面に遷移します。よろしいですか？');
 	if (flg == true) {
 		location.href="/?lang=" + lang;
 	}
+});
+
+// 로그인
+$('#header-login-submit').on('click', function(e) {
+
+	openLoading();
+	
+	$.ajax({
+	   	url:'/member/login',
+   		method:'POST',
+   		data:{
+   			localPartEmail: $('#login-local-part-email').val(),
+   			domainPartEmail: $('#login-domain-part-email').val(),
+   			password: $('#login-password').val(),
+   			autoLoginCheck: $('#auto-login-check').val()
+   		}
+   	})
+   	.done(function(data) {
+   	
+   		closeLoading();
+   		
+   		if (data == 'ERROR' || data.includes('<!DOCTYPE html>')) {
+   			window.alert('<@spring.message "error.member.login.failed"/>');
+   		} else {
+   			// $('#login-modal').modal('hide');
+	   		location.reload();
+   		}
+   	})
+   	.fail(function(data) {
+   		closeLoading();
+   		window.alert('<@spring.message "error.ajax"/>');
+   	});	
 });
 </script>
 </html>

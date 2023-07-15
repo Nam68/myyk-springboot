@@ -15,17 +15,22 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import jakarta.servlet.http.HttpSession;
+import yk.web.myyk.backend.dto.LoginInfo;
 import yk.web.myyk.config.AppConstants;
+import yk.web.myyk.util.cookie.CookieUtil;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
 public class BaseApp {
 	
 	private static final String SHA_256 = "SHA-256";
-	
 	private static final String AES = "AES";
-	private static final int KEY_SIZE = 128;
+	
+	protected static final String LOGIN_INFO = "login_info";
 	
 	@Autowired
 	private AppConstants appConstants;

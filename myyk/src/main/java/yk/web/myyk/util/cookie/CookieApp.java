@@ -24,4 +24,9 @@ public class CookieApp {
 	 */
 	public static final String REGION = "region";
 	
+	/**
+	 * <p>자동 로그인 정보를 가지고 있는 쿠키.</p>
+	 */
+	public static final String AUTO_LOGIN = "auto_login";
+	
 }
