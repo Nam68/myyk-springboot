@@ -62,6 +62,9 @@
 	.pc-header {
 		display: none;
 	}
+	.pc-language-setting {
+		display: none;
+	}
 	.mobile-header {
 		display: inline-block;
 		width: 100%;
@@ -127,7 +130,7 @@
 		width: 100%;
 		
 		padding: 1%;
-		font-size: 1.3rem;
+		font-size: 1rem;
 	}
 	.mobile-footer-color {
 		font-style:normal;

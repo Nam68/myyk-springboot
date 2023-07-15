@@ -7,6 +7,15 @@
 	PC버전에서의 헤더
 	
 -->
+<div>
+	<div class="language-setting pc-language-setting p-2 ps-2" style="width: 50%; text-align: left;">
+		<select class="form-select form-select-sm" aria-label=".form-select-sm example">
+		  <option selected>Language/언어/言語</option>
+		  <option value="ko">한국어/Korean</option>
+		  <option value="jp">日本語/Japanese</option>
+		</select>
+	</div>
+</div>
 <header class="pc-header header-component fixed-top align-items-center justify-content-center justify-content-md-between">
 	<#-- 
 	<a href="/" class="d-flex align-items-center col-md-2 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -87,6 +96,15 @@
     
 -->
 <header class="mobile-header header-component fixed-top align-items-center">
+	<div>
+		<div class="language-setting mobile-language-setting p-2 ps-4" style="border: width: 50%; text-align: left;">
+			<select class="form-select form-select-sm" aria-label=".form-select-sm example">
+			  <option selected>Language/언어/言語</option>
+			  <option value="ko">한국어/Korean</option>
+			  <option value="jp">日本語/Japanese</option>
+			</select>
+		</div>
+	</div>
 	<div class="row">
 		<a href="/" class="d-flex text-dark text-decoration-none">
 			<i class="bi bi-bootstrap-fill main-bi d-block m-auto"></i>
@@ -158,5 +176,13 @@
 		</div>
 	</div>
 </div>
-
+<script>
+$('.language-setting').on('change', function(e) {
+	var lang = $(this).find('option:selected').val();
+	var flg = window.confirm('메인 화면으로 돌아갑니다. 언어를 변경하시겠습니까?\r\nメイン画面に戻ります。よろしいですか？');
+	if (flg == true) {
+		location.href="/?lang=" + lang;
+	}
+});
+</script>
 </html>
