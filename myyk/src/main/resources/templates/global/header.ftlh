@@ -163,7 +163,7 @@
 					</div>
 				</div>
 				<div class="form-check">
-					<input id="auto-login-check" name="autoLoginCheck" type="checkbox" class="form-check-input">
+					<input id="auto-login-check" name="autoLoginCheck" type="checkbox" class="form-check-input" value="check">
 			   		<label class="form-label" for="auto-login-check"><@spring.message "header.autoLogin"/></label>
 			 		</div>
 	      	</div>
@@ -196,7 +196,7 @@ $('#header-login-submit').on('click', function(e) {
    			localPartEmail: $('#login-local-part-email').val(),
    			domainPartEmail: $('#login-domain-part-email').val(),
    			password: $('#login-password').val(),
-   			autoLoginCheck: $('#auto-login-check').val()
+   			autoLoginCheck: $('#auto-login-check').is(':checked')
    		}
    	})
    	.done(function(data) {

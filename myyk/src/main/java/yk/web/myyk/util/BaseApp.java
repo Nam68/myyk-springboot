@@ -38,6 +38,10 @@ public class BaseApp {
 	protected AppConstants getConstants() {
 		return appConstants;
 	}
+	
+	public static String getLoginInfoName() {
+		return LOGIN_INFO;
+	}
 
 	/**
 	 * <p>난수를 발생시킨다</p>

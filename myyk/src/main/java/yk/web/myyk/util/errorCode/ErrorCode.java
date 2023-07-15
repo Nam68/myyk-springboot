@@ -35,6 +35,11 @@ public enum ErrorCode {
 	CT_101("mail send failed... too many mails were sended."),
 	
 	/**
+	 * <p>자동 로그인 정보를 생성하지 못했을 때의 에러.</p>
+	 */
+	CT_102("can not create auto login info."),
+	
+	/**
 	 * <p>로케일이 존재하지 않을 때의 에러.</p>
 	 */
 	CF_101("locale do not exist."),

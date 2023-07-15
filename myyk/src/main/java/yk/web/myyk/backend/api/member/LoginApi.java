@@ -12,6 +12,7 @@ import yk.web.myyk.backend.dto.LoginInfo;
 import yk.web.myyk.util.cookie.CookieApp;
 import yk.web.myyk.util.cookie.CookieUtil;
 import yk.web.myyk.util.enumerated.Error;
+import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
 @RestController
@@ -39,7 +40,12 @@ public class LoginApi extends BaseApi {
 		
 		// 자동 로그인 쿠키 작성
 		if (dto.isAutoLoginCheck()) {
-			CookieUtil.setCookie(CookieApp.AUTO_LOGIN, String.valueOf(true), response);
+			String autoLoginSessionId = getService().getLogin().createAutoLoginSession(dto);
+			if (autoLoginSessionId == null || autoLoginSessionId.isEmpty()) {
+				throw new SystemException(ErrorCode.CT_102, getClass());
+			} else {
+				CookieUtil.setCookie(CookieApp.AUTO_LOGIN, autoLoginSessionId, response);
+			}
 		}
 		
 		return Error.SUCCESS.name();
