@@ -20,7 +20,7 @@
 			request
 		</div>
 		-->
-		<div class="col <@if category == 'ACCOUNT' 'selected-header' 'mobile-footer-color'/>">
+		<div class="col <@if category == 'ACCOUNT' 'selected-header' 'mobile-footer-color'/>" data-location="/account/dashboard">
 			<i class="bi bi-calculator main-bi d-block mx-auto mb-1"></i>
 			<@spring.message "category.account"/>
 		</div>
@@ -54,3 +54,9 @@
 </div>
 <!-- Modal -->
 <div id="loading-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true"></div>
+
+<script>
+$('.mobile-footer div').on('click', function(e)	{
+	location.href=$(this).data('location');
+});
+</script>

@@ -7,7 +7,15 @@
 </head>
 <#include "/global/header.ftlh">
 <body>
-
+	<h1 class="title">
+		<@spring.message "member.create.input.title"/>
+	</h1>
+	<div>
+	d
+	</div>
+	<div>
+	f
+	</div>
 </body>
 <#include "/global/footer.ftlh">
 <script type="text/javascript">

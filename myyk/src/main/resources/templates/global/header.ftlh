@@ -212,7 +212,7 @@ $('#header-login-submit').on('click', function(e) {
    		closeLoading();
    		
    		if (isValid(data)) {
-   			// $('#login-modal').modal('hide');
+   			$('#login-modal').modal('hide');
 	   		location.reload();
    		} else  {
    			window.alert('<@spring.message "error.member.login.failed"/>');
