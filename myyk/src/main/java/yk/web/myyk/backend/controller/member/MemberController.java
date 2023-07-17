@@ -13,7 +13,6 @@ import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.util.annotation.CategorySetter;
 import yk.web.myyk.util.annotation.RegionSetter;
 import yk.web.myyk.util.enumerated.Category;
-import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.exception.SystemException;
 
 @Controller
