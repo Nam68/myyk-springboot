@@ -19,6 +19,9 @@ public class CategoryInterceptor extends BaseInterceptor implements HandlerInter
 			throws Exception {
 		
 		HandlerMethod handlerMethod = getHandlerMethod(handler);
+		if (handlerMethod == null) {
+			return true;
+		}
 		
 		CategorySetter category = getAnnotation(CategorySetter.class, handlerMethod);
 		if (category != null) {

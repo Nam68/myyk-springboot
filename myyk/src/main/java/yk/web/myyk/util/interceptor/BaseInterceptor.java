@@ -92,7 +92,6 @@ public class BaseInterceptor extends BaseApp {
 	 * @return 어노테이션
 	 */
 	protected <T extends Annotation> T getAnnotation(Class<T> annotationClass, HandlerMethod handlerMethod) {
-
 		T annotation = getMethodAnnotation(annotationClass, handlerMethod);
 		if (annotation != null) {
 			return annotation;
