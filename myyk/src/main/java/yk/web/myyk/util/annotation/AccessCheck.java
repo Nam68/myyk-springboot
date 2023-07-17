@@ -10,7 +10,7 @@ import yk.web.myyk.util.enumerated.MemberType;
 /**
  * <p>접근 권한이 있는지 체크한다.</p>
  */
-@Target({ElementType.FIELD, ElementType.METHOD})
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AccessCheck {
 

@@ -12,11 +12,11 @@ import yk.web.myyk.util.exception.SystemException;
 
 @Controller
 @CategorySetter(Category.ACCOUNT)
+@AccessCheck(permitted = MemberType.MEMBER)
 @RequestMapping("/account")
 public class AccountController extends BaseController {
 
 	@RequestMapping("/dashboard")
-	@AccessCheck(permitted = MemberType.ADMIN)
 	public String dashboard() throws SystemException {
 		return "account/dashboard";
 	}
