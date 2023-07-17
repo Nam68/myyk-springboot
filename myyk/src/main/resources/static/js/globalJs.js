@@ -1,3 +1,22 @@
+// 입력 로딩 화면
+function openLoading() {
+	$('#loading-modal').css('display', 'flex');
+	$('.loading-spinner').css('display', 'flex');
+}
+function closeLoading() {
+	$('#loading-modal').css('display', 'none');
+	$('.loading-spinner').css('display', 'none');
+}
+
+// ajax의 data 에러 확인
+function isValid(data) {
+	if (data == 'ERROR' || data.includes('<!DOCTYPE html>')) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 // 타깃을 화면 정가운데로 정렬
 function centerAlignDiv() {
 	var target = $('.center-align-div');
@@ -14,33 +33,13 @@ function centerAlignDiv() {
 	target.css('left', newWidth);
 	target.css('top', newHeight);
 }
-
-// 로그아웃 ajax
-$('.header-logout-menu').on('click', function(e) {
-   	
-   	openLoading();
-   	
-   	$.ajax({
-   		url:'/authorize/logoutMember.do',
-   		method:'POST',
-   		data:{}
-   	})
-   	.done(function(data) {
-   		closeLoading();
-   		location.reload();
-   	})
-   	.fail(function(data) {
-   		closeLoading();
-   		window.alert('<spring:message code="error.ajax"/>');
-   	});
- });
     
- // 모바일 헤더 자동숨김
- var headerHeight = $('.mobile-header').height();
- var preHeaderScroll = 0; // 스크롤하기 이전의 스크롤값
- $(document).on('scroll', function() {
+// 모바일 헤더 자동숨김
+var headerHeight = $('.mobile-header').height();
+var preHeaderScroll = 0; // 스크롤하기 이전의 스크롤값
+$(document).on('scroll', function() {
     	
-   	var nowScroll = $(this).scrollTop();
+ 	var nowScroll = $(this).scrollTop();
    	
    	var flg = preHeaderScroll - nowScroll >= 0;
    	
@@ -77,52 +76,6 @@ $('#login-domain-part-email').on('input', function(e) {
 $('#login-password').on('input', function(e) {
    	$(this).val($(this).val().trim());
 });
-    
-// 로그인 스크립트
-$('#header-login-submit').on('click', function(e) {
-   	var localPartEmail = $('#login-local-part-email').val().trim();
-   	var domainPartEmail = $('#login-domain-part-email').val().trim();
-   	var password = $('#login-password').val().trim();
-   	var autoLoginCheck = $('#auto-login-check').is(':checked');
-    	
-   	openLoading();
-   	
-   	$.ajax({
-  		url:'/authorize/loginMember.do',
-   		method:'POST',
-   		data:{
-   			'localPartEmail':localPartEmail,
-   			'domainPartEmail':domainPartEmail,
-   			'password':password,
-   			'autoLoginCheck':autoLoginCheck,
-   		}
-   	})
-   	.done(function(data) {
-			
-   		closeLoading();
-    		
-   		if(data == 'ERROR') {
-   			window.alert('<spring:message code="error.header.login"/>');
-   		} else if(data == 'SUCCESS') {
-       		$('#login-modal').modal('hide');
-   			location.reload();
-   		}
-   	})
-   	.fail(function(data) {
-   		closeLoading();
-   		window.alert('<spring:message code="error.ajax"/>');
-   	});
-});
-
-function openLoading() {
-	$('#loading-modal').css('display', 'flex');
-	$('.loading-spinner').css('display', 'flex');
-}
-
-function closeLoading() {
-	$('#loading-modal').css('display', 'none');
-	$('.loading-spinner').css('display', 'none');
-}
 
 //비밀번호 확인
 $('.password-form').find('i').on('mousedown', function(e) {

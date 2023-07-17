@@ -33,7 +33,7 @@ public class LoginApi extends BaseApi {
 		LoginInfo loginInfo = getService().getLogin().find(dto);
 		if (loginInfo == null) {
 			// 로그인 정보가 DB에 없으면 에러 송신
-			return Error.ERROR.name();
+			return Error.ERROR.getValue();
 		}
 		
 		session.setAttribute(LOGIN_INFO, loginInfo);
@@ -48,6 +48,13 @@ public class LoginApi extends BaseApi {
 			}
 		}
 		
-		return Error.SUCCESS.name();
+		return Error.SUCCESS.getValue();
+	}
+	
+	@RequestMapping(path = "/logout", method = RequestMethod.POST)
+	public String logout(HttpSession session, HttpServletResponse response) throws SystemException {
+		session.removeAttribute(LOGIN_INFO);
+		CookieUtil.deleteCookie(CookieApp.AUTO_LOGIN, response);
+		return Error.SUCCESS.getValue();
 	}
 }

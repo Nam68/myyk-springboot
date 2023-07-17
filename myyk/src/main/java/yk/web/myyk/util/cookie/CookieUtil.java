@@ -88,7 +88,7 @@ public class CookieUtil {
 	 * @param request 리퀘스트
 	 * @return 쿠키
 	 */
-	public static Cookie get(String name, HttpServletRequest request) {
+	public static Cookie getCookie(String name, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
@@ -109,10 +109,38 @@ public class CookieUtil {
 	 * @return 쿠키 값
 	 */
 	public static String getValue(String name, HttpServletRequest request) {
-		Cookie cookie = get(name, request);
-		String value = cookie != null ? cookie.getValue() : ""; 
+		Cookie cookie = getCookie(name, request);
+		String value = cookie != null ? cookie.getValue() : "";
 		return value;
 	}
 	
+	/**
+	 * <p>쿠키를 삭제한다.
+	 * <br>삭제가 완료되었는지 확인이 필요할 떄 사용한다.</p>
+	 * 
+	 * @param name 쿠키 이름
+	 * @param request 리퀘스트
+	 * @param response 리스폰스
+	 * @return 삭제됐으면 true, 대상 쿠키가 없으면 false
+	 */
+	public static boolean deleteCookie(String name, HttpServletRequest request, HttpServletResponse response) {
+		Cookie cookie = getCookie(name, request);
+		if (cookie == null) {
+			return false;
+		}
+		setCookie(name, null, 0, response);
+		return true;
+	}
+	
+	/**
+	 * <p>쿠키를 삭제한다.
+	 * <br>삭제가 완료되었는지 확인하지 않아도 될 때 사용한다.</p>
+	 * 
+	 * @param name 쿠키 이름
+	 * @param response 리스폰스
+	 */
+	public static void deleteCookie(String name, HttpServletResponse response) {
+		setCookie(name, null, 0, response);
+	}
 	
 }

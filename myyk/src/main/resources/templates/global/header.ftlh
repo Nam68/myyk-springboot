@@ -79,7 +79,7 @@
 				<li><a class="dropdown-item" href="#">Settings</a></li>
 				<li><a class="dropdown-item" href="#"><@spring.message "header.member.myInfo"/></a></li>
 				<li><hr class="dropdown-divider"></li>
-				<li><a href="#" class="header-logout-menu dropdown-item"><@spring.message "header.logout"/></a></li>
+				<li><a class="header-logout-menu dropdown-item" href="#"><@spring.message "header.logout"/></a></li>
 			</ul>
 		</div>
 	<#elseif !login_info?exists>
@@ -124,7 +124,7 @@
 					<li><a class="dropdown-item" href="#">Settings</a></li>
 					<li><a class="dropdown-item" href="#"><@spring.message "header.member.myInfo"/></a></li>
 					<li><hr class="dropdown-divider"></li>
-					<li><a href="#" class="header-logout-menu dropdown-item"><@spring.message "header.logout"/></a></li>
+					<li><a class="header-logout-menu dropdown-item" href="#"><@spring.message "header.logout"/></a></li>
 				</ul>
 			</div>
 		</div> 
@@ -203,17 +203,42 @@ $('#header-login-submit').on('click', function(e) {
    	
    		closeLoading();
    		
-   		if (data == 'ERROR' || data.includes('<!DOCTYPE html>')) {
-   			window.alert('<@spring.message "error.member.login.failed"/>');
-   		} else {
+   		if (isValid(data)) {
    			// $('#login-modal').modal('hide');
 	   		location.reload();
+   		} else  {
+   			window.alert('<@spring.message "error.member.login.failed"/>');
    		}
    	})
    	.fail(function(data) {
    		closeLoading();
    		window.alert('<@spring.message "error.ajax"/>');
    	});	
+});
+
+// 로그아웃
+$('.header-logout-menu').on('click', function(e) {
+	
+	openLoading();
+	
+	$.ajax({
+		url:'/member/logout',
+		method:'POST'
+	})
+	.done(function(data) {
+	
+		closeLoading();
+		
+		if (isValid(data)) {
+			location.href="/";
+		} else {
+			window.alert('<@spring.message "error.member.login.failed"/>');
+		}
+	})
+	.fail(function(data) {
+		closeLoading();
+   		window.alert('<@spring.message "error.ajax"/>');
+	});
 });
 </script>
 </html>
