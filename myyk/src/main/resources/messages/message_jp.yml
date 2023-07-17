@@ -10,6 +10,10 @@ error:
     title: "エラー"
     message: "エラーが発生しました"
     code: "エラー内容"
+  permission:
+    message: "権限がありません。"
+    permitted: "以上のみご利用いただける機能です。"
+    denied: "はご利用いただけない機能です。"
   member:
     create:
       email: "メールアドレスが重複されています。"
@@ -45,6 +49,13 @@ member:
   region:
     ko: "韓国"
     jp: "日本"
+  type:
+    banned: "利用停止"
+    withdraw: "退会"
+    noLogin: "未ログイン"
+    tmpMember: "臨時会員"
+    member: "会員"
+    admin: "管理者"
   email:
     input: "メール確認"
     error:
@@ -65,4 +76,8 @@ member:
         check: "パスワードが一致していません。"
       nickname:
         length: "ニックネームは１０文字以内で入力してください。"
+        
+account:
+  dashboard:
+    title: "家計簿"
         

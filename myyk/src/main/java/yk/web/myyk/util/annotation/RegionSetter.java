@@ -10,7 +10,7 @@ import yk.web.myyk.util.enumerated.Region;
 /**
  * <p>컨트롤러의 메서드에 {@link Region}의 세팅을 요청하는 어노테이션.</p>
  */
-@Target({ElementType.METHOD})
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RegionSetter {
 	//nop

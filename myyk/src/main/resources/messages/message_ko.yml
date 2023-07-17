@@ -10,6 +10,10 @@ error:
     title: "에러"
     message: "에러가 발생했습니다"
     code: "에러내용"
+  permission:
+    message: "권한이 없습니다."
+    permitted: " 등급 이상 이용 가능한 기능입니다."
+    denied: " 등급은 이용하실 수 없는 기능입니다."
   member:
     create:
       email: "중복된 이메일입니다."
@@ -45,6 +49,13 @@ member:
   region:
     ko: "대한민국"
     jp: "일본"
+  type:
+    banned: "이용정지"
+    withdraw: "탈퇴"
+    noLogin: "미로그인"
+    tmpMember: "임시회원"
+    member: "회원"
+    admin: "관리자"
   email:
     input: "이메일 확인"
     error:
@@ -65,3 +76,7 @@ member:
         check: "비밀번호가 일치하지 않습니다."
       nickname:
         length: "닉네임은 10자 이내로 입력해주세요."
+        
+account:
+  dashboard:
+    title: "가계부"

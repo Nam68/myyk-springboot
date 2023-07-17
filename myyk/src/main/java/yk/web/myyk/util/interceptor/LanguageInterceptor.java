@@ -10,30 +10,14 @@ import yk.web.myyk.config.MyLocale;
 import yk.web.myyk.util.cookie.CookieApp;
 import yk.web.myyk.util.cookie.CookieUtil;
 
-public class LanguageInterceptor implements HandlerInterceptor {
-
-	private static final String LANGUAGE_SETTING = "/language/setting";
-	
-	/**
-	 * <p>언어 설정의 URL.</p>
-	 * <p>컨테이너 변경 등의 이유로 유지보수가 어려울 수 있으므로 극도로 사용을 제한할 것.</p>
-	 * <p>사용하는 경우는 가급적 이 주석에 위치를 기재할 것.</p>
-	 * <ul>
-	 * <li>LanguageSettingInterceptor</li>
-	 * </ul>
-	 * 
-	 * @return 언어설정 컨테이너의 URL
-	 */
-	public static String getLanguageSetting() {
-		return LANGUAGE_SETTING;
-	}
+public class LanguageInterceptor extends BaseInterceptor implements HandlerInterceptor {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
 		// 원래 URL이 언어설정이었다면 그대로 보낸다.
-		if (request.getRequestURI().toString().equals(LANGUAGE_SETTING)) {
+		if (request.getRequestURI().toString().equals(getLanguageSetting())) {
 			return true;
 		}
 		
@@ -50,7 +34,7 @@ public class LanguageInterceptor implements HandlerInterceptor {
 			String lang = CookieUtil.getValue(CookieApp.LANGUAGE_SETTING_SAVE, request);
 			if (lang == null || "".equals(lang)) {
 				// 로컬 쿠키 정보마저 없으면 언어설정으로 리다이렉트
-				response.sendRedirect(LanguageInterceptor.getLanguageSetting());
+				response.sendRedirect(getLanguageSetting());
 				return false;
 			} else {
 				// 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅

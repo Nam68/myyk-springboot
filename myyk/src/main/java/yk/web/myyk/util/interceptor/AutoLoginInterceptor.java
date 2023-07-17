@@ -20,7 +20,7 @@ import yk.web.myyk.util.cookie.CookieUtil;
 /**
  * <p>자동 로그인 쿠키가 있으면 세션에 로그인 정보를 등록하는 인터셉터.</p>
  */
-public class AutoLoginInterceptor implements HandlerInterceptor {
+public class AutoLoginInterceptor extends BaseInterceptor implements HandlerInterceptor {
 	
 	@Autowired
 	private AutoLoginRepository autoLoginRepository;
@@ -33,10 +33,10 @@ public class AutoLoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		if (request.getRequestURI().toString().contains(".")) {
+		if (isResource(request)) {
 			return true;
 		}
-		if (autoLoginRepository == null || memberRepository == null) {
+		if (!hasRepositories(autoLoginRepository, memberRepository)) {
 			return true;
 		}
 		

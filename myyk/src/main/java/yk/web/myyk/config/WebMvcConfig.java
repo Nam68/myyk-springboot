@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import yk.web.myyk.util.interceptor.AccessCheckInterceptor;
 import yk.web.myyk.util.interceptor.AutoLoginInterceptor;
 import yk.web.myyk.util.interceptor.CategoryInterceptor;
 import yk.web.myyk.util.interceptor.LanguageInterceptor;
@@ -18,13 +19,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(languageInterceptor())
 			.excludePathPatterns("/css/**", "/img/**", "/js/**"); //해당 리소스는 인터셉트하지 않음
 		
-		registry.addInterceptor(new CategoryInterceptor())
+		registry.addInterceptor(categoryInterceptor())
 			.excludePathPatterns("/css/**", "/img/**", "/js/**");
 		
-		registry.addInterceptor(new RegionInterceptor())
+		registry.addInterceptor(regionInterceptor())
 			.excludePathPatterns("/css/**", "/img/**", "/js/**");
 		
 		registry.addInterceptor(autoLoginInterceptor())
+			.excludePathPatterns("/css/**", "/img/**", "/js/**");
+		
+		registry.addInterceptor(accessCheckInterceptor())
 			.excludePathPatterns("/css/**", "/img/**", "/js/**");
 		
 //		registry.addInterceptor(new WebContentInterceptor())
@@ -55,6 +59,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public AutoLoginInterceptor autoLoginInterceptor() {
 		return new AutoLoginInterceptor();
+	}
+	
+	@Bean
+	public AccessCheckInterceptor accessCheckInterceptor() {
+		return new AccessCheckInterceptor();
 	}
 	
 }

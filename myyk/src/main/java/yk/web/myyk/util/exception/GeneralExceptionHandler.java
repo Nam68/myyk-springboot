@@ -22,4 +22,17 @@ public class GeneralExceptionHandler {
 		return mav;
 	}
 	
+	@ExceptionHandler({PermissionException.class})
+	public ModelAndView permissionExceptionHandler(PermissionException e) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("global/permissionError");
+		mav.addObject("status", e.getPermissionStatus());
+		mav.addObject("memberType", e.getMemberType());
+		mav.addObject(CookieApp.CATEGORY, Category.HOME);
+		
+		e.printStackTrace();
+		
+		return mav;
+	}
+	
 }
