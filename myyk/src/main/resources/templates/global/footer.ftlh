@@ -4,23 +4,29 @@
 	<div class="mobile-footer row mx-auto">
 		<div class="col <@if category == 'MEMORY' 'selected-header' 'mobile-footer-color'/>">
 			<i class="bi bi-images main-bi d-block mx-auto mb-1"></i>
-			memory
+			<@spring.message "category.memory"/>
 		</div>
 		<div class="col <@if category == 'WISH_PLACE' 'selected-header' 'mobile-footer-color'/>">
 			<i class="bi bi-pin-map-fill main-bi d-block mx-auto mb-1"></i>
-			wishPlace
+			<@spring.message "category.wishPlace"/>
 		</div>
 		<div class="col <@if category == 'MAP' 'selected-header' 'mobile-footer-color'/>">
 			<i class="bi bi-map main-bi d-block mx-auto mb-1"></i>
-			map
+			<@spring.message "category.map"/>
 		</div>
+		<#--
 		<div class="col <@if category == 'REQUEST' 'selected-header' 'mobile-footer-color'/>">
 			<i class="bi bi-patch-question main-bi d-block mx-auto mb-1"></i>
 			request
 		</div>
+		-->
+		<div class="col <@if category == 'ACCOUNT' 'selected-header' 'mobile-footer-color'/>">
+			<i class="bi bi-calculator main-bi d-block mx-auto mb-1"></i>
+			<@spring.message "category.account"/>
+		</div>
 		<div class="col <@if category == 'CALENDAR' 'selected-header' 'mobile-footer-color'/>">
 			<i class="bi bi-calendar3 main-bi d-block mx-auto mb-1"></i>
-			calendar
+			<@spring.message "category.calendar"/>
 		</div>
 	</div>
 </div>

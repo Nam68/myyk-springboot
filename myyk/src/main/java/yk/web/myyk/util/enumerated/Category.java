@@ -11,6 +11,7 @@ public enum Category implements BaseEnum {
 	WISH_PLACE,
 	MAP,
 	REQUEST,
+	ACCOUNT,
 	CALENDAR,
 	TEST,
 	;

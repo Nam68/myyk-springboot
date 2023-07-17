@@ -23,6 +23,7 @@ category:
   map: "지도"
   request: "요청사항"
   calendar: "달력"
+  account: "가계부"
   
 header:
   login: "로그인"

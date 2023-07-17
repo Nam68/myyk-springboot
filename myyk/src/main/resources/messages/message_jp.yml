@@ -23,6 +23,7 @@ category:
   map: "マップ"
   request: "リクエスト"
   calendar: "カレンダー"
+  account: "家計簿"
   
 header: 
   login: "ログイン"

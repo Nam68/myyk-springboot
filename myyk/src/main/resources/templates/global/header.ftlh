@@ -33,31 +33,39 @@
 			</li>
 		-->
 		<li>
-			<a href="#" class="nav-link px-2 me-4 selected-header}">
+			<a href="#" class="nav-link px-2 me-4 <@if category=='MEMORY' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-images main-bi mb-1 me-1 align-middle"></i>
 				<strong><@spring.message "category.memory"/></strong>
 			</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link px-2 me-4 primary-dark-color">
+			<a href="#" class="nav-link px-2 me-4 <@if category=='WISH_PLACE' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-pin-map-fill main-bi mb-1 me-1 align-middle"></i>
 				<strong><@spring.message "category.wishPlace"/></strong>
 			</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link px-2 me-4 primary-dark-color">
+			<a href="#" class="nav-link px-2 me-4 <@if category=='MAP' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-map main-bi mb-1 me-1 align-middle"></i>
 				<strong><@spring.message "category.map"/></strong>
 			</a>
 		</li>
+		<#--
 		<li>
-			<a href="#" class="nav-link px-2 me-4 primary-dark-color">
+			<a href="#" class="nav-link px-2 me-4 <@if category=='REQUEST' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-patch-question main-bi mb-1 me-1 align-middle"></i>
 				<strong><@spring.message "category.request"/></strong>
 			</a>
 		</li>
+		-->
 		<li>
-			<a href="/calendar/calendarList.do" class="nav-link px-2 me-4 primary-dark-color">
+			<a href="/account/dashboard" class="nav-link px-2 me-4 <@if category=='ACCOUNT' 'selected-header' 'primary-dark-color' />">
+				<i class="bi bi-calculator main-bi mb-1 me-1 align-middle"></i>
+				<strong><@spring.message "category.account"/></strong>
+			</a>
+		</li>
+		<li>
+			<a href="/calendar/calendarList.do" class="nav-link px-2 me-4 <@if category=='CALENDAR' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-calendar3 main-bi mb-1 me-1 align-middle"></i>
 				<strong><@spring.message "category.calendar"/></strong>
 			</a>
