@@ -5,7 +5,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 public class CookieApp {
 	
 	/**
-	 * <p>언어 정보를 가지고 있는 쿠키.</p>
+	 * <p>언어 정보를 가지고 있는 세션 키.</p>
 	 */
 	public static final String LANGUAGE_SETTING = SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME;
 	
