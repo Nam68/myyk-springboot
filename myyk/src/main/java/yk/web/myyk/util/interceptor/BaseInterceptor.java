@@ -16,6 +16,29 @@ public class BaseInterceptor extends BaseApp {
 	protected static final int BOTH_ANNOTATION = 0;
 	protected static final int TYPE_ANNOTATION = 1;
 	protected static final int METHOD_ANNOTATION = 2;
+	
+	/**
+	 * <p>리퀘스트를 통해 세션값을 가져온다.</p>
+	 * 
+	 * @param request 리퀘스트
+	 * @param key 세션키
+	 * @return 세션값
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T> T getSessionAttribute(HttpServletRequest request, String key, Class<T> clazz) {
+		return (T) request.getSession().getAttribute(key);
+	}
+	
+	/**
+	 * <p>리퀘스트를 통해 세션에 값을 세팅한다.</p>
+	 * 
+	 * @param request 리퀘스트
+	 * @param key 세션키
+	 * @param value 세션값
+	 */
+	protected void setSessionAttribute(HttpServletRequest request, String key, Object value) {
+		request.getSession().setAttribute(key, value);
+	}
 
 	/**
 	 * <p>언어 설정의 URL.</p>

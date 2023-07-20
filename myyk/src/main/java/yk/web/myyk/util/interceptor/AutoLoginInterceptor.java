@@ -63,7 +63,7 @@ public class AutoLoginInterceptor extends BaseInterceptor implements HandlerInte
 		}
 		
 		LoginInfo loginInfo = new LoginInfo(memberEntity.get());
-		request.getSession().setAttribute(BaseApp.getLoginInfoName(), loginInfo);
+		setSessionAttribute(request, BaseApp.getLoginInfoName(), loginInfo);
 		return true;
 	}
 	

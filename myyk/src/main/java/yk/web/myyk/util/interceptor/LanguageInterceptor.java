@@ -22,11 +22,12 @@ public class LanguageInterceptor extends BaseInterceptor implements HandlerInter
 		}
 		
 		// 세션 언어 정보를 검색해서, 있으면 로컬쿠키에 등록한다
-		Locale locale = (Locale) request.getSession().getAttribute(KeyName.LANGUAGE_SETTING);
+		Locale locale = getSessionAttribute(request, KeyName.LANGUAGE_SETTING, Locale.class);
 		if (locale != null && !request.getRequestURI().toString().contains(".")) { // 이미지 등의 주소도 변환되므로 .이 포함된 URI는 제외한다.
 			// 세션 언어 정보가 있는 경우
 			// 로컬 쿠키에 등록
 			CookieUtil.setCookie(KeyName.LANGUAGE_SETTING_SAVE, MyLocale.toLanguageCode(locale), response);
+			setSessionAttribute(request, KeyName.LANGUAGE_SETTING_FOR_VIEW, MyLocale.toLanguageCode(locale));
 			return true;
 		} else { // 
 			// 세션 언어 정보가 없는 경우
@@ -38,7 +39,8 @@ public class LanguageInterceptor extends BaseInterceptor implements HandlerInter
 				return false;
 			} else {
 				// 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅
-				request.getSession().setAttribute(KeyName.LANGUAGE_SETTING, MyLocale.parseLocale(lang));
+				setSessionAttribute(request, KeyName.LANGUAGE_SETTING, MyLocale.parseLocale(lang));
+				setSessionAttribute(request, KeyName.LANGUAGE_SETTING_FOR_VIEW, MyLocale.getValidLanguageCode(lang));
 				return true;
 			}
 		}

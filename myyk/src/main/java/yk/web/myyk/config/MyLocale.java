@@ -85,6 +85,22 @@ public class MyLocale {
 	}
 	
 	/**
+	 * <p>일본어 언어코드가 ja인 경우 jp로 변환한다.</p>
+	 * 
+	 * @param lang 언어코드
+	 * @return 검증된 언어코드
+	 */
+	public static String getValidLanguageCode(String lang) {
+		if (KOREA.getLanguage().equals(lang) || JAPAN_JP.getLanguage().equals(lang)) {
+			return lang;
+		} else if (JAPAN_JA.getLanguage().equals(lang)) {
+			return JAPAN_JP.getLanguage();
+		} else {
+			throw new SystemException(ErrorCode.CF_101, MyLocale.class);
+		}
+	}
+	
+	/**
 	 * <p>해당 로케일이 한국어 로케일(ko)인지 판단한다.</p>
 	 * 
 	 * @param locale 로케일
