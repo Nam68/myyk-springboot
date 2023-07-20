@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.entity.member.TmpCodeEntity;
+import yk.web.myyk.backend.repository.AccountBookAuthRepository;
+import yk.web.myyk.backend.repository.AccountBookRepository;
 import yk.web.myyk.backend.repository.AutoLoginRepository;
 import yk.web.myyk.backend.repository.MemberRepository;
 import yk.web.myyk.backend.repository.TmpCodeRepository;
@@ -26,6 +28,12 @@ public class RepositoryFactory extends BaseApp {
 	
 	@Autowired
 	private AutoLoginRepository autoLoginRepository;
+	
+	@Autowired
+	private AccountBookRepository accountBookRepository;
+	
+	@Autowired
+	private AccountBookAuthRepository accountBookAuthRepository;
 
 	public MemberRepository getMember() {
 		return memberRepository;
@@ -50,6 +58,14 @@ public class RepositoryFactory extends BaseApp {
 	
 	public AutoLoginRepository getAutoLogin() {
 		return autoLoginRepository;
+	}
+	
+	public AccountBookRepository getAccountBook() {
+		return accountBookRepository;
+	}
+	
+	public AccountBookAuthRepository getAccountBookAuth() {
+		return accountBookAuthRepository;
 	}
 	
 }

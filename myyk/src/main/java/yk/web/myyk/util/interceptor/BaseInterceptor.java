@@ -8,8 +8,6 @@ import org.springframework.web.method.HandlerMethod;
 
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.util.BaseApp;
-import yk.web.myyk.util.annotation.CategorySetter;
-import yk.web.myyk.util.cookie.CookieApp;
 
 public class BaseInterceptor extends BaseApp {
 

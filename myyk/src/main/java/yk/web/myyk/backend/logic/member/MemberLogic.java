@@ -12,7 +12,6 @@ import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.entity.member.TmpCodeEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.member.MemberService;
-import yk.web.myyk.config.AppConstants;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 

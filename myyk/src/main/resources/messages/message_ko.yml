@@ -80,3 +80,15 @@ member:
 account:
   dashboard:
     title: "가계부"
+  left:
+    add: "가계부 추가"
+  right:
+    empty: "열람할 수 있는 가계부가 없습니다"
+  create:
+    input:
+      title: "새로운 가계부 작성"
+      name: 
+        ko: "가계부 이름(한국어)"
+        jp: "가계부 이름(일본어)"
+      watchableMember: "열람 가능 회원"
+      writableMember: "작성 가능 회원"

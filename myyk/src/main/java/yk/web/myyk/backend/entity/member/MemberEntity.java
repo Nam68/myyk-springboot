@@ -1,17 +1,23 @@
 package yk.web.myyk.backend.entity.member;
 
+import java.util.List;
+
 import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
+import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.config.AppConstants;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
@@ -51,6 +57,17 @@ public class MemberEntity extends BaseEntityWithTime {
 	
 	@Column(name = "MEMBER_ICON")
 	private String memberIcon;
+	
+	// 단순한 다대다이므로 사용하기 어려워서 패스
+//	@ManyToMany(fetch = FetchType.LAZY, targetEntity = AccountBookEntity.class)
+//	@JoinTable(
+//			name = "ACCOUNT_BOOK_MEMBER_RTBL", 
+//			joinColumns = @JoinColumn(name = "MEMBER_IDX"), 
+//			inverseJoinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"))
+//	private List<AccountBookEntity> accountBookList;
+	@OneToMany(fetch = FetchType.LAZY, targetEntity = AccountBookAuthEntity.class)
+	@JoinColumn(name = "ACCOUNT_BOOK_AUTH_IDX")
+	private List<AccountBookAuthEntity> accountBookAuthList;
 	
 	@Deprecated
 	public MemberEntity() {

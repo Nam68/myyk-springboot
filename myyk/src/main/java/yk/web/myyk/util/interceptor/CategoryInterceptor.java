@@ -5,8 +5,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import yk.web.myyk.config.KeyName;
 import yk.web.myyk.util.annotation.CategorySetter;
-import yk.web.myyk.util.cookie.CookieApp;
 import yk.web.myyk.util.enumerated.Category;
 
 /**
@@ -25,10 +25,10 @@ public class CategoryInterceptor extends BaseInterceptor implements HandlerInter
 		
 		CategorySetter category = getAnnotation(CategorySetter.class, handlerMethod);
 		if (category != null) {
-			request.setAttribute(CookieApp.CATEGORY, category.value().toString());
+			request.setAttribute(KeyName.CATEGORY, category.value().toString());
 			return true;
 		}
-		request.setAttribute(CookieApp.CATEGORY, Category.HOME.getValue());
+		request.setAttribute(KeyName.CATEGORY, Category.HOME.getValue());
 		return true;	
 //		throw new SystemException(ErrorCode.getErrorMessage(ErrorCode.IC_101, getClass()));
 	}

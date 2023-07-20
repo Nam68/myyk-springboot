@@ -6,38 +6,13 @@ package yk.web.myyk.util.errorCode;
 public enum ErrorCode {
 	
 	/*
-	 * IC : 인터셉터
+	 * CF : 설정
+	 * CK : 쿠키
+	 * CT : 컨트롤러
 	 * EN : 이넘
 	 * ET : 엔티티
-	 * CT : 컨트롤러
-	 * CK : 쿠키
-	 * CF : 설정
+	 * IC : 인터셉터
 	 */
-	
-	/**
-	 * <p>URL 혹은 컨트롤러에 카테고리 이넘이 세팅되지 않았을 경우의 에러.</p>
-	 */
-	IC_101("category enum is missing or url is not exist."),
-	
-	/**
-	 * <p>지역에 관한 이넘의 이름이 잘못되었을 경우의 에러.</p>
-	 */
-	EN_101("this region do not exist."),
-	
-	/**
-	 * <p>존재해야할 엔티티 정보가 취득되지 않을 때의 에러.</p>
-	 */
-	ET_101("database is gone."),
-	
-	/**
-	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
-	 */
-	CT_101("mail send failed... too many mails were sended."),
-	
-	/**
-	 * <p>자동 로그인 정보를 생성하지 못했을 때의 에러.</p>
-	 */
-	CT_102("can not create auto login info."),
 	
 	/**
 	 * <p>로케일이 존재하지 않을 때의 에러.</p>
@@ -58,6 +33,36 @@ public enum ErrorCode {
 	 * <p>프리마커 설정에 실패했을 떄의 에러.</p>
 	 */
 	CF_104("freemarker do not work."),
+	
+	/**
+	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
+	 */
+	CT_101("mail send failed... too many mails were sended."),
+	
+	/**
+	 * <p>자동 로그인 정보를 생성하지 못했을 때의 에러.</p>
+	 */
+	CT_102("can not create auto login info."),
+	
+	/**
+	 * <p>세션에 해당하는 값이 없을 떄의 에러.</p>
+	 */
+	CT_103("session value is empty"),
+	
+	/**
+	 * <p>지역에 관한 이넘의 이름이 잘못되었을 경우의 에러.</p>
+	 */
+	EN_101("this region do not exist."),
+	
+	/**
+	 * <p>존재해야할 엔티티 정보가 취득되지 않을 때의 에러.</p>
+	 */
+	ET_101("database is gone."),
+	
+	/**
+	 * <p>URL 혹은 컨트롤러에 카테고리 이넘이 세팅되지 않았을 경우의 에러.</p>
+	 */
+	IC_101("category enum is missing or url is not exist."),
 	
 	;
 	private String codeExplain;

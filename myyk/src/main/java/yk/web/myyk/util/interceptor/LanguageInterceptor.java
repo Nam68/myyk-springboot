@@ -6,8 +6,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import yk.web.myyk.config.KeyName;
 import yk.web.myyk.config.MyLocale;
-import yk.web.myyk.util.cookie.CookieApp;
 import yk.web.myyk.util.cookie.CookieUtil;
 
 public class LanguageInterceptor extends BaseInterceptor implements HandlerInterceptor {
@@ -22,23 +22,23 @@ public class LanguageInterceptor extends BaseInterceptor implements HandlerInter
 		}
 		
 		// 세션 언어 정보를 검색해서, 있으면 로컬쿠키에 등록한다
-		Locale locale = (Locale) request.getSession().getAttribute(CookieApp.LANGUAGE_SETTING);
+		Locale locale = (Locale) request.getSession().getAttribute(KeyName.LANGUAGE_SETTING);
 		if (locale != null && !request.getRequestURI().toString().contains(".")) { // 이미지 등의 주소도 변환되므로 .이 포함된 URI는 제외한다.
 			// 세션 언어 정보가 있는 경우
 			// 로컬 쿠키에 등록
-			CookieUtil.setCookie(CookieApp.LANGUAGE_SETTING_SAVE, MyLocale.toLanguageCode(locale), response);
+			CookieUtil.setCookie(KeyName.LANGUAGE_SETTING_SAVE, MyLocale.toLanguageCode(locale), response);
 			return true;
 		} else { // 
 			// 세션 언어 정보가 없는 경우
 			// 로컬 쿠키를 찾는다
-			String lang = CookieUtil.getValue(CookieApp.LANGUAGE_SETTING_SAVE, request);
+			String lang = CookieUtil.getValue(KeyName.LANGUAGE_SETTING_SAVE, request);
 			if (lang == null || "".equals(lang)) {
 				// 로컬 쿠키 정보마저 없으면 언어설정으로 리다이렉트
 				response.sendRedirect(getLanguageSetting());
 				return false;
 			} else {
 				// 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅
-				request.getSession().setAttribute(CookieApp.LANGUAGE_SETTING, MyLocale.parseLocale(lang));
+				request.getSession().setAttribute(KeyName.LANGUAGE_SETTING, MyLocale.parseLocale(lang));
 				return true;
 			}
 		}

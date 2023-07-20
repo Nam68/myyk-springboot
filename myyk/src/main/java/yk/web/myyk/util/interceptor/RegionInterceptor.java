@@ -2,13 +2,11 @@ package yk.web.myyk.util.interceptor;
 
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import yk.web.myyk.util.annotation.CategorySetter;
+import yk.web.myyk.config.KeyName;
 import yk.web.myyk.util.annotation.RegionSetter;
-import yk.web.myyk.util.cookie.CookieApp;
 import yk.web.myyk.util.enumerated.Region;
 
 /**
@@ -27,7 +25,7 @@ public class RegionInterceptor extends BaseInterceptor implements HandlerInterce
 		
 		RegionSetter region = getAnnotation(RegionSetter.class, handlerMethod);
 		if (region != null) {
-			request.setAttribute(CookieApp.REGION, Region.values());
+			request.setAttribute(KeyName.REGION, Region.values());
 		}
 		return true;
 	}

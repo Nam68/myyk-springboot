@@ -13,8 +13,8 @@ import yk.web.myyk.backend.entity.member.AutoLoginEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.repository.AutoLoginRepository;
 import yk.web.myyk.backend.repository.MemberRepository;
+import yk.web.myyk.config.KeyName;
 import yk.web.myyk.util.BaseApp;
-import yk.web.myyk.util.cookie.CookieApp;
 import yk.web.myyk.util.cookie.CookieUtil;
 
 /**
@@ -40,7 +40,7 @@ public class AutoLoginInterceptor extends BaseInterceptor implements HandlerInte
 			return true;
 		}
 		
-		String autoLoginSessionId = CookieUtil.getValue(CookieApp.AUTO_LOGIN, request);
+		String autoLoginSessionId = CookieUtil.getValue(KeyName.AUTO_LOGIN, request);
 
 		// 자동 로그인 쿠키가 없는 경우는 그대로 진행
 		if (autoLoginSessionId == null || autoLoginSessionId.isEmpty()) {

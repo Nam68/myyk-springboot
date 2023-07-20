@@ -80,4 +80,16 @@ member:
 account:
   dashboard:
     title: "家計簿"
+  left:
+    add: "家計簿追加"
+  right:
+    empty: "閲覧できる家計簿がありません"
+  create:
+    input:
+      title: "新しい家計簿作成"
+      name: 
+        ko: "家計簿名（韓国語）"
+        jp: "家計簿名（日本語）"
+      watchableMember: "閲覧可能会員"
+      writableMember: "作成可能会員"
         

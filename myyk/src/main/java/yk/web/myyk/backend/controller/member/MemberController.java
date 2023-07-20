@@ -13,6 +13,7 @@ import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.util.annotation.CategorySetter;
 import yk.web.myyk.util.annotation.RegionSetter;
 import yk.web.myyk.util.enumerated.Category;
+import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
 @Controller
@@ -54,8 +55,8 @@ public class MemberController extends BaseController {
 			request.setAttribute(ERRORS, errors);
 			return "member/createMemberInput";
 		}
-		session.setAttribute("member", dto); // 회원가입에 이용함, 비밀번호 등을 뷰로 가져가지 않기 위해.
-		request.setAttribute("dto", new MemberDTO(dto.getEmail(), dto.getNickname(), dto.getRegion()));
+		session.setAttribute("member", dto); // 회원가입에 이용함, 비밀번호 등을 뷰로 가져가지 않기 위해 세션을 통해서 전달
+		request.setAttribute(DTO, new MemberDTO(dto.getEmail(), dto.getNickname(), dto.getRegion()));
 		return "member/createMemberConfirm";
 	}
 	
@@ -69,6 +70,9 @@ public class MemberController extends BaseController {
 	@RequestMapping(path = "/create", method = RequestMethod.POST)
 	public String create(HttpSession session) throws SystemException {
 		MemberDTO dto = (MemberDTO) session.getAttribute("member");
+		if (dto == null) {
+			throw new SystemException(ErrorCode.CT_103, getClass());
+		}
 		getService().getMember().create(dto);
 		return "redirect:/";
 	}

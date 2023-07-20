@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.config.AppConstants;
+import yk.web.myyk.config.KeyName;
 import yk.web.myyk.config.MyLocale;
 
 public class CookieUtil {
@@ -22,7 +23,7 @@ public class CookieUtil {
 	}
 	
 	public static Locale getLocale() {
-		Locale locale = (Locale) getCurrentSession().getAttribute(CookieApp.LANGUAGE_SETTING);
+		Locale locale = (Locale) getCurrentSession().getAttribute(KeyName.LANGUAGE_SETTING);
 		return MyLocale.parseLocale(locale);
 	}
 	

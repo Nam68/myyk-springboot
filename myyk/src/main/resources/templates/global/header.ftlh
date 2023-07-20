@@ -189,6 +189,9 @@ $('.language-setting').on('change', function(e) {
 	var flg = window.confirm('메인 화면으로 돌아갑니다. 언어를 변경하시겠습니까?\r\nメイン画面に遷移します。よろしいですか？');
 	if (flg == true) {
 		location.href="/?lang=" + lang;
+	} else {
+		// 언어 변경을 취소하는 경우 셀렉트의 선택을 다시 원래대로
+		$('.language-setting').find('option:eq(0)').prop('selected', true);
 	}
 });
 

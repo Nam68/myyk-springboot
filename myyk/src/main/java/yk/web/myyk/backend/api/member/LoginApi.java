@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.api.BaseApi;
 import yk.web.myyk.backend.dto.LoginDTO;
 import yk.web.myyk.backend.dto.LoginInfo;
-import yk.web.myyk.util.cookie.CookieApp;
+import yk.web.myyk.config.KeyName;
 import yk.web.myyk.util.cookie.CookieUtil;
 import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.errorCode.ErrorCode;
@@ -44,7 +44,7 @@ public class LoginApi extends BaseApi {
 			if (autoLoginSessionId == null || autoLoginSessionId.isEmpty()) {
 				throw new SystemException(ErrorCode.CT_102, getClass());
 			} else {
-				CookieUtil.setCookie(CookieApp.AUTO_LOGIN, autoLoginSessionId, response);
+				CookieUtil.setCookie(KeyName.AUTO_LOGIN, autoLoginSessionId, response);
 			}
 		}
 		
@@ -54,7 +54,7 @@ public class LoginApi extends BaseApi {
 	@RequestMapping(path = "/logout", method = RequestMethod.POST)
 	public String logout(HttpSession session, HttpServletResponse response) throws SystemException {
 		session.removeAttribute(LOGIN_INFO);
-		CookieUtil.deleteCookie(CookieApp.AUTO_LOGIN, response);
+		CookieUtil.deleteCookie(KeyName.AUTO_LOGIN, response);
 		return Error.SUCCESS.getValue();
 	}
 }

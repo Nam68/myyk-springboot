@@ -8,6 +8,12 @@ function closeLoading() {
 	$('.loading-spinner').css('display', 'none');
 }
 
+// 모바일인지 판단
+// true면 모바일
+function isMobile(){
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 // ajax의 data 에러 확인
 function isValid(data) {
 	if (data == 'ERROR' || data.includes('<!DOCTYPE html>')) {

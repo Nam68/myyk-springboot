@@ -1,7 +1,5 @@
 package yk.web.myyk.backend.logic.member;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import yk.web.myyk.backend.service.account.AccountBookService;
 import yk.web.myyk.backend.service.member.EmailService;
 import yk.web.myyk.backend.service.member.LoginService;
 import yk.web.myyk.backend.service.member.MemberService;
@@ -22,6 +23,9 @@ public class ServiceFactory {
 	@Autowired
 	private LoginService loginService;
 	
+	@Autowired
+	private AccountBookService accountBookService;
+	
 	public EmailService getEmail() {
 		return emailService;
 	}
@@ -32,6 +36,10 @@ public class ServiceFactory {
 	
 	public LoginService getLogin() {
 		return loginService;
+	}
+	
+	public AccountBookService accountBook() {
+		return accountBookService;
 	}
 	
 }
