@@ -66,6 +66,40 @@ public class MyLocale {
 	}
 	
 	/**
+	 * <p>반대되는 로케일을 가져온다.</p>
+	 * <ul>
+	 * <li>한국어를 설정하면 일본어를 반환</li>
+	 * <li>일본어를 설정하면 한국어를 반환</li>
+	 * </ul>
+	 * 
+	 * @param locale 대상 로케일
+	 * @return 반대되는 로케일
+	 */
+	public static Locale getOppositeLocale(Locale locale) {
+		if (isKorean(locale)) {
+			return getJapanese();
+		} else if (isJapanese(locale)) {
+			return getKorean();
+		} else {
+			throw new SystemException(ErrorCode.CF_102, MyLocale.class);
+		}
+	}
+	
+	/**
+	 * <p>반대되는 로케일을 가져온다.</p>
+	 * <ul>
+	 * <li>한국어를 설정하면 일본어를 반환</li>
+	 * <li>일본어를 설정하면 한국어를 반환</li>
+	 * </ul>
+	 * 
+	 * @param lang 대상 언어코드
+	 * @return 반대되는 로케일
+	 */
+	public static Locale getOppositeLocale(String lang) {
+		return getOppositeLocale(parseLocale(lang));
+	}
+	
+	/**
 	 * <p>로케일을 언어코드로 변환한다.</p>
 	 * <ul>
 	 * <li>한국어 로케일(ko) &gt; 한국어 코드 : ko</li>

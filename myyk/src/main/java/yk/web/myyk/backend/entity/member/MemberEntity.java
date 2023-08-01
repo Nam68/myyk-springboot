@@ -1,5 +1,6 @@
 package yk.web.myyk.backend.entity.member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.NaturalId;
@@ -65,9 +66,8 @@ public class MemberEntity extends BaseEntityWithTime {
 //			joinColumns = @JoinColumn(name = "MEMBER_IDX"), 
 //			inverseJoinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"))
 //	private List<AccountBookEntity> accountBookList;
-	@OneToMany(fetch = FetchType.LAZY, targetEntity = AccountBookAuthEntity.class)
-	@JoinColumn(name = "ACCOUNT_BOOK_AUTH_IDX")
-	private List<AccountBookAuthEntity> accountBookAuthList;
+	@OneToMany(fetch = FetchType.LAZY, targetEntity = AccountBookAuthEntity.class, mappedBy = "member")
+	private List<AccountBookAuthEntity> accountBookAuthList = new ArrayList<>();
 	
 	@Deprecated
 	public MemberEntity() {
@@ -96,7 +96,7 @@ public class MemberEntity extends BaseEntityWithTime {
 		return memberIdx;
 	}
 	
-	public String getEmail() {
+	public String getEncryptedEmail() {
 		return decrypt(email);
 	}
 	
@@ -119,6 +119,10 @@ public class MemberEntity extends BaseEntityWithTime {
 	public boolean passwordValidate(String password) {
 		String hashedPassword = hashing(password, passwordSalt, AppConstants.getMemberPasswordHashingTimes());
 		return hashedPassword.equals(this.password);
+	}
+	
+	public List<AccountBookAuthEntity> getAccountBookAuthList() {
+		return accountBookAuthList;
 	}
 	
 }

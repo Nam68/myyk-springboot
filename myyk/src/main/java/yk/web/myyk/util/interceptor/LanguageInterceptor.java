@@ -27,7 +27,8 @@ public class LanguageInterceptor extends BaseInterceptor implements HandlerInter
 			// 세션 언어 정보가 있는 경우
 			// 로컬 쿠키에 등록
 			CookieUtil.setCookie(KeyName.LANGUAGE_SETTING_SAVE, MyLocale.toLanguageCode(locale), response);
-			setSessionAttribute(request, KeyName.LANGUAGE_SETTING_FOR_VIEW, MyLocale.toLanguageCode(locale));
+			setSessionAttribute(request, KeyName.SELECTED_LANGUAGE, MyLocale.toLanguageCode(locale));
+			setSessionAttribute(request, KeyName.UNSELECTED_LANGUAGE, MyLocale.toLanguageCode(MyLocale.getOppositeLocale(locale)));
 			return true;
 		} else { // 
 			// 세션 언어 정보가 없는 경우
@@ -40,7 +41,8 @@ public class LanguageInterceptor extends BaseInterceptor implements HandlerInter
 			} else {
 				// 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅
 				setSessionAttribute(request, KeyName.LANGUAGE_SETTING, MyLocale.parseLocale(lang));
-				setSessionAttribute(request, KeyName.LANGUAGE_SETTING_FOR_VIEW, MyLocale.getValidLanguageCode(lang));
+				setSessionAttribute(request, KeyName.SELECTED_LANGUAGE, MyLocale.getValidLanguageCode(lang));
+				setSessionAttribute(request, KeyName.UNSELECTED_LANGUAGE, MyLocale.getValidLanguageCode(MyLocale.getOppositeLocale(lang).getLanguage()));
 				return true;
 			}
 		}

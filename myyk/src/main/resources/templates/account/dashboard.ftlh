@@ -19,9 +19,10 @@
 		<div class="account-pannel account-pannel-left shadow p-3 bg-body rounded">
 			<div>
 				<#list list as list>
-				
+				<span class="load-account-book primary-dark-color	" role="button">
+					<p><i class="bi bi-journal-text"></i> 	<@if selected_language == 'ko' '${list.koBookName}' '${list.jpBookName}'/></p>
+				</span>
 				</#list>
-				<br>
 				<span class="add-account-book primary-dark-color" role="button">
 					<i class="bi bi-plus-circle"></i> <@spring.message "account.left.add"/>
 				</span>

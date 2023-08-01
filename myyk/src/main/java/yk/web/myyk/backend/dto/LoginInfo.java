@@ -4,7 +4,7 @@ import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
 
-public class LoginInfo {
+public class LoginInfo extends BaseDTO {
 
 	private Long memberIdx;
 	
@@ -25,7 +25,7 @@ public class LoginInfo {
 	
 	public LoginInfo(MemberEntity entity) {
 		this.memberIdx = entity.getMemberIdx();
-		this.email = entity.getEmail();
+		this.email = entity.getEncryptedEmail();
 		this.nickname = entity.getNickname();
 		this.region = entity.getRegion();
 		this.memberType = entity.getMemberType();
@@ -37,7 +37,7 @@ public class LoginInfo {
 	}
 	
 	public String getEmail() {
-		return email;
+		return decrypt(email);
 	}
 	
 	public String getNickname() {

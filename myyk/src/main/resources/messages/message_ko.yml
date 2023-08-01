@@ -1,6 +1,9 @@
 alert:
   confirm: "확인"
   close: "닫기"
+  return: "돌아가기"
+  translate: "번역하기"
+  search: "검색"
   error:
     constraint: "잘못된 형식입니다."
     ajax: "통신 중 문제가 발생했습니다.<br>관리자에게 문의 바랍니다."
@@ -78,6 +81,13 @@ member:
         length: "닉네임은 10자 이내로 입력해주세요."
         
 account:
+  region:
+    ko: 
+      currency: "한국 원（₩）"
+      unit: 원
+    jp: 
+      currency: "일본 엔（¥）"
+      unit: 엔
   dashboard:
     title: "가계부"
   left:
@@ -90,5 +100,11 @@ account:
       name: 
         ko: "가계부 이름(한국어)"
         jp: "가계부 이름(일본어)"
-      watchableMember: "열람 가능 회원"
-      writableMember: "작성 가능 회원"
+      region: "통화 단위"
+      auth:
+        watchable: "열람 권한"
+        writable: "편집 권한"
+        writableCondition: "열람 권한을 가진 회원만이 편집 권한을 가질 수 있습니다."
+      memberSearch: "회원 닉네임 검색"
+    error:
+      name: "가계부의 이름을 작성해주세요"

@@ -1,6 +1,9 @@
 alert:
   confirm: "確認"
   close: "閉じる"
+  return: "戻る"
+  translate: "翻訳する"
+  search: "検索"
   error:
     constraint: "間違った形式です。"
     ajax: "通信中に問題が発生しました。<br>管理者にお問い合わせください。"
@@ -78,6 +81,13 @@ member:
         length: "ニックネームは１０文字以内で入力してください。"
         
 account:
+  region:
+    ko: 
+      currency: "韓国ウォン（₩）"
+      unit: ウォン
+    jp: 
+      currency: "日本円（¥）"
+      unit: 円
   dashboard:
     title: "家計簿"
   left:
@@ -90,6 +100,12 @@ account:
       name: 
         ko: "家計簿名（韓国語）"
         jp: "家計簿名（日本語）"
-      watchableMember: "閲覧可能会員"
-      writableMember: "作成可能会員"
+      region: "通貨単位"
+      auth:
+        watchable: "閲覧権限"
+        writable: "編集権限"
+        writableCondition: "閲覧権限を持っている会員のみ編集権限が付与できます。"
+      memberSearch: "会員ニックネーム検索"
+    error:
+      name: "家計簿名を作成してください"
         

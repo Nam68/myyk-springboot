@@ -13,6 +13,12 @@ public class KeyName {
 	 */
 	public static final String LANGUAGE_SETTING = SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME;
 	
+	/**
+	 * <p>언어 정보를 뷰에서 사용하기 위한 세션 키.</p>
+	 */
+	public static final String SELECTED_LANGUAGE = "selected_language";
+	public static final String UNSELECTED_LANGUAGE = "unselected_language";
+	
 	//
 	// 리퀘스트
 	//

@@ -27,6 +27,7 @@ body {
 	padding-top: 0.5rem;
 	padding-left: 10%;
 	padding-right: 10%;
+	padding-bottom: 3.5rem;
 }
 .content-body {
 	width: 800px;
@@ -168,6 +169,17 @@ form {
 	color:#fff;
 	background-color:var(--primary-color-100);
 	border-color:var(--primary-color-100);
+}
+
+.bg-primary{
+	color:#fff;
+	background-color:var(--primary-color-100);
+	border-color:var(--primary-color-100);
+}
+.bg-primary:hover{
+	color:#fff;
+	background-color:var(--primary-color-200);
+	border-color:var(--primary-color-200);
 }
 
 

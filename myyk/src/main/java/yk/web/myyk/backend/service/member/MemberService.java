@@ -1,8 +1,11 @@
 package yk.web.myyk.backend.service.member;
 
+import java.util.List;
 import java.util.Map;
 
+import yk.web.myyk.backend.dto.LoginInfo;
 import yk.web.myyk.backend.dto.MemberDTO;
+import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.exception.SystemException;
 
 public interface MemberService {
@@ -41,5 +44,22 @@ public interface MemberService {
 	 * @throws SystemException 시스템 에러
 	 */
 	public void create(MemberDTO dto) throws SystemException;
+	
+	/**
+	 * <p>회원 등급에 해당하는 모든 회원을 불러온다.</p>
+	 * 
+	 * @param memberType 회원등급
+	 * @return 회원 리스트
+	 * @throws SystemException 시스템 에러
+	 */
+	public List<MemberDTO> findAllByMemberType(MemberType memberType) throws SystemException;
+	
+	/**
+	 * <p>관리자와 회원 등급에 해당하는 모든 회원을 불러온다.</p>
+	 * 
+	 * @return 회원 리스트
+	 * @throws SystemException 시스템 에러
+	 */
+	public List<MemberDTO> findAllAdminAndMember() throws SystemException;
 	
 }

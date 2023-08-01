@@ -1,8 +1,11 @@
 package yk.web.myyk.backend.dto;
 
+import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.Region;
 
-public class MemberDTO {
+public class MemberDTO extends BaseDTO {
+	
+	private long memberIdx;
 
 	private String email;
 	
@@ -17,14 +20,29 @@ public class MemberDTO {
 		// nop
 	}
 	
+	public MemberDTO(long memberIdx, String email, String nickname, Region region) {
+		this.memberIdx = memberIdx;
+		this.email = email;
+		this.nickname = nickname;
+		this.region = region;
+	}
+	
 	public MemberDTO(String email, String nickname, Region region) {
 		this.email = email;
 		this.nickname = nickname;
 		this.region = region;
 	}
 	
+	public MemberDTO(MemberEntity entity) {
+		this(entity.getMemberIdx(), entity.getEncryptedEmail(), entity.getNickname(), entity.getRegion());
+	}
+	
+	public long getMemberIdx() {
+		return memberIdx;
+	}
+	
 	public String getEmail() {
-		return email;
+		return decrypt(email);
 	}
 	
 	public void setEmail(String email) {

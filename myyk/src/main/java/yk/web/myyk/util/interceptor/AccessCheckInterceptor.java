@@ -34,7 +34,7 @@ public class AccessCheckInterceptor extends BaseInterceptor implements HandlerIn
 		// 멤머타입을 설정
 		// 로그인 정보가 없거나, 로그인 정보 상 멤버타입이 없는 경우 = 미로그인 상태로 설정
 		// 로그인 정보가 있는 경우 해당 멤버타입으로 설정
-		LoginInfo loginInfo = (LoginInfo) request.getSession().getAttribute(LOGIN_INFO);
+		LoginInfo loginInfo = getSessionAttribute(request, LOGIN_INFO, LoginInfo.class);
 		MemberType memberType = null;
 		if (loginInfo == null || loginInfo.getMemberType() == null) {
 			memberType = MemberType.NO_LOGIN;
