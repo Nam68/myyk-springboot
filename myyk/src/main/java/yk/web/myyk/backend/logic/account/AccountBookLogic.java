@@ -4,18 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Map.Entry;
 
+import org.glassfish.jaxb.runtime.v2.runtime.reflect.Accessor.GetterSetterReflection;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.AccountBookDTO;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.account.AccountBookService;
+import yk.web.myyk.util.comparator.MyComparator;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service
@@ -25,16 +30,36 @@ public class AccountBookLogic extends BaseLogic implements AccountBookService {
 	@Transactional
 	public List<AccountBookDTO> getAuthList(long memberIdx) throws SystemException {
 		
-		List<AccountBookAuthEntity> auths = getRepository().getAccountBookAuth()
-				.findAllByMemberMemberIdxOrderByAccountBookAuthIdxAsc(memberIdx);
+		MemberEntity member = 
+				getRepository().getMember().findById(getLoginInfo().getMemberIdx()).get();
+		List<AccountBookAuthEntity> list = member.getAccountBookAuthList();
 		
 		List<AccountBookDTO> result = new ArrayList<>();
-		for (AccountBookAuthEntity auth : auths) {
+		for (AccountBookAuthEntity auth : list) {
 			AccountBookEntity entity = auth.getAccountBook();
 			result.add(new AccountBookDTO(entity));
 		}
-		
 		return result;
+	}
+	
+	@Override
+	public AccountBookDTO getAccountBook(@Nullable Long accountBookIdx) throws SystemException {
+		
+		if (accountBookIdx == null || accountBookIdx <= 0) {
+			MemberEntity member = 
+					getRepository().getMember().findById(getLoginInfo().getMemberIdx()).get();
+			List<AccountBookAuthEntity> auths = member.getAccountBookAuthList();
+			if (auths.isEmpty()) {
+				return null;
+			}
+			
+		}
+		
+		Optional<AccountBookEntity> entity = getRepository().getAccountBook().findById(accountBookIdx);
+		if (!entity.isPresent()) {
+			return null;
+		}
+		return new AccountBookDTO(entity.get()); 
 	}
 	
 	@Override

@@ -30,7 +30,10 @@
 		</div>
 		<div class="account-pannel account-pannel-right shadow p-3 bg-body rounded">
 			<div>
+				<#if dto?exists>
+				<#else>
 				<@spring.message "account.right.empty"/>
+				</#if>
 			</div>
 		</div>
 	</div>

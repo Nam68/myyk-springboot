@@ -26,10 +26,17 @@ import yk.web.myyk.util.exception.SystemException;
 public class AccountController extends BaseController {
 
 	@RequestMapping("/dashboard")
-	public String dashboard(HttpServletRequest request) throws SystemException {
-		LoginInfo loginInfo = (LoginInfo) request.getSession().getAttribute(LOGIN_INFO);
-		List<AccountBookDTO> bookList = getService().accountBook().getAuthList(loginInfo.getMemberIdx());
+	public String dashboard(HttpServletRequest request, Long accountBookIdx) throws SystemException {
+		
+		// 가계부 리스트
+		List<AccountBookDTO> bookList = 
+				getService().accountBook().getAuthList(getLoginInfo().getMemberIdx());
 		request.setAttribute(LIST, bookList);
+		
+		// 대시보드 가계부
+		AccountBookDTO dto = getService().accountBook().getAccountBook(accountBookIdx);
+		request.setAttribute(DTO, dto);
+		
 		return "account/dashboard";
 	}
 	

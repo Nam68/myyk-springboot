@@ -1,6 +1,7 @@
 package yk.web.myyk.backend.entity.member;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.hibernate.annotations.NaturalId;
@@ -20,6 +21,7 @@ import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.config.AppConstants;
+import yk.web.myyk.util.comparator.MyComparator;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
 
@@ -122,6 +124,7 @@ public class MemberEntity extends BaseEntityWithTime {
 	}
 	
 	public List<AccountBookAuthEntity> getAccountBookAuthList() {
+		accountBookAuthList.sort(MyComparator.getModifyDesc());
 		return accountBookAuthList;
 	}
 	

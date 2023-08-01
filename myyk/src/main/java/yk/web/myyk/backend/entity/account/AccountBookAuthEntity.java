@@ -10,11 +10,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.entity.BaseEntity;
+import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 
 @Entity
 @Table(name = "ACCOUNT_BOOK_AUTH_TBL")
-public class AccountBookAuthEntity extends BaseEntity {
+public class AccountBookAuthEntity extends BaseEntityWithTime {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

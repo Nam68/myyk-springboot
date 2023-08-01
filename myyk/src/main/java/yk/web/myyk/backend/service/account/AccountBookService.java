@@ -15,6 +15,15 @@ public interface AccountBookService {
 	 * @throws SystemException 시스템에러
 	 */
 	public List<AccountBookDTO> getAuthList(long memberIdx) throws SystemException;
+
+	/**
+	 * <p>인덱스를 통해 가계부를 가져온다.</p>
+	 * 
+	 * @param accountBookIdx 가계부 인덱스
+	 * @return 가계부
+	 * @throws SystemException 시스템 에러
+	 */
+	AccountBookDTO getAccountBook(Long accountBookIdx) throws SystemException;
 	
 	/**
 	 * <p>DTO를 통해 가계부를 생성한다.</p>
