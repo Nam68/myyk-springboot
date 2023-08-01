@@ -81,4 +81,18 @@ public class MemberLogic extends BaseLogic implements MemberService {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<MemberDTO> findAllAdminAndMember(LoginInfo loginInfo) throws SystemException {
+		List<MemberDTO> memberList = findAllAdminAndMember();
+		
+		// 로그인한 본인은 제외하고 회원 리스트 작성
+		for (MemberDTO member : memberList) {
+			if (member.getMemberIdx() == loginInfo.getMemberIdx()) {
+				memberList.remove(member);
+				break;
+			}
+		}
+		return memberList;
+	}
 }

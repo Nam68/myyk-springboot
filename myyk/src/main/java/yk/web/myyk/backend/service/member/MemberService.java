@@ -62,4 +62,13 @@ public interface MemberService {
 	 */
 	public List<MemberDTO> findAllAdminAndMember() throws SystemException;
 	
+	/**
+	 * <p>로그인 유저를 제외한 관리자와 회원 등급에 해당하는 모든 회원을 불러온다.</p>
+	 * 
+	 * @param loginInfo 로그인 유저
+	 * @return 회원 리스트
+	 * @throws SystemException 시스템 에러
+	 */
+	public List<MemberDTO> findAllAdminAndMember(LoginInfo loginInfo) throws SystemException;
+	
 }

@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
@@ -43,6 +44,11 @@ public class AccountBookLogic extends BaseLogic implements AccountBookService {
 		// 일단 재료가 되는 가계부 엔티티를 생성한다.
 		AccountBookEntity book = new AccountBookEntity(dto);
 		getRepository().getAccountBook().save(book);
+		
+		// 로그인한 작성자 본인에게 모든 권한을 추가한다
+		int memberIdx = (int) getLoginInfo().getMemberIdx();
+		dto.getWatchableIdx().add(memberIdx);
+		dto.getWritableIdx().add(memberIdx);
 		
 		Map<Long, AccountBookAuthEntity> authMap = new HashMap<>();
 		

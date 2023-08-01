@@ -36,29 +36,13 @@ public class AccountController extends BaseController {
 	@RequestMapping("/createInput")
 	@RegionSetter
 	public String createInput(HttpServletRequest request) throws SystemException {
-		List<MemberDTO> memberList = getService().getMember().findAllAdminAndMember();
-		LoginInfo loginInfo = (LoginInfo) request.getSession().getAttribute(LOGIN_INFO);
-		
-		// 로그인한 본인은 제외하고 회원 리스트 작성
-		for (MemberDTO member : memberList) {
-			if (member.getMemberIdx() == loginInfo.getMemberIdx()) {
-				memberList.remove(member);
-				break;
-			}
-		}
-		
+		List<MemberDTO> memberList = getService().getMember().findAllAdminAndMember(getLoginInfo());
 		request.setAttribute(LIST, memberList);
 		return "account/createAccountInput";
 	}
 	
 	@RequestMapping(path = "/create", method =  RequestMethod.POST)
 	public String createConfirm(AccountBookDTO dto, HttpSession session) throws SystemException {
-		
-		// 로그인한 본인은 열람/편집권한을 자동으로 얻는다
-		LoginInfo loginInfo = (LoginInfo) session.getAttribute(LOGIN_INFO);
-		dto.getWatchableIdx().add((int) loginInfo.getMemberIdx());
-		dto.getWritableIdx().add((int) loginInfo.getMemberIdx());
-		
 		getService().accountBook().createBook(dto);
 		return "redirect:/account/dashboard";
 	}
