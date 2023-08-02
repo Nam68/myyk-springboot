@@ -19,6 +19,7 @@ import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
+import yk.web.myyk.backend.repository.AccountBookAuthRepository;
 import yk.web.myyk.backend.service.account.AccountBookService;
 import yk.web.myyk.util.comparator.MyComparator;
 import yk.web.myyk.util.exception.SystemException;
@@ -30,9 +31,9 @@ public class AccountBookLogic extends BaseLogic implements AccountBookService {
 	@Transactional
 	public List<AccountBookDTO> getAuthList(long memberIdx) throws SystemException {
 		
-		MemberEntity member = 
-				getRepository().getMember().findById(getLoginInfo().getMemberIdx()).get();
-		List<AccountBookAuthEntity> list = member.getAccountBookAuthList();
+		List<AccountBookAuthEntity> list = 
+				getRepository().getAccountBookAuth().findAllByMemberMemberIdx(
+						memberIdx, AccountBookAuthRepository.getSort());
 		
 		List<AccountBookDTO> result = new ArrayList<>();
 		for (AccountBookAuthEntity auth : list) {
@@ -46,13 +47,14 @@ public class AccountBookLogic extends BaseLogic implements AccountBookService {
 	public AccountBookDTO getAccountBook(@Nullable Long accountBookIdx) throws SystemException {
 		
 		if (accountBookIdx == null || accountBookIdx <= 0) {
-			MemberEntity member = 
-					getRepository().getMember().findById(getLoginInfo().getMemberIdx()).get();
-			List<AccountBookAuthEntity> auths = member.getAccountBookAuthList();
+			List<AccountBookAuthEntity> auths = 
+					getRepository().getAccountBookAuth().findAllByMemberMemberIdx(
+							getLoginInfo().getMemberIdx(), AccountBookAuthRepository.getSort());
 			if (auths.isEmpty()) {
 				return null;
+			} else {
+				return new AccountBookDTO(auths.get(0).getAccountBook());
 			}
-			
 		}
 		
 		Optional<AccountBookEntity> entity = getRepository().getAccountBook().findById(accountBookIdx);

@@ -16,9 +16,9 @@ public class MyComparator {
 			@Override
 			public int compare(BaseEntityWithTime o1, BaseEntityWithTime o2) {
 				
-				if(o1.getRegisterdDate().isBefore(o2.getRegisterdDate())) {
+				if(o1.getRegisterdDate().isAfter(o2.getRegisterdDate())) {
 					return 1;
-				} else if (o1.getRegisterdDate().isAfter(o2.getRegisterdDate())) {
+				} else if (o1.getRegisterdDate().isBefore(o2.getRegisterdDate())) {
 					return -1;
 				}
 				return 0;
@@ -36,9 +36,9 @@ public class MyComparator {
 			@Override
 			public int compare(BaseEntityWithTime o1, BaseEntityWithTime o2) {
 				
-				if(o1.getRegisterdDate().isAfter(o2.getRegisterdDate())) {
+				if(o1.getRegisterdDate().isBefore(o2.getRegisterdDate())) {
 					return 1;
-				} else if (o1.getRegisterdDate().isBefore(o2.getRegisterdDate())) {
+				} else if (o1.getRegisterdDate().isAfter(o2.getRegisterdDate())) {
 					return -1;
 				}
 				return 0;
@@ -56,9 +56,9 @@ public class MyComparator {
 			@Override
 			public int compare(BaseEntityWithTime o1, BaseEntityWithTime o2) {
 				
-				if(o1.getModifiedDate().isBefore(o2.getModifiedDate())) {
+				if(o1.getModifiedDate().isAfter(o2.getModifiedDate())) {
 					return 1;
-				} else if (o1.getModifiedDate().isAfter(o2.getModifiedDate())) {
+				} else if (o1.getModifiedDate().isBefore(o2.getModifiedDate())) {
 					return -1;
 				}
 				return 0;
@@ -76,9 +76,9 @@ public class MyComparator {
 			@Override
 			public int compare(BaseEntityWithTime o1, BaseEntityWithTime o2) {
 				
-				if(o1.getModifiedDate().isAfter(o2.getModifiedDate())) {
+				if(o1.getModifiedDate().isBefore(o2.getModifiedDate())) {
 					return 1;
-				} else if (o1.getModifiedDate().isBefore(o2.getModifiedDate())) {
+				} else if (o1.getModifiedDate().isAfter(o2.getModifiedDate())) {
 					return -1;
 				}
 				return 0;

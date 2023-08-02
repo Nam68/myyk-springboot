@@ -8,9 +8,9 @@ import yk.web.myyk.util.exception.SystemException;
 public interface AccountBookService {
 
 	/**
-	 * <p>회원 정보를 통해 가계부 권한 리스트를 가져온다.</p>
+	 * <p>로그인된 회원의 가계부 권한 리스트를 가져온다.</p>
 	 * 
-	 * @param 회원 idx
+	 * @param memberIdx 회원 인덱스
 	 * @return 가계부 권한 리스트
 	 * @throws SystemException 시스템에러
 	 */

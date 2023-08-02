@@ -123,8 +123,11 @@ public class MemberEntity extends BaseEntityWithTime {
 		return hashedPassword.equals(this.password);
 	}
 	
+	/**
+	 * @Deprecated 가급적 레포지토리를 통해서 정렬해서 불러올 것.
+	 */
+	@Deprecated
 	public List<AccountBookAuthEntity> getAccountBookAuthList() {
-		accountBookAuthList.sort(MyComparator.getModifyDesc());
 		return accountBookAuthList;
 	}
 	
