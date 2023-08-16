@@ -35,4 +35,7 @@ value:
   member:
     icon:
       default: "/img/profile-default.jpg"
+  url:
+    timeout: 5000 #5초
+    try: 3 #3번 연결 시도
   

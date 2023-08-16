@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import yk.web.myyk.backend.api.BaseApi;
-import yk.web.myyk.util.exception.SystemException;
+import yk.web.myyk.util.exception.ApiException;
 
 @RestController
 @RequestMapping("/member")
 public class EmailApi extends BaseApi {
 	
 	@RequestMapping(path = "/checkTmpCode", method = RequestMethod.POST)
-	public String checkTmpCode(int tmpCode) throws SystemException {
+	public String checkTmpCode(int tmpCode) throws ApiException {
 		return getService().getEmail().checkTmpCode(tmpCode);
 	}
 

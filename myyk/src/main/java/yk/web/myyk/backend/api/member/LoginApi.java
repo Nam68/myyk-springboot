@@ -13,7 +13,7 @@ import yk.web.myyk.config.KeyName;
 import yk.web.myyk.util.cookie.CookieUtil;
 import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.errorCode.ErrorCode;
-import yk.web.myyk.util.exception.SystemException;
+import yk.web.myyk.util.exception.ApiException;
 
 @RestController
 @RequestMapping("/member")
@@ -28,7 +28,7 @@ public class LoginApi extends BaseApi {
 	 * @throws SystemException 시스템에러
 	 */
 	@RequestMapping(path = "/login", method = RequestMethod.POST)
-	public String login(LoginDTO dto, HttpSession session, HttpServletResponse response) throws SystemException {
+	public String login(LoginDTO dto, HttpSession session, HttpServletResponse response) throws ApiException {
 		
 		LoginInfo loginInfo = getService().getLogin().find(dto);
 		if (loginInfo == null) {
@@ -42,7 +42,7 @@ public class LoginApi extends BaseApi {
 		if (dto.isAutoLoginCheck()) {
 			String autoLoginSessionId = getService().getLogin().createAutoLoginSession(dto);
 			if (autoLoginSessionId == null || autoLoginSessionId.isEmpty()) {
-				throw new SystemException(ErrorCode.CT_102, getClass());
+				throw new ApiException(ErrorCode.CT_102, getClass());
 			} else {
 				CookieUtil.setCookie(KeyName.AUTO_LOGIN, autoLoginSessionId, response);
 			}
@@ -52,7 +52,7 @@ public class LoginApi extends BaseApi {
 	}
 	
 	@RequestMapping(path = "/logout", method = RequestMethod.POST)
-	public String logout(HttpSession session, HttpServletResponse response) throws SystemException {
+	public String logout(HttpSession session, HttpServletResponse response) throws ApiException {
 		session.removeAttribute(LOGIN_INFO);
 		CookieUtil.deleteCookie(KeyName.AUTO_LOGIN, response);
 		return Error.SUCCESS.getValue();

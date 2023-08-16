@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import yk.web.myyk.config.KeyName;
 import yk.web.myyk.util.enumerated.Category;
+import yk.web.myyk.util.enumerated.Error;
 
 @ControllerAdvice
 public class GeneralExceptionHandler {
@@ -33,6 +34,12 @@ public class GeneralExceptionHandler {
 		e.printStackTrace();
 		
 		return mav;
+	}
+	
+	@ExceptionHandler({ApiException.class})
+	public String apiExceptionHandler(PermissionException e) {
+		e.printStackTrace();
+		return Error.ERROR.getValue();
 	}
 	
 }
