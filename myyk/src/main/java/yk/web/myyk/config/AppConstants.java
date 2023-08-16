@@ -74,6 +74,12 @@ public class AppConstants {
 	@Value("${value.tmpCode.limit.times}")
 	private int tmpCodeLimitTimes;
 	
+	@Value("${value.url.timeout}")
+	private int urlTimeout;
+
+	@Value("${value.url.try}")
+	private int urlTry;
+	
 	//
 	// static getter
 	//
@@ -120,6 +126,14 @@ public class AppConstants {
 	
 	public int getTmpCodeLImitTimes() {
 		return tmpCodeLimitTimes;
+	}
+	
+	public int getUrlTimeout() {
+		return urlTimeout;
+	}
+	
+	public int getUrlTry() {
+		return urlTry;
 	}
 	
 }
