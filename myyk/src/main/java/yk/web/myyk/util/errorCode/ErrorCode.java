@@ -7,6 +7,7 @@ public enum ErrorCode {
 	
 	/*
 	 * CF : 설정
+	 * CG : 카테고리
 	 * CK : 쿠키
 	 * CT : 컨트롤러
 	 * EN : 이넘
@@ -33,6 +34,16 @@ public enum ErrorCode {
 	 * <p>프리마커 설정에 실패했을 떄의 에러.</p>
 	 */
 	CF_104("freemarker do not work."),
+	
+	/**
+	 * <p>서브카테고리를 1차카테고리로 취급했을 때의 에러.</p>
+	 */
+	CG_101("this category does not have option."),
+	
+	/**
+	 * <p>1차카테고리를 서브카테고리로 취급했을 때의 에러.</p>
+	 */
+	CG_102("this catetory does not have sub catogory."),
 	
 	/**
 	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
