@@ -8,6 +8,17 @@
 .account-pannel {
 	color: var(--primary-color-300);
 }
+
+.dashboard-title {
+	color:var(--primary-color-300);
+	font-size: 1.25rem;
+	margin-bottom: 0.25rem;
+	
+	border-left: 0.5rem solid var(--primary-color-200);
+	padding-left: 0.75rem;
+	
+	text-align: left;
+}
 </style>
 </head>
 <#include "/global/header.ftlh">
@@ -19,18 +30,35 @@
 		<div class="account-pannel account-pannel-left shadow p-3 bg-body rounded">
 			<div>
 				<#list list as list>
-				<span class="load-account-book primary-dark-color	" role="button">
-					<p><i class="bi bi-journal-text"></i> 	<@if selected_language == 'ko' '${list.koBookName}' '${list.jpBookName}'/></p>
+				<span class="load-account-book primary-dark-color" role="button">
+					<p><i class="bi bi-journal-text"></i> <@if selected_language == 'ko' '${list.koBookName}' '${list.jpBookName}'/></p>
 				</span>
 				</#list>
-				<span class="add-account-book primary-dark-color" role="button">
-					<i class="bi bi-plus-circle"></i> <@spring.message "account.left.add"/>
+				<span class="create-account-book primary-dark-color" role="button">
+					<i class="bi bi-journal-plus"></i> <@spring.message "account.left.add"/>
 				</span>
 			</div>
 		</div>
 		<div class="account-pannel account-pannel-right shadow p-3 bg-body rounded">
 			<div>
 				<#if dto?exists>
+				<input class="account-book-idx" type="hidden" value="${dto.accountBookIdx}">
+				<div class="dashboard-top row ps-3 pe-3">
+					<div class="dashboard-title col">
+						<@if selected_language == 'ko' '${dto.koBookName}' '${dto.jpBookName}'/>
+					</div>
+					<div class="col text-end">
+						<button class="btn btn-outline-primary search-category-btn">
+							<i class="bi bi-file-earmark-text"></i> category list
+						</button>
+					</div>
+				</div>
+				<div class="mt-3">
+					graph(no data)
+				</div>
+				<div class="mt-3">
+					detail(no data)
+				</div>
 				<#else>
 				<@spring.message "account.right.empty"/>
 				</#if>
@@ -49,8 +77,12 @@ $(document).ready(function() {
 	}
 });
 
-$('.add-account-book').on('click', function(e) {
+$('.create-account-book').on('click', function(e) {
 	location.href='/account/createInput';
+});
+
+$('.search-category-btn').on('click', function(e) {
+	location.href='/account/category/search?accountBookIdx=' + $('.accountBookIdx').val();
 });
 </script>
 </html>

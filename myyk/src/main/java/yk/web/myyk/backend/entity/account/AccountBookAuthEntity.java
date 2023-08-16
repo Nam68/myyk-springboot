@@ -38,6 +38,7 @@ public class AccountBookAuthEntity extends BaseEntityWithTime {
 		// 하이버네이트용
 	}
 	
+	@SuppressWarnings("deprecation")
 	public AccountBookAuthEntity(MemberEntity member, AccountBookEntity accountBook) {
 		this(member, accountBook, false);
 		member.getAccountBookAuthList().add(this);

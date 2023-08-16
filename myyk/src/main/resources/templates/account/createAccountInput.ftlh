@@ -18,7 +18,7 @@
 			<@spring.message "account.create.input.title"/>
 		</h1>
 		<form action="/account/create" method="post" class="g-3 needs-validation" novalidate>
-			<#-- 가계부 이름(한국어) -->
+			<#-- 가계부 이름(접속언어) -->
 			<div class="mb-4">
 				<label class="form-label">
 					<@spring.message "account.create.input.name.${selected_language}"/>
@@ -28,7 +28,7 @@
 		       		<@spring.message "account.create.error.name"/>
 				</div>
 			</div>
-			<#-- 가계부 이름(일본어) -->
+			<#-- 가계부 이름(비접속언어) -->
 			<div class="mb-4">
 				<label class="form-label">
 					<@spring.message "account.create.input.name.${unselected_language}"/>

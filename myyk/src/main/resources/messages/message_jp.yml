@@ -108,4 +108,26 @@ account:
       memberSearch: "会員ニックネーム検索"
     error:
       name: "家計簿名を作成してください"
-        
+  category:
+    list:
+      title: "カテゴリリスト"
+    create:
+      input: 
+        title: "カテゴリ追加"
+        name:
+          ko: "カテゴリ名（韓国語）"
+          jp: "カテゴリ名（日本語）"
+        icon: 
+          title: "アイコン"
+          input: "アイコンを直接入力する"
+          explain:
+            title: "お好きなアイコンの名前を入力し、ボタンを押してください。"
+            content: "説明、、、"
+        color: "カテゴリカラー"
+      error:
+        name: "カテゴリ名を作成してください"
+        icon: "アイコンを選んでください"
+        notFound: "入力したアイコンの名前が見つかりません"
+        color: "カテゴリカラーを選んでください"
+    sub:
+      create: "サブカテゴリ追加"

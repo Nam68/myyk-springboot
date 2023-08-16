@@ -108,3 +108,26 @@ account:
       memberSearch: "회원 닉네임 검색"
     error:
       name: "가계부의 이름을 작성해주세요"
+  category:
+    list:
+      title: "카테고리 리스트"
+    create:
+      input: 
+        title: "카테고리 추가"
+        name:
+          ko: "카테고리 이름(한국어)"
+          jp: "카테고리 이름(일본어)"
+        icon:
+          title: "아이콘"
+          input: "아이콘 직접입력"
+          explain:
+            title: "아이콘의 이름을 직접 입력할 수 있습니다."
+            content: "설명..."
+        color: "카테고리 컬러"
+      error:
+        name: "카테고리 이름을 작성해주세요"
+        icon: "아이콘을 선택해주세요"
+        notFound: "해당 아이콘 이름을 찾을 수 없습니다"
+        color: "카테고리 컬러를 선택해주세요"
+    sub:
+      create: "서브 카테고리 추가"

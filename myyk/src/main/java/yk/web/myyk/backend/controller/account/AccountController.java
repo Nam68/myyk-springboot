@@ -30,11 +30,11 @@ public class AccountController extends BaseController {
 		
 		// 가계부 리스트
 		List<AccountBookDTO> bookList = 
-				getService().accountBook().getAuthList(getLoginInfo().getMemberIdx());
+				getService().getAccountBook().getAuthList(getLoginInfo().getMemberIdx());
 		request.setAttribute(LIST, bookList);
 		
 		// 대시보드 가계부
-		AccountBookDTO dto = getService().accountBook().getAccountBook(accountBookIdx);
+		AccountBookDTO dto = getService().getAccountBook().getAccountBook(accountBookIdx);
 		request.setAttribute(DTO, dto);
 		
 		return "account/dashboard";
@@ -50,7 +50,7 @@ public class AccountController extends BaseController {
 	
 	@RequestMapping(path = "/create", method =  RequestMethod.POST)
 	public String createConfirm(AccountBookDTO dto, HttpSession session) throws SystemException {
-		getService().accountBook().createBook(dto);
+		getService().getAccountBook().createBook(dto);
 		return "redirect:/account/dashboard";
 	}
 	
