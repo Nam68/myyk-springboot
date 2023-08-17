@@ -53,7 +53,7 @@ public class PrimeCategoryDTO {
 	}
 	
 	public long getParentCategoryIdx() {
-		return new CategoryEntity(true).getCategoryIdx();
+		return new CategoryEntity(false).getCategoryIdx();
 	}
 	
 	public List<SubCategoryDTO> getSubCategoryList() {

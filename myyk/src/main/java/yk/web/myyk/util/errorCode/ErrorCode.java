@@ -6,6 +6,7 @@ package yk.web.myyk.util.errorCode;
 public enum ErrorCode {
 	
 	/*
+	 * AC : 가계부
 	 * CF : 설정
 	 * CG : 카테고리
 	 * CK : 쿠키
@@ -14,6 +15,11 @@ public enum ErrorCode {
 	 * ET : 엔티티
 	 * IC : 인터셉터
 	 */
+	
+	/**
+	 * <p>가계부 엔티티를 찾을 수 없을 때의 에러.</p>
+	 */
+	AC_101("account book entity does not exist."),
 	
 	/**
 	 * <p>로케일이 존재하지 않을 때의 에러.</p>
@@ -54,6 +60,11 @@ public enum ErrorCode {
 	 * <p>서브카테고리를 1차카테고리로 취급했을 때의 에러.</p>
 	 */
 	CG_104("this category is not prime category."),
+	
+	/**
+	 * <p>베이직 카테고리를 만드는 생성자에 true를 매개변수로 전달했을 떄의 에러.</p>
+	 */
+	CG_105("category cannot be created with boolean only."),
 	
 	/**
 	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>

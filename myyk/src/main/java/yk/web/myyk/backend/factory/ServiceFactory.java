@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.AccountBookService;
+import yk.web.myyk.backend.service.account.CategoryService;
 import yk.web.myyk.backend.service.external.BootstrapService;
 import yk.web.myyk.backend.service.member.EmailService;
 import yk.web.myyk.backend.service.member.LoginService;
@@ -30,6 +31,9 @@ public class ServiceFactory {
 	@Autowired
 	private BootstrapService bootstrapService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	public EmailService getEmail() {
 		return emailService;
 	}
@@ -50,4 +54,7 @@ public class ServiceFactory {
 		return bootstrapService;
 	}
 	
+	public CategoryService getCategory() {
+		return categoryService;
+	}
 }

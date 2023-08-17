@@ -22,11 +22,11 @@ public class AccountBookAuthEntity extends BaseEntityWithTime {
 	@Column(name = "ACCOUNT_BOOK_AUTH_IDX")
 	private Long accountBookAuthIdx;
 	
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = MemberEntity.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = MemberEntity.class)
 	@JoinColumn(name = "MEMBER_IDX")
 	private MemberEntity member;
 	
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = AccountBookEntity.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = AccountBookEntity.class)
 	@JoinColumn(name = "ACCOUNT_BOOK_IDX")
 	private AccountBookEntity accountBook;
 	

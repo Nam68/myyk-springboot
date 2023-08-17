@@ -56,7 +56,10 @@ public class CategoryEntity extends BaseEntity {
 	 * 
 	 * @param isBasic 베이직 카테고리인지의 여부
 	 */
-	public CategoryEntity(boolean isBasic) {
+	public CategoryEntity(boolean isUsable) {
+		if (isUsable) {
+			throw new SystemException(ErrorCode.CG_105, CategoryEntity.class);
+		}
 		this.categoryIdx = 0L;
 		this.name = BASIC_CATEGORY_NAME;
 	}

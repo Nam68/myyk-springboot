@@ -68,7 +68,7 @@ public class MemberEntity extends BaseEntityWithTime {
 //			joinColumns = @JoinColumn(name = "MEMBER_IDX"), 
 //			inverseJoinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"))
 //	private List<AccountBookEntity> accountBookList;
-	@OneToMany(fetch = FetchType.LAZY, targetEntity = AccountBookAuthEntity.class, mappedBy = "member")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
 	private List<AccountBookAuthEntity> accountBookAuthList = new ArrayList<>();
 	
 	@Deprecated

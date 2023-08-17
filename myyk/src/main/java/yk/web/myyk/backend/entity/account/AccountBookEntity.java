@@ -15,13 +15,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.util.enumerated.Region;
 
 /**
- * <p>가계보 엔티티.</p>
+ * <p>가계부 엔티티.</p>
  */
 @Entity
 @Table(name = "ACCOUNT_BOOK_TBL")
@@ -46,8 +47,12 @@ public class AccountBookEntity extends BaseEntityWithTime {
 	// 단순한 다대다이므로 사용하기 어려워서 패스
 //	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "accountBookList")
 //	private List<MemberEntity> writableMember;
-	@OneToMany(fetch = FetchType.LAZY, targetEntity = AccountBookAuthEntity.class, mappedBy = "accountBook")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accountBook")
 	private List<AccountBookAuthEntity> authList = new ArrayList<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accountBook")
+	@OrderBy("categoryIdx ASC")
+	private List<CategoryEntity> categoryList = new ArrayList<>();
 	
 	@Deprecated
 	public AccountBookEntity() {
@@ -74,6 +79,10 @@ public class AccountBookEntity extends BaseEntityWithTime {
 	
 	public Region getRegion() {
 		return region;
+	}
+	
+	public List<CategoryEntity> getCategoryList() {
+		return categoryList;
 	}
 	
 	/**
