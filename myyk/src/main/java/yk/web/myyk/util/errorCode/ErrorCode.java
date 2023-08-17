@@ -36,14 +36,24 @@ public enum ErrorCode {
 	CF_104("freemarker do not work."),
 	
 	/**
-	 * <p>서브카테고리를 1차카테고리로 취급했을 때의 에러.</p>
+	 * <p>1차카테고리에 옵션이 없을 때의 에러.</p>
 	 */
 	CG_101("this category does not have option."),
 	
 	/**
-	 * <p>1차카테고리를 서브카테고리로 취급했을 때의 에러.</p>
+	 * <p>1차카테고리에 서브카테고리가 없을 때의 에러.</p>
 	 */
 	CG_102("this catetory does not have sub catogory."),
+	
+	/**
+	 * <p>1차카테고리를 서브카테고리로 취급했을 때의 에러.</p>
+	 */
+	CG_103("this category is not sub category."),
+	
+	/**
+	 * <p>서브카테고리를 1차카테고리로 취급했을 때의 에러.</p>
+	 */
+	CG_104("this category is not prime category."),
 	
 	/**
 	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>

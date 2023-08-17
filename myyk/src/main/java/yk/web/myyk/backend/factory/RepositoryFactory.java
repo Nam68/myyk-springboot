@@ -12,6 +12,7 @@ import yk.web.myyk.backend.entity.member.TmpCodeEntity;
 import yk.web.myyk.backend.repository.AccountBookAuthRepository;
 import yk.web.myyk.backend.repository.AccountBookRepository;
 import yk.web.myyk.backend.repository.AutoLoginRepository;
+import yk.web.myyk.backend.repository.CategoryRepository;
 import yk.web.myyk.backend.repository.MemberRepository;
 import yk.web.myyk.backend.repository.TmpCodeRepository;
 import yk.web.myyk.util.BaseApp;
@@ -34,6 +35,9 @@ public class RepositoryFactory extends BaseApp {
 	
 	@Autowired
 	private AccountBookAuthRepository accountBookAuthRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	public MemberRepository getMember() {
 		return memberRepository;
@@ -66,6 +70,10 @@ public class RepositoryFactory extends BaseApp {
 	
 	public AccountBookAuthRepository getAccountBookAuth() {
 		return accountBookAuthRepository;
+	}
+	
+	public CategoryRepository getCategory() {
+		return categoryRepository;
 	}
 	
 }

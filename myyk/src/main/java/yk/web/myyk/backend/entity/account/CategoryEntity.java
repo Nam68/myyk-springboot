@@ -25,6 +25,8 @@ import yk.web.myyk.util.exception.SystemException;
 @Table(name = "CATEGORY_TBL")
 public class CategoryEntity extends BaseEntity {
 
+	private static final String BASIC_CATEGORY_NAME = "::BASIC CATEGORY::";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CATEGORY_IDX")
@@ -36,7 +38,7 @@ public class CategoryEntity extends BaseEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "PARENT_CATEGORY", nullable = true)
-	private CategoryEntity parentCategory;
+	private CategoryEntity parentCategory = new CategoryEntity();
 	
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
 	private PrimeCategoryOptionEntity option;
@@ -47,6 +49,16 @@ public class CategoryEntity extends BaseEntity {
 	@Deprecated
 	public CategoryEntity() {
 		// 하이버네이트용
+	}
+	
+	/**
+	 * <p>인덱스와 이름만을 가지고 있는 베이직 카테고리를 생성한다.</p>
+	 * 
+	 * @param isBasic 베이직 카테고리인지의 여부
+	 */
+	public CategoryEntity(boolean isBasic) {
+		this.categoryIdx = 0L;
+		this.name = BASIC_CATEGORY_NAME;
 	}
 	
 	/**
@@ -75,6 +87,24 @@ public class CategoryEntity extends BaseEntity {
 	public CategoryEntity(String name, CategoryEntity parentCategory) {
 		this.name = name;
 		this.parentCategory = parentCategory;
+	}
+	
+	/**
+	 * <p>카테고리 인덱스를 반환한다.</p>
+	 * 
+	 * @return 카테고리 인덱스
+	 */
+	public long getCategoryIdx() {
+		return categoryIdx;
+	}
+	
+	/**
+	 * <p>카테고리 이름을 반환한다.</p>
+	 * 
+	 * @return 카테고리 이름
+	 */
+	public String getName() {
+		return name;
 	}
 	
 	/**
@@ -116,7 +146,7 @@ public class CategoryEntity extends BaseEntity {
 	 */
 	public List<CategoryEntity> getSubCatetoryList() {
 		if (!isPrime()) {
-			throw new SystemException(ErrorCode.CG_102, CategoryEntity.class);
+			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
 		} else {
 			return subCategory;
 		}
