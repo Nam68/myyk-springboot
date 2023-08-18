@@ -11,14 +11,26 @@
 		<h1 class="title">
 			<@spring.message "account.category.list.title"/>
 		</h1>
-		<div>
+		<div class="text-start">
 			<button class="btn btn-outline-primary add-category-btn">
-				<i class="bi bi-file-earmark-plus"></i> add category
+				<i class="bi bi-file-earmark-plus"></i> <@spring.message "account.category.create.input.title"/>
 			</button>
 		</div>
-		<div>
+		<div class="text-start mt-3">
 			<#list list as category>
-				
+				<div class="category-holder">
+					<div style="color:${list.color}">
+						<p>
+							<i class="bi bi-${list.icon}"></i>
+							&nbsp;${list.name}
+						</p>
+						<# list.subCategory as sub>
+						<p>
+							&nbsp;&nbsp;&nbsp;${sub.name}
+						</p>
+						</#>
+					</div>
+				</div>
 			</#list>
 		</div>
 	</div>

@@ -49,7 +49,7 @@
 					</div>
 					<div class="col text-end">
 						<button class="btn btn-outline-primary search-category-btn">
-							<i class="bi bi-file-earmark-text"></i> category list
+							<i class="bi bi-file-earmark-text"></i> <@spring.message "account.category.edit"/>
 						</button>
 					</div>
 				</div>
@@ -82,7 +82,7 @@ $('.create-account-book').on('click', function(e) {
 });
 
 $('.search-category-btn').on('click', function(e) {
-	location.href='/account/category/search?accountBookIdx=' + $('.accountBookIdx').val();
+	location.href='/account/category/search?accountBookIdx=' + $('.account-book-idx').val();
 });
 </script>
 </html>

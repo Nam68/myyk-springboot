@@ -109,6 +109,7 @@ account:
     error:
       name: "家計簿名を作成してください"
   category:
+    edit: "カテゴリ編集"
     list:
       title: "カテゴリリスト"
     create:

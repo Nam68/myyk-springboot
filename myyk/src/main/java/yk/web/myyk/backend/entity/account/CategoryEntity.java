@@ -37,14 +37,18 @@ public class CategoryEntity extends BaseEntity {
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name = "PARENT_CATEGORY", nullable = true)
-	private CategoryEntity parentCategory = new CategoryEntity();
+	@JoinColumn(name = "PARENT_CATEGORY_IDX", nullable = true)
+	private CategoryEntity parentCategory;
 	
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
 	private PrimeCategoryOptionEntity option;
 
-	@OneToMany(mappedBy = "parentCategoryIdx")
+	@OneToMany(mappedBy = "parentCategory")
 	private List<CategoryEntity> subCategory = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "ACCOUNT_BOOK_IDX")
+	private AccountBookEntity accountBook;
 	
 	@Deprecated
 	public CategoryEntity() {
