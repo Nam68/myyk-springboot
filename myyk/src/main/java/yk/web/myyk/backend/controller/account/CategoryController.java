@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
@@ -24,14 +25,20 @@ public class CategoryController extends BaseController {
 	public String search(long accountBookIdx, HttpServletRequest request) throws SystemException {
 		List<PrimeCategoryDTO> list = getService().getCategory().getPrimeCategory(accountBookIdx);
 		request.setAttribute(LIST, list);
-		// 뷰 만들기
+		request.setAttribute(IDX, accountBookIdx);
 		return "account/searchCategory";
 	}
 	
 	@RequestMapping("/createInput")
-	public String createInput() throws SystemException {
-		
+	public String createInput(long accountBookIdx, HttpServletRequest request) throws SystemException {
+		request.setAttribute(IDX, accountBookIdx);
 		return "account/createCategoryInput";
+	}
+	
+	@RequestMapping(path = "/createPrimeCategory", method = RequestMethod.POST)
+	public String createPrimeCateogry(PrimeCategoryDTO dto) throws SystemException {
+		getService().getCategory().create(dto);
+		return "";
 	}
 	
 }

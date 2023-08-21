@@ -67,6 +67,11 @@ public enum ErrorCode {
 	CG_105("category cannot be created with boolean only."),
 	
 	/**
+	 * <p>카테고리 옵션이 아닌 클래스를 옵션으로 불러올 때의 에러.</p>
+	 */
+	CG_106("this instance is not category option."),
+	
+	/**
 	 * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
 	 */
 	CT_101("mail send failed... too many mails were sended."),

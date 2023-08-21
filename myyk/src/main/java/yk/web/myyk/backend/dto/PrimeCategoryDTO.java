@@ -7,11 +7,7 @@ import yk.web.myyk.backend.entity.account.CategoryEntity;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
-public class PrimeCategoryDTO {
-
-	private long categoryIdx;
-	
-	private String name;
+public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 	
 	private String icon;
 	
@@ -20,13 +16,13 @@ public class PrimeCategoryDTO {
 	private List<SubCategoryDTO> subCategoryList = new ArrayList<>();
 	
 	public PrimeCategoryDTO(CategoryEntity entity) {
+
+		super(entity.getCategoryIdx(), entity.getName());
 		
 		if (!entity.isPrime()) {
 			throw new SystemException(ErrorCode.CG_104, PrimeCategoryDTO.class);
 		}
 		
-		this.categoryIdx = entity.getCategoryIdx();
-		this.name = entity.getName();
 		this.icon = entity.getIcon();
 		this.color = entity.getColor();
 		
@@ -36,28 +32,28 @@ public class PrimeCategoryDTO {
 		}
 	}
 	
-	public long getCategoryIdx() {
-		return categoryIdx;
-	}
-	
-	public String getName() {
-		return name;
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	
 	public String getIcon() {
 		return icon;
 	}
 	
-	public String getColor() {
-		return color;
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
-	public long getParentCategoryIdx() {
-		return new CategoryEntity(false).getCategoryIdx();
+	public String getColor() {
+		return color;
 	}
 	
 	public List<SubCategoryDTO> getSubCategoryList() {
 		return subCategoryList;
 	}
-	
+
+	@Override
+	public PrimeCategoryDTO getOption() {
+		return this;
+	}
 }

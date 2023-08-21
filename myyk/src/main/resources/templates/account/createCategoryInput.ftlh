@@ -16,7 +16,8 @@
 		<h1 class="title">
 			<@spring.message "account.category.create.input.title"/>
 		</h1>
-		<form action="/account/create" method="post" class="g-3 needs-validation" novalidate>
+		<form action="/account/category/createPrimeCategory" method="post" class="g-3 needs-validation" novalidate>
+			<input type="hidden" name="accountBookIdx" value="">
 			<#-- 카테고리 이름(접속언어) -->
 			<div class="mb-4">
 				<label class="form-label">

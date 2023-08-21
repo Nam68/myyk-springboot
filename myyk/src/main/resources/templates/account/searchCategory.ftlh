@@ -12,7 +12,7 @@
 			<@spring.message "account.category.list.title"/>
 		</h1>
 		<div class="text-start">
-			<button class="btn btn-outline-primary add-category-btn">
+			<button class="btn btn-outline-primary add-category-btn" data-idx="${idx}">
 				<i class="bi bi-file-earmark-plus"></i> <@spring.message "account.category.create.input.title"/>
 			</button>
 		</div>
@@ -38,7 +38,7 @@
 <#include "/global/footer.ftlh">
 <script type="text/javascript">
 $('.add-category-btn').on('click', function(e) {
-	location.href = '/account/category/createInput';
+	location.href = '/account/category/createInput?accountBookIdx=' + $(this).data('idx');
 });
 </script>
 </html>

@@ -42,13 +42,12 @@
 		<div class="account-pannel account-pannel-right shadow p-3 bg-body rounded">
 			<div>
 				<#if dto?exists>
-				<input class="account-book-idx" type="hidden" value="${dto.accountBookIdx}">
 				<div class="dashboard-top row ps-3 pe-3">
 					<div class="dashboard-title col">
 						<@if selected_language == 'ko' '${dto.koBookName}' '${dto.jpBookName}'/>
 					</div>
 					<div class="col text-end">
-						<button class="btn btn-outline-primary search-category-btn">
+						<button class="btn btn-outline-primary search-category-btn" data-idx="${dto.accountBookIdx}">
 							<i class="bi bi-file-earmark-text"></i> <@spring.message "account.category.edit"/>
 						</button>
 					</div>
@@ -82,7 +81,8 @@ $('.create-account-book').on('click', function(e) {
 });
 
 $('.search-category-btn').on('click', function(e) {
-	location.href='/account/category/search?accountBookIdx=' + $('.account-book-idx').val();
+	alert($(this).data('idx'));
+	location.href='/account/category/search?accountBookIdx=' + $(this).data('idx');
 });
 </script>
 </html>

@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import yk.web.myyk.backend.dto.PrimeCategoryDTO;
 import yk.web.myyk.backend.entity.BaseEntity;
 
 @Entity
@@ -35,11 +36,11 @@ public class PrimeCategoryOptionEntity extends BaseEntity {
 		// 하이버네이트용
 	}
 	
-	/**
-	 * @deprecated {@link CategoryEntity}의 컨스트럭터에서만 사용할 것
-	 */
-	@Deprecated
-	public PrimeCategoryOptionEntity(CategoryEntity category, String icon, String color) {
+	public PrimeCategoryOptionEntity(CategoryEntity category, PrimeCategoryDTO dto) {
+		this(category, dto.getIcon(), dto.getColor());
+	}
+	
+	private PrimeCategoryOptionEntity(CategoryEntity category, String icon, String color) {
 		this.category = category;
 		this.icon = icon;
 		this.color = color;

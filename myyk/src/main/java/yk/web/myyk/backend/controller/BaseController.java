@@ -13,6 +13,8 @@ public class BaseController extends BaseMvc {
 	
 	protected static final String LIST = "list";
 	
+	protected static final String IDX = "idx";
+	
 	@Autowired
 	private ServiceFactory serviceFactory;
 	

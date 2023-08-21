@@ -17,6 +17,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import yk.web.myyk.backend.dto.CategoryDTO;
+import yk.web.myyk.backend.dto.PrimeCategoryDTO;
+import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.entity.BaseEntity;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
@@ -69,31 +72,39 @@ public class CategoryEntity extends BaseEntity {
 	}
 	
 	/**
-	 * <p>1차카테고리를 생성하는 생성자.</p>
+	 * <p>이름을 입력해서 카테고리를 생성한다.</p>
 	 * 
-	 * @param name 이름
-	 * @param icon 아이콘이름
-	 * @param color 색상코드
+	 * @param T 카테고리DTO의 옵션 DTO
+	 * @param dto DTO
 	 */
-	public CategoryEntity(String name, String icon, String color) {
+	public <T extends CategoryDTO<T>> CategoryEntity(CategoryDTO<T> dto) throws SystemException {
 		
-		this.name = name;
+		this.name = dto.getName();
 		
-		@SuppressWarnings("deprecation")
-		PrimeCategoryOptionEntity option = new PrimeCategoryOptionEntity(this, icon, color);
-		this.option = option;
-		
+		if (dto.getOption() instanceof PrimeCategoryDTO) {
+			
+			PrimeCategoryOptionEntity primeOption = 
+					new PrimeCategoryOptionEntity(this, (PrimeCategoryDTO) dto.getOption());
+			option = primeOption;
+			
+		} else if (dto.getOption() instanceof SubCategoryDTO) {
+			
+			SubCategoryDTO subOption = (SubCategoryDTO) dto.getOption();
+			CategoryEntity parentCategory = new CategoryEntity(subOption.getParentCategoryIdx());
+			this.parentCategory = parentCategory;
+			
+		} else {
+			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
+		}
 	}
 	
 	/**
-	 * <p>서브카테고리를 생성하는 생성자.</p>
+	 * <p>비어있는 부모 카테고리를 생성한다.</p>
 	 * 
-	 * @param name 이름
-	 * @param parentCategory 부모카테고리
+	 * @param parentCategoryIdx 부모 카테고리 인덱스
 	 */
-	public CategoryEntity(String name, CategoryEntity parentCategory) {
-		this.name = name;
-		this.parentCategory = parentCategory;
+	public CategoryEntity(long parentCategoryIdx) {
+		this.categoryIdx = parentCategoryIdx;
 	}
 	
 	/**
