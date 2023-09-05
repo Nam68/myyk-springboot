@@ -45,8 +45,7 @@ public class CategoryEntity extends BaseEntity {
 	private String jpCategoryName;
 	
 	@ManyToOne
-	@JoinColumn(name = "PARENT_CATEGORY_IDX")
-	@ColumnDefault("0")
+	@JoinColumn(name = "PARENT_CATEGORY_IDX", nullable = true)
 	private CategoryEntity parentCategory;
 	
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
@@ -89,8 +88,19 @@ public class CategoryEntity extends BaseEntity {
 		this.jpCategoryName = dto.getJpCategoryName();
 		this.accountBook = accountBook;
 		
+		// DTO가 가지고 있는 옵션에 따라 생성 처리 분기
 		if (dto.getOption() instanceof PrimeCategoryDTO) {
-			this.parentCategory = new CategoryEntity(false);
+					
+			PrimeCategoryDTO primeCategory = (PrimeCategoryDTO) dto.getOption();
+			option = new PrimeCategoryOptionEntity(this, primeCategory);
+					
+		} else if (dto.getOption() instanceof SubCategoryDTO) {
+					
+			SubCategoryDTO subOption = (SubCategoryDTO) dto.getOption();
+			CategoryEntity parentCategory = new CategoryEntity(subOption.getParentCategoryIdx());
+					
+		} else {
+			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
 		}
 	}
 	
@@ -147,7 +157,7 @@ public class CategoryEntity extends BaseEntity {
 	 */
 	@SuppressWarnings("deprecation")
 	public String getIcon() {
-		return getOption().getIcon();
+		return getOption().get().getIcon();
 	}
 
 	/**
@@ -158,7 +168,7 @@ public class CategoryEntity extends BaseEntity {
 	 */
 	@SuppressWarnings("deprecation")
 	public String getColor() {
-		return getOption().getColor();
+		return getOption().get().getColor();
 	}
 	
 	/**
@@ -185,11 +195,17 @@ public class CategoryEntity extends BaseEntity {
 		return Optional.ofNullable(parentCategory);
 	}
 	
-	private PrimeCategoryOptionEntity getOption() {
+	/**
+	 * <p>카테고리 옵션을 가져온다.
+	 * <br>1차 카테고리가 아닌 경우 에러를 발생시킨다.</p>
+	 * 
+	 * @return 카테고리 옵션
+	 */
+	public Optional<PrimeCategoryOptionEntity> getOption() {
 		if (!isPrime()) {
 			throw new SystemException(ErrorCode.CG_101, CategoryEntity.class);
 		} else {
-			return option;
+			return Optional.ofNullable(option);
 		}
 	}
 }

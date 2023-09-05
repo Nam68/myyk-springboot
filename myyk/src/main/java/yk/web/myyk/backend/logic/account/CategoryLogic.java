@@ -51,21 +51,8 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		// 카테고리 엔티티를 생성한다.
 		CategoryEntity entity = new CategoryEntity(dto, accountBook.get());
 		
-		// DTO가 가지고 있는 옵션에 따라 생성 처리 분기
-		if (dto.getOption() instanceof PrimeCategoryDTO) {
-			
-			PrimeCategoryDTO primeCategory = (PrimeCategoryDTO) dto.getOption();
-			PrimeCategoryOptionEntity primeOption = new PrimeCategoryOptionEntity(entity, primeCategory);
-			
-			getRepository().getCategoryOption().save(primeOption);
-			
-		} else if (dto.getOption() instanceof SubCategoryDTO) {
-			
-			SubCategoryDTO subOption = (SubCategoryDTO) dto.getOption();
-			CategoryEntity parentCategory = new CategoryEntity(subOption.getParentCategoryIdx());
-			
-		} else {
-			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
+		if (entity.getOption().isPresent()) {
+			getRepository().getCategoryOption().save(entity.getOption().get());
 		}
 		
 		getRepository().getCategory().save(entity);
