@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.Column;
@@ -34,13 +35,18 @@ public class CategoryEntity extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CATEGORY_IDX")
 	private Long categoryIdx;
+
+	@NaturalId
+	@Column(name = "KO_CATEGORY_NAME")
+	private String koCategoryName;
 	
 	@NaturalId
-	@Column(name = "NAME")
-	private String name;
+	@Column(name = "JP_CATEGORY_NAME")
+	private String jpCategoryName;
 	
 	@ManyToOne
-	@JoinColumn(name = "PARENT_CATEGORY_IDX", nullable = true)
+	@JoinColumn(name = "PARENT_CATEGORY_IDX")
+	@ColumnDefault("0")
 	private CategoryEntity parentCategory;
 	
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
@@ -61,14 +67,15 @@ public class CategoryEntity extends BaseEntity {
 	/**
 	 * <p>인덱스와 이름만을 가지고 있는 베이직 카테고리를 생성한다.</p>
 	 * 
-	 * @param isBasic 베이직 카테고리인지의 여부
+	 * @param isBasic 베이직 카테고리인지의 여부 | 베이직 카테고리면 false를 투입
 	 */
 	public CategoryEntity(boolean isUsable) {
 		if (isUsable) {
 			throw new SystemException(ErrorCode.CG_105, CategoryEntity.class);
 		}
 		this.categoryIdx = 0L;
-		this.name = BASIC_CATEGORY_NAME;
+		this.koCategoryName = BASIC_CATEGORY_NAME;
+		this.jpCategoryName = BASIC_CATEGORY_NAME;
 	}
 	
 	/**
@@ -77,24 +84,13 @@ public class CategoryEntity extends BaseEntity {
 	 * @param T 카테고리DTO의 옵션 DTO
 	 * @param dto DTO
 	 */
-	public <T extends CategoryDTO<T>> CategoryEntity(CategoryDTO<T> dto) throws SystemException {
-		
-		this.name = dto.getName();
+	public <T extends CategoryDTO<T>> CategoryEntity(CategoryDTO<T> dto, AccountBookEntity accountBook) throws SystemException {
+		this.koCategoryName = dto.getKoCategoryName();
+		this.jpCategoryName = dto.getJpCategoryName();
+		this.accountBook = accountBook;
 		
 		if (dto.getOption() instanceof PrimeCategoryDTO) {
-			
-			PrimeCategoryOptionEntity primeOption = 
-					new PrimeCategoryOptionEntity(this, (PrimeCategoryDTO) dto.getOption());
-			option = primeOption;
-			
-		} else if (dto.getOption() instanceof SubCategoryDTO) {
-			
-			SubCategoryDTO subOption = (SubCategoryDTO) dto.getOption();
-			CategoryEntity parentCategory = new CategoryEntity(subOption.getParentCategoryIdx());
-			this.parentCategory = parentCategory;
-			
-		} else {
-			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
+			this.parentCategory = new CategoryEntity(false);
 		}
 	}
 	
@@ -117,12 +113,21 @@ public class CategoryEntity extends BaseEntity {
 	}
 	
 	/**
-	 * <p>카테고리 이름을 반환한다.</p>
+	 * <p>카테고리 이름(한국어)을 반환한다.</p>
 	 * 
-	 * @return 카테고리 이름
+	 * @return 카테고리 이름(한국어)
 	 */
-	public String getName() {
-		return name;
+	public String getKoCategoryName() {
+		return koCategoryName;
+	}
+	
+	/**
+	 * <p>카테고리 이름(일본어)을 반환한다.</p>
+	 * 
+	 * @return 카테고리 이름(일본어)
+	 */
+	public String getJpCategoryName() {
+		return jpCategoryName;
 	}
 	
 	/**

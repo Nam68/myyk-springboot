@@ -13,11 +13,16 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 	
 	private String color;
 	
-	private List<SubCategoryDTO> subCategoryList = new ArrayList<>();
+	private List<SubCategoryDTO> subCategory = new ArrayList<>();
+	
+	@Deprecated
+	public PrimeCategoryDTO() {
+		// 프레임워크용
+	}
 	
 	public PrimeCategoryDTO(CategoryEntity entity) {
 
-		super(entity.getCategoryIdx(), entity.getName());
+		super(entity.getCategoryIdx(), entity.getKoCategoryName(), entity.getJpCategoryName());
 		
 		if (!entity.isPrime()) {
 			throw new SystemException(ErrorCode.CG_104, PrimeCategoryDTO.class);
@@ -28,7 +33,7 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 		
 		for (CategoryEntity sub : entity.getSubCatetoryList()) {
 			SubCategoryDTO subDto = new SubCategoryDTO(sub);
-			subCategoryList.add(subDto);
+			subCategory.add(subDto);
 		}
 	}
 	
@@ -48,8 +53,20 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 		return color;
 	}
 	
-	public List<SubCategoryDTO> getSubCategoryList() {
-		return subCategoryList;
+	public List<SubCategoryDTO> getSubCategory() {
+		return subCategory;
+	}
+	
+	public void setKoCategoryName(String name) {
+		super.setKoCategoryName(name);
+	}
+	
+	public void setJpCategoryName(String name) {
+		super.setJpCategoryName(name);
+	}
+	
+	public void setAccountBookIdx(long accountBookIdx) {
+		super.setAccountBookIdx(accountBookIdx);
 	}
 
 	@Override

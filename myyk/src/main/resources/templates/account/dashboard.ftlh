@@ -81,7 +81,6 @@ $('.create-account-book').on('click', function(e) {
 });
 
 $('.search-category-btn').on('click', function(e) {
-	alert($(this).data('idx'));
 	location.href='/account/category/search?accountBookIdx=' + $(this).data('idx');
 });
 </script>

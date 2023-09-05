@@ -19,16 +19,16 @@
 		<div class="text-start mt-3">
 			<#list list as category>
 				<div class="category-holder">
-					<div style="color:${list.color}">
+					<div style="color:${category.color}">
 						<p>
-							<i class="bi bi-${list.icon}"></i>
-							&nbsp;${list.name}
+							<i class="bi bi-${category.icon}"></i>
+							&nbsp;${category.koCategoryName}
 						</p>
-						<# list.subCategory as sub>
+						<#list category.subCategory as sub>
 						<p>
-							&nbsp;&nbsp;&nbsp;${sub.name}
+							&nbsp;&nbsp;&nbsp;${sub.koCategoryName}
 						</p>
-						</#>
+						</#list>
 					</div>
 				</div>
 			</#list>

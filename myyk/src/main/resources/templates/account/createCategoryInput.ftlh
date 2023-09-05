@@ -17,13 +17,13 @@
 			<@spring.message "account.category.create.input.title"/>
 		</h1>
 		<form action="/account/category/createPrimeCategory" method="post" class="g-3 needs-validation" novalidate>
-			<input type="hidden" name="accountBookIdx" value="">
+			<input type="hidden" name="accountBookIdx" value="${idx}">
 			<#-- 카테고리 이름(접속언어) -->
 			<div class="mb-4">
 				<label class="form-label">
 					<@spring.message "account.category.create.input.name.${selected_language}"/>
 				</label>
-				<input id="create-book-name-${selected_language}" class="form-control" name="${selected_language}BookName" required>
+				<input id="create-book-name-${selected_language}" class="form-control" name="${selected_language}CategoryName" required>
 				<div class="invalid-feedback">
 					<@spring.message "account.category.create.error.name"/>
 				</div>
@@ -35,7 +35,7 @@
 				</label>
 				<div class="input-group mb-3">
 					<button class="btn btn-primary" type="button" id="create-category-name-translate"><@spring.message "alert.translate"/> <i class="bi bi-pencil-fill"></i></button>
-					<input id="create-book-name-${unselected_language}" class="form-control" name="${unselected_language}BookName" required>
+					<input id="create-book-name-${unselected_language}" class="form-control" name="${unselected_language}CategoryName" required>
 					<div class="invalid-feedback">
 		       			<@spring.message "account.category.create.error.name"/>
 					</div>
@@ -97,7 +97,7 @@
 					<@spring.message "account.category.create.input.color"/>
 				</label>
 				<div>
-					<input id="category-color-picker" value="#ea9999" class="form-control" role="button">
+					<input id="category-color-picker" name="color" value="#ea9999" class="form-control" role="button">
 				</div>
 				<div class="invalid-feedback">
 					<@spring.message "account.category.create.error.color"/>

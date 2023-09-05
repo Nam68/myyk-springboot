@@ -36,6 +36,10 @@ public class PrimeCategoryOptionEntity extends BaseEntity {
 		// 하이버네이트용
 	}
 	
+	public PrimeCategoryOptionEntity(PrimeCategoryDTO dto) {
+		this(null, dto);
+	}
+	
 	public PrimeCategoryOptionEntity(CategoryEntity category, PrimeCategoryDTO dto) {
 		this(category, dto.getIcon(), dto.getColor());
 	}
@@ -44,6 +48,10 @@ public class PrimeCategoryOptionEntity extends BaseEntity {
 		this.category = category;
 		this.icon = icon;
 		this.color = color;
+	}
+	
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 	
 	/**
