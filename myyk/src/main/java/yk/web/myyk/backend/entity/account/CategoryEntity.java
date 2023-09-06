@@ -44,15 +44,11 @@ public class CategoryEntity extends BaseEntity {
 	@Column(name = "JP_CATEGORY_NAME")
 	private String jpCategoryName;
 	
-	@ManyToOne
-	@JoinColumn(name = "PARENT_CATEGORY_IDX", nullable = true)
-	private CategoryEntity parentCategory;
-	
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
 	private CategoryOptionEntity option;
 
 	@OneToMany(mappedBy = "parentCategory")
-	private List<CategoryEntity> subCategory = new ArrayList<>();
+	private List<SubCategoryOptionEntity> subCategory = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "ACCOUNT_BOOK_IDX")
@@ -95,22 +91,10 @@ public class CategoryEntity extends BaseEntity {
 			option = new CategoryOptionEntity(this, primeCategory);
 					
 		} else if (dto.getOption() instanceof SubCategoryDTO) {
-					
-			SubCategoryDTO subOption = (SubCategoryDTO) dto.getOption();
-			CategoryEntity parentCategory = new CategoryEntity(subOption.getParentCategoryIdx());
-					
+			
 		} else {
 			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
 		}
-	}
-	
-	/**
-	 * <p>비어있는 부모 카테고리를 생성한다.</p>
-	 * 
-	 * @param parentCategoryIdx 부모 카테고리 인덱스
-	 */
-	public CategoryEntity(long parentCategoryIdx) {
-		this.categoryIdx = parentCategoryIdx;
 	}
 	
 	/**
@@ -141,27 +125,12 @@ public class CategoryEntity extends BaseEntity {
 	}
 	
 	/**
-	 * <p>서브카테고리 리스트를 반환한다.<br>
-	 * 서브카테고리인 경우 에러가 발생한다.</p>
+	 * <p>1차카테고리인지 아닌지를 반환한다.</p>
 	 * 
-	 * @return 서브카테고리 리스트
+	 * @return 1차카테고리면 true
 	 */
-	public List<CategoryEntity> getSubCatetoryList() {
-		if (!getOption().isPresent()) {
-			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
-		} else {
-			return subCategory;
-		}
-	}
-	
-	/**
-	 * <p>부모 카테고리를 반환한다.
-	 * <br>1차카테고리인 경우 비어있는 {@link Optional}이 반환된다.</p>
-	 * 
-	 * @return 부모카테고리
-	 */
-	public Optional<CategoryEntity> getParentCategory() {
-		return Optional.ofNullable(parentCategory);
+	public boolean isPrime() {
+		return getOption().isPresent();
 	}
 	
 	/**
@@ -175,6 +144,23 @@ public class CategoryEntity extends BaseEntity {
 			throw new SystemException(ErrorCode.CG_101, CategoryEntity.class);
 		} else {
 			return Optional.ofNullable(option);
+		}
+	}
+	
+	/**
+	 * <p>서브 카테고리 리스트를 반환한다.</p>
+	 * 
+	 * @return 서브 카테고리 리스트
+	 */
+	public List<CategoryEntity> getSubCategory() {
+		if (isPrime()) {
+			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
+		} else {
+			List<CategoryEntity> subCategoryList = new ArrayList<>();
+			for (SubCategoryOptionEntity subCategory : subCategory) {
+				subCategoryList.add(subCategory.getParentCategory());
+			}
+			return subCategoryList;
 		}
 	}
 }
