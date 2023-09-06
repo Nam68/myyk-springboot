@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.PrimeCategoryDTO;
-import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.account.CategoryEntity;
-import yk.web.myyk.backend.entity.account.PrimeCategoryOptionEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.logic.shared.SortCategoryList;
 import yk.web.myyk.backend.service.account.CategoryService;
@@ -51,7 +49,7 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		// 카테고리 엔티티를 생성한다.
 		CategoryEntity entity = new CategoryEntity(dto, accountBook.get());
 		
-		if (entity.getOption().isPresent()) {
+		if (entity.isPrime()) {
 			getRepository().getCategoryOption().save(entity.getOption().get());
 		}
 		

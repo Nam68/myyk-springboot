@@ -49,7 +49,7 @@ public class CategoryEntity extends BaseEntity {
 	private CategoryEntity parentCategory;
 	
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
-	private PrimeCategoryOptionEntity option;
+	private CategoryOptionEntity option;
 
 	@OneToMany(mappedBy = "parentCategory")
 	private List<CategoryEntity> subCategory = new ArrayList<>();
@@ -92,7 +92,7 @@ public class CategoryEntity extends BaseEntity {
 		if (dto.getOption() instanceof PrimeCategoryDTO) {
 					
 			PrimeCategoryDTO primeCategory = (PrimeCategoryDTO) dto.getOption();
-			option = new PrimeCategoryOptionEntity(this, primeCategory);
+			option = new CategoryOptionEntity(this, primeCategory);
 					
 		} else if (dto.getOption() instanceof SubCategoryDTO) {
 					
@@ -141,44 +141,13 @@ public class CategoryEntity extends BaseEntity {
 	}
 	
 	/**
-	 * <p>1차카테고리 여부를 반환한다.</p>
-	 * 
-	 * @return 1차카테고리인 경우 true
-	 */
-	public boolean isPrime() {
-		return option != null;
-	}
-	
-	/**
-	 * <p>1차 카테고리인 경우 아이콘 이름을 반환한다.<br>
-	 * 서브 카테고리인 경우는 에러가 발생한다.</p>
-	 * 
-	 * @return 아이콘 이름
-	 */
-	@SuppressWarnings("deprecation")
-	public String getIcon() {
-		return getOption().get().getIcon();
-	}
-
-	/**
-	 * <p>1차 카테고리인 경우 색상코드를 반환한다.<br>
-	 * 서브 카테고리인 경우는 에러가 발생한다.</p>
-	 * 
-	 * @return 색상코드
-	 */
-	@SuppressWarnings("deprecation")
-	public String getColor() {
-		return getOption().get().getColor();
-	}
-	
-	/**
 	 * <p>서브카테고리 리스트를 반환한다.<br>
 	 * 서브카테고리인 경우 에러가 발생한다.</p>
 	 * 
 	 * @return 서브카테고리 리스트
 	 */
 	public List<CategoryEntity> getSubCatetoryList() {
-		if (!isPrime()) {
+		if (!getOption().isPresent()) {
 			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
 		} else {
 			return subCategory;
@@ -201,7 +170,7 @@ public class CategoryEntity extends BaseEntity {
 	 * 
 	 * @return 카테고리 옵션
 	 */
-	public Optional<PrimeCategoryOptionEntity> getOption() {
+	public Optional<CategoryOptionEntity> getOption() {
 		if (!isPrime()) {
 			throw new SystemException(ErrorCode.CG_101, CategoryEntity.class);
 		} else {

@@ -13,13 +13,13 @@ import yk.web.myyk.backend.dto.PrimeCategoryDTO;
 import yk.web.myyk.backend.entity.BaseEntity;
 
 @Entity
-@Table(name = "PRIME_CATEGORY_OPTION_TBL")
-public class PrimeCategoryOptionEntity extends BaseEntity {
+@Table(name = "CATEGORY_OPTION_TBL")
+public class CategoryOptionEntity extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PRIME_CATEGORY_OPTION_IDX")
-	private Long primeCategoryOptionIdx;
+	@Column(name = "CATEGORY_OPTION_IDX")
+	private Long CategoryOptionIdx;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_IDX")
@@ -32,19 +32,19 @@ public class PrimeCategoryOptionEntity extends BaseEntity {
 	private String color;
 	
 	@Deprecated
-	public PrimeCategoryOptionEntity() {
+	public CategoryOptionEntity() {
 		// 하이버네이트용
 	}
 	
-	public PrimeCategoryOptionEntity(PrimeCategoryDTO dto) {
+	public CategoryOptionEntity(PrimeCategoryDTO dto) {
 		this(null, dto);
 	}
 	
-	public PrimeCategoryOptionEntity(CategoryEntity category, PrimeCategoryDTO dto) {
+	public CategoryOptionEntity(CategoryEntity category, PrimeCategoryDTO dto) {
 		this(category, dto.getIcon(), dto.getColor());
 	}
 	
-	private PrimeCategoryOptionEntity(CategoryEntity category, String icon, String color) {
+	private CategoryOptionEntity(CategoryEntity category, String icon, String color) {
 		this.category = category;
 		this.icon = icon;
 		this.color = color;

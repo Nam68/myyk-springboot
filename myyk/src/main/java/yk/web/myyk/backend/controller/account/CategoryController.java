@@ -38,7 +38,7 @@ public class CategoryController extends BaseController {
 	@RequestMapping(path = "/createPrimeCategory", method = RequestMethod.POST)
 	public String createPrimeCateogry(PrimeCategoryDTO dto) throws SystemException {
 		getService().getCategory().create(dto);
-		// 카테고리 생성 잘 되는지 확인하고 리스트 화면에 서브카테고리 생성버튼 만들것
+		// 리스트 화면에 서브카테고리 생성버튼 만들것
 		return "";
 	}
 	
