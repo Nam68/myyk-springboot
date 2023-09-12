@@ -24,17 +24,7 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 
 		super(entity.getCategoryIdx(), entity.getKoCategoryName(), entity.getJpCategoryName());
 		
-		if (!entity.isPrime()) {
-			throw new SystemException(ErrorCode.CG_104, PrimeCategoryDTO.class);
-		}
 		
-		this.icon = entity.getIcon();
-		this.color = entity.getColor();
-		
-		for (CategoryEntity sub : entity.getSubCatetoryList()) {
-			SubCategoryDTO subDto = new SubCategoryDTO(sub);
-			subCategory.add(subDto);
-		}
 	}
 	
 	public void setIcon(String icon) {

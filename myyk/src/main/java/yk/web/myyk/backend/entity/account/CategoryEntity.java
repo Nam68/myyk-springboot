@@ -50,8 +50,11 @@ public class CategoryEntity extends BaseEntity {
 	@OneToMany(mappedBy = "parentCategory")
 	private List<SubCategoryOptionEntity> subCategory = new ArrayList<>();
 	
+	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
+	private SubCategoryOptionEntity parentCategoryOption;
+	
 	@ManyToOne
-	@JoinColumn(name = "ACCOUNT_BOOK_IDX")
+	@JoinColumn(name = "ACCOUNT_BOOK_IDX")	
 	private AccountBookEntity accountBook;
 	
 	@Deprecated
@@ -140,11 +143,7 @@ public class CategoryEntity extends BaseEntity {
 	 * @return 카테고리 옵션
 	 */
 	public Optional<CategoryOptionEntity> getOption() {
-		if (!isPrime()) {
-			throw new SystemException(ErrorCode.CG_101, CategoryEntity.class);
-		} else {
-			return Optional.ofNullable(option);
-		}
+		return Optional.ofNullable(option);
 	}
 	
 	/**
@@ -153,14 +152,25 @@ public class CategoryEntity extends BaseEntity {
 	 * @return 서브 카테고리 리스트
 	 */
 	public List<CategoryEntity> getSubCategory() {
-		if (isPrime()) {
+		if (!isPrime()) {
 			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
-		} else {
-			List<CategoryEntity> subCategoryList = new ArrayList<>();
-			for (SubCategoryOptionEntity subCategory : subCategory) {
-				subCategoryList.add(subCategory.getParentCategory());
-			}
-			return subCategoryList;
 		}
+		List<CategoryEntity> subCategoryList = new ArrayList<>();
+		for (SubCategoryOptionEntity subCategory : subCategory) {
+			subCategoryList.add(subCategory.getParentCategory());
+		}
+		return subCategoryList;
+	}
+	
+	/**
+	 * <p>부모 카테고리를 반환한다.</p>
+	 * 
+	 * @return 부모 카테고리
+	 */
+	public CategoryEntity getParentCategory() {
+		if (isPrime()) {
+			throw new SystemException(ErrorCode.CG_103, CategoryEntity.class);
+		}
+		return parentCategoryOption.getParentCategory();
 	}
 }
