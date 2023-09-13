@@ -47,7 +47,7 @@
 						<@if selected_language == 'ko' '${dto.koBookName}' '${dto.jpBookName}'/>
 					</div>
 					<div class="col text-end">
-						<button class="btn btn-outline-primary search-category-btn" data-idx="${dto.accountBookIdx}">
+						<button class="btn btn-outline-primary list-category-btn" data-idx="${dto.accountBookIdx}">
 							<i class="bi bi-file-earmark-text"></i> <@spring.message "account.category.edit"/>
 						</button>
 					</div>
@@ -80,8 +80,8 @@ $('.create-account-book').on('click', function(e) {
 	location.href='/account/createInput';
 });
 
-$('.search-category-btn').on('click', function(e) {
-	location.href='/account/category/search?accountBookIdx=' + $(this).data('idx');
+$('.list-category-btn').on('click', function(e) {
+	location.href='/account/category/list?accountBookIdx=' + $(this).data('idx');
 });
 </script>
 </html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.PrimeCategoryDTO;
 import yk.web.myyk.util.exception.SystemException;
@@ -19,7 +20,14 @@ public interface CategoryService {
 	 */
 	public List<PrimeCategoryDTO> getPrimeCategory(long accountBookIdx) throws SystemException;
 
-	public <T extends CategoryDTO<T>> void create(CategoryDTO<T> dto) throws SystemException;
-	
+	/**
+	 * <p>카테고리를 생성한다.</p>
+	 * 
+	 * @param <T> 카테고리 옵션 (1차카테고리 {@link PrimeCategoryDTO} | 서브카테고리 {@link SubCategoryDTO})
+	 * @param dto 카테고리 DTO
+	 * @return 성공여부
+	 * @throws SystemException 시스템에러
+	 */
+	public <T extends CategoryDTO<T>> Error create(CategoryDTO<T> dto) throws SystemException;
 	
 }

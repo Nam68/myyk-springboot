@@ -8,7 +8,14 @@ public class SubCategoryDTO extends CategoryDTO<SubCategoryDTO> {
 	
 	private long parentCategoryIdx;
 	
+	@Deprecated
+	public SubCategoryDTO() {
+		// 프레임워크용
+		// 이걸로 바꿨으니까 이게 되는지 확인하기. 바꾼 이유는... 겟카테고리아이디엑스가 널값임
+	}
+	
 	public SubCategoryDTO(CategoryEntity entity) throws SystemException {
+		
 		
 		super(entity.getCategoryIdx(), entity.getKoCategoryName(), entity.getJpCategoryName());
 		

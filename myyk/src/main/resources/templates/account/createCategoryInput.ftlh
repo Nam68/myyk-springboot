@@ -150,10 +150,10 @@ $('#icon-input-button').on('click', function(e) {
 	   	
 	   		closeLoading();
 	   		
-	   		if (data == 'ERROR') {
-	   			alert('<@spring.message "account.category.create.error.notFound"/>');
-	   		} else {
+	   		if (isValid(data)) {
 	   			changeIcon(iconName);
+	   		} else {
+	   			alert('<@spring.message "account.category.create.error.notFound"/>');
 	   		}
 	   	})
 	   	.fail(function(data) {

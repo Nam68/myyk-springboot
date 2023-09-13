@@ -33,6 +33,11 @@ public class SubCategoryOptionEntity {
 		// 하이버네이트용
 	}
 	
+	public SubCategoryOptionEntity(CategoryEntity category, CategoryEntity parentCategory) {
+		this.category = category;
+		this.parentCategory = parentCategory;
+	}
+	
 	/**
 	 * <p>부모 카테고리를 반환한다.</p>
 	 * 

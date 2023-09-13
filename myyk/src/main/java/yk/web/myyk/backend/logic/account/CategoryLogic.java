@@ -15,6 +15,7 @@ import yk.web.myyk.backend.logic.shared.SortCategoryList;
 import yk.web.myyk.backend.service.account.CategoryService;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
+import yk.web.myyk.util.enumerated.Error;
 
 @Service
 public class CategoryLogic extends BaseLogic implements CategoryService {
@@ -37,7 +38,7 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 
 	@Override
 	@Transactional
-	public <T extends CategoryDTO<T>> void create(CategoryDTO<T> dto) throws SystemException {
+	public <T extends CategoryDTO<T>> Error create(CategoryDTO<T> dto) throws SystemException {
 		
 		// DTO를 통해 카테고리가 입력될 가계부를 가져온다.
 		Optional<AccountBookEntity> accountBook = getRepository().getAccountBook().findById(dto.getAccountBookIdx());
@@ -53,6 +54,8 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		}
 		
 		getRepository().getCategory().save(entity);
+		
+		return Error.SUCCESS;
 	}
 	
 }

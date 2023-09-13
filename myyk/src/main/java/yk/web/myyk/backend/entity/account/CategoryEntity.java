@@ -76,6 +76,10 @@ public class CategoryEntity extends BaseEntity {
 		this.jpCategoryName = BASIC_CATEGORY_NAME;
 	}
 	
+	public CategoryEntity(long categoryIdx) {
+		this.categoryIdx = categoryIdx;
+	}
+	
 	/**
 	 * <p>이름을 입력해서 카테고리를 생성한다.</p>
 	 * 
@@ -89,12 +93,15 @@ public class CategoryEntity extends BaseEntity {
 		
 		// DTO가 가지고 있는 옵션에 따라 생성 처리 분기
 		if (dto.getOption() instanceof PrimeCategoryDTO) {
-					
-			PrimeCategoryDTO primeCategory = (PrimeCategoryDTO) dto.getOption();
-			option = new CategoryOptionEntity(this, primeCategory);
-					
+			// 1차
+			PrimeCategoryDTO option = (PrimeCategoryDTO) dto.getOption();
+			this.option = new CategoryOptionEntity(this, option);
 		} else if (dto.getOption() instanceof SubCategoryDTO) {
-			
+			// 서브
+			SubCategoryDTO option = (SubCategoryDTO) dto.getOption();
+			CategoryEntity parentCategory = new CategoryEntity(option.getParentCategoryIdx());
+			SubCategoryOptionEntity parentCategoryOption = new SubCategoryOptionEntity(this, parentCategory);
+			this.parentCategoryOption = parentCategoryOption;
 		} else {
 			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
 		}
@@ -127,10 +134,20 @@ public class CategoryEntity extends BaseEntity {
 		return jpCategoryName;
 	}
 	
+	/**
+	 * <p>카테고리 아이콘을 반환한다.</p>
+	 * 
+	 * @return 카테고리 아이콘
+	 */
 	public String getIcon() {
 		return getOption().getIcon();
 	}
-	
+
+	/**
+	 * <p>카테고리 컬러를 반환한다.</p>
+	 * 
+	 * @return 카테고리 컬러
+	 */
 	public String getColor() {
 		return getOption().getColor();
 	}
