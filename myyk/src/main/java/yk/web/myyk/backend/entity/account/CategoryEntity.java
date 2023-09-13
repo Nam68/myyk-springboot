@@ -127,13 +127,21 @@ public class CategoryEntity extends BaseEntity {
 		return jpCategoryName;
 	}
 	
+	public String getIcon() {
+		return getOption().getIcon();
+	}
+	
+	public String getColor() {
+		return getOption().getColor();
+	}
+	
 	/**
 	 * <p>1차카테고리인지 아닌지를 반환한다.</p>
 	 * 
 	 * @return 1차카테고리면 true
 	 */
 	public boolean isPrime() {
-		return getOption().isPresent();
+		return getOption() != null;
 	}
 	
 	/**
@@ -142,8 +150,11 @@ public class CategoryEntity extends BaseEntity {
 	 * 
 	 * @return 카테고리 옵션
 	 */
-	public Optional<CategoryOptionEntity> getOption() {
-		return Optional.ofNullable(option);
+	public CategoryOptionEntity getOption() {
+		if (option == null) {
+			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
+		}
+		return option;
 	}
 	
 	/**

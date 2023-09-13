@@ -28,8 +28,6 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 			throw new SystemException(ErrorCode.AC_101, CategoryLogic.class);
 		}
 		
-		// 디티오에 옵션 게터 설정 -> 리스트 잘 뽑히는지 확인 -> 서브카테고리 ㄱㄱ 
-		
 		List<CategoryEntity> entityList = account.get().getCategoryList();
 		SortCategoryList sort = new SortCategoryList();
 		sort.setCatoryEntityList(entityList);
@@ -51,7 +49,7 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		CategoryEntity entity = new CategoryEntity(dto, accountBook.get());
 		
 		if (entity.isPrime()) {
-			getRepository().getCategoryOption().save(entity.getOption().get());
+			getRepository().getCategoryOption().save(entity.getOption());
 		}
 		
 		getRepository().getCategory().save(entity);

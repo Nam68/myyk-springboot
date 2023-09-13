@@ -23,7 +23,8 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 	public PrimeCategoryDTO(CategoryEntity entity) {
 
 		super(entity.getCategoryIdx(), entity.getKoCategoryName(), entity.getJpCategoryName());
-		
+		this.icon = entity.getIcon();
+		this.color = entity.getColor();
 		
 	}
 	

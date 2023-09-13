@@ -29,7 +29,7 @@ public class SortCategoryList extends BaseSharedLogic {
 	public void execute() throws SystemException {
 		
 		validate();
-		
+
 		List<CategoryEntity> entityResult = new ArrayList<>();
 		List<PrimeCategoryDTO> dtoResult = new ArrayList<>();
 		
