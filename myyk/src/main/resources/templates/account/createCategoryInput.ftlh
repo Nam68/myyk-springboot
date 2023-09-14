@@ -23,7 +23,7 @@
 				<label class="form-label">
 					<@spring.message "account.category.create.input.name.${selected_language}"/>
 				</label>
-				<input id="create-book-name-${selected_language}" class="form-control" name="${selected_language}CategoryName" required>
+				<input class="form-control" name="${selected_language}CategoryName" required>
 				<div class="invalid-feedback">
 					<@spring.message "account.category.create.error.name"/>
 				</div>
@@ -35,7 +35,7 @@
 				</label>
 				<div class="input-group mb-3">
 					<button class="btn btn-primary" type="button" id="create-category-name-translate"><@spring.message "alert.translate"/> <i class="bi bi-pencil-fill"></i></button>
-					<input id="create-book-name-${unselected_language}" class="form-control" name="${unselected_language}CategoryName" required>
+					<input class="form-control" name="${unselected_language}CategoryName" required>
 					<div class="invalid-feedback">
 		       			<@spring.message "account.category.create.error.name"/>
 					</div>
@@ -106,7 +106,7 @@
 			<#-- 확인버튼 -->
 			<div class="pt-2 d-grid mx-auto gap-2">
 				<button class="btn btn-primary submit-button" type="submit"><@spring.message "alert.confirm"/></button>
-				<button class="btn btn-outline-primary submit-button"><@spring.message "alert.return"/></button>
+				<button class="btn btn-outline-primary"><@spring.message "alert.return"/></button>
 			</div>
 		</form>
 	</div>
@@ -134,6 +134,7 @@ $('.dropdown-item').on('click', function(e){
 	$('input[name=icon]').val(iconName);
 	changeIcon(iconName);
 });
+
 // 아이템 직접 입력
 $('#icon-input-button').on('click', function(e) {
 	
@@ -175,9 +176,10 @@ $('#category-color-picker').spectrum({
   showAlpha: false
 });
 
-// 서브밋
-$('.submit-button').on('click', function(e) {
-	
+// 돌아가기
+$('.btn-outline-primary').on('click', function(e) {
+	var accountBookIdx = $('input[name=accountBookIdx]').val();
+	location.href='/account/category/list?accountBookIdx=' + accountBookIdx;
 });
 </script>
 </html>

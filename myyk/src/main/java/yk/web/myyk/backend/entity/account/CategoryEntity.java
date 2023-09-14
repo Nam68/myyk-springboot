@@ -158,7 +158,7 @@ public class CategoryEntity extends BaseEntity {
 	 * @return 1차카테고리면 true
 	 */
 	public boolean isPrime() {
-		return getOption() != null;
+		return option != null;
 	}
 	
 	/**
@@ -168,7 +168,7 @@ public class CategoryEntity extends BaseEntity {
 	 * @return 카테고리 옵션
 	 */
 	public CategoryOptionEntity getOption() {
-		if (option == null) {
+		if (!isPrime()) {
 			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
 		}
 		return option;

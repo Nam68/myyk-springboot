@@ -54,7 +54,7 @@
 					<label class="form-label">
 						<@spring.message "account.category.create.input.name.${selected_language}"/>
 					</label>
-					<input id="create-book-name-${selected_language}" class="form-control" name="${selected_language}CategoryName" required>
+					<input class="form-control" name="${selected_language}CategoryName" required>
 					<div class="invalid-feedback">
 						<@spring.message "account.category.create.error.name"/>
 					</div>
@@ -66,7 +66,7 @@
 					</label>
 					<div class="input-group mb-3">
 						<button class="btn btn-primary" type="button" id="create-category-name-translate"><@spring.message "alert.translate"/> <i class="bi bi-pencil-fill"></i></button>
-						<input id="create-book-name-${unselected_language}" class="form-control" name="${unselected_language}CategoryName" required>
+						<input class="form-control" name="${unselected_language}CategoryName" required>
 						<div class="invalid-feedback">
 			       			<@spring.message "account.category.create.error.name"/>
 						</div>
@@ -95,6 +95,9 @@ $('.create-sub-category-link').on('click', function(e) {
 
 // 서브 모달 확인버튼
 $('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('click', function(e) {
+
+	var koCategoryName = $('input[name="koCategoryName"]').val();
+	var jpCategoryName = $('input[name="jpCategoryName"]').val();
 	var accountBookIdx = $('.add-category-btn').data('idx');
 	var parentCategoryIdx = $('.parent-category-idx').val();
 
@@ -102,6 +105,8 @@ $('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('c
 		url:'/account/category/createSubCategory',
 		method:'POST',
 		data:{
+			koCategoryName: koCategoryName,
+			jpCategoryName: jpCategoryName,
 			accountBookIdx: accountBookIdx,
 			parentCategoryIdx: parentCategoryIdx
 		}
