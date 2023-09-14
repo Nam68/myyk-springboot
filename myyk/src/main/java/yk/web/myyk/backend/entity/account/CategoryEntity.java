@@ -185,7 +185,7 @@ public class CategoryEntity extends BaseEntity {
 		}
 		List<CategoryEntity> subCategoryList = new ArrayList<>();
 		for (SubCategoryOptionEntity subCategory : subCategory) {
-			subCategoryList.add(subCategory.getParentCategory());
+			subCategoryList.add(subCategory.getCategory());
 		}
 		return subCategoryList;
 	}
@@ -200,5 +200,19 @@ public class CategoryEntity extends BaseEntity {
 			throw new SystemException(ErrorCode.CG_103, CategoryEntity.class);
 		}
 		return parentCategoryOption.getParentCategory();
+	}
+	
+	/**
+	 * <p>부모 카테고리 옵션 엔티티를 반환한다.</p>
+	 * 
+	 * @deprecated 카테고리 생성시 필요한 경우에 한해서 사용할 것.
+	 * @return 부모 카테고리 옵션 엔티티
+	 */
+	@Deprecated
+	public SubCategoryOptionEntity getSubCategoryOption() {
+		if (isPrime()) {
+			throw new SystemException(ErrorCode.CG_103, CategoryEntity.class);
+		}
+		return parentCategoryOption;
 	}
 }

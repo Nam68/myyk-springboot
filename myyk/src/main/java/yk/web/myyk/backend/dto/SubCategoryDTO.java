@@ -14,13 +14,10 @@ public class SubCategoryDTO extends CategoryDTO<SubCategoryDTO> {
 	}
 	
 	public SubCategoryDTO(CategoryEntity entity) throws SystemException {
-		
 		super(entity.getCategoryIdx(), entity.getKoCategoryName(), entity.getJpCategoryName());
-		
 		if (entity.isPrime()) {
 			throw new SystemException(ErrorCode.CG_103, SubCategoryDTO.class);
 		}
-		
 		this.parentCategoryIdx = entity.getCategoryIdx();
 	}
 	
@@ -32,7 +29,7 @@ public class SubCategoryDTO extends CategoryDTO<SubCategoryDTO> {
 		super.setJpCategoryName(name);
 	}
 	
-	public void setParentCateogryIdx(long parentCategoryIdx) {
+	public void setParentCategoryIdx(long parentCategoryIdx) {
 		this.parentCategoryIdx = parentCategoryIdx;
 	}
 

@@ -21,9 +21,9 @@
 						</p>
 						<ll>
 							<#list category.subCategory as sub>
-							<li>&nbsp;&nbsp;&nbsp;${sub.koCategoryName}</li>
+							<li class="ms-3">${sub.koCategoryName}</li>
 							</#list>
-							<li>&nbsp;&nbsp;&nbsp;
+							<li class="ms-3">
 								<span class="create-sub-category-link" role="button" data-categoryIdx="${category.categoryIdx}" data-bs-toggle="modal" data-bs-target="#create-sub-category-modal">
 									<i class="bi bi-plus-circle"></i> <@spring.message "account.category.create.input.title"/>
 								</span>
@@ -33,9 +33,12 @@
 				</div>
 			</#list>
 		</div>
-		<div class="text-start mt-4">
+		<div class="text-start mt-2 mb-5">
 			<button class="btn btn-outline-primary add-category-btn" data-idx="${idx}">
 				<i class="bi bi-file-earmark-plus"></i> <@spring.message "account.category.create.input.title"/>
+			</button>
+			<button id="list-category-back-btn" class="btn btn-outline-secondary">
+				<@spring.message "alert.close"/>
 			</button>
 		</div>
 	</div>
@@ -83,6 +86,7 @@
 </div>
 <#include "/global/footer.ftlh">
 <script type="text/javascript">
+// 카테고리 생성 버튼 클릭
 $('.add-category-btn').on('click', function(e) {
 	location.href = '/account/category/createInput?accountBookIdx=' + $(this).data('idx');
 });
@@ -130,6 +134,11 @@ $('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('c
 // 번역
 $('#create-category-name-translate').on('click', function(e) {
 	alert('not ready...');
+});
+
+// 뒤로가기
+$('#list-category-back-btn').on('click', function(e) {
+	location.href = '/account/dashboard?accountBookIdx=' + $('.add-category-btn').data('idx');
 });
 </script>
 </html>

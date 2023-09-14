@@ -36,6 +36,7 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		return sort.getPrimeCategoryDto();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	@Transactional
 	public <T extends CategoryDTO<T>> Error create(CategoryDTO<T> dto) throws SystemException {
@@ -52,8 +53,7 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		if (entity.isPrime()) {
 			getRepository().getCategoryOption().save(entity.getOption());
 		} else {
-			// sub option entity 저장 필요 (혹시 리포지토리만 만들어도 가능한지 실험해보기)
-//			getRepository().getSubCategoryOption().save(entity.getSubCategory());
+			getRepository().getSubCategoryOption().save(entity.getSubCategoryOption());
 		}
 		
 		getRepository().getCategory().save(entity);

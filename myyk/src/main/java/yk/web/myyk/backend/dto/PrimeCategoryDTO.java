@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import yk.web.myyk.backend.entity.account.CategoryEntity;
-import yk.web.myyk.util.errorCode.ErrorCode;
-import yk.web.myyk.util.exception.SystemException;
 
 public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 	
@@ -26,6 +24,10 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 		this.icon = entity.getIcon();
 		this.color = entity.getColor();
 		
+		for (CategoryEntity subCategory : entity.getSubCategory()) {
+			SubCategoryDTO subCategoryDto = new SubCategoryDTO(subCategory);
+			this.subCategory.add(subCategoryDto);
+		}
 	}
 	
 	public void setIcon(String icon) {

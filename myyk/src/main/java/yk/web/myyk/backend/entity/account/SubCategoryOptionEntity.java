@@ -39,6 +39,15 @@ public class SubCategoryOptionEntity {
 	}
 	
 	/**
+	 * <p>카테고리를 반환한다.</p>
+	 * 
+	 * @return 카테고리
+	 */
+	public CategoryEntity getCategory() {
+		return category;
+	}
+	
+	/**
 	 * <p>부모 카테고리를 반환한다.</p>
 	 * 
 	 * @return 부모 카테고리

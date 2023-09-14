@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import yk.web.myyk.backend.api.BaseApi;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
-import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.exception.SystemException;
 
 @RestController
