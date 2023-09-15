@@ -58,6 +58,13 @@
 				<div class="mt-3">
 					detail(no data)
 				</div>
+				<hr>
+				<div class="d-grid gap-2 mt-2">
+					<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#add-account-modal">
+						<i class="bi bi-cart-plus-fill"></i> Add Account
+					</button>
+					<button class="btn btn-outline-primary" type="button">Edit Account</button>
+				</div>
 				<#else>
 				<@spring.message "account.right.empty"/>
 				</#if>
@@ -65,6 +72,48 @@
 		</div>
 	</div>
 </body>
+<#-- Add Account Modal -->
+<div class="modal fade" id="add-account-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="add-account-modal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="add-account-label">Modal title</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body text-start">
+				<#-- 카테고리 셀렉트 -->
+				<div class="mb-4">
+					<label class="form-label">
+						<@spring.message "account.category.create.input.name.${selected_language}"/>
+					</label>
+					<select class="form-select" aria-label="Default select example">
+						<option selected>Open this select menu</option>
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select>
+					<div class="invalid-feedback">
+						<@spring.message "account.category.create.error.name"/>
+					</div>
+				</div>
+				<#-- 카테고리 셀렉트 -->
+				<div class="mb-4">
+					<label class="form-label">
+						<@spring.message "account.category.create.input.name.${selected_language}"/>
+					</label>
+					<input class="form-control" type="text" required>
+					<div class="invalid-feedback">
+						<@spring.message "account.category.create.error.name"/>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
 <#include "/global/footer.ftlh">
 <script type="text/javascript">
 $(document).ready(function() {

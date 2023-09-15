@@ -44,11 +44,11 @@
 	</div>
 </body>
 <#-- Sub Category Modal -->
-<div class="modal fade" id="create-sub-category-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="create-sub-category-modal" tabindex="-1" aria-labelledby="create-sub-category-modal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel"><@spring.message "account.category.sub.create"/></h1>
+				<h1 class="modal-title fs-5" id="create-sub-category-label"><@spring.message "account.category.sub.create"/></h1>
  				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-start">
