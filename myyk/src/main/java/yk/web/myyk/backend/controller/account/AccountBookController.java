@@ -23,7 +23,7 @@ import yk.web.myyk.util.exception.SystemException;
 @CategorySetter(Category.ACCOUNT)
 @AccessCheck(permitted = MemberType.MEMBER)
 @RequestMapping("/account")
-public class AccountController extends BaseController {
+public class AccountBookController extends BaseController {
 
 	@RequestMapping("/dashboard")
 	public String dashboard(HttpServletRequest request, Long accountBookIdx) throws SystemException {
@@ -36,7 +36,7 @@ public class AccountController extends BaseController {
 		// 대시보드 가계부
 		AccountBookDTO dto = getService().getAccountBook().getAccountBook(accountBookIdx);
 		request.setAttribute(DTO, dto);
-		
+
 		return "account/dashboard";
 	}
 	
@@ -53,5 +53,5 @@ public class AccountController extends BaseController {
 		getService().getAccountBook().createBook(dto);
 		return "redirect:/account/dashboard";
 	}
-	
+
 }

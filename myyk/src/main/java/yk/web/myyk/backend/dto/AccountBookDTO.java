@@ -2,6 +2,7 @@ package yk.web.myyk.backend.dto;
 import java.util.List;
 
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
+import yk.web.myyk.backend.logic.shared.SortCategoryList;
 import yk.web.myyk.util.enumerated.Region;
 
 public class AccountBookDTO {
@@ -18,6 +19,8 @@ public class AccountBookDTO {
 	
 	private List<Integer> writableIdx;
 	
+	private List<PrimeCategoryDTO> categoryList;
+	
 	@Deprecated
 	public AccountBookDTO() {
 		// jpa용
@@ -28,6 +31,11 @@ public class AccountBookDTO {
 		this.koBookName = entity.getKoBookName();
 		this.jpBookName = entity.getJpBookName();
 		this.region = entity.getRegion();
+		
+		SortCategoryList sortCategoryList = new SortCategoryList();
+		sortCategoryList.setCatoryEntityList(entity.getCategoryList());
+		sortCategoryList.execute();
+		this.categoryList = sortCategoryList.getPrimeCategoryDto();
 	}
 	
 	public void setAccountBookIdx(long accountBookIdx) {
@@ -76,6 +84,10 @@ public class AccountBookDTO {
 	
 	public List<Integer> getWritableIdx() {
 		return writableIdx;
+	}
+	
+	public List<PrimeCategoryDTO> getCategoryList() {
+		return categoryList;
 	}
 	
 }

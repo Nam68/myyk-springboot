@@ -9,7 +9,7 @@ import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.util.exception.SystemException;
 
 @RestController
-@RequestMapping("/account/category")
+@RequestMapping(path = "/account/category", method = RequestMethod.POST)
 public class CategoryApi extends BaseApi {
 
 	/**
@@ -19,8 +19,13 @@ public class CategoryApi extends BaseApi {
 	 * @return 성공여부
 	 * @throws SystemException 시스템에러
 	 */
-	@RequestMapping(path = "/createSubCategory", method = RequestMethod.POST)
+	@RequestMapping("/createSubCategory")
 	public String createSubCategory(SubCategoryDTO dto) throws SystemException {
 		return getService().getCategory().create(dto).getValue();
+	}
+	
+	@RequestMapping("/getPrimeCategoryList")
+	public String getPrimeCategoryList(long accountBookIdx) throws SystemException {
+		return null;
 	}
 }

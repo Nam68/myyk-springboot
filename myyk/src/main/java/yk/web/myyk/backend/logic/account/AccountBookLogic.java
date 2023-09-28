@@ -47,9 +47,8 @@ public class AccountBookLogic extends BaseLogic implements AccountBookService {
 	public AccountBookDTO getAccountBook(@Nullable Long accountBookIdx) throws SystemException {
 		
 		if (accountBookIdx == null || accountBookIdx <= 0) {
-			List<AccountBookAuthEntity> auths = 
-					getRepository().getAccountBookAuth().findAllByMemberMemberIdx(
-							getLoginInfo().getMemberIdx(), AccountBookAuthRepository.getSort());
+			List<AccountBookAuthEntity> auths = getRepository().getAccountBookAuth().findAllByMemberMemberIdx(
+				getLoginInfo().getMemberIdx(), AccountBookAuthRepository.getSort());
 			if (auths.isEmpty()) {
 				return null;
 			} else {

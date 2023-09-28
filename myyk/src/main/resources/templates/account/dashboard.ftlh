@@ -19,6 +19,10 @@
 	
 	text-align: left;
 }
+
+.sub-category-holder {
+	display: none;
+}
 </style>
 </head>
 <#include "/global/header.ftlh">
@@ -31,7 +35,7 @@
 			<div>
 				<#list list as list>
 				<span class="load-account-book primary-dark-color" role="button">
-					<p><i class="bi bi-journal-text"></i> <@if selected_language == 'ko' '${list.koBookName}' '${list.jpBookName}'/></p>
+					<p><i class="bi bi-journal-text"></i> <@if selected_language=='ko' '${list.koBookName}' '${list.jpBookName}'/></p>
 				</span>
 				</#list>
 				<span class="create-account-book primary-dark-color" role="button">
@@ -82,29 +86,27 @@
 			</div>
 			<div class="modal-body text-start">
 				<#-- 카테고리 셀렉트 -->
-				<div class="mb-4">
+				<div class="mb-4 prime-category-holder">
 					<label class="form-label">
-						<@spring.message "account.category.create.input.name.${selected_language}"/>
+						<@spring.message "account.category.title"/>
 					</label>
-					<select class="form-select" aria-label="Default select example">
-						<option selected>Open this select menu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+					<select class="form-select">
+						<option value=""><@spring.message "account.category.select"/></option>
+						<#list dto.categoryList as category>
+						<option value="${category.categoryIdx}">
+							<@if selected_language=='ko' '${category.koCategoryName}' '${category.jpCategoryName}'/>
+						</option>
+						</#list>
 					</select>
-					<div class="invalid-feedback">
-						<@spring.message "account.category.create.error.name"/>
-					</div>
 				</div>
-				<#-- 카테고리 셀렉트 -->
-				<div class="mb-4">
+				<#-- 2차 카테고리 셀렉트 -->
+				<div class="mb-4 sub-category-holder">
 					<label class="form-label">
-						<@spring.message "account.category.create.input.name.${selected_language}"/>
+						<@spring.message "account.category.sub.title"/>
 					</label>
-					<input class="form-control" type="text" required>
-					<div class="invalid-feedback">
-						<@spring.message "account.category.create.error.name"/>
-					</div>
+					<select class="form-select" name="sub-category-select">
+						<option value="">-</option> <#-- 서브카테고리는 선택하지 않는 경우도 -->
+					</select>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -118,7 +120,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	if (!isMobile()) {
-		// pc면 가계부 일람을 왼쪽으로 이동시킨다 
+		<#-- pc면 가계부 일람을 왼쪽으로 이동시킨다 --> 
 		$('.account-pannel-left').addClass('text-start');
 		$('.account-pannel-left').addClass('col-4');
 		$('.account-pannel-right').addClass('col');
@@ -131,6 +133,12 @@ $('.create-account-book').on('click', function(e) {
 
 $('.list-category-btn').on('click', function(e) {
 	location.href='/account/category/list?accountBookIdx=' + $(this).data('idx');
+});
+
+<#-- 회계 등록 카테고리 선택 -->
+$('.prime-category-holder').find('select').on('change', function (e) {
+	alert('hi');
+	alert($(this).val());
 });
 </script>
 </html>

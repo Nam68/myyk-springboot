@@ -109,6 +109,8 @@ account:
     error:
       name: "家計簿名を作成してください"
   category:
+    title: "カテゴリ"
+    select: "カテゴリを選んでください"
     edit: "カテゴリ編集"
     list:
       title: "カテゴリリスト"
@@ -131,4 +133,6 @@ account:
         notFound: "入力したアイコンの名前が見つかりません"
         color: "カテゴリカラーを選んでください"
     sub:
+      title: "サブカテゴリ"
+      select: "サブカテゴリを選んでください"
       create: "サブカテゴリ追加"
