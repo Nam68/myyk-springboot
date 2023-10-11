@@ -137,8 +137,28 @@ $('.list-category-btn').on('click', function(e) {
 
 <#-- 회계 등록 카테고리 선택 -->
 $('.prime-category-holder').find('select').on('change', function (e) {
-	alert('hi');
-	alert($(this).val());
+
+	openLoading();
+	
+	var categoryIdx = $(this).val();
+	
+	$.ajax({
+		url:'/account/category/getSubCategoryList',
+		method:'POST',
+		data:{
+			categoryIdx: categoryIdx
+		}
+	})
+	.done(function(data) {
+	   	
+		closeLoading();
+	   		
+		alert(data);
+	})
+	.fail(function(data) {
+		closeLoading();
+		window.alert('<@spring.message "alert.error.ajax"/>');
+	});
 });
 </script>
 </html>

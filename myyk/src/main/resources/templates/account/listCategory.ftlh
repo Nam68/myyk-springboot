@@ -127,7 +127,7 @@ $('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('c
 	})
 	.fail(function(data) {
 		closeLoading();
-		window.alert('<@spring.message "error.ajax"/>');
+		window.alert('<@spring.message "alert.error.ajax"/>');
 	});
 });
 

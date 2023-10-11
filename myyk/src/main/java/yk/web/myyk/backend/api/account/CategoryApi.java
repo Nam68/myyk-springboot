@@ -1,8 +1,12 @@
 package yk.web.myyk.backend.api.account;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.Gson;
 
 import yk.web.myyk.backend.api.BaseApi;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
@@ -24,8 +28,9 @@ public class CategoryApi extends BaseApi {
 		return getService().getCategory().create(dto).getValue();
 	}
 	
-	@RequestMapping("/getPrimeCategoryList")
-	public String getPrimeCategoryList(long accountBookIdx) throws SystemException {
-		return null;
+	@RequestMapping("/getSubCategoryList")
+	public String getPrimeCategoryList(long categoryIdx) throws SystemException {
+		List<SubCategoryDTO> list = getService().getCategory().getSubCategory(categoryIdx);
+		return new Gson().toJson(list);
 	}
 }
