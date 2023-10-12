@@ -39,6 +39,16 @@ function centerAlignDiv() {
 	target.css('left', newWidth);
 	target.css('top', newHeight);
 }
+
+// 다국어설정 확인
+function isKorean(selected_language) {
+	if (selected_language == 'ko') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
     
 // 모바일 헤더 자동숨김
 var headerHeight = $('.mobile-header').height();

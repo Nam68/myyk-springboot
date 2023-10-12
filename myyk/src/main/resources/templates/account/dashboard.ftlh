@@ -94,7 +94,7 @@
 						<option value=""><@spring.message "account.category.select"/></option>
 						<#list dto.categoryList as category>
 						<option value="${category.categoryIdx}">
-							<@if selected_language=='ko' '${category.koCategoryName}' '${category.jpCategoryName}'/>
+							<@setLanguage selected_language '${category.koCategoryName}' '${category.jpCategoryName}'/>
 						</option>
 						</#list>
 					</select>
@@ -153,7 +153,20 @@ $('.prime-category-holder').find('select').on('change', function (e) {
 	   	
 		closeLoading();
 	   		
-		alert(data);
+		var jsonData = JSON.parse(data);
+		
+		if ($.isArray(jsonData)) {
+			$.each(jsonData, (index, value) => {
+				
+				var categroyIdx = value.categoryIdx;
+				var categoryName = isKorean('${selected_language}') ? value.koCategoryName : value.jpCategoryName;
+				
+				alert(categroyIdx);
+				alert(categoryName);
+			});
+		}
+		
+		
 	})
 	.fail(function(data) {
 		closeLoading();
