@@ -1,3 +1,7 @@
+/**
+ * CSS 제어
+ */
+
 // 입력 로딩 화면
 function openLoading() {
 	$('#loading-modal').css('display', 'flex');
@@ -6,21 +10,6 @@ function openLoading() {
 function closeLoading() {
 	$('#loading-modal').css('display', 'none');
 	$('.loading-spinner').css('display', 'none');
-}
-
-// 모바일인지 판단
-// true면 모바일
-function isMobile(){
-	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
-// ajax의 data 에러 확인
-function isValid(data) {
-	if (data == 'ERROR' || data.includes('<!DOCTYPE html>')) {
-		return false;
-	} else {
-		return true;
-	}
 }
 
 // 타깃을 화면 정가운데로 정렬
@@ -40,6 +29,43 @@ function centerAlignDiv() {
 	target.css('top', newHeight);
 }
 
+// 옵션 덧붙이기
+function appendOption(target, value, name) {
+	target.append('<option value="' + value + '">' + name + '</option>');
+}
+
+function displayToggle(target) {
+	var display = target.css('display');
+	if (display == 'none') {
+		target.css('display', 'block');
+	} else if (display == 'block') {
+		target.css('display', 'none');
+	}
+}
+
+function displayNone(target) {
+	target.css('display', 'none');
+}
+
+/**
+ * 판단 결과
+ */
+
+// 모바일인지 판단
+// true면 모바일
+function isMobile(){
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// ajax의 data 에러 확인
+function isValid(data) {
+	if (data == 'ERROR' || data.includes('<!DOCTYPE html>')) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 // 다국어설정 확인
 function isKorean(selected_language) {
 	if (selected_language == 'ko') {
@@ -49,7 +75,10 @@ function isKorean(selected_language) {
 	}
 }
 
-    
+/**
+ * 헤더
+ */
+
 // 모바일 헤더 자동숨김
 var headerHeight = $('.mobile-header').height();
 var preHeaderScroll = 0; // 스크롤하기 이전의 스크롤값
@@ -73,6 +102,10 @@ $(document).on('scroll', function() {
     	
  	preHeaderScroll = $(this).scrollTop();
 });
+
+/**
+ * 로그인 기능
+ */
 
 // 로그인 모달 창이 닫히면 입력창 초기화
 $('#login-modal').on('hidden.bs.modal', function (e) {

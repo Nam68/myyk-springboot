@@ -6,7 +6,7 @@ alert:
   search: "検索"
   error:
     constraint: "間違った形式です。"
-    ajax: "通信中に問題が発生しました。<br>管理者にお問い合わせください。"
+    ajax: "通信中に問題が発生しました。\\r\\n管理者にお問い合わせください。"
     
 error:
   page:
@@ -134,5 +134,10 @@ account:
         color: "カテゴリカラーを選んでください"
     sub:
       title: "サブカテゴリ"
-      select: "サブカテゴリを選んでください"
       create: "サブカテゴリ追加"
+      nonSelect: "選択なし"
+  price:
+    title: "金額"
+  tax:
+    added: "税込"
+    nonAdded: "税抜"

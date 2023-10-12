@@ -6,7 +6,7 @@ alert:
   search: "검색"
   error:
     constraint: "잘못된 형식입니다."
-    ajax: "통신 중 문제가 발생했습니다.<br>관리자에게 문의 바랍니다."
+    ajax: "통신 중 문제가 발생했습니다.\\r\\n관리자에게 문의 바랍니다."
     
 error:
   page:
@@ -135,3 +135,9 @@ account:
     sub:
       title: "서브 카테고리"
       create: "서브 카테고리 추가"
+      nonSelect: "선택하지 않음"
+  price:
+    title: "금액"
+  tax:
+    added: "세금포함"
+    nonAdded: "세금미포함"

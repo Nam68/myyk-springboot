@@ -90,7 +90,7 @@
 					<label class="form-label">
 						<@spring.message "account.category.title"/>
 					</label>
-					<select class="form-select">
+					<select class="form-select" required>
 						<option value=""><@spring.message "account.category.select"/></option>
 						<#list dto.categoryList as category>
 						<option value="${category.categoryIdx}">
@@ -108,70 +108,28 @@
 						<option value="">-</option> <#-- 서브카테고리는 선택하지 않는 경우도 -->
 					</select>
 				</div>
+				<#-- 가격 입력 -->
+				<div class="mb-4 account-holder">
+					<label class="form-label">
+						<@spring.message "account.price.title"/>
+					</label>
+					<input class="form-control mb-2" name="" required>
+					<div class="invalid-feedback">
+						<@spring.message "account.category.create.error.name"/>
+					</div>
+				</div>
+				<#-- 세금 설정 -->
+					<#-- 세금포함/미포함 체크박스 -->
+					<#-- 몇 퍼센트인지 -->
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary">Save changes</button>
 			</div>
 		</div>
 	</div>
 </div>
 <#include "/global/footer.ftlh">
-<script type="text/javascript">
-$(document).ready(function() {
-	if (!isMobile()) {
-		<#-- pc면 가계부 일람을 왼쪽으로 이동시킨다 --> 
-		$('.account-pannel-left').addClass('text-start');
-		$('.account-pannel-left').addClass('col-4');
-		$('.account-pannel-right').addClass('col');
-	}
-});
-
-$('.create-account-book').on('click', function(e) {
-	location.href='/account/createInput';
-});
-
-$('.list-category-btn').on('click', function(e) {
-	location.href='/account/category/list?accountBookIdx=' + $(this).data('idx');
-});
-
-<#-- 회계 등록 카테고리 선택 -->
-$('.prime-category-holder').find('select').on('change', function (e) {
-
-	openLoading();
-	
-	var categoryIdx = $(this).val();
-	
-	$.ajax({
-		url:'/account/category/getSubCategoryList',
-		method:'POST',
-		data:{
-			categoryIdx: categoryIdx
-		}
-	})
-	.done(function(data) {
-	   	
-		closeLoading();
-	   		
-		var jsonData = JSON.parse(data);
-		
-		if ($.isArray(jsonData)) {
-			$.each(jsonData, (index, value) => {
-				
-				var categroyIdx = value.categoryIdx;
-				var categoryName = isKorean('${selected_language}') ? value.koCategoryName : value.jpCategoryName;
-				
-				alert(categroyIdx);
-				alert(categoryName);
-			});
-		}
-		
-		
-	})
-	.fail(function(data) {
-		closeLoading();
-		window.alert('<@spring.message "alert.error.ajax"/>');
-	});
-});
-</script>
+<#include "/constant/accountBookConst.ftlh">
+<script src="/js/accountBookJs.js"></script> 
 </html>
