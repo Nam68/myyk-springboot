@@ -66,7 +66,7 @@ function createSubCategory(categories) {
 		return false;
 	}
 	if ($.isArray(categories)) {
-		$.each(categories, (index, value) => { appendSubCategory(value); });
+		categories.forEach((category) => appendSubCategory(category));
 	}
 
 	displayToggle(subCategoryHolder);
@@ -88,15 +88,13 @@ function resetSubCategory() {
 	subCategorySelect.html('');
 	appendSubCategoryDefault();
 	displayNone(subCategoryHolder);
-	
-	// 금액
-	$('.account-holder').val('');
 }
 
 /**
  * 회계 등록 모달 닫기
  */
 $('#add-account-modal').on('hidden.bs.modal', function () {
-	resetSubCategory();
-	$('.prime-category-holder').find('option:eq(0)').attr('selected', 'selected');
+	$('.prime-category-holder').find('option:eq(0)').attr('selected', 'selected'); // 1차카테고리
+	resetSubCategory(); // 서브카테고리
+	$('.account-holder').val(''); // 금액
 });

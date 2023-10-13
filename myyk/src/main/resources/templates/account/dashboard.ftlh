@@ -119,8 +119,65 @@
 					</div>
 				</div>
 				<#-- 세금 설정 -->
-					<#-- 세금포함/미포함 체크박스 -->
 					<#-- 몇 퍼센트인지 -->
+				<div class="mb-4 tax-holder">
+					<#-- 세금포함/미포함 라디오박스 -->
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" id="taxNonAdded" name="taxRadio" checked data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<label class="form-check-label form-label" for="taxNonAdded">
+							<@spring.message "account.tax.nonAdded"/>
+					  	</label>
+					  	
+					  	
+					  	
+					  	라디오는 다시 누르면 아코디언이 닫힘.
+					  	라디오 체인지 등을 이용해야할듯.
+					  	
+					  	
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" id="taxAdded" name="taxRadio" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<label class="form-check-label form-label" for="taxAdded">
+							<@spring.message "account.tax.added"/>
+						</label>
+					</div>				
+				
+				</div>
+					
+					
+		      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+		        Accordion Item #1
+		      </button>
+					
+				<div class="accordion" id="accordionExample">
+					<div class="accordion-item">
+						<div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+				</div>					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
