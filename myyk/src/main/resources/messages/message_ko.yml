@@ -1,6 +1,7 @@
 alert:
   confirm: "확인"
   close: "닫기"
+  save: "저장"
   return: "돌아가기"
   translate: "번역하기"
   search: "검색"
@@ -138,6 +139,7 @@ account:
       nonSelect: "선택하지 않음"
   price:
     title: "금액"
+    memo: "메모"
   tax:
     added: "세금포함"
     nonAdded: "세금미포함"

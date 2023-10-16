@@ -7,3 +7,8 @@
 <#macro setLanguage selected_language ko jp>
 	<#if selected_language == 'ko'>${ko}<#else>${jp}</#if>
 </#macro>
+
+<#-- 다국어 입력 -->
+<#macro input path>
+	<@spring.message path/>
+</#macro>

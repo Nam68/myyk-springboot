@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <#include "/lib.ftlh"> 
-<title><@spring.message "account.dashboard.title"/></title>
+<title><@input "account.dashboard.title"/></title>
 <style>
 .account-pannel {
 	color: var(--primary-color-300);
@@ -28,7 +28,7 @@
 <#include "/global/header.ftlh">
 <body>
 	<h1 class="title">
-		<@spring.message "account.dashboard.title"/>
+		<@input "account.dashboard.title"/>
 	</h1>
 	<div class="row gap-2">
 		<div class="account-pannel account-pannel-left shadow p-3 bg-body rounded">
@@ -39,7 +39,7 @@
 				</span>
 				</#list>
 				<span class="create-account-book primary-dark-color" role="button">
-					<i class="bi bi-journal-plus"></i> <@spring.message "account.left.add"/>
+					<i class="bi bi-journal-plus"></i> <@input "account.left.add"/>
 				</span>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 					</div>
 					<div class="col text-end">
 						<button class="btn btn-outline-primary list-category-btn" data-idx="${dto.accountBookIdx}">
-							<i class="bi bi-file-earmark-text"></i> <@spring.message "account.category.edit"/>
+							<i class="bi bi-file-earmark-text"></i> <@input "account.category.edit"/>
 						</button>
 					</div>
 				</div>
@@ -70,7 +70,7 @@
 					<button class="btn btn-outline-primary" type="button">Edit Account</button>
 				</div>
 				<#else>
-				<@spring.message "account.right.empty"/>
+				<@input "account.right.empty"/>
 				</#if>
 			</div>
 		</div>
@@ -88,10 +88,10 @@
 				<#-- 카테고리 셀렉트 -->
 				<div class="mb-4 prime-category-holder">
 					<label class="form-label">
-						<@spring.message "account.category.title"/>
+						<@input "account.category.title"/>
 					</label>
-					<select class="form-select" required>
-						<option value=""><@spring.message "account.category.select"/></option>
+					<select class="form-select" name="category" required>
+						<option value=""><@input "account.category.select"/></option>
 						<#list dto.categoryList as category>
 						<option value="${category.categoryIdx}">
 							<@setLanguage selected_language '${category.koCategoryName}' '${category.jpCategoryName}'/>
@@ -102,64 +102,62 @@
 				<#-- 2차 카테고리 셀렉트 -->
 				<div class="mb-4 sub-category-holder">
 					<label class="form-label">
-						<@spring.message "account.category.sub.title"/>
+						<@input "account.category.sub.title"/>
 					</label>
-					<select class="form-select" name="sub-category-select">
+					<select class="form-select" name="subCategory">
 						<option value="">-</option> <#-- 서브카테고리는 선택하지 않는 경우도 -->
 					</select>
 				</div>
 				<#-- 가격 입력 -->
 				<div class="mb-4 account-holder">
 					<label class="form-label">
-						<@spring.message "account.price.title"/>
+						<@input "account.price.title"/>
 					</label>
-					<input class="form-control mb-2" name="" required>
+					<input class="form-control mb-2" name="price" required>
 					<div class="invalid-feedback">
-						<@spring.message "account.category.create.error.name"/>
+						<@input "account.category.create.error.name"/>
 					</div>
 				</div>
 				<#-- 세금 설정 -->
 				<div class="tax-holder">
 					<#-- 세금포함/미포함 라디오박스 -->
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" id="tax-added" name="tax-radio" checked>
-						<label class="form-check-label form-label" for="tax-added">
-							<@spring.message "account.tax.added"/>
-					  	</label>
+						<input class="form-check-input" type="radio" id="tax-non-added" name="taxRadio" checked>
+						<label class="form-check-label form-label" for="tax-non-added">
+							<@input "account.tax.nonAdded"/>
+						</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" id="tax-non-added" name="tax-radio">
-						<label class="form-check-label form-label" for="tax-non-added">
-							<@spring.message "account.tax.nonAdded"/>
-						</label>
+						<input class="form-check-input" type="radio" id="tax-added" name="taxRadio">
+						<label class="form-check-label form-label" for="tax-added">
+							<@input "account.tax.added"/>
+					  	</label>
 					</div>
 					<#-- 몇 퍼센트인지 -->
 					<div class="collapse" id="tax-collapse">
-					  <div class="card card-body">
-					    <select class="form-select" name="tax-rate">
-					    	<option value="0.08">8%</option>
-					    	<option value="0.1">10%</option>
+					  <div class="">
+					    <select class="form-select" name="taxRate">
+					    	<#list rate as r >
+					    	<option value="${r.rate}">${r.value}</option>
+					    	</#list>
 					    </select>
 					  </div>
 					</div>
 				</div>
 				<#-- 메모 -->
-				<div class="mb-4 account-memo-holder">
+				<div class="mt-2 account-memo-holder">
 					<label class="form-label">
-						<@spring.message "account.price.title"/>
+						<@input "account.price.memo"/>
 					</label>
-					<input class="form-control mb-2" name="account-memo">
-					
-					name을 카멜형식으로 바꿔야...
-					
+					<input class="form-control mb-2" name="memo">
 					<div class="invalid-feedback">
-						<@spring.message "account.category.create.error.name"/>
+						<@input "account.category.create.error.name"/>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@input"alert.close"/></button>
+				<button type="button" class="btn btn-primary"><@input "alert.confirm"/></button>
 			</div>
 		</div>
 	</div>

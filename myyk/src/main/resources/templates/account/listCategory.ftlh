@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <#include "/lib.ftlh"> 
-<title><@spring.message "account.category.list.title"/></title>
+<title><@input "account.category.list.title"/></title>
 </head>
 <#include "/global/header.ftlh">
 <body>
 	<div class="col-lg-8 mx-auto">
 		<h1 class="title">
-			<@spring.message "account.category.list.title"/>
+			<@input "account.category.list.title"/>
 		</h1>
 		<div class="text-start mt-3">
 			<#list list as category>
@@ -25,7 +25,7 @@
 							</#list>
 							<li class="ms-3">
 								<span class="create-sub-category-link" role="button" data-categoryIdx="${category.categoryIdx}" data-bs-toggle="modal" data-bs-target="#create-sub-category-modal">
-									<i class="bi bi-plus-circle"></i> <@spring.message "account.category.create.input.title"/>
+									<i class="bi bi-plus-circle"></i> <@input "account.category.create.input.title"/>
 								</span>
 							</li>
 						</ll>
@@ -35,10 +35,10 @@
 		</div>
 		<div class="text-start mt-2 mb-5">
 			<button class="btn btn-outline-primary add-category-btn" data-idx="${idx}">
-				<i class="bi bi-file-earmark-plus"></i> <@spring.message "account.category.create.input.title"/>
+				<i class="bi bi-file-earmark-plus"></i> <@input "account.category.create.input.title"/>
 			</button>
 			<button id="list-category-back-btn" class="btn btn-outline-secondary">
-				<@spring.message "alert.close"/>
+				<@input "alert.close"/>
 			</button>
 		</div>
 	</div>
@@ -48,38 +48,38 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="create-sub-category-label"><@spring.message "account.category.sub.create"/></h1>
+				<h1 class="modal-title fs-5" id="create-sub-category-label"><@input "account.category.sub.create"/></h1>
  				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-start">
 				<#-- 카테고리 이름(접속언어) -->
 				<div class="mb-4">
 					<label class="form-label">
-						<@spring.message "account.category.create.input.name.${selected_language}"/>
+						<@input "account.category.create.input.name.${selected_language}"/>
 					</label>
 					<input class="form-control" name="${selected_language}CategoryName" required>
 					<div class="invalid-feedback">
-						<@spring.message "account.category.create.error.name"/>
+						<@input "account.category.create.error.name"/>
 					</div>
 				</div>
 				<#-- 카테고리 이름(비접속언어) -->
 				<div class="mb-4">
 					<label class="form-label">
-						<@spring.message "account.category.create.input.name.${unselected_language}"/>
+						<@input "account.category.create.input.name.${unselected_language}"/>
 					</label>
 					<div class="input-group mb-3">
-						<button class="btn btn-primary" type="button" id="create-category-name-translate"><@spring.message "alert.translate"/> <i class="bi bi-pencil-fill"></i></button>
+						<button class="btn btn-primary" type="button" id="create-category-name-translate"><@input "alert.translate"/> <i class="bi bi-pencil-fill"></i></button>
 						<input class="form-control" name="${unselected_language}CategoryName" required>
 						<div class="invalid-feedback">
-			       			<@spring.message "account.category.create.error.name"/>
+			       			<@input "account.category.create.error.name"/>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<input type="hidden" class="parent-category-idx">
-				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@spring.message "alert.close"/></button>
-				<button type="button" class="btn btn-primary"><@spring.message "alert.confirm"/></button>
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@input "alert.close"/></button>
+				<button type="button" class="btn btn-primary"><@input "alert.confirm"/></button>
 			</div>
 		</div>
 	</div>
@@ -127,7 +127,7 @@ $('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('c
 	})
 	.fail(function(data) {
 		closeLoading();
-		window.alert('<@spring.message "alert.error.ajax"/>');
+		window.alert('<@input "alert.error.ajax"/>');
 	});
 });
 

@@ -33,6 +33,11 @@ public class KeyName {
 	 */
 	public static final String CATEGORY = "category";
 	
+	/**
+	 * <p>부가세 정보를 가지고 있는 리퀘스트명.</p>
+	 */
+	public static final String RATE = "rate";
+	
 	//
 	// 쿠키
 	//

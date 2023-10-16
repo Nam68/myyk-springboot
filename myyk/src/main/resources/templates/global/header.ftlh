@@ -35,39 +35,39 @@
 		<li>
 			<a href="#" class="nav-link px-2 me-4 <@if category=='MEMORY' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-images main-bi mb-1 me-1 align-middle"></i>
-				<strong><@spring.message "category.memory"/></strong>
+				<strong><@input "category.memory"/></strong>
 			</a>
 		</li>
 		<li>
 			<a href="#" class="nav-link px-2 me-4 <@if category=='WISH_PLACE' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-pin-map-fill main-bi mb-1 me-1 align-middle"></i>
-				<strong><@spring.message "category.wishPlace"/></strong>
+				<strong><@input "category.wishPlace"/></strong>
 			</a>
 		</li>
 		<li>
 			<a href="#" class="nav-link px-2 me-4 <@if category=='MAP' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-map main-bi mb-1 me-1 align-middle"></i>
-				<strong><@spring.message "category.map"/></strong>
+				<strong><@input "category.map"/></strong>
 			</a>
 		</li>
 		<#--
 		<li>
 			<a href="#" class="nav-link px-2 me-4 <@if category=='REQUEST' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-patch-question main-bi mb-1 me-1 align-middle"></i>
-				<strong><@spring.message "category.request"/></strong>
+				<strong><@input "category.request"/></strong>
 			</a>
 		</li>
 		-->
 		<li>
 			<a href="/account/dashboard" class="nav-link px-2 me-4 <@if category=='ACCOUNT' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-calculator main-bi mb-1 me-1 align-middle"></i>
-				<strong><@spring.message "category.account"/></strong>
+				<strong><@input "category.account"/></strong>
 			</a>
 		</li>
 		<li>
 			<a href="/calendar/calendarList.do" class="nav-link px-2 me-4 <@if category=='CALENDAR' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-calendar3 main-bi mb-1 me-1 align-middle"></i>
-				<strong><@spring.message "category.calendar"/></strong>
+				<strong><@input "category.calendar"/></strong>
 			</a>
 		</li>
 	</ul>
@@ -75,25 +75,25 @@
 	<#if login_info?exists>
 		<div id="login-icon-div" class="dropdown text-end pb-2 col-md-3 d-flex align-items-center">
 			<div class="login-account">
-			<span class="primary-dark-color-not-hover me-3">${login_info.nickname }<@spring.message "header.welcome"/></span>
+			<span class="primary-dark-color-not-hover me-3">${login_info.nickname }<@input "header.welcome"/></span>
 			<a href="#" class="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 				<img src="${login_info.memberIcon }" alt="mdo" class="rounded-circle login-picture <#if category = 'MEMBER'>selected-header-icon</#if>">
 			</a>
 			<ul class="dropdown-menu text-small">
 				<#if login_info.isAdmin()>
-				<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><@spring.message "header.member.admin"/></a></li>
+				<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><@input "header.member.admin"/></a></li>
 				</#if>
 				<li><a class="dropdown-item" href="#">New project</a></li>
 				<li><a class="dropdown-item" href="#">Settings</a></li>
-				<li><a class="dropdown-item" href="#"><@spring.message "header.member.myInfo"/></a></li>
+				<li><a class="dropdown-item" href="#"><@input "header.member.myInfo"/></a></li>
 				<li><hr class="dropdown-divider"></li>
-				<li><a class="header-logout-menu dropdown-item" href="#"><@spring.message "header.logout"/></a></li>
+				<li><a class="header-logout-menu dropdown-item" href="#"><@input "header.logout"/></a></li>
 			</ul>
 		</div>
 	<#elseif !login_info?exists>
 		<div class="login-btn-div text-end pb-2 col-md-3 align-items-right">
-			<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#login-modal"><@spring.message "header.login"/></button>
-			<button type="button" class="btn btn-primary" onclick="location.href='/member/emailCheckInput'"><@spring.message "header.signup"/></button>
+			<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#login-modal"><@input "header.login"/></button>
+			<button type="button" class="btn btn-primary" onclick="location.href='/member/emailCheckInput'"><@input "header.signup"/></button>
 		</div>
 	</#if>
 </header>
@@ -120,26 +120,26 @@
 	<#if login_info?exists>
 		<div class="dropdown text-end pb-2 pt-2 pe-2">
 			<div class="login-account">
-				<span class="me-3">${login_info.nickname }<@spring.message "header.welcome"/></span>
+				<span class="me-3">${login_info.nickname }<@input "header.welcome"/></span>
 				<a href="#" class="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 					<img src="${login_info.memberIcon }" alt="mdo" class="rounded-circle login-picture">
 				</a>
 				<ul class="dropdown-menu text-small">
 					<#if login_info.memberType == 'ADMIN'>
-					<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><@spring.message "header.member.admin"/></a></li>
+					<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><@input "header.member.admin"/></a></li>
 					</#if>
 					<li><a class="dropdown-item" href="#">New project...</a></li>
 					<li><a class="dropdown-item" href="#">Settings</a></li>
-					<li><a class="dropdown-item" href="#"><@spring.message "header.member.myInfo"/></a></li>
+					<li><a class="dropdown-item" href="#"><@input "header.member.myInfo"/></a></li>
 					<li><hr class="dropdown-divider"></li>
-					<li><a class="header-logout-menu dropdown-item" href="#"><@spring.message "header.logout"/></a></li>
+					<li><a class="header-logout-menu dropdown-item" href="#"><@input "header.logout"/></a></li>
 				</ul>
 			</div>
 		</div> 
 	<#elseif !login_info?exists>
 		<div class="login-btn-div text-end p-2 pe-4">
-			<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#login-modal"><@spring.message "header.login"/></button>
-			<button type="button" class="btn btn-primary" onclick="location.href='/member/emailCheckInput'"><@spring.message "header.signup"/></button>
+			<button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#login-modal"><@input "header.login"/></button>
+			<button type="button" class="btn btn-primary" onclick="location.href='/member/emailCheckInput'"><@input "header.signup"/></button>
 		</div>
 	</#if>
 	</div>
@@ -151,12 +151,12 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="login-modal-label"><@spring.message "header.login"/></h1>
+				<h1 class="modal-title fs-5" id="login-modal-label"><@input "header.login"/></h1>
 				<button type="button" class="btn-close" id="header-login-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-start">
 				<div class="mb-3">
-					<label for="login-local-part-email" class="form-label"><@spring.message "member.attr.email"/></label>
+					<label for="login-local-part-email" class="form-label"><@input "member.attr.email"/></label>
 					<div class="input-group mb-4">
 						<input id="login-local-part-email" type="text" class="form-control" name="localPartEmail" placeholder="example">
 						<span class="input-group-text">@</span>
@@ -164,7 +164,7 @@
 					</div>
 				</div>
 				<div class="mb-3">
-					<label for="login-password" class="form-label"><@spring.message "member.attr.password"/></label>
+					<label for="login-password" class="form-label"><@input "member.attr.password"/></label>
 					<div class="password-form">
 						<input id="login-password" name="password" type="password" class="form-control">
 						<i class="bi bi-eye-fill main-bi primary-color-not-hover"></i>
@@ -172,12 +172,12 @@
 				</div>
 				<div class="form-check">
 					<input id="auto-login-check" name="autoLoginCheck" type="checkbox" class="form-check-input" value="check">
-			   		<label class="form-label" for="auto-login-check"><@spring.message "header.autoLogin"/></label>
+			   		<label class="form-label" for="auto-login-check"><@input "header.autoLogin"/></label>
 			 		</div>
 	      	</div>
 			<div class="d-grid gap-2 p-3">
-				<button id="header-login-submit" class="btn btn-primary" type="button"><@spring.message "header.login"/></button>
-				<button id="header-login-close" class="btn btn-outline-primary" type="button" data-bs-dismiss="modal"><@spring.message "alert.close"/></button>
+				<button id="header-login-submit" class="btn btn-primary" type="button"><@input "header.login"/></button>
+				<button id="header-login-close" class="btn btn-outline-primary" type="button" data-bs-dismiss="modal"><@input "alert.close"/></button>
 			</div>
 		</div>
 	</div>
@@ -225,12 +225,12 @@ $('#header-login-submit').on('click', function(e) {
    			$('#login-modal').modal('hide');
 	   		location.reload();
    		} else  {
-   			window.alert('<@spring.message "error.member.login.failed"/>');
+   			window.alert('<@input "error.member.login.failed"/>');
    		}
    	})
    	.fail(function(data) {
    		closeLoading();
-   		window.alert('<@spring.message "error.ajax"/>');
+   		window.alert('<@input "error.ajax"/>');
    	});	
 });
 
@@ -250,12 +250,12 @@ $('.header-logout-menu').on('click', function(e) {
 		if (isValid(data)) {
 			location.href="/";
 		} else {
-			window.alert('<@spring.message "error.member.login.failed"/>');
+			window.alert('<@input "error.member.login.failed"/>');
 		}
 	})
 	.fail(function(data) {
 		closeLoading();
-   		window.alert('<@spring.message "error.ajax"/>');
+   		window.alert('<@input "error.ajax"/>');
 	});
 });
 </script>

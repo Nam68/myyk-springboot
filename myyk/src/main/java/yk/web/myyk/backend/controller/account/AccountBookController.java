@@ -15,8 +15,10 @@ import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.annotation.CategorySetter;
 import yk.web.myyk.util.annotation.RegionSetter;
+import yk.web.myyk.util.annotation.TaxRateSetter;
 import yk.web.myyk.util.enumerated.Category;
 import yk.web.myyk.util.enumerated.MemberType;
+import yk.web.myyk.util.enumerated.TaxRate;
 import yk.web.myyk.util.exception.SystemException;
 
 @Controller
@@ -26,11 +28,11 @@ import yk.web.myyk.util.exception.SystemException;
 public class AccountBookController extends BaseController {
 
 	@RequestMapping("/dashboard")
+	@TaxRateSetter
 	public String dashboard(HttpServletRequest request, Long accountBookIdx) throws SystemException {
 		
 		// 가계부 리스트
-		List<AccountBookDTO> bookList = 
-				getService().getAccountBook().getAuthList(getLoginInfo().getMemberIdx());
+		List<AccountBookDTO> bookList = getService().getAccountBook().getAuthList(getLoginInfo().getMemberIdx());
 		request.setAttribute(LIST, bookList);
 		
 		// 대시보드 가계부

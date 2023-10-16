@@ -10,6 +10,7 @@ import yk.web.myyk.util.interceptor.AutoLoginInterceptor;
 import yk.web.myyk.util.interceptor.CategoryInterceptor;
 import yk.web.myyk.util.interceptor.LanguageInterceptor;
 import yk.web.myyk.util.interceptor.RegionInterceptor;
+import yk.web.myyk.util.interceptor.TaxRateInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -29,6 +30,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			.excludePathPatterns("/css/**", "/img/**", "/js/**");
 		
 		registry.addInterceptor(accessCheckInterceptor())
+			.excludePathPatterns("/css/**", "/img/**", "/js/**");
+		
+		registry.addInterceptor(taxRateInterceptor())
 			.excludePathPatterns("/css/**", "/img/**", "/js/**");
 		
 //		registry.addInterceptor(new WebContentInterceptor())
@@ -64,6 +68,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public AccessCheckInterceptor accessCheckInterceptor() {
 		return new AccessCheckInterceptor();
+	}
+	
+	@Bean
+	public TaxRateInterceptor taxRateInterceptor() {
+		return new TaxRateInterceptor();
 	}
 	
 }

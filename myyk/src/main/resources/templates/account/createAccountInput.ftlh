@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <#include "/lib.ftlh"> 
-<title><@spring.message "account.dashboard.title"/></title>
+<title><@input "account.dashboard.title"/></title>
 <style>
 .card {
 	height: 8rem;
@@ -15,47 +15,47 @@
 <body>
 	<div class="col-lg-8 mx-auto">
 		<h1 class="title">
-			<@spring.message "account.create.input.title"/>
+			<@input "account.create.input.title"/>
 		</h1>
 		<form action="/account/create" method="post" class="g-3 needs-validation" novalidate>
 			<#-- 가계부 이름(접속언어) -->
 			<div class="mb-4">
 				<label class="form-label">
-					<@spring.message "account.create.input.name.${selected_language}"/>
+					<@input "account.create.input.name.${selected_language}"/>
 				</label>
 				<input id="create-book-name-${selected_language}" class="form-control" name="${selected_language}BookName" required>
 				<div class="invalid-feedback">
-		       		<@spring.message "account.create.error.name"/>
+		       		<@input "account.create.error.name"/>
 				</div>
 			</div>
 			<#-- 가계부 이름(비접속언어) -->
 			<div class="mb-4">
 				<label class="form-label">
-					<@spring.message "account.create.input.name.${unselected_language}"/>
+					<@input "account.create.input.name.${unselected_language}"/>
 				</label>
 				<div class="input-group mb-3">
-					<button class="btn btn-primary" type="button" id="create-book-name-translate"><@spring.message "alert.translate"/> <i class="bi bi-pencil-fill"></i></button>
+					<button class="btn btn-primary" type="button" id="create-book-name-translate"><@input "alert.translate"/> <i class="bi bi-pencil-fill"></i></button>
 					<input id="create-book-name-${unselected_language}" class="form-control" name="${unselected_language}BookName" required>
 					<div class="invalid-feedback">
-		       			<@spring.message "account.create.error.name"/>
+		       			<@input "account.create.error.name"/>
 					</div>
 				</div>
 			</div>
 			<#-- 지역 선택 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<@spring.message "account.create.input.region"/>
+					<@input "account.create.input.region"/>
 				</label>
 				<select class="form-select" name="region">
 					<#list region as r>
-					<option value="${r}"><@spring.message "account.region.${r.value}.currency"/></option>
+					<option value="${r}"><@input "account.region.${r.value}.currency"/></option>
 					</#list>
 				</select>
 			</div>
 			<#-- 열람 권한 부여 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<@spring.message "account.create.input.auth.watchable"/>
+					<@input "account.create.input.auth.watchable"/>
 				</label>
 				<div class="row align-items-center">
 					<div class="col form-label">
@@ -78,10 +78,10 @@
 			<#-- 편집 권한 부여 -->
 			<div class="mb-4">
 				<label class="form-label">
-					<@spring.message "account.create.input.auth.writable"/>
+					<@input "account.create.input.auth.writable"/>
 				</label>
 				<label class="alert-form">
-					※ <@spring.message "account.create.input.auth.writableCondition"/>
+					※ <@input "account.create.input.auth.writableCondition"/>
 				</label>
 				<div class="row align-items-center">
 					<div class="col form-label">
@@ -101,8 +101,8 @@
 			</div>
 			<#-- 버튼 -->
 			<div class="pt-2 d-grid mx-auto gap-2">
-				<button class="btn btn-primary submit-button" type="submit"><@spring.message "alert.confirm"/></button>
-				<button class="btn btn-outline-primary submit-button"><@spring.message "alert.return"/></button>
+				<button class="btn btn-primary submit-button" type="submit"><@input "alert.confirm"/></button>
+				<button class="btn btn-outline-primary submit-button"><@input "alert.return"/></button>
 			</div>
 		</form>
 	</div>

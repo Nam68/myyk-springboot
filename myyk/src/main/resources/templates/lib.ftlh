@@ -22,5 +22,5 @@
 <#-- javascript constants -->
 <script>
 const selectedLanguage = '${selected_language}';
-const ajaxErrorMsg = '<@spring.message "alert.error.ajax"/>';
+const ajaxErrorMsg = '<@input "alert.error.ajax"/>';
 </script>

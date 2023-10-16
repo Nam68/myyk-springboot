@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <#include "/lib.ftlh"> 
-<title><@spring.message "error.page.title"/></title>
+<title><@input "error.page.title"/></title>
 </head>
 <#include "/global/header.ftlh">
 <body>
 	<div class="col-lg-8 mx-auto">
 		<h1 class="title">
-			<@spring.message "error.permission.message"/>
+			<@input "error.permission.message"/>
 		</h1>
 		<div class="primary-color-not-hover">
-			<p><@spring.message "member.type.${memberType}"/><@spring.message "error.permission.${status}"/></p>
+			<p><@input "member.type.${memberType}"/><@input "error.permission.${status}"/></p>
 		</div>
 	</div>
 </body>

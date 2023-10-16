@@ -7,7 +7,7 @@
 </head>
 <#include "/global/header.ftlh"> 
 <body>
-<@spring.message "alert.confirm"/>
+<@input "alert.confirm"/>
 <a href="/not/exist/page">not exist page</a>
 <br>
 <a href="/sample/signin">signin page</a>

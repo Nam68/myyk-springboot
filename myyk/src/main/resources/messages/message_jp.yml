@@ -1,6 +1,7 @@
 alert:
   confirm: "確認"
   close: "閉じる"
+  save: "セーブ"
   return: "戻る"
   translate: "翻訳する"
   search: "検索"
@@ -138,6 +139,7 @@ account:
       nonSelect: "選択なし"
   price:
     title: "金額"
+    memo: "メモ"
   tax:
     added: "税込"
     nonAdded: "税抜"
