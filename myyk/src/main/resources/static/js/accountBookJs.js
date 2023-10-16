@@ -91,6 +91,21 @@ function resetSubCategory() {
 }
 
 /**
+ * 회계 등록 세금 선택
+ */
+const bsCollapse = new bootstrap.Collapse('#tax-collapse', {
+  toggle: false
+});
+
+$('#tax-added').on('click', function (e) {
+	bsCollapse.show();
+});
+
+$('#tax-non-added').on('click', function (e) {
+	bsCollapse.hide();
+});
+
+/**
  * 회계 등록 모달 닫기
  */
 $('#add-account-modal').on('hidden.bs.modal', function () {
