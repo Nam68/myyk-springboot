@@ -22,5 +22,6 @@
 <#-- javascript constants -->
 <script>
 const selectedLanguage = '${selected_language}';
+const unselectedLanguage = '${unselected_language}';
 const ajaxErrorMsg = '<@input "alert.error.ajax"/>';
 </script>

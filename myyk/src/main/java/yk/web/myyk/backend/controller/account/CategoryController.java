@@ -61,7 +61,11 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(path = "/createPrimeCategory", method = RequestMethod.POST)
 	public String createPrimeCateogry(PrimeCategoryDTO dto) throws SystemException {
-		getService().getCategory().create(dto);
+		try {
+			getService().getCategory().create(dto);
+		} catch (SystemException e) {
+			return "account/createCategoryInput";
+		}
 		return "redirect:/account/category/list";
 	}
 	

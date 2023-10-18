@@ -82,6 +82,8 @@ member:
         length: "ニックネームは１０文字以内で入力してください。"
         
 account:
+  add: "入出登録"
+  edit: "入出修正"
   region:
     ko: 
       currency: "韓国ウォン（₩）"

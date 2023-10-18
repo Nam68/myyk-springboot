@@ -83,9 +83,7 @@
 				<#if login_info.isAdmin()>
 				<li><a class="dropdown-item primary-dark-color" href="/adminPage/adminHome.do"><@input "header.member.admin"/></a></li>
 				</#if>
-				<li><a class="dropdown-item" href="#">New project</a></li>
-				<li><a class="dropdown-item" href="#">Settings</a></li>
-				<li><a class="dropdown-item" href="#"><@input "header.member.myInfo"/></a></li>
+				<li><a class="dropdown-item" href="#" onclick="javascript:alert('not ready...');"><@input "header.member.myInfo"/></a></li>
 				<li><hr class="dropdown-divider"></li>
 				<li><a class="header-logout-menu dropdown-item" href="#"><@input "header.logout"/></a></li>
 			</ul>

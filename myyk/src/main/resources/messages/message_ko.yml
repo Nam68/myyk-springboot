@@ -82,6 +82,8 @@ member:
         length: "닉네임은 10자 이내로 입력해주세요."
         
 account:
+  add: 입출금 등록
+  edit: 입출금 수정
   region:
     ko: 
       currency: "한국 원（₩）"

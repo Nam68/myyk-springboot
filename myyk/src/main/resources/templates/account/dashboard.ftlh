@@ -65,9 +65,9 @@
 				<hr>
 				<div class="d-grid gap-2 mt-2">
 					<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#add-account-modal">
-						<i class="bi bi-cart-plus-fill"></i> Add Account
+						<i class="bi bi-cart-plus-fill"></i> <@input "account.add"/>
 					</button>
-					<button class="btn btn-outline-primary" type="button">Edit Account</button>
+					<button class="btn btn-outline-primary" type="button"><@input "account.edit"/></button>
 				</div>
 				<#else>
 				<@input "account.right.empty"/>
@@ -81,7 +81,7 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="add-account-label">Modal title</h1>
+				<h1 class="modal-title form-label fs-5" id="add-account-label"><@input "account.add"/></h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-start">
@@ -145,7 +145,7 @@
 					</div>
 				</div>
 				<#-- 메모 -->
-				<div class="mt-2 account-memo-holder">
+				<div class="mt-3 account-memo-holder">
 					<label class="form-label">
 						<@input "account.price.memo"/>
 					</label>

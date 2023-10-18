@@ -87,6 +87,7 @@
 						<button id="icon-input-button" class="btn btn-primary" type="button"><@input "alert.confirm"/></button>
 					</div>
 				</div>
+				<input type="hidden" class="invalid-for-icon-select">
 				<div class="invalid-feedback">
 					<@input "account.category.create.error.icon"/>
 				</div>
@@ -98,88 +99,20 @@
 				</label>
 				<div>
 					<input id="category-color-picker" name="color" value="#ea9999" class="form-control" role="button">
-				</div>
-				<div class="invalid-feedback">
-					<@input "account.category.create.error.color"/>
+					<input type="hidden" class="invalid-for-color-picker">
+					<div class="invalid-feedback">
+						<@input "account.category.create.error.color"/>
+					</div>
 				</div>
 			</div>
 			<#-- 확인버튼 -->
 			<div class="pt-2 d-grid mx-auto gap-2">
 				<button class="btn btn-primary submit-button" type="submit"><@input "alert.confirm"/></button>
-				<button class="btn btn-outline-primary"><@input "alert.return"/></button>
+				<button class="btn btn-outline-primary returnCategoryList" onclick="return false;"><@input "alert.return"/></button>
 			</div>
 		</form>
 	</div>
 </body>
 <#include "/global/footer.ftlh">
-<script type="text/javascript">
-// 번역
-$('#create-category-name-translate').on('click', function(e) {
-	alert('not ready...');
-});
-
-// 물음표 버튼 호버
-$('#category-icon-question').on('mouseenter', function(e) {
-	$(this).removeClass('bi-question-circle');
-	$(this).addClass('bi-question-circle-fill');
-});
-$('#category-icon-question').on('mouseleave', function(e) {
-	$(this).removeClass('bi-question-circle-fill');
-	$(this).addClass('bi-question-circle');
-});
-
-// 아이템 드롭다운
-$('.dropdown-item').on('click', function(e){
-	var iconName = $(this).find('i').data('icon');
-	$('input[name=icon]').val(iconName);
-	changeIcon(iconName);
-});
-
-// 아이템 직접 입력
-$('#icon-input-button').on('click', function(e) {
-	
-	openLoading();
-	
-	var iconName = $('input[name=icon]').val();
-	
-	$.ajax({
-	   		url:'/bootstrap/checkIconName',
-	   		method:'POST',
-	   		data:{iconName: iconName}
-		})
-	   	.done(function(data) {
-	   	
-	   		closeLoading();
-	   		
-	   		if (isValid(data)) {
-	   			changeIcon(iconName);
-	   		} else {
-	   			alert('<@input "account.category.create.error.notFound"/>');
-	   		}
-	   	})
-	   	.fail(function(data) {
-	   		closeLoading();
-	   		window.alert('<@input "error.ajax"/>');
-	   	});
-});
-// 아이콘 드롭다운 이미지를 바꿔줌
-function changeIcon(iconName) {
-	$('#category-icon-holder').html('');
-	$('#category-icon-holder').attr('class', '');
-	$('#category-icon-holder').addClass('bi bi-' + iconName);
-}
-
-// 컬러피커
-$('#category-color-picker').spectrum({
-  type: "component",
-  showInitial: true,
-  showAlpha: false
-});
-
-// 돌아가기
-$('.btn-outline-primary').on('click', function(e) {
-	var accountBookIdx = $('input[name=accountBookIdx]').val();
-	location.href='/account/category/list?accountBookIdx=' + accountBookIdx;
-});
-</script>
+<script src="/js/categoryJs.js"></script> 
 </html>

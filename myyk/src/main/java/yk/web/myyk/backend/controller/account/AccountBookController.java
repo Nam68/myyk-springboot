@@ -27,6 +27,14 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/account")
 public class AccountBookController extends BaseController {
 
+	/**
+	 * <p>가계부 대시보드.</p>
+	 * 
+	 * @param request 리퀘스트
+	 * @param accountBookIdx 가계부 IDX
+	 * @return 뷰
+	 * @throws SystemException 시스템 에러
+	 */
 	@RequestMapping("/dashboard")
 	@TaxRateSetter
 	public String dashboard(HttpServletRequest request, Long accountBookIdx) throws SystemException {
@@ -42,6 +50,13 @@ public class AccountBookController extends BaseController {
 		return "account/dashboard";
 	}
 	
+	/**
+	 * <p>가계부 작성 화면.</p>
+	 * 
+	 * @param request 리퀘스트
+	 * @return 뷰
+	 * @throws SystemException 시스템 에러
+	 */
 	@RequestMapping("/createInput")
 	@RegionSetter
 	public String createInput(HttpServletRequest request) throws SystemException {
@@ -50,6 +65,14 @@ public class AccountBookController extends BaseController {
 		return "account/createAccountInput";
 	}
 	
+	/**
+	 * <p>가계부 작성 완료.</p>
+	 * 
+	 * @param dto DTO
+	 * @param session 세션
+	 * @return 리다이렉트
+	 * @throws SystemException 시스템 에러
+	 */
 	@RequestMapping(path = "/create", method =  RequestMethod.POST)
 	public String createConfirm(AccountBookDTO dto, HttpSession session) throws SystemException {
 		getService().getAccountBook().createBook(dto);

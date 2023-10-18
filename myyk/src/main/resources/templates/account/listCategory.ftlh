@@ -25,7 +25,7 @@
 							</#list>
 							<li class="ms-3">
 								<span class="create-sub-category-link" role="button" data-categoryIdx="${category.categoryIdx}" data-bs-toggle="modal" data-bs-target="#create-sub-category-modal">
-									<i class="bi bi-plus-circle"></i> <@input "account.category.create.input.title"/>
+									<i class="bi bi-plus-circle"></i> <@input "account.category.sub.create"/>
 								</span>
 							</li>
 						</ll>
@@ -33,12 +33,12 @@
 				</div>
 			</#list>
 		</div>
-		<div class="text-start mt-2 mb-5">
-			<button class="btn btn-outline-primary add-category-btn" data-idx="${idx}">
+		<div class="d-grid gap-2">
+			<button class="btn btn-primary add-category-btn" data-idx="${idx}">
 				<i class="bi bi-file-earmark-plus"></i> <@input "account.category.create.input.title"/>
 			</button>
-			<button id="list-category-back-btn" class="btn btn-outline-secondary">
-				<@input "alert.close"/>
+			<button id="list-category-back-btn" class="btn btn-outline-primary">
+				<@input "alert.return"/>
 			</button>
 		</div>
 	</div>
@@ -85,60 +85,5 @@
 	</div>
 </div>
 <#include "/global/footer.ftlh">
-<script type="text/javascript">
-// 카테고리 생성 버튼 클릭
-$('.add-category-btn').on('click', function(e) {
-	location.href = '/account/category/createInput?accountBookIdx=' + $(this).data('idx');
-});
-
-// 서브 카테고리 생성 링크 클릭
-$('.create-sub-category-link').on('click', function(e) {
-	var parentCategoryIdx = $(this).attr('data-categoryIdx');
-	$('.parent-category-idx').val(parentCategoryIdx);
-});
-
-// 서브 모달 확인버튼
-$('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('click', function(e) {
-
-	var koCategoryName = $('input[name="koCategoryName"]').val();
-	var jpCategoryName = $('input[name="jpCategoryName"]').val();
-	var accountBookIdx = $('.add-category-btn').data('idx');
-	var parentCategoryIdx = $('.parent-category-idx').val();
-
-	$.ajax({
-		url:'/account/category/createSubCategory',
-		method:'POST',
-		data:{
-			koCategoryName: koCategoryName,
-			jpCategoryName: jpCategoryName,
-			accountBookIdx: accountBookIdx,
-			parentCategoryIdx: parentCategoryIdx
-		}
-	})
-	.done(function(data) {
-	   	
-		closeLoading();
-	   		
-		if (isValid(data)) {
-			alert('good');
-		} else {
-			alert('bad');
-		}
-	})
-	.fail(function(data) {
-		closeLoading();
-		window.alert('<@input "alert.error.ajax"/>');
-	});
-});
-
-// 번역
-$('#create-category-name-translate').on('click', function(e) {
-	alert('not ready...');
-});
-
-// 뒤로가기
-$('#list-category-back-btn').on('click', function(e) {
-	location.href = '/account/dashboard?accountBookIdx=' + $('.add-category-btn').data('idx');
-});
-</script>
+<script src="/js/categoryJs.js"></script> 
 </html>
