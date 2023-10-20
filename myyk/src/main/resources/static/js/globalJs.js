@@ -48,6 +48,80 @@ function displayNone(target) {
 }
 
 /**
+ * 유효성검사
+ */
+
+// 에러 추가
+function addError(target) {
+	target.addClass('is-invalid');
+	target.removeClass('is-valid');
+	return false;
+}
+function addErrorBorder(target) {
+	target.css('border', 'solid red 2px');
+	return false;
+}
+
+// 에러 제거
+function removeError(target) {
+	target.addClass('is-valid');
+	target.removeClass('is-invalid');
+	return true;
+}
+function removeErrorBorder(target) {
+	target.css('border', 'solid green 2px');
+	return true;	
+}
+
+// 폼 필수 확인
+function checkReqiuired(form) {
+	let isChecked = true;
+	form.find('input:required').toArray().forEach(element => {
+		if ($(element).val() == undefined || $(element).val() == null || $(element).val() == '') {
+			addError($(element));
+			isChecked = false;
+		} else {
+			removeError($(element));
+		}
+	});
+	return isChecked;
+}
+
+// 엮여있는 엘레멘트 연동
+function syncError(parent, children) {
+	if (parent.hasClass('is-invalid')) {
+		if (!$.isArray()) {
+			addError(children);
+		} else {
+			children.forEach(target => addError(target));
+		}
+	} else {
+		if (!$.isArray()) {
+			removeError(children);
+		} else {
+			children.forEach(target => removeError(target));
+		}
+	}
+}
+
+// 엮여있는 엘레멘트 보더 연동
+function syncErrorBorder(parent, children) {
+	if (parent.hasClass('is-invalid')) {
+		if (!$.isArray()) {
+			addErrorBorder(children);
+		} else {
+			children.forEach(target => addErrorBorder(target));
+		}
+	} else {
+		if (!$.isArray()) {
+			removeErrorBorder(children);
+		} else {
+			children.forEach(target => removeErrorBorder(target));
+		}
+	}
+}
+
+/**
  * 판단 결과
  */
 

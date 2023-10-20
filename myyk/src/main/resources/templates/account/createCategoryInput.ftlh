@@ -83,7 +83,7 @@
 						<label class="form-label">
 							<@input "account.category.create.input.icon.explain.title"/> <i id="category-icon-question" class="bi bi-question-circle" role="button"></i>
 						</label>
-						<input class="form-control mb-2" type="text" name="icon">
+						<input class="form-control mb-2" type="text" name="icon" required>
 						<button id="icon-input-button" class="btn btn-primary" type="button"><@input "alert.confirm"/></button>
 					</div>
 				</div>
@@ -98,7 +98,7 @@
 					<@input "account.category.create.input.color"/>
 				</label>
 				<div>
-					<input id="category-color-picker" name="color" value="#ea9999" class="form-control" role="button">
+					<input id="category-color-picker" name="color" value="#ea9999" class="form-control" role="button" required>
 					<input type="hidden" class="invalid-for-color-picker">
 					<div class="invalid-feedback">
 						<@input "account.category.create.error.color"/>

@@ -76,47 +76,16 @@ $('form[action="/account/category/createPrimeCategory"]').on('submit', function 
 	
 	openLoading();
 	
-	var categoryNameCurrentLang = $(this).find('input[name="' + selectedLanguage + 'CategoryName"]');
-	var categoryNameSecondLang = $(this).find('input[name="' + unselectedLanguage + 'CategoryName"]');
-	var icon = $(this).find('input[name="icon"]');
-	var color = $(this).find('input[name="color"]');
-
-	try {
-		var isError = false;
-		if (categoryNameCurrentLang.val() == '') {
-			isError = addError(categoryNameCurrentLang);
-		}
-		if (categoryNameSecondLang.val() == '') {
-			isError = addError(categoryNameSecondLang);
-		}
-		if (icon.val() == '') {
-			isError = addError(icon);
-		}
-		if (color.val() == '') {
-			isError = addError(color);
-		}
-		if (isError) {
-			throw error;
-		}
-	} catch (error) {
+	if (!checkReqiuired($(this))) {
 		e.preventDefault();
-		e.stopPropagation();
-	} finally {
-		closeLoading();	
 	}
+	
+	syncErrorBorder($('input[name=icon]'), $('.category-icon-dropdown-item'));
+	syncError($('input[name=icon]'), $('.invalid-for-icon-select'));
+	syncError($('#category-color-picker'), $('.invalid-for-color-picker'));
+	
+	closeLoading();
 });
-
-function addError(target) {
-	target.addClass('is-invalid');
-	target.removeClass('is-valid');
-	return true;
-}
-
-function removeError(target) {
-	target.addClass('is-valid');
-	target.removeClass('is-invalid');
-	return false;
-}
 
 /**
  * listCategory
