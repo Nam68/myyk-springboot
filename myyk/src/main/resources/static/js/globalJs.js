@@ -122,6 +122,38 @@ function syncErrorBorder(parent, children) {
 }
 
 /**
+ * 폼을 사용하지 않는 입력
+ */
+
+// name 속성을 가진 입력폼을 제이슨으로 리턴
+function createJson(target) {
+	
+	let names = new Array();
+	
+	let input = target.find('input').toArray();
+	let select = target.find('select').toArray();
+	
+	if ($.isArray(input) && input.length > 0) {
+		input.forEach(value => {
+			let name = $(value).attr('name');
+			if (names.indexOf(name) == -1) {
+				names.push(name);
+			}
+		});
+	}
+	if ($.isArray(select) && select.length > 0) {
+		select.forEach(value => {
+			let name = $(value).attr('name');
+			if (names.indexOf(name) == -1) {
+				names.push(name);
+			}
+		});
+	}
+	alert('test start');
+	alert(JSON.stringify(names));
+}
+
+/**
  * 판단 결과
  */
 

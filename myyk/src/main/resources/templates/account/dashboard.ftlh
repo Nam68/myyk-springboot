@@ -155,9 +155,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@input"alert.close"/></button>
-				<button type="button" class="btn btn-primary"><@input "alert.confirm"/></button>
+			<div class="d-grid gap-2 p-3">
+				<button type="button" class="btn btn-primary confirm"><@input "alert.confirm"/></button>
+				<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><@input"alert.close"/></button>
 			</div>
 		</div>
 	</div>

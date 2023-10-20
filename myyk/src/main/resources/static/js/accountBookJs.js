@@ -93,23 +93,35 @@ function resetSubCategory() {
 /**
  * 회계 등록 세금 선택
  */
-const bsCollapse = new bootstrap.Collapse('#tax-collapse', {
+
+const taxCollapse = new bootstrap.Collapse('#tax-collapse', {
   toggle: false
 });
 
 $('#tax-added').on('click', function (e) {
-	bsCollapse.show();
+	taxCollapse.show();
 });
 
 $('#tax-non-added').on('click', function (e) {
-	bsCollapse.hide();
+	taxCollapse.hide();
 });
 
 /**
  * 회계 등록 모달 닫기
  */
+
 $('#add-account-modal').on('hidden.bs.modal', function () {
 	$('.prime-category-holder').find('option:eq(0)').attr('selected', 'selected'); // 1차카테고리
 	resetSubCategory(); // 서브카테고리
-	$('.account-holder').val(''); // 금액
+	$('input[name=price]').val(''); // 금액
+	$('input[name=taxRadio]').eq(0).prop('checked', true); // 세금포함 선택
+	$('select[name=taxRate]').find('option:eq(0)').prop('selected', true); // 세율 선택
+	taxCollapse.hide(); // 세율 숨기기
+	$('input[name=memo]').val('') // 메모
+});
+
+$('#add-account-modal .confirm').on('click', function (e) {
+	
+	createJson($('#add-account-modal'));
+	
 });
