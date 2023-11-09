@@ -17,7 +17,7 @@
 		<h1 class="title">
 			<@input "account.create.input.title"/>
 		</h1>
-		<form action="/account/create" method="post" class="g-3 needs-validation" novalidate>
+		<form action="/account/book/create" method="post" class="g-3 needs-validation" novalidate>
 			<#-- 가계부 이름(접속언어) -->
 			<div class="mb-4">
 				<label class="form-label">

@@ -20,7 +20,7 @@
 			request
 		</div>
 		-->
-		<div class="col <@if category == 'ACCOUNT' 'selected-header' 'mobile-footer-color'/>" data-location="/account/dashboard">
+		<div class="col <@if category == 'ACCOUNT' 'selected-header' 'mobile-footer-color'/>" data-location="/account/book/dashboard">
 			<i class="bi bi-calculator main-bi d-block mx-auto mb-1"></i>
 			<@input "category.account"/>
 		</div>

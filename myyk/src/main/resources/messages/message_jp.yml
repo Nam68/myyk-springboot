@@ -24,6 +24,8 @@ error:
       nickname: "ニックネームが重複されています。"
     login:
       failed: "ID とパスワードを確認してください。"
+  price:
+    input: "金額を入力してください。"
 
 category:
   memory: "メモリー"

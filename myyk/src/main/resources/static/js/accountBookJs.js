@@ -13,7 +13,7 @@ $(document).ready(function() {
  * 가계부 생성 이동
  */
 $('.create-account-book').on('click', function(e) {
-	location.href='/account/createInput';
+	location.href='/account/book/createInput';
 });
 
 /**
@@ -35,12 +35,21 @@ $('.prime-category-holder').find('select').on('change', function (e) {
 	setSubCategory(categoryIdx);
 });
 
+// 회계 등록 서브 카테고리 가져오기
 async function setSubCategory(categoryIdx) {
 	openLoading();
 	try {
-		var data = await getSubCategory(categoryIdx);
-		var caregories = JSON.parse(data);
-		createSubCategory(caregories);
+		var data = await setSubCategoryAjax(categoryIdx);
+		let categories = JSON.parse(data);
+
+		resetSubCategory();
+		
+		
+		if ($.isArray(categories)) {
+			categories.forEach(category => appendSubCategory(category));
+		}
+		displayToggle(subCategoryHolder);
+
 	} catch (error) {
 		alert(ajaxErrorMsg);
 	} finally {
@@ -48,7 +57,8 @@ async function setSubCategory(categoryIdx) {
 	}
 }
 
-function getSubCategory(categoryIdx) {
+// 회계 등록 서브 카테고리 ajax
+function setSubCategoryAjax(categoryIdx) {
 	return $.ajax({
 		url:'/account/category/getSubCategoryList',
 		method:'POST',
@@ -58,35 +68,21 @@ function getSubCategory(categoryIdx) {
 	});
 }
 
-function createSubCategory(categories) {
-	
-	resetSubCategory();
-
-	if (categories.length <= 0) {
-		return false;
-	}
-	if ($.isArray(categories)) {
-		categories.forEach((category) => appendSubCategory(category));
-	}
-
-	displayToggle(subCategoryHolder);
-}
-
+// 서브 카테고리 부착
 function appendSubCategory(categoryData) {
+	const subCategorySelect = $('.sub-category-holder select');
+
 	var categoryIdx = categoryData.categoryIdx;
 	var categoryName = isKorean(selectedLanguage) ? categoryData.koCategoryName : categoryData.jpCategoryName;
 	appendOption(subCategorySelect, categoryIdx, categoryName);
 }
 
-function appendSubCategoryDefault() {
-	appendOption(subCategorySelect, '', subCategoryNon);
-}
-
 // 서브 카테고리 풀다운 초기화
 function resetSubCategory() {
-	// 카테고리
+	const subCategorySelect = $('.sub-category-holder select');
+
 	subCategorySelect.html('');
-	appendSubCategoryDefault();
+	appendOption(subCategorySelect, 0, subCategoryNon);
 	displayNone(subCategoryHolder);
 }
 
@@ -114,14 +110,48 @@ $('#add-account-modal').on('hidden.bs.modal', function () {
 	$('.prime-category-holder').find('option:eq(0)').attr('selected', 'selected'); // 1차카테고리
 	resetSubCategory(); // 서브카테고리
 	$('input[name=price]').val(''); // 금액
-	$('input[name=taxRadio]').eq(0).prop('checked', true); // 세금포함 선택
+	$('input[name=taxIncluded]').eq(0).prop('checked', true); // 세금포함 선택
 	$('select[name=taxRate]').find('option:eq(0)').prop('selected', true); // 세율 선택
 	taxCollapse.hide(); // 세율 숨기기
 	$('input[name=memo]').val('') // 메모
+	
+	unsetCheck($(this)); // 에러체크 풀기
 });
 
+/**
+ * 회계 등록 컨펌
+ */
+
+// 컨펌 버튼 클릭
 $('#add-account-modal .confirm').on('click', function (e) {
-	
-	createJson($('#add-account-modal'));
-	
+
+	if (checkReqiuired($('#add-account-modal')) == false) {
+		return false;
+	}
+	let jsonData = getJsonData($(this).closest('.modal-content'));
+	addAccount(jsonData);
 });
+
+// 회계 등록
+async function addAccount(jsonData) {
+	
+	openLoading();
+	
+	try {
+		let data = await addAccountAjax(jsonData);
+		
+	} catch (error) {
+		alert(ajaxErrorMsg);
+	} finally {
+		closeLoading();
+	}
+}
+
+// 회계 등록 ajax
+function addAccountAjax(jsonData) {
+	return $.ajax({
+		type: 'POST',
+		url: '/account/create',
+		data: jsonData
+	});
+}

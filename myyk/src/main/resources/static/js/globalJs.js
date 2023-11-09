@@ -62,7 +62,7 @@ function addErrorBorder(target) {
 	return false;
 }
 
-// 에러 제거
+// 에러 제거 (valid 상태로 만듦)
 function removeError(target) {
 	target.addClass('is-valid');
 	target.removeClass('is-invalid');
@@ -70,6 +70,21 @@ function removeError(target) {
 }
 function removeErrorBorder(target) {
 	target.css('border', 'solid green 2px');
+	return true;	
+}
+
+// 에러체크 해제 (체크 자체를 무효화)
+function unsetError(target) {
+	target.removeClass('is-valid');
+	target.removeClass('is-invalid');
+	return true;
+}
+function unsetErrorBorder(target, border) {
+	if (border == undefined || border == '') {
+		target.css('border', '');
+	} else {
+		target.css('border', border);
+	}
 	return true;	
 }
 
@@ -84,7 +99,21 @@ function checkReqiuired(form) {
 			removeError($(element));
 		}
 	});
+	form.find('select:required').toArray().forEach(element => {
+		if ($(element).val() == undefined || $(element).val() == null || $(element).val() == '') {
+			addError($(element));
+			isChecked = false;
+		} else {
+			removeError($(element));
+		}
+	});
 	return isChecked;
+}
+
+// 폼 확인 해제
+function unsetCheck(form) {
+	form.find('input:required').toArray().forEach(element => unsetError($(element)));
+	form.find('select:required').toArray().forEach(element => unsetError($(element)));
 }
 
 // 엮여있는 엘레멘트 연동
@@ -121,36 +150,38 @@ function syncErrorBorder(parent, children) {
 	}
 }
 
-/**
- * 폼을 사용하지 않는 입력
- */
-
-// name 속성을 가진 입력폼을 제이슨으로 리턴
-function createJson(target) {
+// form-submit처럼 name을 통해 자동으로 json데이터 습득
+function getJsonData(target) {
 	
-	let names = new Array();
+	const inputs = target.find('input').toArray();
+	const selects = target.find('select').toArray();
 	
-	let input = target.find('input').toArray();
-	let select = target.find('select').toArray();
+	let nameList = new Array();
+	let jsonData = {};
 	
-	if ($.isArray(input) && input.length > 0) {
-		input.forEach(value => {
-			let name = $(value).attr('name');
-			if (names.indexOf(name) == -1) {
-				names.push(name);
-			}
-		});
-	}
-	if ($.isArray(select) && select.length > 0) {
-		select.forEach(value => {
-			let name = $(value).attr('name');
-			if (names.indexOf(name) == -1) {
-				names.push(name);
-			}
-		});
-	}
-	alert('test start');
-	alert(JSON.stringify(names));
+	inputs.forEach(element => {
+		let name = $(element).attr('name');
+		if (nameList.indexOf(name) == -1) {
+			nameList.push(name);
+		}
+	});
+	selects.forEach(element => {
+		let name = $(element).attr('name');
+		if (nameList.indexOf(name) == -1) {
+			nameList.push(name);
+		} 
+	});
+	
+	nameList.forEach(name => {
+		
+		const element = target.find('[name=' + name + ']');
+		let checkable = element.attr('type') == 'radio' || element.attr('type') == 'checkbox';
+		let checked = checkable ? ':checked' : '';
+		
+		let value = target.find('[name=' + name + ']' + checked).val();
+		jsonData[name] = value;
+	});
+	return jsonData;
 }
 
 /**

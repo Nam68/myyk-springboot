@@ -105,6 +105,8 @@ $('.create-sub-category-link').on('click', function(e) {
 // 서브 모달 확인버튼
 $('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('click', function(e) {
 
+	openLoading();
+
 	var koCategoryName = $('input[name="koCategoryName"]').val();
 	var jpCategoryName = $('input[name="jpCategoryName"]').val();
 	var accountBookIdx = $('.add-category-btn').data('idx');
@@ -125,18 +127,24 @@ $('#create-sub-category-modal').find('.modal-footer').find('.btn-primary').on('c
 		closeLoading();
 	   		
 		if (isValid(data)) {
-			alert('good');
+			$('#create-sub-category-modal').hide();
+			location.reload();
 		} else {
-			alert('bad');
+			alert(ajaxErrorMsg);
 		}
 	})
-	.fail(function(data) {
+	.fail(function() {
 		closeLoading();
-		window.alert('<@input "alert.error.ajax"/>');
+		alert(ajaxErrorMsg);
 	});
+});
+
+// 서브 모달 닫기
+$('#create-sub-category-modal').on('hidden.bs.modal', function () {
+	$(this).find('input').val('');
 });
 
 // 뒤로가기
 $('#list-category-back-btn').on('click', function(e) {
-	location.href = '/account/dashboard?accountBookIdx=' + $('.add-category-btn').data('idx');
+	location.href = '/account/book/dashboard?accountBookIdx=' + $('.add-category-btn').data('idx');
 });

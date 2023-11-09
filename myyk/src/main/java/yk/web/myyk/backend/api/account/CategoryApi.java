@@ -28,8 +28,15 @@ public class CategoryApi extends BaseApi {
 		return getService().getCategory().create(dto).getValue();
 	}
 	
+	/**
+	 * <p>서브카테고리를 반환한다.</p>
+	 * 
+	 * @param categoryIdx 카테고리 IDX
+	 * @return 서브카테고리 리스트
+	 * @throws SystemException 시스템에러
+	 */
 	@RequestMapping("/getSubCategoryList")
-	public String getPrimeCategoryList(long categoryIdx) throws SystemException {
+	public String getSubCategoryList(long categoryIdx) throws SystemException {
 		List<SubCategoryDTO> list = getService().getCategory().getSubCategory(categoryIdx);
 		return new Gson().toJson(list);
 	}

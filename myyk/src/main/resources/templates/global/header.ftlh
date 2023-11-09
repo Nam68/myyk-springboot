@@ -59,7 +59,7 @@
 		</li>
 		-->
 		<li>
-			<a href="/account/dashboard" class="nav-link px-2 me-4 <@if category=='ACCOUNT' 'selected-header' 'primary-dark-color' />">
+			<a href="/account/book/dashboard" class="nav-link px-2 me-4 <@if category=='ACCOUNT' 'selected-header' 'primary-dark-color' />">
 				<i class="bi bi-calculator main-bi mb-1 me-1 align-middle"></i>
 				<strong><@input "category.account"/></strong>
 			</a>

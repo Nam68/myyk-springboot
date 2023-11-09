@@ -24,6 +24,8 @@ error:
       nickname: "중복된 닉네임입니다."
     login:
       failed: "ID와 비밀번호를 확인해주세요."
+  price:
+    input: "금액을 입력해주세요."
 
 category:
   memory: "메모리"

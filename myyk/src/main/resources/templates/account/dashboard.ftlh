@@ -76,10 +76,14 @@
 		</div>
 	</div>
 </body>
-<#-- Add Account Modal -->
+
+
+<#-- 
+	Add Account Modal 
+-->
 <div class="modal fade" id="add-account-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="add-account-modal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
+		<div class="modal-content needs-validation">
 			<div class="modal-header">
 				<h1 class="modal-title form-label fs-5" id="add-account-label"><@input "account.add"/></h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -90,7 +94,7 @@
 					<label class="form-label">
 						<@input "account.category.title"/>
 					</label>
-					<select class="form-select" name="category" required>
+					<select class="form-select" name="categoryIdx" required>
 						<option value=""><@input "account.category.select"/></option>
 						<#list dto.categoryList as category>
 						<option value="${category.categoryIdx}">
@@ -98,13 +102,16 @@
 						</option>
 						</#list>
 					</select>
+					<div class="invalid-feedback">
+						<@input "account.category.select"/>
+					</div>
 				</div>
 				<#-- 2차 카테고리 셀렉트 -->
 				<div class="mb-4 sub-category-holder">
 					<label class="form-label">
 						<@input "account.category.sub.title"/>
 					</label>
-					<select class="form-select" name="subCategory">
+					<select class="form-select" name="subCategoryIdx">
 						<option value="">-</option> <#-- 서브카테고리는 선택하지 않는 경우도 -->
 					</select>
 				</div>
@@ -115,20 +122,20 @@
 					</label>
 					<input class="form-control mb-2" name="price" required>
 					<div class="invalid-feedback">
-						<@input "account.category.create.error.name"/>
+						<@input "error.price.input"/>
 					</div>
 				</div>
 				<#-- 세금 설정 -->
 				<div class="tax-holder">
 					<#-- 세금포함/미포함 라디오박스 -->
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" id="tax-non-added" name="taxRadio" checked>
+						<input class="form-check-input" type="radio" id="tax-non-added" name="taxIncluded" value="false" checked>
 						<label class="form-check-label form-label" for="tax-non-added">
 							<@input "account.tax.nonAdded"/>
 						</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" id="tax-added" name="taxRadio">
+						<input class="form-check-input" type="radio" id="tax-added" name="taxIncluded" value="true">
 						<label class="form-check-label form-label" for="tax-added">
 							<@input "account.tax.added"/>
 					  	</label>
@@ -150,9 +157,6 @@
 						<@input "account.price.memo"/>
 					</label>
 					<input class="form-control mb-2" name="memo">
-					<div class="invalid-feedback">
-						<@input "account.category.create.error.name"/>
-					</div>
 				</div>
 			</div>
 			<div class="d-grid gap-2 p-3">

@@ -24,7 +24,7 @@ import yk.web.myyk.util.exception.SystemException;
 @Controller
 @CategorySetter(Category.ACCOUNT)
 @AccessCheck(permitted = MemberType.MEMBER)
-@RequestMapping("/account")
+@RequestMapping("/account/book")
 public class AccountBookController extends BaseController {
 
 	/**
@@ -76,7 +76,7 @@ public class AccountBookController extends BaseController {
 	@RequestMapping(path = "/create", method =  RequestMethod.POST)
 	public String createConfirm(AccountBookDTO dto, HttpSession session) throws SystemException {
 		getService().getAccountBook().createBook(dto);
-		return "redirect:/account/dashboard";
+		return "redirect:/account/book/dashboard";
 	}
 
 }
