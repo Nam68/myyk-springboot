@@ -57,6 +57,9 @@ public class CategoryEntity extends BaseEntity {
 	@JoinColumn(name = "ACCOUNT_BOOK_IDX")	
 	private AccountBookEntity accountBook;
 	
+	@OneToMany(mappedBy = "category")
+	private List<AccountEntity> accountList = new ArrayList<>();
+	
 	@Deprecated
 	public CategoryEntity() {
 		// 하이버네이트용
@@ -76,6 +79,11 @@ public class CategoryEntity extends BaseEntity {
 		this.jpCategoryName = BASIC_CATEGORY_NAME;
 	}
 	
+	/**
+	 * <p>인덱스만 사용해서 카테고리를 생성한다.</p>
+	 * 
+	 * @param categoryIdx 카테고리IDX
+	 */
 	public CategoryEntity(long categoryIdx) {
 		this.categoryIdx = categoryIdx;
 	}
@@ -214,5 +222,14 @@ public class CategoryEntity extends BaseEntity {
 			throw new SystemException(ErrorCode.CG_103, CategoryEntity.class);
 		}
 		return parentCategoryOption;
+	}
+	
+	/**
+	 * <p>회계 리시트를 반환한다.</p>
+	 * 
+	 * @return 회계 리스트
+	 */
+	public List<AccountEntity> getAccountList() {
+		return accountList;
 	}
 }
