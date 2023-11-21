@@ -6,7 +6,8 @@ package yk.web.myyk.util.errorCode;
 public enum ErrorCode {
 	
 	/*
-	 * AC : 가계부
+	 * AB : 가계부
+	 * AC : 회계
 	 * CF : 설정
 	 * CG : 카테고리
 	 * CK : 쿠키
@@ -19,7 +20,12 @@ public enum ErrorCode {
 	/**
 	 * <p>가계부 엔티티를 찾을 수 없을 때의 에러.</p>
 	 */
-	AC_101("account book entity does not exist."),
+	AB_101("account book entity does not exist."),
+	
+	/**
+	 * <p>회계 엔티티 생성에 실패했을 때의 에러.</p>
+	 */
+	AC_101("account can not be created."),
 	
 	/**
 	 * <p>로케일이 존재하지 않을 때의 에러.</p>

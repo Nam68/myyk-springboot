@@ -15,6 +15,8 @@ public class BaseController extends BaseMvc {
 	
 	protected static final String IDX = "idx";
 	
+	protected static final String HOLDER = "holder";
+	
 	@Autowired
 	private ServiceFactory serviceFactory;
 	

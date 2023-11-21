@@ -28,7 +28,7 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		
 		Optional<AccountBookEntity> account = getRepository().getAccountBook().findById(accountBookIdx);
 		if (!account.isPresent()) {
-			throw new SystemException(ErrorCode.AC_101, CategoryLogic.class);
+			throw new SystemException(ErrorCode.AB_101, CategoryLogic.class);
 		}
 		
 		List<CategoryEntity> entityList = account.get().getCategoryList();
@@ -61,7 +61,7 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 		// DTO를 통해 카테고리가 입력될 가계부를 가져온다.
 		Optional<AccountBookEntity> accountBook = getRepository().getAccountBook().findById(dto.getAccountBookIdx());
 		if (!accountBook.isPresent()) {
-			throw new SystemException(ErrorCode.AC_101, CategoryLogic.class);
+			throw new SystemException(ErrorCode.AB_101, CategoryLogic.class);
 		}
 		
 		// 카테고리 엔티티를 생성한다.

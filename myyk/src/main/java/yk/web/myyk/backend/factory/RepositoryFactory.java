@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import yk.web.myyk.backend.entity.member.TmpCodeEntity;
 import yk.web.myyk.backend.repository.AccountBookAuthRepository;
 import yk.web.myyk.backend.repository.AccountBookRepository;
+import yk.web.myyk.backend.repository.AccountRepository;
 import yk.web.myyk.backend.repository.AutoLoginRepository;
 import yk.web.myyk.backend.repository.CategoryRepository;
 import yk.web.myyk.backend.repository.MemberRepository;
@@ -31,6 +32,9 @@ public class RepositoryFactory extends BaseApp {
 	
 	@Autowired
 	private AutoLoginRepository autoLoginRepository;
+	
+	@Autowired
+	private AccountRepository accountRepository;
 	
 	@Autowired
 	private AccountBookRepository accountBookRepository;
@@ -70,6 +74,10 @@ public class RepositoryFactory extends BaseApp {
 	
 	public AutoLoginRepository getAutoLogin() {
 		return autoLoginRepository;
+	}
+	
+	public AccountRepository getAccount() {
+		return accountRepository;
 	}
 	
 	public AccountBookRepository getAccountBook() {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import yk.web.myyk.backend.api.BaseApi;
 import yk.web.myyk.backend.dto.AccountDTO;
 import yk.web.myyk.util.enumerated.Error;
+import yk.web.myyk.util.exception.ApiException;
 import yk.web.myyk.util.exception.SystemException;
 
 @RestController
@@ -21,9 +22,13 @@ public class AccountApi extends BaseApi {
 	 * @throws SystemException 시스템에러
 	 */
 	@RequestMapping("/create")
-	public String createAccount(AccountDTO dto) throws SystemException {
-		Error result = getService().getAccount().createAccount(dto);
-		return result.getValue();
+	public String createAccount(AccountDTO dto) throws ApiException {
+		try {
+			getService().getAccount().createAccount(dto);
+		} catch (SystemException e) {
+			throw new ApiException(e.getMessage());
+		}
+		return Error.SUCCESS.getValue();
 	}
 	
 }

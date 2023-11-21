@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.AccountBookDTO;
+import yk.web.myyk.backend.dto.AccountDTO;
 import yk.web.myyk.backend.dto.LoginInfo;
 import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.util.annotation.AccessCheck;
@@ -46,6 +47,9 @@ public class AccountBookController extends BaseController {
 		// 대시보드 가계부
 		AccountBookDTO dto = getService().getAccountBook().getAccountBook(accountBookIdx);
 		request.setAttribute(DTO, dto);
+		
+		// 회계목록
+		List<AccountDTO> accountList = getService().getAccount().
 
 		return "account/dashboard";
 	}

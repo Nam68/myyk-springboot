@@ -13,6 +13,8 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 	
 	private List<SubCategoryDTO> subCategory = new ArrayList<>();
 	
+	private List<AccountDTO> accountList = new ArrayList<>();
+	
 	@Deprecated
 	public PrimeCategoryDTO() {
 		// 프레임워크용

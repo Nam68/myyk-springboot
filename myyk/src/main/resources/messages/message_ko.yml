@@ -93,6 +93,8 @@ account:
     jp: 
       currency: "일본 엔（¥）"
       unit: 엔
+  error:
+    create: "입출금 등록에 실패했습니다.\\r\\n잠시 후 다시 시도해주세요."
   dashboard:
     title: "가계부"
   left:

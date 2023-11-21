@@ -1,5 +1,8 @@
 package yk.web.myyk.backend.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import yk.web.myyk.backend.entity.account.CategoryEntity;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
@@ -7,6 +10,8 @@ import yk.web.myyk.util.exception.SystemException;
 public class SubCategoryDTO extends CategoryDTO<SubCategoryDTO> {
 	
 	private long parentCategoryIdx;
+	
+	private List<AccountDTO> accountList = new ArrayList<>();
 	
 	@Deprecated
 	public SubCategoryDTO() {

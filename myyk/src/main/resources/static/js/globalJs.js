@@ -37,9 +37,9 @@ function appendOption(target, value, name) {
 function displayToggle(target) {
 	var display = target.css('display');
 	if (display == 'none') {
-		target.css('display', 'block');
+		target.slideDown();
 	} else if (display == 'block') {
-		target.css('display', 'none');
+		target.slideUp();
 	}
 }
 

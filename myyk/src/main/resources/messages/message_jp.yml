@@ -93,6 +93,8 @@ account:
     jp: 
       currency: "日本円（¥）"
       unit: 円
+  error:
+    create: "入出登録に失敗しました\\r\\nしばらくしてから再度登録したください" 
   dashboard:
     title: "家計簿"
   left:

@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import yk.web.myyk.backend.api.BaseApi;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
+import yk.web.myyk.util.exception.ApiException;
 import yk.web.myyk.util.exception.SystemException;
 
 @RestController
@@ -24,7 +25,7 @@ public class CategoryApi extends BaseApi {
 	 * @throws SystemException 시스템에러
 	 */
 	@RequestMapping("/createSubCategory")
-	public String createSubCategory(SubCategoryDTO dto) throws SystemException {
+	public String createSubCategory(SubCategoryDTO dto) throws ApiException {
 		return getService().getCategory().create(dto).getValue();
 	}
 	
@@ -36,7 +37,7 @@ public class CategoryApi extends BaseApi {
 	 * @throws SystemException 시스템에러
 	 */
 	@RequestMapping("/getSubCategoryList")
-	public String getSubCategoryList(long categoryIdx) throws SystemException {
+	public String getSubCategoryList(long categoryIdx) throws ApiException {
 		List<SubCategoryDTO> list = getService().getCategory().getSubCategory(categoryIdx);
 		return new Gson().toJson(list);
 	}

@@ -44,7 +44,6 @@ async function setSubCategory(categoryIdx) {
 
 		resetSubCategory();
 		
-		
 		if ($.isArray(categories)) {
 			categories.forEach(category => appendSubCategory(category));
 		}
@@ -139,6 +138,12 @@ async function addAccount(jsonData) {
 	
 	try {
 		let data = await addAccountAjax(jsonData);
+		
+		if (isValid(data)) {
+			$('#add-account-modal').hide();
+		} else {
+			alert(createAccountError);
+		}
 		
 	} catch (error) {
 		alert(ajaxErrorMsg);
