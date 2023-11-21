@@ -11,35 +11,34 @@ import yk.web.myyk.util.enumerated.Error;
 @ControllerAdvice
 public class GeneralExceptionHandler {
 
-	@ExceptionHandler({SystemException.class, Exception.class, RuntimeException.class})
-	public ModelAndView systemExceptionHandler(Exception e) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("global/globalError");
-		mav.addObject("errorMessage", e.getMessage());
-		mav.addObject(KeyName.CATEGORY, Category.HOME);
-		
-		e.printStackTrace();
-		
-		return mav;
-	}
-	
-	@ExceptionHandler({PermissionException.class})
-	public ModelAndView permissionExceptionHandler(PermissionException e) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("global/permissionError");
-		mav.addObject("status", e.getPermissionStatus());
-		mav.addObject("memberType", e.getMemberType());
-		mav.addObject(KeyName.CATEGORY, Category.HOME);
-		
-		e.printStackTrace();
-		
-		return mav;
-	}
-	
-	@ExceptionHandler({ApiException.class})
-	public String apiExceptionHandler(PermissionException e) {
-		e.printStackTrace();
-		return Error.ERROR.getValue();
-	}
-	
+    @ExceptionHandler({SystemException.class, Exception.class, RuntimeException.class})
+    public ModelAndView systemExceptionHandler(Exception e) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("global/globalError");
+        mav.addObject("errorMessage", e.getMessage());
+        mav.addObject(KeyName.CATEGORY, Category.HOME);
+
+        e.printStackTrace();
+
+        return mav;
+    }
+
+    @ExceptionHandler({PermissionException.class})
+    public ModelAndView permissionExceptionHandler(PermissionException e) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("global/permissionError");
+        mav.addObject("status", e.getPermissionStatus());
+        mav.addObject("memberType", e.getMemberType());
+        mav.addObject(KeyName.CATEGORY, Category.HOME);
+
+        e.printStackTrace();
+
+        return mav;
+    }
+
+    @ExceptionHandler({ApiException.class})
+    public String apiExceptionHandler(PermissionException e) {
+        e.printStackTrace();
+        return Error.ERROR.getValue();
+    }
 }

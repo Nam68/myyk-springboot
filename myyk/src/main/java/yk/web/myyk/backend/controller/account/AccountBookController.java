@@ -49,7 +49,7 @@ public class AccountBookController extends BaseController {
 		request.setAttribute(DTO, dto);
 		
 		// 회계목록
-		List<AccountDTO> accountList = getService().getAccount().
+//		List<AccountDTO> accountList = getService().getAccount().
 
 		return "account/dashboard";
 	}

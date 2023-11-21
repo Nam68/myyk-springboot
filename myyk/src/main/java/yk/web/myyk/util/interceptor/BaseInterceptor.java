@@ -11,58 +11,44 @@ import yk.web.myyk.util.BaseApp;
 
 public class BaseInterceptor extends BaseApp {
 
-	private static final String LANGUAGE_SETTING = "/language/setting";
-	
-	protected static final int BOTH_ANNOTATION = 0;
-	protected static final int TYPE_ANNOTATION = 1;
-	protected static final int METHOD_ANNOTATION = 2;
-	
-	/**
-	 * <p>리퀘스트를 통해 세션값을 가져온다.</p>
-	 * 
-	 * @param request 리퀘스트
-	 * @param key 세션키
-	 * @return 세션값
-	 */
-	@SuppressWarnings("unchecked")
-	protected <T> T getSessionAttribute(HttpServletRequest request, String key, Class<T> clazz) {
-		return (T) request.getSession().getAttribute(key);
-	}
-	
-	/**
-	 * <p>리퀘스트를 통해 세션에 값을 세팅한다.</p>
-	 * 
-	 * @param request 리퀘스트
-	 * @param key 세션키
-	 * @param value 세션값
-	 */
-	protected void setSessionAttribute(HttpServletRequest request, String key, Object value) {
-		request.getSession().setAttribute(key, value);
-	}
+    private static final String LANGUAGE_SETTING = "/language/setting";
 
-	/**
-	 * <p>언어 설정의 URL.</p>
-	 * <p>컨테이너 변경 등의 이유로 유지보수가 어려울 수 있으므로 극도로 사용을 제한할 것.</p>
-	 * <p>사용하는 경우는 가급적 이 주석에 위치를 기재할 것.</p>
-	 * <ul>
-	 * <li>LanguageInterceptor</li>
-	 * </ul>
-	 * 
-	 * @return 언어설정 컨테이너의 URL
-	 */
-	protected String getLanguageSetting() {
-		return LANGUAGE_SETTING;
-	}
-	
-	/**
-	 * <p>해당 리퀘스트의 URI가 리소스에 대한 것인지 판단한다.</p>
-	 * 
-	 * @param request 리퀘스트
-	 * @return 리소스 URI(이미지 등)이면 true
-	 */
-	protected boolean isResource(HttpServletRequest request) {
-		return request.getRequestURI().toString().contains(".");
-	}
+    protected static final int BOTH_ANNOTATION = 0;
+    protected static final int TYPE_ANNOTATION = 1;
+    protected static final int METHOD_ANNOTATION = 2;
+
+    /**
+     * <p>리퀘스트를 통해 세션값을 가져온다.</p>
+     * 
+     * @param request 리퀘스트
+     * @param key 세션키
+     * @return 세션값
+     */
+    @SuppressWarnings("unchecked")
+    protected <T> T getSessionAttribute(HttpServletRequest request, String key, Class<T> clazz) {
+        return (T) request.getSession().getAttribute(key);
+    }
+    
+    /**
+     * <p>리퀘스트를 통해 세션에 값을 세팅한다.</p>
+     * 
+     * @param request 리퀘스트
+     * @param key 세션키
+     * @param value 세션값
+     */
+    protected void setSessionAttribute(HttpServletRequest request, String key, Object value) {
+        request.getSession().setAttribute(key, value);
+    }
+    
+    /**
+     * <p>해당 리퀘스트의 URI가 리소스에 대한 것인지 판단한다.</p>
+     * 
+     * @param request 리퀘스트
+     * @return 리소스 URI(이미지 등)이면 true
+     */
+    protected boolean isResource(HttpServletRequest request) {
+        return request.getRequestURI().toString().contains(".");
+    }
 	
 	/**
 	 * <p>인터셉터에 필요한 리포지토리가 있는지 확인한다.</p>

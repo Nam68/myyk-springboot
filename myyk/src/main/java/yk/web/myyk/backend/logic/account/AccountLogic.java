@@ -36,7 +36,7 @@ public class AccountLogic extends BaseLogic implements AccountService {
 	public List<AccountDTO> search(AccountBookDTO accountBookDto) throws SystemException {
 		List<AccountDTO> list = new ArrayList<>();
 		for (PrimeCategoryDTO primeCategory : accountBookDto.getCategoryList()) {
-			if (primeCategory.)
+//			if (primeCategory.)
 		}
 		return null;
 	}

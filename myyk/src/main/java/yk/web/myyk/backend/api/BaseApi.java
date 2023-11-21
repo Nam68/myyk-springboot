@@ -7,11 +7,16 @@ import yk.web.myyk.util.BaseApp;
 
 public class BaseApi extends BaseApp {
 
-	@Autowired
-	private ServiceFactory serviceFactory;
-	
-	protected ServiceFactory getService() {
-		return serviceFactory;
-	}
-	
+    @Autowired
+    private ServiceFactory serviceFactory;
+
+    /**
+     * <p>서비스팩토리를 가져온다.</p>
+     *
+     * @return 서비스팩토리
+     */
+    protected ServiceFactory getService() {
+        return serviceFactory;
+    }
+
 }

@@ -2,7 +2,7 @@ package yk.web.myyk.util.exception;
 
 import yk.web.myyk.util.errorCode.ErrorCode;
 
-public class ApiException extends RuntimeException {
+public class ApiException extends SystemException {
 
 	private static final long serialVersionUID = -6581959397284243711L;
 

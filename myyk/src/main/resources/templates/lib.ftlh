@@ -12,16 +12,16 @@
 <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2/dist/spectrum.min.css"/>
 <#-- custom --> 
-<link href="/css/global/globalCss.css" rel="stylesheet">
-<link href="/css/global/headerFooterCss.css" rel="stylesheet">
-<script src="/js/globalJs.js"></script> 
+
 <#include "macro.ftlh">
 <#-- 다국어설정 -->
 <#import "/spring.ftl" as spring/>
 
 <#-- javascript constants -->
 <script>
+<#--
 const selectedLanguage = '${selected_language}';
 const unselectedLanguage = '${unselected_language}';
 const ajaxErrorMsg = '<@input "alert.error.ajax"/>';
+-->
 </script>

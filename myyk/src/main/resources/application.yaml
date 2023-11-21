@@ -29,7 +29,7 @@ value:
     defaultTime: 2592000 #한달
     oneDay: 86400 #하루
   tmpCode:
-    limit: 
+    limit:
       minutes: 20 #분 단위
       times: 5 #반복해서 보낸 횟수
   member:

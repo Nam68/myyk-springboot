@@ -7,22 +7,26 @@ import yk.web.myyk.backend.factory.ServiceFactory;
 
 public class BaseController extends BaseMvc {
 	
-	protected static final String ERRORS = "errors";
+//	protected static final String ERRORS = "errors";
 	
-	protected static final String DTO = "dto";
+//	protected static final String DTO = "dto";
 	
-	protected static final String LIST = "list";
+//	protected static final String LIST = "list";
 	
-	protected static final String IDX = "idx";
+//	protected static final String IDX = "idx";
 	
-	protected static final String HOLDER = "holder";
-	
-	@Autowired
-	private ServiceFactory serviceFactory;
-	
-	protected ServiceFactory getService() {
-		return serviceFactory;
-	}
+    protected static final String HOLDER = "holder";
 
+    @Autowired
+    private ServiceFactory serviceFactory;
+
+    /**
+     * <p>서비스팩토리를 가져온다.</p>
+     *
+     * @return 서비스팩토리
+     */
+    protected ServiceFactory getService() {
+        return serviceFactory;
+    }
 
 }
