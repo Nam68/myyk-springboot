@@ -5,7 +5,6 @@
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex pe-4">
-      <li class="ms-3"><a href="javascript:void(0)" onclick="clickFooterIcon('twitter')"><i class="bi bi-twitter"></i></a></li>
       <li class="ms-3"><a href="javascript:void(0)" onclick="clickFooterIcon('instagram')"><i class="bi bi-instagram"></i></a></li>
       <li class="ms-3"><a href="javascript:void(0)" onclick="clickFooterIcon('facebook')"><i class="bi bi-facebook"></i></a></li>
       <li class="ms-3"><a href="javascript:void(0)" onclick="clickFooterIcon('steam')"><i class="bi bi-steam"></i></a></li>
