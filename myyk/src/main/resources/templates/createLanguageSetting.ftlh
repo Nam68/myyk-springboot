@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <#include "/lib.ftlh"> 
+<link rel="stylesheet" href="/css/languageSetting.css"/>
 <title><@input "global.title"/></title>
 </head>
 <body>
+  <div>
     <div class="flag-button shadow rounded" role="button">
         <div class="flag-button-hover rounded"></div>
         <div class="korea-flag-div"></div>
@@ -18,17 +20,14 @@
         <img class="japan-flag img-fluid rounded" src="/img/japanFlag.jpg"/>
         <div class="japan-letter align-middle"><i>日本語</i></div>
     </div>
-</div>
+  </div>
 </body>
 <script type="text/javascript">
-    $(window).on('load', function() {
-        centerAlignDiv();
-    });
     $('.flag-button:eq(0)').on('click', function() {
-        location.href = '/global/homepage?lang=ko';
+        location.href = '/homepage?lang=ko';
     });
     $('.flag-button:eq(1)').on('click', function() {
-        location.href = '/global/homepage?lang=jp';
+        location.href = '/homepage?lang=jp';
     });
 </script>
 </html>

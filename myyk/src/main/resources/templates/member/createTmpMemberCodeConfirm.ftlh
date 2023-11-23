@@ -7,11 +7,16 @@
 </head>
 <#include "/header.ftlh">
 <body>
-  <div id="content">
-    <div id="wrapper">
-      hello world
+  <div class="content">
+    <div class="wrapper">
+      check
     </div>
   </div>
 </body>
+<#-- 
 <#include "/footer.ftlh">
+-->
+<script type="text/javascript">
+
+</script>
 </html>

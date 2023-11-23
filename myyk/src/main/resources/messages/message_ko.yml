@@ -1,2 +1,36 @@
 global:
   title: "MYYK"
+  confirm: "확인"
+  back: "돌아가기"
+
+member:
+  name: "회원"
+  email:
+    name: "이메일"
+    check: "이메일 확인"
+    send: "메일 발송"
+  password:
+    name: "비밀번호"
+    check: "비밀번호 확인"
+  nickname:
+    name: "닉네임"
+  region:
+    name: "지역"
+
+signup:
+  name: "회원가입"
+
+login:
+  name: "로그인"
+
+album:
+  name: "앨범"
+
+plan:
+  name: "계획표"
+
+account:
+  name: "가계부"
+
+board:
+  name: "게시판"

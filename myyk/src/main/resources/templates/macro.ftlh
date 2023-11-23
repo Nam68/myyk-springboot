@@ -9,6 +9,6 @@
 </#macro>
 
 <#-- 다국어 입력 -->
-<#macro input path>
+<#macro msg path>
 	<@spring.message path/>
 </#macro>

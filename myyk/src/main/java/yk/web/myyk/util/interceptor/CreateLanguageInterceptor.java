@@ -10,9 +10,9 @@ import yk.web.myyk.util.constant.KeyName;
 import yk.web.myyk.util.constant.MyLocale;
 import yk.web.myyk.util.cookie.CookieUtil;
 
-public class CreateLanguageInterceptor extends BaseInterceptor implements HandlerInterceptor {
+public class CreateLanguageInterceptor extends BaseInterceptor {
 
-    private static final String LANGUAGE_SETTING = "/language/setting";
+    private static final String LANGUAGE_SETTING = "/languageSetting/create";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

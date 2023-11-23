@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+body {
+    padding: 0;
+    top: 0vh;
+    width: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+}
+.center-align-div {
+    width: 60%;
+}
+.flag-button {
+    position: relative;
+    height: 8rem;
+    margin-bottom: 3rem;
+}
+.flag-button-hover {
+    position: absolute;
+    top: 0;
+    width:100%; 
+    height:100%;
+    z-index: 11;
+    transition: 0.3s;
+}
+.flag-button-hover:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+.flag-button > img {
+    width:40%; 
+    height:100%;
+    z-index: 5;
+}
+.korea-flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.japan-flag {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.korea-flag-div {
+    position: absolute;
+    top: 0;
+    width:40%; 
+    height:100%;
+    z-index: 6;
+    left: 0;
+    background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0) 10%,
+            rgba(255, 255, 255, 0.25) 25%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.75) 75%,
+            rgba(255, 255, 255, 1) 100%
+          );
+}
+.japan-flag-div {
+    position: absolute;
+    top: 0;
+    width:40%; 
+    height:100%;
+    z-index: 6;
+    right: 0;
+    background: linear-gradient(
+            to left,
+            rgba(255, 255, 255, 0) 10%,
+            rgba(255, 255, 255, 0.25) 25%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.75) 75%,
+            rgba(255, 255, 255, 1) 100%
+          );
+}
+.korea-letter {
+    z-index: 10;
+    position: absolute;
+    top: 2rem;
+    width: 100%;
+    font-size: 2.5rem;
+    text-align: center;
+}
+.japan-letter {
+    z-index: 10;
+    position: absolute;
+    top: 2rem;
+    width: 100%;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+@media (pointer:coarse) {
+    .center-align-div {
+        width: 90%;
+    }
+}
