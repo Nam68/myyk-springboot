@@ -110,7 +110,28 @@ public enum ErrorCode {
     /**
      * <p>필수 데이터가 세팅되지 않았을 경우의 에러.</p>
      */
-    IC_102("data is not set.")
+    IC_102("data is not set."),
+
+    /*
+     * 엔티티 에러
+     * 
+     * ME : 회원
+     */
+
+    /**
+     * <p>이메일 로컬파트가 빈 값인 경우.</p>
+     */
+    EE_ME_101("local part of email can not empty."),
+
+    /**
+     * <p>이메일 도메인이 빈 값인 경우.</p>
+     */
+    EE_ME_102("email domain can not empty"),
+
+    /**
+     * <p>이메일 도메인이 올바른 형식이 아닌 경우.</p>
+     */
+    EE_ME_103("email domain is wrong."),
 
     ;
     private String codeExplain;

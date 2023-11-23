@@ -1,7 +1,5 @@
 package yk.web.myyk.util.interceptor;
 
-import java.util.List;
-
 import org.springframework.web.method.HandlerMethod;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +19,10 @@ public class DataCheckInterceptor extends BaseInterceptor {
             throws Exception {
 
         HandlerMethod hm = getHandlerMethod(handler);
+        if (hm == null) {
+            return true;
+        }
+
         DataCheck anno = getAnnotation(DataCheck.class, hm);
         if (anno == null) {
             return true;

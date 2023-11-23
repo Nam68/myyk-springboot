@@ -13,9 +13,7 @@
     </div>
   </div>
 </body>
-<#-- 
 <#include "/footer.ftlh">
--->
 <script type="text/javascript">
 
 </script>

@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class MyykApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MyykApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MyykApplication.class, args);
+    }
 
 }

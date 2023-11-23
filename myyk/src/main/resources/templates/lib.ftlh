@@ -15,12 +15,14 @@
 <link rel="stylesheet" href="/css/global.css"/>
 <#-- custom javascript -->
 <script src="/js/headerFooter.js"></script>
+<script src="/js/global.js"></script>
 <#include "macro.ftlh">
 <#-- 다국어설정 -->
 <#import "/spring.ftl" as spring/>
 
 <#-- javascript constants -->
 <script>
+const globalError = '<@msg "global.error"/>';
 <#--
 const selectedLanguage = '${selected_language}';
 const unselectedLanguage = '${unselected_language}';

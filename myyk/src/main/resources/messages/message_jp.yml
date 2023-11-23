@@ -2,6 +2,15 @@ global:
   title: "MYYK"
   confirm: "確認"
   back: "戻る"
+  error: "システムエラーが発生しました。\\r\\n管理者にお問い合わせください。"
+  toHome: "ホームへ"
+
+error:
+  system:
+    name: "システムエラー"
+    title: "システムエラーが発生しました"
+    message: "エラー内容"
+    script: "繰り返してエラーが発生する場合、エラー内容を添付して管理者にお問い合わせください。"
 
 member:
   name: "会員"
@@ -9,6 +18,9 @@ member:
     name: "メール"
     check: "メール確認"
     send: "メール送信"
+    error:
+      empty: "メールを入力してください"
+      form: "正しいメール形式を入力してください"
   password:
     name: "パスワード"
     check: "パスワード確認"

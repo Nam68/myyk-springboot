@@ -27,3 +27,16 @@ function centerAlignDiv(target) {
     target.css('left', newWidth);
     target.css('top', newHeight);
 }
+
+/**
+ * 서브밋 제어
+ */
+
+function mySubmit() {
+    const form = $('form');
+    if (form.length > 1 || form.length <= 0) {
+        alert(globalError);
+        return false;
+    }
+    form.submit();
+}

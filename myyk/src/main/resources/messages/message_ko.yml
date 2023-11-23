@@ -2,6 +2,15 @@ global:
   title: "MYYK"
   confirm: "확인"
   back: "돌아가기"
+  error: "시스템 에러가 발생했습니다\\r\\n관리자에게 문의해주십시오"
+  toHome: "홈으로"
+
+error:
+  system:
+    name: "시스템 에러"
+    title: "시스템 에러가 발생했습니다"
+    message: "에러 내용"
+    script: "에러가 반복될 경우 출력된 에러 내용을 첨부하여 관리자에게 문의해주십시오"
 
 member:
   name: "회원"
@@ -9,6 +18,9 @@ member:
     name: "이메일"
     check: "이메일 확인"
     send: "메일 발송"
+    error:
+      empty: "메일을 입력해주세요"
+      form: "올바른 메일 형식을 입력해주세요"
   password:
     name: "비밀번호"
     check: "비밀번호 확인"

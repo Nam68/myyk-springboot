@@ -11,6 +11,7 @@ import yk.web.myyk.util.interceptor.AutoLoginInterceptor;
 import yk.web.myyk.util.interceptor.BaseInterceptor;
 import yk.web.myyk.util.interceptor.CategoryInterceptor;
 import yk.web.myyk.util.interceptor.CreateLanguageInterceptor;
+import yk.web.myyk.util.interceptor.DataCheckInterceptor;
 import yk.web.myyk.util.interceptor.RegionInterceptor;
 import yk.web.myyk.util.interceptor.TaxRateInterceptor;
 
@@ -21,6 +22,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         addInterceptor(registry, createLanguageInterceptor());
+        addInterceptor(registry, dataCheckInterceptor());
 
 //        addInterceptor(registry, categoryInterceptor());
 
@@ -49,6 +51,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
     public CreateLanguageInterceptor createLanguageInterceptor() {
         return new CreateLanguageInterceptor();
+    }
+
+    @Bean
+    public DataCheckInterceptor dataCheckInterceptor() {
+        return new DataCheckInterceptor();
     }
 
     @Bean
