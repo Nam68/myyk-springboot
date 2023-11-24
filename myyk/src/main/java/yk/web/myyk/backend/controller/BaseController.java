@@ -51,8 +51,28 @@ public class BaseController extends BaseMvc {
         }
     }
 
+    /**
+     * <p>폼을 세션에 저장한다.</p>
+     * 
+     * @param <T> {@link BaseForm}
+     * @param session 세션
+     * @param form 폼
+     */
     protected <T extends BaseForm> void setForm(HttpSession session, T form) {
         session.setAttribute(form.getClass().getSimpleName(), form);
+    }
+
+    /**
+     * <p>세션에서 폼을 가져온다.</p>
+     * 
+     * @param <T> {@link BaseForm}
+     * @param session 세션
+     * @param form 폼 클래스
+     * @return 폼
+     */
+    @SuppressWarnings("unchecked")
+    protected <T extends BaseForm> T getForm(HttpSession session, Class<T> form) {
+        return (T) session.getAttribute(form.getSimpleName());
     }
 
 }

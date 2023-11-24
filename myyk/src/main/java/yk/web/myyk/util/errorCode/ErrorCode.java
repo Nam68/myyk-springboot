@@ -15,6 +15,7 @@ public enum ErrorCode {
      * EN : 이넘
      * ET : 엔티티
      * IC : 인터셉터
+     * MA : 메일
      */
 
     /**
@@ -111,6 +112,21 @@ public enum ErrorCode {
      * <p>필수 데이터가 세팅되지 않았을 경우의 에러.</p>
      */
     IC_102("data is not set."),
+
+    /**
+     * <p>메일 전송 시의 에러.</p>
+     */
+    ME_101("failed to send mail."),
+
+    /**
+     * <p>프리마커 템플레이트 생성 실패.</p>
+     */
+    ME_102("failed to get freemarker template."),
+
+    /**
+     * <p>프리마커 템플레이트 랜더링 실패.</p>
+     */
+    ME_103("failed to render freemarker."),
 
     /*
      * 엔티티 에러

@@ -108,7 +108,7 @@ public class Constant {
         return staticTmpCodeLimitMinutes;
     }
 
-    public static int getTmpCodeLImitTimes() {
+    public static int getTmpCodeLimitTimes() {
         return staticTmpCodeLimitTimes;
     }
 

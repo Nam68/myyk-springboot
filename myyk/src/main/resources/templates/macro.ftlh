@@ -8,8 +8,26 @@
     <#if selected_language == 'ko'>${ko}<#else>${jp}</#if>
 </#macro>
 
-<#macro error error code>
-    <#if error[code]?has_content> is-invalid</#if>
+<#-- 에러 체크 -->
+<#macro error codes>
+    <#if errors?has_content>
+        <#list codes as code>
+            <#if errors[code]?has_content> is-invalid<#break></#if>
+        </#list>
+    </#if>
+</#macro>
+
+<#--에러 메시지 -->
+<#macro errorMsg codes msg>
+    <#if errors?has_content>
+        <#assign hasError = false>
+        <#list codes as code>
+            <#if errors[code]?has_content><#assign hasError = true><#break></#if>
+        </#list>
+        <#if hasError == true>
+            <div class="invalid-feedback"><@msg msg/></div>
+        </#if>
+    </#if>
 </#macro>
 
 <#-- 다국어 입력 -->

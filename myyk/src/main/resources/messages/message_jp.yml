@@ -17,6 +17,7 @@ member:
   email:
     name: "メール"
     check: "メール確認"
+    checkConfirm: "上記のメールに認証コードを送信します。20分以内に認証を完了してください。"
     send: "メール送信"
     error:
       empty: "メールを入力してください"

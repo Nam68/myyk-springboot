@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-import yk.web.myyk.config.KeyName;
 import yk.web.myyk.util.enumerated.Category;
 import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.exception.ApiException;
@@ -19,7 +18,6 @@ public class GeneralExceptionHandler {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("error/systemError");
         mav.addObject("errorMessage", e.getMessage());
-        mav.addObject(KeyName.CATEGORY, Category.HOME);
 
         e.printStackTrace();
 
@@ -32,7 +30,6 @@ public class GeneralExceptionHandler {
         mav.setViewName("global/permissionError");
         mav.addObject("status", e.getPermissionStatus());
         mav.addObject("memberType", e.getMemberType());
-        mav.addObject(KeyName.CATEGORY, Category.HOME);
 
         e.printStackTrace();
 

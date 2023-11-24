@@ -12,29 +12,29 @@ import yk.web.myyk.backend.entity.BaseEntityWithTime;
 @Table(name = "TMP_CODE_TBL")
 public class TmpCodeEntity extends BaseEntityWithTime {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "TMP_CODE_IDX")
-	private Long tmpCodeIdx;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "TMP_CODE_IDX")
+    private Long tmpCodeIdx;
 
-	@Column(name = "TMP_CODE")
-	private String tmpCode;
+    @Column(name = "TMP_CODE")
+    private String tmpCode;
 
-	@Column(name = "EMAIL")
-	private String email;
-	
-	@Deprecated
-	public TmpCodeEntity() {
-		// nop
-	}
-	
-	public TmpCodeEntity(String tmpCode, String email) {
-		this.tmpCode = hashing(tmpCode);
-		this.email = encrypt(email);
-	}
-	
-	public String getEmail() {
-		return decrypt(email);
-	}
-	
+    @Column(name = "EMAIL")
+    private String email;
+    
+    @Deprecated
+    public TmpCodeEntity() {
+        // nop
+    }
+
+    public TmpCodeEntity(String tmpCode, String email) {
+        this.tmpCode = hashing(tmpCode);
+        this.email = encrypt(email);
+    }
+
+    public String getEmail() {
+        return decrypt(email);
+    }
+
 }

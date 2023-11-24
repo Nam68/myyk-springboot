@@ -2,8 +2,8 @@ global:
   title: "MYYK"
   confirm: "확인"
   back: "돌아가기"
-  error: "시스템 에러가 발생했습니다\\r\\n관리자에게 문의해주십시오"
   toHome: "홈으로"
+  error: "시스템 에러가 발생했습니다\\r\\n관리자에게 문의해주십시오"
 
 error:
   system:
@@ -17,6 +17,7 @@ member:
   email:
     name: "이메일"
     check: "이메일 확인"
+    checkConfirm: "위의 이메일로 인증코드를 발송합니다. 20분 이내에 인증을 완료해주세요."
     send: "메일 발송"
     error:
       empty: "메일을 입력해주세요"
