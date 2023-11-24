@@ -1,6 +1,7 @@
 global:
   title: "MYYK"
   confirm: "確認"
+  next: "次へ"
   back: "戻る"
   error: "システムエラーが発生しました。\\r\\n管理者にお問い合わせください。"
   toHome: "ホームへ"
@@ -22,6 +23,11 @@ member:
     error:
       empty: "メールを入力してください"
       form: "正しいメール形式を入力してください"
+      dupl: "重複されているメールアドレスです"
+  code:
+    name: "認証コード"
+    check: "認証コード確認"
+    notReady: "メールサービスは点検中のため、認証コード確認は省略されます。<br>20分以内にアカウント登録を完了してください。"
   password:
     name: "パスワード"
     check: "パスワード確認"

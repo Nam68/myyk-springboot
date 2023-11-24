@@ -22,16 +22,13 @@ public class MemberChecker extends BaseChecker {
         Map<String, ErrorCode> errors = new HashMap<>();
 
         if (isEmpty(emailLocalpart)) {
-            ErrorCode error = ErrorCode.EE_ME_101;
-            errors.put(error.name(), error);
+            setError(errors, ErrorCode.EE_ME_101);
         }
         if (isEmpty(emailDomain)) {
-            ErrorCode error = ErrorCode.EE_ME_102;
-            errors.put(error.name(), error);
+            setError(errors, ErrorCode.EE_ME_102);
         }
         if (!emailDomain.contains(".")) {
-            ErrorCode error = ErrorCode.EE_ME_103;
-            errors.put(error.name(), error);
+            setError(errors, ErrorCode.EE_ME_103);
         }
         return errors;
     }

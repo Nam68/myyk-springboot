@@ -83,7 +83,7 @@ public class MailTemplate extends MailConfig {
             helper.setText(message.getText(), true);
 
         } catch (MessagingException e) {
-            throw new SystemException(ErrorCode.ME_101, MailTemplate.class);
+            throw new SystemException(ErrorCode.MA_101, MailTemplate.class);
         }
         mailSender.send(mimeMessage);
         clear();

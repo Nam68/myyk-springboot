@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.member.EmailService;
+import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 import yk.web.myyk.util.mail.MailTemplateName;
 import yk.web.myyk.util.mail.holder.TmpCodeMailHolder;
@@ -15,7 +16,7 @@ import yk.web.myyk.util.errorCode.ErrorCode;
 public class EmailLogic extends BaseLogic implements EmailService {
 
     @Override
-    public void sendTmpMemberCode(EmailForm emailForm, String tmpCode) throws SystemException {
+    public void sendTmpMemberCode(EmailForm emailForm, String tmpCode) throws SystemException, AppException {
 
         String email = combineEmail(emailForm);
 

@@ -1,6 +1,7 @@
 package yk.web.myyk.backend.service.member;
 
 import yk.web.myyk.backend.dto.form.member.EmailForm;
+import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
 public interface EmailService {
@@ -12,7 +13,7 @@ public interface EmailService {
      * @param tmpCode 임시회원 코드
      * @throws SystemException 시스템에러
      */
-    public void sendTmpMemberCode(EmailForm emailForm, String tmpCode) throws SystemException;
+    public void sendTmpMemberCode(EmailForm emailForm, String tmpCode) throws SystemException, AppException;
 
 //	/**
 //	 * <p>임시코드가 포함된 이메일을 발송하며, 이메일과 임시코드를 임시회원으로 저장한다.</p>

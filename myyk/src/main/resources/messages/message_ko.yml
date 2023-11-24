@@ -1,6 +1,7 @@
 global:
   title: "MYYK"
   confirm: "확인"
+  next: "다음으로"
   back: "돌아가기"
   toHome: "홈으로"
   error: "시스템 에러가 발생했습니다\\r\\n관리자에게 문의해주십시오"
@@ -22,9 +23,15 @@ member:
     error:
       empty: "메일을 입력해주세요"
       form: "올바른 메일 형식을 입력해주세요"
+      dupl: "중복된 이메일입니다"
+  code:
+    name: "인증코드"
+    check: "인증코드 확인"
+    notReady: "메일 기능의 점검으로 인해, 인증코드 확인은 생략됩니다.<br>20분 이내에 회원가입을 완료해주세요."
   password:
     name: "비밀번호"
     check: "비밀번호 확인"
+    tmp: ""
   nickname:
     name: "닉네임"
   region:

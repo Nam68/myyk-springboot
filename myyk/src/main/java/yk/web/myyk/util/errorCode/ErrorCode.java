@@ -116,17 +116,17 @@ public enum ErrorCode {
     /**
      * <p>메일 전송 시의 에러.</p>
      */
-    ME_101("failed to send mail."),
+    MA_101("failed to send mail."),
 
     /**
      * <p>프리마커 템플레이트 생성 실패.</p>
      */
-    ME_102("failed to get freemarker template."),
+    MA_102("failed to get freemarker template."),
 
     /**
      * <p>프리마커 템플레이트 랜더링 실패.</p>
      */
-    ME_103("failed to render freemarker."),
+    MA_103("failed to render freemarker."),
 
     /*
      * 엔티티 에러
@@ -148,6 +148,11 @@ public enum ErrorCode {
      * <p>이메일 도메인이 올바른 형식이 아닌 경우.</p>
      */
     EE_ME_103("email domain is wrong."),
+
+    /**
+     * <p>이미 존재하는 회원의 이메일인 경우.</p>
+     */
+    EE_ME_104("this email exists already."),
 
     ;
     private String codeExplain;

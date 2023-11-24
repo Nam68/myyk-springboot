@@ -1,20 +1,45 @@
 package yk.web.myyk.backend.logic.member;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
+import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.entity.member.TmpCodeEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.member.MemberService;
+import yk.web.myyk.util.checker.MemberChecker;
+import yk.web.myyk.util.errorCode.ErrorCode;
+import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service
 public class MemberLogic extends BaseLogic implements MemberService {
 
     @Override
+    public void checkTmpMember(EmailForm emailForm) throws SystemException, AppException {
+
+        String email = combineEmail(emailForm);
+
+        // 이메일 양식 체크하기
+        Map<String, ErrorCode> errors = MemberChecker.checkEmail(emailForm.getEmailLocalpart(), emailForm.getEmailDomain());
+        if (!errors.isEmpty()) {
+            throw new AppException(errors);
+        }
+
+        // 중복된 이메일이 있는지 체크하기
+        List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(email);
+        if (!memberList.isEmpty()) {
+            throw new AppException(ErrorCode.EE_ME_104);
+        }
+    }
+
+    @Override
     @Transactional
-    public String createTmpMember(EmailForm emailForm) throws SystemException {
+    public String createTmpMember(EmailForm emailForm) throws SystemException, AppException {
 
         String email = combineEmail(emailForm);
         String tmpCode = getRandomString(6);

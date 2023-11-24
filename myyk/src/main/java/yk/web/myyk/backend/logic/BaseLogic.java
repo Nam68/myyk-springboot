@@ -1,11 +1,14 @@
 package yk.web.myyk.backend.logic;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import yk.web.myyk.backend.BaseMvc;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.factory.RepositoryFactory;
 import yk.web.myyk.util.config.MailConfig;
+import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.mail.FreeMarkerFactory;
 import yk.web.myyk.util.mail.MailTemplate;
 import yk.web.myyk.util.mail.MailText;
@@ -56,5 +59,15 @@ public class BaseLogic extends BaseMvc {
      */
     protected String combineEmail(EmailForm emailForm) {
         return combineEmail(emailForm.getEmailLocalpart(), emailForm.getEmailDomain());
+    }
+
+    /**
+     * <p>에러 맵에 에러를 설정한다.</p>
+     * 
+     * @param errors 에러 맵
+     * @param error 에러
+     */
+    protected static void setError(Map<String, ErrorCode> errors, ErrorCode error) {
+        errors.put(error.name(), error);
     }
 }

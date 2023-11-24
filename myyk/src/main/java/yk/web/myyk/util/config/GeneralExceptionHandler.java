@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-import yk.web.myyk.util.enumerated.Category;
 import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.exception.ApiException;
 import yk.web.myyk.util.exception.PermissionException;

@@ -1,15 +1,17 @@
 package yk.web.myyk.backend.service.member;
 
-import java.util.List;
-import java.util.Map;
-
-import yk.web.myyk.backend.dto.LoginInfo;
-import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
-import yk.web.myyk.util.enumerated.MemberType;
+import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
 public interface MemberService {
+
+    /**
+     * <p>임시회원 코드를 발송 가능한 이메일인지 검증한다.</p>
+     * 
+     * @param emailForm 이메일 정보
+     */
+    public void checkTmpMember(EmailForm emailForm) throws SystemException, AppException;
 
     /**
      * <p>임시회원 코드를 생성한다.</p>
@@ -18,7 +20,7 @@ public interface MemberService {
      * @return 임시회원 코드
      * @throws SystemException 시스템에러
      */
-    public String createTmpMember(EmailForm emailForm) throws SystemException;
+    public String createTmpMember(EmailForm emailForm) throws SystemException, AppException;
 
 //	/**
 //	 * <p>임시 코드를 통해 이메일을 찾아낸다.</p>

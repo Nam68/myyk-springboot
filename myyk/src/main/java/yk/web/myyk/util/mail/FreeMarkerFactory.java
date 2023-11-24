@@ -99,9 +99,9 @@ public class FreeMarkerFactory {
             String content = FreeMarkerTemplateUtils.processTemplateIntoString(template, parameter);
             return content;
         } catch (IOException e) {
-            throw new SystemException(ErrorCode.ME_102, FreeMarkerFactory.class);
+            throw new SystemException(ErrorCode.MA_102, FreeMarkerFactory.class);
         } catch (TemplateException e) {
-            throw new SystemException(ErrorCode.ME_103, FreeMarkerFactory.class);
+            throw new SystemException(ErrorCode.MA_103, FreeMarkerFactory.class);
         } finally {
             templateName = "";
             parameter = new HashMap<>();
