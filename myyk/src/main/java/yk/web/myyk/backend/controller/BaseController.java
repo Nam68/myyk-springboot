@@ -28,7 +28,7 @@ public class BaseController extends BaseMvc {
     private ServiceFactory serviceFactory;
 
     /**
-     * <p>서비스팩토리를 가져온다.</p>
+     * <p>서비스팩토리를 반환한다.</p>
      *
      * @return 서비스팩토리
      */
@@ -37,7 +37,7 @@ public class BaseController extends BaseMvc {
     }
 
     /**
-     * <p>세션에 저장된 모든 폼을 삭제한다.</p>
+     * <p>세션에 저장된 모든 폼을 제거한다.</p>
      * 
      * @param session 세션
      */
@@ -48,6 +48,36 @@ public class BaseController extends BaseMvc {
             if (session.getAttribute(name) instanceof BaseForm) {
                 session.removeAttribute(name);
             }
+        }
+    }
+
+    /**
+     * <p>세션에 저장된 폼을 제거한다.</p>
+     * 
+     * @param <T> {@link BaseForm}을 상속받은 폼
+     * @param session 세션
+     * @param form 폼
+     */
+    protected <T extends BaseForm> void removeForm(HttpSession session, T form) {
+        Class<? extends BaseForm> clazz = form.getClass();
+        removeForm(session, form);
+    }
+
+    /**
+     * <p>세션에 저장된 폼을 제거한다.</p>
+     * 
+     * @param <T> {@link BaseForm}을 상속받은 폼
+     * @param session 세션
+     * @param form 폼의 클래스
+     */
+    protected <T extends BaseForm> void removeForm(HttpSession session, Class<T> form) {
+
+        String formName = form.getSimpleName();
+
+        @SuppressWarnings("unchecked")
+        T sessionForm = (T) session.getAttribute(formName);
+        if (sessionForm != null) {
+            session.removeAttribute(formName);
         }
     }
 

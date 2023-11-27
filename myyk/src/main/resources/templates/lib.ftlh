@@ -16,6 +16,7 @@
 <#-- custom javascript -->
 <script src="/js/headerFooter.js"></script>
 <script src="/js/global.js"></script>
+<script src="/js/check.js"></script>
 <#include "macro.ftlh">
 <#-- 다국어설정 -->
 <#import "/spring.ftl" as spring/>

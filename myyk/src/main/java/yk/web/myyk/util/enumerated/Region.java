@@ -8,30 +8,50 @@ import yk.web.myyk.util.exception.SystemException;
  */
 public enum Region implements BaseEnum {
 
-	KOREA("ko"),
-	
-	JAPAN("jp"),
-	
-	;
-	
-	private String value;
-	
-	Region(String value) {
-		this.value = value;
-	}
+    /**
+     * <p>한국.</p>
+     */
+    KOREA("ko"),
 
-	@Override
-	public String getValue() {
-		return value;
-	}
-	
-	public static Region getRegion(String region) {
-		for (Region target : Region.values()) {
-			if (region.equals(target.getValue())) {
-				return target;
-			}
-		}
-		throw new SystemException(ErrorCode.EN_101, Region.class);
-	}
-	
+    /**
+     * <p>일본.</p>
+     */
+    JAPAN("jp"),
+
+    ;
+
+    /**
+     * <p>지역.</p>
+     */
+    private String value;
+
+    /**
+     * <p>생성자.</p>
+     * 
+     * @param value 지역
+     */
+    Region(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * <p>문자열을 통해 지역 이넘을 반환한다.</p>
+     * 
+     * @param region 문자열
+     * @return 지역
+     */
+    public static Region getRegion(String region) {
+        for (Region target : Region.values()) {
+            if (region.equals(target.getValue())) {
+                return target;
+            }
+        }
+        throw new SystemException(ErrorCode.EN_101, Region.class);
+    }
+
 }

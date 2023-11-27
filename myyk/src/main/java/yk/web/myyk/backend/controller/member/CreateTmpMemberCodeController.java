@@ -70,8 +70,8 @@ public class CreateTmpMemberCodeController extends BaseController {
 
         EmailForm emailForm = getForm(session, EmailForm.class);
         String tmpCode = getService().getMember().createTmpMember(emailForm);
-        request.setAttribute(HOLDER, new TmpCodeHolder(emailForm.getEmailLocalpart(), emailForm.getEmailDomain(), tmpCode));
-        removeAllForm(session);
+        request.setAttribute(HOLDER, new TmpCodeHolder(emailForm, tmpCode));
+        removeForm(session, EmailForm.class);
         return "member/checkTmpMemberCodeInput";
 //      getService().getEmail().sendTmpMemberCode(emailForm, tmpCode);
 //      return "redirect:/member/tmp/code/create/complete";

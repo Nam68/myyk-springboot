@@ -35,9 +35,22 @@ member:
     name: "ニックネーム"
   region:
     name: "地域"
+    ko: "大韓民国"
+    jp: "日本"
 
 signup:
   name: "アカウント登録"
+  check: "アカウント登録確認"
+  checkConfirm: 上記の情報で登録します。"
+  error:
+    passwordEmpty: "パスワードを入力してください"
+    passwordMin: "パスワードは8字以上に入力してください"
+    passwordMax: "パスワードは30字以内に入力してください"
+    passwordForm: "パスワードはローマ字と数字を含めてください"
+    passwordCheck: "パスワードが一致していません"
+    nicknameEmpty: "ニックネームを入力してください"
+    nicknameMax: "ニックネームは10字以内に入力してください"
+    nicknameDupl: "既に存在しているニックネームです"
 
 login:
   name: "ログイン"

@@ -36,6 +36,18 @@ public class Constant {
     private int memberPasswordHashingTimes;
     private static int staticMemberPasswordHashingTimes;
 
+    @Value("${value.member.password.min}")
+    private int memberPasswordMin;
+    private static int staticMemberPasswordMin;
+
+    @Value("${value.member.password.max}")
+    private int memberPasswordMax;
+    private static int staticMemberPasswordMax;
+
+    @Value("${value.member.nickname.max}")
+    private int memberNicknameMax;
+    private static int staticMemberNicknameMax;
+
     @Value("${value.member.icon.default}")
     private String memberIconDefault;
     private static String staticMemberIconDefault;
@@ -65,6 +77,9 @@ public class Constant {
         Constant.staticCookieOneDay = cookieOneDay;
         Constant.staticMemberPasswordSaltLength = memberPasswordSaltLength;
         Constant.staticMemberPasswordHashingTimes = memberPasswordHashingTimes;
+        Constant.staticMemberPasswordMin = memberPasswordMin;
+        Constant.staticMemberPasswordMax = memberPasswordMax;
+        Constant.staticMemberNicknameMax = memberNicknameMax;
         Constant.staticMemberIconDefault = memberIconDefault;
         Constant.staticTmpCodeLimitMinutes = tmpCodeLimitMinutes;
         Constant.staticTmpCodeLimitTimes = tmpCodeLimitTimes;
@@ -98,6 +113,27 @@ public class Constant {
 
     public static int getMemberPasswordHashingTimes() {
         return staticMemberPasswordHashingTimes;
+    }
+
+    /**
+     * @return 비밀번호 최소 길이
+     */
+    public static int getMemberPasswordMin() {
+        return staticMemberPasswordMin;
+    }
+
+    /**
+     * @return 비밀번호 최대 길이
+     */
+    public static int getMemberPasswordMax() {
+        return staticMemberPasswordMax;
+    }
+
+    /**
+     * @return 닉네임 최대 길이
+     */
+    public static int getMemberNicknameMax() {
+        return staticMemberNicknameMax;
     }
 
     public static String getMemberIconDefault() {

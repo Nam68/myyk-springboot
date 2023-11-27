@@ -5,11 +5,11 @@ package yk.web.myyk.util.enumerated;
  */
 public interface BaseEnum {
 
-	/**
-	 * <p>각 이넘이 화면에 표시될 떄는 이 메서드를 통하도록 통일한다.</p>
-	 * 
-	 * @return 화면에 표시될 이넘 값
-	 */
-	public String getValue();
-	
+    /**
+     * <p>각 이넘이 화면에 표시될 떄는 이 메서드를 통하도록 통일한다.</p>
+     * 
+     * @return 화면에 표시될 이넘 값
+     */
+    public String getValue();
+
 }

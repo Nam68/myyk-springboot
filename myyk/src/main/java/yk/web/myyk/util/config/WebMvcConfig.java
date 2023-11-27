@@ -12,8 +12,7 @@ import yk.web.myyk.util.interceptor.BaseInterceptor;
 import yk.web.myyk.util.interceptor.CategoryInterceptor;
 import yk.web.myyk.util.interceptor.CreateLanguageInterceptor;
 import yk.web.myyk.util.interceptor.DataCheckInterceptor;
-import yk.web.myyk.util.interceptor.RegionInterceptor;
-import yk.web.myyk.util.interceptor.TaxRateInterceptor;
+import yk.web.myyk.util.interceptor.SetEnumInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -23,16 +22,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         addInterceptor(registry, createLanguageInterceptor());
         addInterceptor(registry, dataCheckInterceptor());
+        addInterceptor(registry, setEnumInterceptor());
 
 //        addInterceptor(registry, categoryInterceptor());
-
-//        addInterceptor(registry, regionInterceptor());
-
 //        addInterceptor(registry, autoLoginInterceptor());
 
 //        addInterceptor(registry, accessCheckInterceptor());
-
-//        addInterceptor(registry, taxRateInterceptor());
 
 //          registry.addInterceptor(new WebContentInterceptor())
 //                  .excludePathPatterns("/css/**", "/images/**", "/js/**");
@@ -59,13 +54,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public CategoryInterceptor categoryInterceptor() {
-        return new CategoryInterceptor();
+    public SetEnumInterceptor setEnumInterceptor() {
+        return new SetEnumInterceptor();
     }
 
     @Bean
-    public RegionInterceptor regionInterceptor() {
-        return new RegionInterceptor();
+    public CategoryInterceptor categoryInterceptor() {
+        return new CategoryInterceptor();
     }
 
     @Bean
@@ -76,11 +71,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
     public AccessCheckInterceptor accessCheckInterceptor() {
         return new AccessCheckInterceptor();
-    }
-
-    @Bean
-    public TaxRateInterceptor taxRateInterceptor() {
-        return new TaxRateInterceptor();
     }
 
 }

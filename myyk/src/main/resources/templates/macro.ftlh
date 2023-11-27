@@ -13,6 +13,48 @@
     <@spring.message path/>
 </#macro>
 
+<#-- 확인버튼 -->
+<#macro confirmBtn>
+    <button class="btn btn-primary" onclick="mySubmit()"><@spring.message "global.confirm"/></button>
+</#macro>
+
+<#-- 홈으로 버튼 -->
+<#macro toHomeBtn>
+    <button class="btn btn-outline-secondary" onclick="location.href='/'"><@spring.message "global.toHome"/></button>
+</#macro>
+
+<#-- 뒤로가기 버튼 -->
+<#macro backBtn>
+    <button class="btn btn-outline-secondary" onclick="history.back()"><@spring.message "global.back"/></button>
+</#macro>
+
+<#-- 확인 & 홈으로 버튼세트 -->
+<#macro confirmHome>
+    <div class="d-grid gap-3 bottom-btn-set">
+        <button class="btn btn-primary" onclick="mySubmit()"><@spring.message "global.confirm"/></button>
+        <button class="btn btn-outline-secondary" onclick="location.href='/'"><@spring.message "global.toHome"/></button>
+    </div>
+</#macro>
+
+<#-- 확인 & 뒤로가기 버튼세트 -->
+<#macro confirmBack>
+    <div class="d-grid gap-3 bottom-btn-set">
+        <button class="btn btn-primary" onclick="mySubmit()"><@spring.message "global.confirm"/></button>
+        <button class="btn btn-outline-secondary" onclick="history.back()"><@spring.message "global.back"/></button>
+    </div>
+</#macro>
+
+<#-- 지역 풀다운 메뉴 -->
+<#macro regionSelect>
+    <select class="form-select" name="region">
+        <#list Region as r>
+        <option value="${r.value}"<#if holder.region.value == r.value> selected</#if>>
+            <@msg "member.region.${r.value}"/>
+        </option>
+        </#list>
+    </select>
+</#macro>
+
 <#-- 에러 체크 -->
 <#macro error codes>
     <#if errors?has_content>

@@ -36,15 +36,15 @@ public class EmailController extends BaseController {
 	 * @return 검증코드 인증 화면
 	 * @throws SystemException 시스템 예외
 	 */
-	@RequestMapping(path = "/emailCheckConfirm", method = RequestMethod.POST)
-	public String confirm(String email, HttpServletRequest request) throws SystemException {
-		Map<String, String> errors = getService().getMember().emailValidate(email);
-		if (!errors.isEmpty()) {
-			request.setAttribute(ERRORS, errors);
-			return "member/emailCheckInput";
-		}
-		getService().getEmail().sendEmailConfirm(email);
-		return "member/checkTmpCodeInput";
-	}
+//	@RequestMapping(path = "/emailCheckConfirm", method = RequestMethod.POST)
+//	public String confirm(String email, HttpServletRequest request) throws SystemException {
+//		Map<String, String> errors = getService().getMember().emailValidate(email);
+//		if (!errors.isEmpty()) {
+//			request.setAttribute(ERRORS, errors);
+//			return "member/emailCheckInput";
+//		}
+//		getService().getEmail().sendEmailConfirm(email);
+//		return "member/checkTmpCodeInput";
+//	}
 	
 }

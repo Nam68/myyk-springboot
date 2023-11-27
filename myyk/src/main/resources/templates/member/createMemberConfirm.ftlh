@@ -2,53 +2,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<#include "/lib.ftlh"> 
-<title><@input "member.create.input.title"/></title>
+<#include "/lib.ftlh">
+<title><@msg "global.title"/></title>
 </head>
-<script src="/js/checkerJs.js"></script> 
-<#include "/global/header.ftlh">
+<#include "/header.ftlh">
 <body>
-	<div class="col-lg-8 mx-auto">
-		<h1 class="title">
-			<@input "member.create.input.title"/>
-		</h1>
-		<form action="/member/create" method="post" class="g-3 needs-validation" novalidate>
-			<#-- 이메일 -->
-			<div class="mb-4">
-				<label class="form-label">
-					<@input "member.attr.email"/>
-				</label>
-				<label class="form-label">
-					${dto.email}
-				</label>
-			</div>
-			<#-- 닉네임 -->
-			<div class="mb-4">
-				<label class="form-label">
-					<@input "member.attr.nickname"/>
-				</label>
-				<label class="form-label">
-					${dto.nickname}
-				</label>
-			</div>
-			<#-- 지역 -->
-			<div class="mb-4">
-				<label class="form-label">
-					<@input "member.attr.region"/>
-				</label>
-				<label class="form-label">
-					<@input "member.region.${dto.region.value}"/>
-				</label>
-			</div>
-			<#-- 버튼 -->
-			<div class="pt-2 d-grid mx-auto">
-				<button class="btn btn-primary submit-button" type="submit"><@input "alert.confirm"/></button>
-			</div>
-		</form>
-	</div>
+  <div id="content">
+    <div id="wrapper">
+
+      <h3 class="title">
+        <@msg "signup.check"/>
+      </h3>
+
+      <form action="/member/create/excute" method="POST">
+        <#-- 이메일 -->
+        <div class="mb-5">
+          <label class="form-label"><@msg "member.email.name"/></label>
+          <div>${holder.emailLocalpart}@${holder.emailDomain}</div>
+        </div>
+
+        <#-- 닉네임 -->
+        <div class="mb-5">
+          <label class="form-label"><@msg "member.nickname.name"/></label>
+          <div>${holder.nickname}</div>
+        </div>
+
+        <#-- 지역 -->
+        <div class="mb-5">
+          <label class="form-label"><@msg "member.region.name"/></label>
+          <div>${holder.region.value}</div>
+        </div>
+      </form>
+
+      <div class="mb-3"><@msg "signup.checkConfirm"/></div>
+      <@confirmBack/>
+
+    </div>
+  </div>
 </body>
-<#include "/global/footer.ftlh">
-<script type="text/javascript">
-	
-</script>
+<#include "/footer.ftlh">
 </html>

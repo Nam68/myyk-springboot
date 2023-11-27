@@ -2,53 +2,40 @@ package yk.web.myyk.backend.dto.holder.member;
 
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 
-/**
- * <p>이메일 홀더.</p>
- */
-public class EmailHolder {
+public class TmpCodeHolder {
 
     /**
      * <p>이메일 로컬파트.</p>
      */
-    private String emailLocalpart = "";
+    private String emailLocalpart;
 
     /**
      * <p>이메일 도메인.</p>
      */
-    private String emailDomain = "";
+    private String emailDomain;
 
     /**
-     * <p>생성자.</p>
+     * <p>임시코드</p>
      */
-    public EmailHolder() {
-        // nop
-    }
-
-    /**
-     * <p>생성자.</p>
-     * 
-     * @param form 이메일 폼
-     */
-    public EmailHolder(EmailForm form) {
-        this.emailLocalpart = form.getEmailLocalpart();
-        this.emailDomain = form.getEmailDomain();
-    }
+    private String tmpCode;
 
     /**
      * <p>생성자.</p>
      * 
      * @param emailLocalpart 이메일 로컬파트
      * @param emailDomain 이메일 도메인
+     * @param tmpCode 임시코드
      */
-    public EmailHolder(String emailLocalpart, String emailDomain) {
-        this.emailLocalpart = emailLocalpart;
-        this.emailDomain = emailDomain;
+    public TmpCodeHolder(EmailForm emailForm, String tmpCode) {
+        this.emailLocalpart = emailForm.getEmailLocalpart();
+        this.emailDomain = emailForm.getEmailDomain();
+        this.tmpCode = tmpCode;
     }
 
     /**
      * <p>이메일 로컬파트를 반환한다.</p>
      * 
-     * @return 이메일 로컬파트
+     * @return 이메일
      */
     public String getEmailLocalpart() {
         return emailLocalpart;
@@ -57,10 +44,19 @@ public class EmailHolder {
     /**
      * <p>이메일 도메인을 반환한다.</p>
      * 
-     * @return 이메일 도메인
+     * @return
      */
     public String getEmailDomain() {
         return emailDomain;
+    }
+
+    /**
+     * <p>임시코드를 반환한다.</p>
+     * 
+     * @return 임시코드
+     */
+    public String getTmpCode() {
+        return tmpCode;
     }
 
 }

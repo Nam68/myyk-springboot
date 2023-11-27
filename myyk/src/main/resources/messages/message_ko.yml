@@ -18,7 +18,7 @@ member:
   email:
     name: "이메일"
     check: "이메일 확인"
-    checkConfirm: "위의 이메일로 인증코드를 발송합니다. 20분 이내에 인증을 완료해주세요."
+    checkConfirm: "위의 이메일로 인증코드를 발송합니다. <span class=\"caution\">20분 이내</span>에 인증을 완료해주세요."
     send: "메일 발송"
     error:
       empty: "메일을 입력해주세요"
@@ -27,18 +27,30 @@ member:
   code:
     name: "인증코드"
     check: "인증코드 확인"
-    notReady: "메일 기능의 점검으로 인해, 인증코드 확인은 생략됩니다.<br>20분 이내에 회원가입을 완료해주세요."
+    notReady: "메일 기능의 점검으로 인해, 인증코드 확인은 생략됩니다.<br><span class=\"caution\">20분 이내</span>에 회원가입을 완료해주세요."
   password:
     name: "비밀번호"
     check: "비밀번호 확인"
-    tmp: ""
   nickname:
     name: "닉네임"
   region:
     name: "지역"
+    ko: "대한민국"
+    jp: "일본"
 
 signup:
   name: "회원가입"
+  check: "회원가입 확인"
+  checkConfirm: "위 정보로 가입합니다."
+  error:
+    passwordEmpty: "비밀번호를 입력해주세요"
+    passwordMin: "비밀번호는 8자 이상 입력해주세요"
+    passwordMax: "비밀번호는 30자 이내로 입력해주세요"
+    passwordForm: "비밀번호는 영문자 대소문자와 숫자가 포함되어야 합니다"
+    passwordCheck: "비밀번호가 일치하지 않습니다"
+    nicknameEmpty: "닉네임을 입력해주세요"
+    nicknameMax: "닉네임은 10자 이내로 입력해주세요"
+    nicknameDupl: "이미 존재하는 닉네임입니다"
 
 login:
   name: "로그인"

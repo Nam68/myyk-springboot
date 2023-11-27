@@ -1,12 +1,16 @@
 package yk.web.myyk.backend.logic.member;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
+import yk.web.myyk.backend.dto.form.member.MemberForm;
+import yk.web.myyk.backend.dto.form.member.TmpCodeForm;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.entity.member.TmpCodeEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
@@ -33,7 +37,21 @@ public class MemberLogic extends BaseLogic implements MemberService {
         // 중복된 이메일이 있는지 체크하기
         List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(email);
         if (!memberList.isEmpty()) {
-            throw new AppException(ErrorCode.EE_ME_104);
+            throw new AppException(ErrorCode.LE_ME_101);
+        }
+    }
+
+    @Override
+    public void checkMember(MemberForm memberForm) throws SystemException, AppException {
+
+        Map<String, ErrorCode> errors = new HashMap<>();
+
+        errors.putAll(MemberChecker.checkPassword(memberForm.getPassword()));
+        errors.putAll(MemberChecker.checkPasswordCheck(memberForm.getPassword(), memberForm.getPasswordCheck()));
+        errors.putAll(MemberChecker.checkNickname(memberForm.getNickname()));
+
+        if (!errors.isEmpty()) {
+            throw new AppException(errors);
         }
     }
 
@@ -54,7 +72,18 @@ public class MemberLogic extends BaseLogic implements MemberService {
 
         return tmpCode;
     }
-	
+
+    @Override
+    public String getEmailByTmpCode(TmpCodeForm tmpCodeForm) throws SystemException, AppException {
+
+        String hashedTmpCode = hashing(tmpCodeForm.getTmpCode());
+        Optional<TmpCodeEntity> optional = getRepository().getTmpCode().findByTmpCode(hashedTmpCode);
+        if (!optional.isPresent()) {
+            throw new SystemException(hashedTmpCode);
+        }
+        return optional.get().getEmail();
+    }
+
 //	@Override
 //	public Map<String, String> emailValidate(String email) throws SystemException {
 //		Map<String, String> errors = new HashMap<>();

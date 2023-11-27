@@ -35,6 +35,11 @@ value:
   member:
     icon:
       default: "/img/profile-default.jpg"
+    password:
+      min: 8 #비밀번호 최소길이
+      max: 30 #비밀번호 최대길이
+    nickname:
+      max: 10 #닉네임 최대길이
   url:
     timeout: 5000 #5초
     try: 3 #3번 연결 시도

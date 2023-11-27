@@ -14,20 +14,25 @@
         <@msg "member.code.check"/>
       </h3>
 
-      <form action="/member/tmp/code/create/confirm" method="POST">
+      <form action="/member/create/input" method="POST">
         <div>
           <div class="mb-3"><@msg "member.code.notReady"/></div>
         </div>
         <div>
-          <div class="mb-3"><@msg "member.email.name"/>&nbsp;:&nbsp;<strong>${holder.email}</strong></div>
-          <div class="mb-5"><@msg "member.code.name"/>&nbsp;:&nbsp;<strong>${holder.tmpCode}</strong></div>
+          <div class="mb-3">
+            <@msg "member.email.name"/>&nbsp;:&nbsp;<strong>${holder.emailLocalpart}@${holder.emailDomain}</strong>
+            <input type="hidden" value="${holder.emailLocalpart}">
+            <input type="hidden" value="${holder.emailDomain}">
+          </div>
+          <div class="mb-4">
+            <div class="mb-1"><@msg "member.code.name"/>&nbsp;:&nbsp;</div>
+            <input class="border p-3 h1 code-holer" value="${holder.tmpCode}" disabled maxlength="6">
+            <input type="hidden" name="tmpCode" value="${holder.tmpCode}"
+          </div>
         </div>
       </form>
 
-      <div class="d-grid gap-3 bottom-btn-set">
-        <button class="btn btn-primary" onclick="mySubmit()"><@msg "signup.name"/></button>
-        <button class="btn btn-outline-secondary" onclick="location.href='/'"><@msg "global.toHome"/></button>
-      </div>
+      <@confirmHome/>
 
     </div>
   </div>

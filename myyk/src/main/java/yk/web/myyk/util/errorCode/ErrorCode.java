@@ -99,6 +99,11 @@ public enum ErrorCode {
     EN_101("this region do not exist."),
 
     /**
+     * <p>해당 이넘이 존재하지 않을 때의 에러.</p>
+     */
+    EN_102("this enum does not exist."),
+
+    /**
      * <p>존재해야할 엔티티 정보가 취득되지 않을 때의 에러.</p>
      */
     ET_101("database is gone."),
@@ -151,8 +156,67 @@ public enum ErrorCode {
 
     /**
      * <p>이미 존재하는 회원의 이메일인 경우.</p>
+     * <p>잘못된 코드이나 이미 이후 번호가 채워져서 살려둠. {@link LE_ME_101} 참고.</p>
      */
+    @Deprecated
     EE_ME_104("this email exists already."),
+
+    /**
+     * <p>임시코드로 찾는 이메일이 존재하지 않는 경우.</p>
+     */
+    EE_ME_105("temporary code is not registered or deleted."),
+
+    /**
+     * <p>비밀번호가 비어있는 경우.</p>
+     */
+    EE_ME_106("password is empty."),
+
+    /**
+     * <p>비밀번호가 8자가 되지 않는 경우.</p>
+     */
+    EE_ME_107("password must be at least 8 characters long(excluding 8)."),
+
+    /**
+     * <p>비밀번호가 30자 이상인 경우.</p>
+     */
+    EE_ME_108("password must be less than 30 characters(excluding 30)."),
+
+    /**
+     * <p>비밀번호가 대소문자 숫자 조합이 아닌 경우.</p>
+     */
+    EE_ME_109("password must be have alphabet upper cases, lower cases and numbers."),
+
+    /**
+     * <p>비밀번호 확인이 일치하지 않는 경우.</p>
+     */
+    EE_ME_110("password does not match."),
+
+    /**
+     * <p>닉네임이 비어있는 경우 경우.</p>
+     */
+    EE_ME_111("nickname is empty."),
+
+    /**
+     * <p>닉네임이 10자를 넘어선 경우.</p>
+     */
+    EE_ME_112("nickname must be less than 10 characters(excluding 10)."),
+
+
+    /*
+     * 논리 에러
+     * 
+     * ME : 회원
+     */
+
+    /**
+     * <p>이미 존재하는 회원의 이메일인 경우.</p>
+     */
+    LE_ME_101("email is duplicated."),
+
+    /**
+     * <p>닉네임이 중복된 경우.</p>
+     */
+    LE_ME_102("nickname is duplicated."),
 
     ;
     private String codeExplain;
