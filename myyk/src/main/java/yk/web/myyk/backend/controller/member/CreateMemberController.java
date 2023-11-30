@@ -60,7 +60,7 @@ public class CreateMemberController extends BaseController {
             return "member/createMemberConfirm";
         } catch (AppException e) {
             request.setAttribute(ERRORS, new CreateMemberHolder(form));
-            return "member/createMemberInput";
+            return "member/createMemberConfirm";
         }
     }
 

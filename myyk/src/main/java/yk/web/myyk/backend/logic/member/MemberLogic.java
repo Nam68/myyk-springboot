@@ -34,7 +34,7 @@ public class MemberLogic extends BaseLogic implements MemberService {
             throw new AppException(errors);
         }
 
-        // 중복된 이메일이 있는지 체크하기
+        // 중복된 이메일 검사하기
         List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(email);
         if (!memberList.isEmpty()) {
             throw new AppException(ErrorCode.LE_ME_101);
@@ -49,6 +49,14 @@ public class MemberLogic extends BaseLogic implements MemberService {
         errors.putAll(MemberChecker.checkPassword(memberForm.getPassword()));
         errors.putAll(MemberChecker.checkPasswordCheck(memberForm.getPassword(), memberForm.getPasswordCheck()));
         errors.putAll(MemberChecker.checkNickname(memberForm.getNickname()));
+
+        // 중복된 닉네임 검사하기
+        if (memberForm.getNickname() != null) {
+            List<MemberEntity> list = getRepository().getMember().findAllByNickname(memberForm.getNickname());
+            if (!list.isEmpty()) {
+                errors.put(ErrorCode.LE_ME_102.name(), ErrorCode.LE_ME_102);
+            }
+        }
 
         if (!errors.isEmpty()) {
             throw new AppException(errors);
