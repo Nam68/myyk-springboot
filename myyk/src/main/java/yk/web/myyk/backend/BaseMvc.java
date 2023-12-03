@@ -66,5 +66,9 @@ public class BaseMvc extends BaseApp {
         }
         return emailParts;
     }
+    
+    protected static String getCombinedEmail(String emailLocalpart, String emailDomain) {
+        return emailLocalpart + "@" + emailDomain;
+    }
 
 }

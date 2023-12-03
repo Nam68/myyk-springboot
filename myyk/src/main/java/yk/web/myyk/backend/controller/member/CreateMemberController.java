@@ -11,6 +11,8 @@ import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.form.member.TmpCodeForm;
 import yk.web.myyk.backend.dto.holder.member.CreateMemberHolder;
 import yk.web.myyk.backend.dto.holder.member.EmailHolder;
+import yk.web.myyk.util.annotation.DataCheck;
+import yk.web.myyk.util.annotation.SessionClear;
 import yk.web.myyk.util.annotation.SetEnum;
 import yk.web.myyk.util.enumerated.Region;
 import yk.web.myyk.util.exception.AppException;
@@ -53,15 +55,47 @@ public class CreateMemberController extends BaseController {
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
+    @RequestMapping(path = "/confirm", method = RequestMethod.POST)
     public String confirm(MemberForm form, HttpSession session, HttpServletRequest request) throws SystemException {
         try {
             getService().getMember().checkMember(form);
-            request.setAttribute(HOLDER, form);
-            return "member/createMemberConfirm";
         } catch (AppException e) {
             request.setAttribute(ERRORS, new CreateMemberHolder(form));
             return "member/createMemberConfirm";
         }
+        request.setAttribute(HOLDER, form);
+        setForm(session, form);
+        return "member/createMemberConfirm";
+    }
+
+    /**
+     * <p>회원 생성.</p>
+     * 
+     * @param session 세션
+     * @return 뷰 이름
+     * @throws SystemException 시스템에러
+     */
+    @RequestMapping(path = "/excute", method = RequestMethod.POST)
+    @DataCheck(target = MemberForm.class)
+    public String execute(HttpSession session) throws SystemException {
+        MemberForm form = getForm(session, MemberForm.class);
+        getService().getMember().createMember(form);
+        removeForm(session, form);
+        return "redirect:/member/create/complete";
+    }
+
+    /**
+     * <p>회원 생성 후 로그인 화면.</p>
+     * 
+     * @param session 세션
+     * @return 뷰 이름
+     * @throws SystemException 시스템에러
+     */
+    @RequestMapping(path = "/complete", method = RequestMethod.POST)
+    @SessionClear
+    public String complete(HttpSession session) throws SystemException {
+//        return "member/createMemberComplete";
+        return "member/login/loginInput";
     }
 
 }

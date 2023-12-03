@@ -14,7 +14,7 @@ import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.AccountBookDTO;
-import yk.web.myyk.backend.dto.MemberDTO;
+import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
@@ -47,13 +47,13 @@ public class AccountBookLogic extends BaseLogic implements AccountBookService {
 	public AccountBookDTO getAccountBook(@Nullable Long accountBookIdx) throws SystemException {
 		
 		if (accountBookIdx == null || accountBookIdx <= 0) {
-			List<AccountBookAuthEntity> auths = getRepository().getAccountBookAuth().findAllByMemberMemberIdx(
-				getLoginInfo().getMemberIdx(), AccountBookAuthRepository.getSort());
-			if (auths.isEmpty()) {
-				return null;
-			} else {
-				return new AccountBookDTO(auths.get(0).getAccountBook());
-			}
+//			List<AccountBookAuthEntity> auths = getRepository().getAccountBookAuth().findAllByMemberMemberIdx(
+//				getLoginInfo().getMemberIdx(), AccountBookAuthRepository.getSort());
+//			if (auths.isEmpty()) {
+//				return null;
+//			} else {
+//				return new AccountBookDTO(auths.get(0).getAccountBook());
+//			}
 		}
 		
 		Optional<AccountBookEntity> entity = getRepository().getAccountBook().findById(accountBookIdx);
@@ -72,9 +72,9 @@ public class AccountBookLogic extends BaseLogic implements AccountBookService {
 		getRepository().getAccountBook().save(book);
 		
 		// 로그인한 작성자 본인에게 모든 권한을 추가한다
-		int memberIdx = (int) getLoginInfo().getMemberIdx();
-		dto.getWatchableIdx().add(memberIdx);
-		dto.getWritableIdx().add(memberIdx);
+//		int memberIdx = (int) getLoginInfo().getMemberIdx();
+//		dto.getWatchableIdx().add(memberIdx);
+//		dto.getWritableIdx().add(memberIdx);
 		
 		Map<Long, AccountBookAuthEntity> authMap = new HashMap<>();
 		

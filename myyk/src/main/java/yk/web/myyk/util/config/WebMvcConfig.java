@@ -12,6 +12,7 @@ import yk.web.myyk.util.interceptor.BaseInterceptor;
 import yk.web.myyk.util.interceptor.CategoryInterceptor;
 import yk.web.myyk.util.interceptor.CreateLanguageInterceptor;
 import yk.web.myyk.util.interceptor.DataCheckInterceptor;
+import yk.web.myyk.util.interceptor.SessionClearInterceptor;
 import yk.web.myyk.util.interceptor.SetEnumInterceptor;
 
 @Configuration
@@ -23,6 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         addInterceptor(registry, createLanguageInterceptor());
         addInterceptor(registry, dataCheckInterceptor());
         addInterceptor(registry, setEnumInterceptor());
+        addInterceptor(registry, sessionClearInterceptor());
 
 //        addInterceptor(registry, categoryInterceptor());
 //        addInterceptor(registry, autoLoginInterceptor());
@@ -57,6 +59,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public SetEnumInterceptor setEnumInterceptor() {
         return new SetEnumInterceptor();
     }
+
+    @Bean
+    public SessionClearInterceptor sessionClearInterceptor() {
+        return new SessionClearInterceptor();
+    }
+
+
+
 
     @Bean
     public CategoryInterceptor categoryInterceptor() {

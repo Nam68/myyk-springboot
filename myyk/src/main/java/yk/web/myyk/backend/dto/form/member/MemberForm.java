@@ -1,6 +1,7 @@
 package yk.web.myyk.backend.dto.form.member;
 
 import yk.web.myyk.backend.dto.form.BaseForm;
+import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
 
 /**
@@ -37,6 +38,16 @@ public class MemberForm extends BaseForm {
      * <p>지역.</p>
      */
     private Region region;
+
+    /**
+     * <p>회원 등급.</p>
+     */
+    private MemberType memberType;
+
+    /**
+     * <p>회원 아이콘.</p>
+     */
+    private String memberIcon;
 
     /**
      * <p>이메일 로컬파트를 반환한다.</p>

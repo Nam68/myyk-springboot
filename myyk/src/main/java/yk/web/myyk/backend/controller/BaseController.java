@@ -37,21 +37,6 @@ public class BaseController extends BaseMvc {
     }
 
     /**
-     * <p>세션에 저장된 모든 폼을 제거한다.</p>
-     * 
-     * @param session 세션
-     */
-    protected void removeAllForm(HttpSession session) {
-        Enumeration<String> names = session.getAttributeNames();
-        while (names.hasMoreElements()) {
-            String name = names.nextElement();
-            if (session.getAttribute(name) instanceof BaseForm) {
-                session.removeAttribute(name);
-            }
-        }
-    }
-
-    /**
      * <p>세션에 저장된 폼을 제거한다.</p>
      * 
      * @param <T> {@link BaseForm}을 상속받은 폼

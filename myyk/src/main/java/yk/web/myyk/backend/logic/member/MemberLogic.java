@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.form.member.TmpCodeForm;
@@ -90,6 +91,14 @@ public class MemberLogic extends BaseLogic implements MemberService {
             throw new SystemException(hashedTmpCode);
         }
         return optional.get().getEmail();
+    }
+
+    @Override
+    public String createMember(MemberForm memberForm) throws SystemException, AppException {
+        MemberDto dto = new MemberDto();
+        MemberEntity entity = new MemberEntity();
+        getRepository().getMember().save(entity);
+        return null;
     }
 
 //	@Override

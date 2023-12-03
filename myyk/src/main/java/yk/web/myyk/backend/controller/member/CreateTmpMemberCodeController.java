@@ -11,6 +11,7 @@ import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.dto.holder.member.EmailHolder;
 import yk.web.myyk.backend.dto.holder.member.TmpCodeHolder;
 import yk.web.myyk.util.annotation.DataCheck;
+import yk.web.myyk.util.annotation.SessionClear;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -70,8 +71,10 @@ public class CreateTmpMemberCodeController extends BaseController {
 
         EmailForm emailForm = getForm(session, EmailForm.class);
         String tmpCode = getService().getMember().createTmpMember(emailForm);
+
         request.setAttribute(HOLDER, new TmpCodeHolder(emailForm, tmpCode));
         removeForm(session, EmailForm.class);
+
         return "member/checkTmpMemberCodeInput";
 //      getService().getEmail().sendTmpMemberCode(emailForm, tmpCode);
 //      return "redirect:/member/tmp/code/create/complete";
@@ -85,8 +88,8 @@ public class CreateTmpMemberCodeController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/complete", method = RequestMethod.POST)
+    @SessionClear
     public String complete(HttpSession session) throws SystemException {
-        removeAllForm(session);
         return "member/checkTmpMemberCodeInput";
     }
 

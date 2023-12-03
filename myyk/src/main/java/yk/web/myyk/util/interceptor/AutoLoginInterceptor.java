@@ -13,9 +13,6 @@ import yk.web.myyk.backend.entity.member.AutoLoginEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.repository.AutoLoginRepository;
 import yk.web.myyk.backend.repository.MemberRepository;
-import yk.web.myyk.config.KeyName;
-import yk.web.myyk.util.BaseApp;
-import yk.web.myyk.util.cookie.CookieUtil;
 
 /**
  * <p>자동 로그인 쿠키가 있으면 세션에 로그인 정보를 등록하는 인터셉터.</p>
@@ -40,7 +37,8 @@ public class AutoLoginInterceptor extends BaseInterceptor implements HandlerInte
 			return true;
 		}
 		
-		String autoLoginSessionId = CookieUtil.getValue(KeyName.AUTO_LOGIN, request);
+//		String autoLoginSessionId = CookieUtil.getValue(KeyName.AUTO_LOGIN, request);
+		String autoLoginSessionId = "";
 
 		// 자동 로그인 쿠키가 없는 경우는 그대로 진행
 		if (autoLoginSessionId == null || autoLoginSessionId.isEmpty()) {
@@ -63,7 +61,7 @@ public class AutoLoginInterceptor extends BaseInterceptor implements HandlerInte
 		}
 		
 		LoginInfo loginInfo = new LoginInfo(memberEntity.get());
-		setSessionAttribute(request, BaseApp.getLoginInfoName(), loginInfo);
+//		setSessionAttribute(request, BaseApp.getLoginInfoName(), loginInfo);
 		return true;
 	}
 	

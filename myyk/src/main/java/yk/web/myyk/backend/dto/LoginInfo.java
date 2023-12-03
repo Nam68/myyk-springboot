@@ -4,7 +4,7 @@ import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
 
-public class LoginInfo extends BaseDTO {
+public class LoginInfo extends BaseDto {
 
 	private Long memberIdx;
 	

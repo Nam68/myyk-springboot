@@ -33,8 +33,8 @@ public class CategoryController extends BaseController {
 	@RequestMapping("/list")
 	public String list(long accountBookIdx, HttpServletRequest request) throws SystemException {
 		List<PrimeCategoryDTO> list = getService().getCategory().getPrimeCategory(accountBookIdx);
-		request.setAttribute(LIST, list);
-		request.setAttribute(IDX, accountBookIdx);
+//		request.setAttribute(LIST, list);
+//		request.setAttribute(IDX, accountBookIdx);
 		return "account/listCategory";
 	}
 	
@@ -48,7 +48,7 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping("/createInput")
 	public String createInput(long accountBookIdx, HttpServletRequest request) throws SystemException {
-		request.setAttribute(IDX, accountBookIdx);
+//		request.setAttribute(IDX, accountBookIdx);
 		return "account/createCategoryInput";
 	}
 	

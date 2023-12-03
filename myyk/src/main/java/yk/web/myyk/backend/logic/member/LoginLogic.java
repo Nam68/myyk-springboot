@@ -25,9 +25,9 @@ public class LoginLogic extends BaseLogic implements LoginService {
 		}
 		
 		MemberEntity entity = all.get(0);
-		if (!entity.passwordValidate(dto.getPassword())) {
-			return null;
-		}
+//		if (!entity.passwordValidate(dto.getPassword())) {
+//			return null;
+//		}
 		
 		return new LoginInfo(entity);
 	}

@@ -12,11 +12,9 @@ import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.dto.AccountDTO;
 import yk.web.myyk.backend.dto.LoginInfo;
-import yk.web.myyk.backend.dto.MemberDTO;
+import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.annotation.CategorySetter;
-import yk.web.myyk.util.annotation.RegionSetter;
-import yk.web.myyk.util.annotation.TaxRateSetter;
 import yk.web.myyk.util.enumerated.Category;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.TaxRate;
@@ -37,16 +35,15 @@ public class AccountBookController extends BaseController {
 	 * @throws SystemException 시스템 에러
 	 */
 	@RequestMapping("/dashboard")
-	@TaxRateSetter
 	public String dashboard(HttpServletRequest request, Long accountBookIdx) throws SystemException {
 		
 		// 가계부 리스트
-		List<AccountBookDTO> bookList = getService().getAccountBook().getAuthList(getLoginInfo().getMemberIdx());
-		request.setAttribute(LIST, bookList);
+//		List<AccountBookDTO> bookList = getService().getAccountBook().getAuthList(getLoginInfo().getMemberIdx());
+//		request.setAttribute(LIST, bookList);
 		
 		// 대시보드 가계부
-		AccountBookDTO dto = getService().getAccountBook().getAccountBook(accountBookIdx);
-		request.setAttribute(DTO, dto);
+//		AccountBookDTO dto = getService().getAccountBook().getAccountBook(accountBookIdx);
+//		request.setAttribute(DTO, dto);
 		
 		// 회계목록
 //		List<AccountDTO> accountList = getService().getAccount().
@@ -62,10 +59,9 @@ public class AccountBookController extends BaseController {
 	 * @throws SystemException 시스템 에러
 	 */
 	@RequestMapping("/createInput")
-	@RegionSetter
 	public String createInput(HttpServletRequest request) throws SystemException {
-		List<MemberDTO> memberList = getService().getMember().findAllAdminAndMember(getLoginInfo());
-		request.setAttribute(LIST, memberList);
+//		List<MemberDto> memberList = getService().getMember().findAllAdminAndMember(getLoginInfo());
+//		request.setAttribute(LIST, memberList);
 		return "account/createAccountInput";
 	}
 	

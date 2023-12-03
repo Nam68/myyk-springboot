@@ -46,6 +46,16 @@ public interface MemberService {
      */
     public String getEmailByTmpCode(TmpCodeForm tmpCodeForm) throws SystemException, AppException;
 
+    /**
+     * <p>회원을 생성한다.</p>
+     * 
+     * @param memberForm 회원 정보
+     * @return 회원 이메일
+     * @throws SystemException 시스템에러
+     * @throws AppException 앱에러
+     */
+    public String createMember(MemberForm memberForm) throws SystemException, AppException;
+
 //    /**
 //     * <p>임시 코드를 통해 이메일을 찾아낸다.</p>
 //     * 
