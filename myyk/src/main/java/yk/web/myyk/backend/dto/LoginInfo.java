@@ -25,7 +25,7 @@ public class LoginInfo extends BaseDto {
 	
 	public LoginInfo(MemberEntity entity) {
 		this.memberIdx = entity.getMemberIdx();
-		this.email = entity.getEncryptedEmail();
+		this.email = entity.getEmail();
 		this.nickname = entity.getNickname();
 		this.region = entity.getRegion();
 		this.memberType = entity.getMemberType();

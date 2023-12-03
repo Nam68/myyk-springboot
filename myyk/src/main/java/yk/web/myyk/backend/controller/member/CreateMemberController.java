@@ -56,12 +56,14 @@ public class CreateMemberController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
+    @SetEnum(target = {Region.class})
     public String confirm(MemberForm form, HttpSession session, HttpServletRequest request) throws SystemException {
         try {
             getService().getMember().checkMember(form);
         } catch (AppException e) {
-            request.setAttribute(ERRORS, new CreateMemberHolder(form));
-            return "member/createMemberConfirm";
+            request.setAttribute(HOLDER, new CreateMemberHolder(form));
+            request.setAttribute(ERRORS, e.getErrors());
+            return "member/createMemberInput";
         }
         request.setAttribute(HOLDER, form);
         setForm(session, form);
@@ -91,11 +93,10 @@ public class CreateMemberController extends BaseController {
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
-    @RequestMapping(path = "/complete", method = RequestMethod.POST)
+    @RequestMapping(path = "/complete")
     @SessionClear
     public String complete(HttpSession session) throws SystemException {
-//        return "member/createMemberComplete";
-        return "member/login/loginInput";
+        return "member/createMemberComplete";
     }
 
 }

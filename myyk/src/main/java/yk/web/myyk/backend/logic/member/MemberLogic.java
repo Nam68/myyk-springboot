@@ -95,10 +95,11 @@ public class MemberLogic extends BaseLogic implements MemberService {
 
     @Override
     public String createMember(MemberForm memberForm) throws SystemException, AppException {
-        MemberDto dto = new MemberDto();
-        MemberEntity entity = new MemberEntity();
+        String email = combineEmail(memberForm.getEmailLocalpart(), memberForm.getEmailDomain());
+        MemberDto dto = new MemberDto(email, memberForm.getPassword(), memberForm.getNickname(), memberForm.getRegion());
+        MemberEntity entity = new MemberEntity(dto);
         getRepository().getMember().save(entity);
-        return null;
+        return email;
     }
 
 //	@Override

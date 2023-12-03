@@ -19,6 +19,13 @@ public class MemberDto extends BaseDto {
         // nop
     }
 
+    public MemberDto(String email, String password, String nickname, Region region) {
+        setEmail(email);
+        setPassword(password);
+        setNickname(nickname);
+        setRegion(region);
+    }
+
     public long getMemberIdx() {
         return memberIdx;
     }
@@ -28,7 +35,7 @@ public class MemberDto extends BaseDto {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = encrypt(email);
     }
 
     public String getPassword() {

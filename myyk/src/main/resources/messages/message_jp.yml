@@ -42,6 +42,8 @@ signup:
   name: "アカウント登録"
   check: "アカウント登録確認"
   checkConfirm: 上記の情報で登録します。"
+  complete: "アカウント登録完了"
+  completeMessage: "アカウント登録が完了されました。<br>ログインでサービスがご利用できます。"
   error:
     passwordEmpty: "パスワードを入力してください"
     passwordMin: "パスワードは8字以上に入力してください"
@@ -54,6 +56,7 @@ signup:
 
 login:
   name: "ログイン"
+  toLogin: "ログイン画面へ"
 
 album:
   name: "アルバム"

@@ -80,26 +80,27 @@ public class MemberEntity extends BaseEntityWithTime {
         // nop
     }
 
+    /**
+     * <p>생성자.</p>
+     * 
+     * @param dto DTO
+     */
     public MemberEntity(MemberDto dto) {
-        this(
-                dto,
-                Constant.getMemberPasswordSaltLength(),
-                Constant.getMemberPasswordHashingTimes(),
-                Constant.getMemberIconDefault()
-            );
+        this(dto, Constant.getMemberIconDefault());
     }
 
+    /**
+     * <p>생성자.</p>
+     * 
+     * @param dto DTO
+     * @param memberIcon 회원 아이콘
+     */
     public MemberEntity(MemberDto dto, String memberIcon) {
-        this(
-                dto,
-                Constant.getMemberPasswordSaltLength(),
-                Constant.getMemberPasswordHashingTimes(),
-                memberIcon
-            );
-    }
 
-    public MemberEntity(MemberDto dto, int saltLength, int hashingTimes, String memberIcon) {
-        this.email = encrypt(dto.getEmail());
+        int saltLength = Constant.getMemberPasswordSaltLength();
+        int hashingTimes = Constant.getMemberPasswordHashingTimes();
+
+        this.email = dto.getEmail();
         this.passwordSalt = getRandomString(saltLength);
         this.password = hashing(dto.getPassword(), passwordSalt, hashingTimes);
         this.nickname = dto.getNickname();
@@ -108,32 +109,65 @@ public class MemberEntity extends BaseEntityWithTime {
         this.memberIcon = memberIcon;
     }
 
+    /**
+     * <p>회원 IDX를 반환한다.</p>
+     * 
+     * @return 회원 IDX
+     */
     public long getMemberIdx() {
         return memberIdx;
     }
-    
-    public String getEncryptedEmail() {
-        return decrypt(email);
+
+    /**
+     * <p>이메일을 반환한다.</p>
+     * 
+     * @return 이메일
+     */
+    public String getEmail() {
+        return email;
     }
-    
+
+    /**
+     * <p>닉네임을 반환한다.</p>
+     * 
+     * @return 닉네임
+     */
     public String getNickname() {
         return nickname;
     }
-    
+
+    /**
+     * <p>지역을 반환한다.</p>
+     * 
+     * @return 지역
+     */
     public Region getRegion() {
         return region;
     }
-    
+
+    /**
+     * <p>회원 등급을 반환한다.</p>
+     * 
+     * @return 회원 등급
+     */
     public MemberType getMemberType() {
         return memberType;
     }
-    
+
+    /**
+     * <p>회원 아이콘을 반환한다.</p>
+     * 
+     * @return 회원 아이콘
+     */
     public String memberIcon() {
         return memberIcon;
     }
-    
+
     /**
-     * @Deprecated 가급적 레포지토리를 통해서 정렬해서 불러올 것.
+     * <p>가계부 권한 엔티티 리스트를 반환한다.</p>
+     * 
+     * @return 가계부 권한 엔티티 리스트
+     * @deprecated 가급적 레포지토리를 통해서 정렬해서 불러올 것
      */
     @Deprecated
     public List<AccountBookAuthEntity> getAccountBookAuthList() {

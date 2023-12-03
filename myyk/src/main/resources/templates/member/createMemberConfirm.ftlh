@@ -30,11 +30,11 @@
         <#-- 지역 -->
         <div class="mb-5">
           <label class="form-label"><@msg "member.region.name"/></label>
-          <div>${holder.region.value}</div>
+          <div><@msg "member.region.${holder.region.value}"/></div>
         </div>
       </form>
 
-      <div class="mb-3"><@msg "signup.checkConfirm"/></div>
+      <div class="mb-3 text-center"><@msg "signup.checkConfirm"/></div>
       <@confirmBack/>
 
     </div>

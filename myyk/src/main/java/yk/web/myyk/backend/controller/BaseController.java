@@ -44,8 +44,7 @@ public class BaseController extends BaseMvc {
      * @param form 폼
      */
     protected <T extends BaseForm> void removeForm(HttpSession session, T form) {
-        Class<? extends BaseForm> clazz = form.getClass();
-        removeForm(session, form);
+        removeForm(session, form.getClass());
     }
 
     /**

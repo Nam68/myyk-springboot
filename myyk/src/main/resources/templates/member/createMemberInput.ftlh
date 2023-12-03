@@ -47,7 +47,7 @@
         <#-- 닉네임 -->
         <div class="mb-5">
           <label class="form-label"><@msg "member.nickname.name"/></label>
-          <input type="password" class="form-control<@error ['EE_ME_111', 'EE_ME_112', 'LE_ME_102']/>" name="nickname" value="${holder.nickname}">
+          <input type="text" class="form-control<@error ['EE_ME_111', 'EE_ME_112', 'LE_ME_102']/>" name="nickname" value="${holder.nickname}">
           <@errorMsg ['EE_ME_111'] 'signup.error.nicknameEmpty'/>
           <@errorMsg ['EE_ME_112'] 'signup.error.nicknameMax'/>
           <@errorMsg ['LE_ME_102'] 'signup.error.nicknameDupl'/>
