@@ -82,7 +82,6 @@ public class CreateMemberController extends BaseController {
     public String execute(HttpSession session) throws SystemException {
         MemberForm form = getForm(session, MemberForm.class);
         getService().getMember().createMember(form);
-        removeForm(session, form);
         return "redirect:/member/create/complete";
     }
 
@@ -94,6 +93,7 @@ public class CreateMemberController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/complete")
+    @DataCheck(target = MemberForm.class)
     @SessionClear
     public String complete(HttpSession session) throws SystemException {
         return "member/createMemberComplete";
