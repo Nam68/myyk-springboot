@@ -45,8 +45,14 @@ public class LoginLogic extends BaseLogic implements LoginService {
         }
         MemberEntity member = memberList.get(0);
 
+        List<LoginToken> tokenList = getRepository().getLoginToken().findAllByMemberMemberIdx(member.getMemberIdx());
         LoginToken token = new LoginToken(member);
         getRepository().getLoginToken().save(token);
+
+        // 저장에 성공한 경우 기존 토큰을 모두 삭제한다
+        for (LoginToken oldToken : tokenList) {
+            getRepository().getLoginToken().delete(oldToken);
+        }
 
         return token.getTokenId();
     }

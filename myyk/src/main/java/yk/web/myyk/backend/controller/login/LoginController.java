@@ -47,7 +47,7 @@ public class LoginController extends BaseController {
      * @param session 세션
      * @param request 리퀘스트
      * @param response 리스폰스
-     * @return 뷰 이름
+     * @return 리다이렉트
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
@@ -60,11 +60,26 @@ public class LoginController extends BaseController {
                 String tokenId = getService().getLogin().createLoginToken(loginInfo);
                 CookieUtil.setCookie(AUTO_LOGIN, encrypt(tokenId), response);
             }
-            return "/";
+            return "redirect:/";
         } catch (AppException e) {
             request.setAttribute(ERRORS, e.getErrors());
             request.setAttribute(HOLDER, new LoginHolder(form));
             return "login/loginInput";
         }
+    }
+
+    /**
+     * <p>로그아웃.</p>
+     * 
+     * @param session 세션
+     * @param response 리스폰스
+     * @return 리다이렉트
+     * @throws SystemException 시스템에러
+     */
+    @RequestMapping(path = "/logout")
+    public String logout(HttpSession session, HttpServletResponse response) throws SystemException {
+        session.removeAttribute(LOGIN_INFO);
+        CookieUtil.deleteCookie(AUTO_LOGIN, response);
+        return "redirect:/";
     }
 }

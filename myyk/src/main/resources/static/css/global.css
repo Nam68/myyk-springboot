@@ -47,8 +47,19 @@ header #header-btn-set {
 #header-icon-holder .header-item {
     display: inline-block;
 }
+#header-member-holder {
+    color: var(--soft-black);
+}
+#header-member-holder > .rounded-circle {
+    width:3rem;
+    height:3rem;
+}
+#header-nickname-holder {
+    color: var(--soft-black);
+    margin-right: 1rem;
+}
 .nav-link, footer i {
-	font-size: 1.2rem;
+    font-size: 1.2rem;
     color: var(--soft-black);
 }
 .nav-link:focus,.nav-link:hover, footer i:focus, footer i:hover {

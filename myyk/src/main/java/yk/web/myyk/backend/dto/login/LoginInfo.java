@@ -31,4 +31,11 @@ public interface LoginInfo {
      * @return 회원 아이콘
      */
     public String getMemberIcon();
+
+    /**
+     * <p>닉네임을 반환한다.</p>
+     * 
+     * @return 닉네임
+     */
+    public String getNickname();
 }

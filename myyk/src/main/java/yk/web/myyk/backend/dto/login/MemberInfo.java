@@ -13,6 +13,11 @@ public class MemberInfo extends BaseDto implements LoginInfo {
     private String email;
 
     /**
+     *<p>닉네임.</p>
+     */
+    private String nickname;
+
+    /**
      * <p>회원 아이콘.</p>
      */
     private String memberIcon;
@@ -30,6 +35,7 @@ public class MemberInfo extends BaseDto implements LoginInfo {
     @Override
     public void setByLoginForm(MemberEntity memberEntity) {
         this.email = memberEntity.getEmail();
+        this.nickname = memberEntity.getNickname();
         this.memberIcon = memberEntity.getMemberIcon();
         this.region = memberEntity.getRegion();
         this.memberType = memberEntity.getMemberType();
@@ -43,6 +49,11 @@ public class MemberInfo extends BaseDto implements LoginInfo {
     @Override
     public String getDecryptedEmail() {
         return decrypt(email);
+    }
+
+    @Override
+    public String getNickname() {
+        return nickname;
     }
 
     @Override

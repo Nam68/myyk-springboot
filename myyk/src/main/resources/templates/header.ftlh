@@ -7,8 +7,24 @@
         </a>
       </div>
       <div id="header-btn-set" class="align-self-center pe-3">
+        <#if login_info?has_content>
+        <div class="flex-shrink-0 dropdown">
+          <a class="text-decoration-none dropdown-toggle"id="header-member-holder" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            <span id="header-nickname-holder">${login_info.nickname}</span>
+            <img class="rounded-circle" src="${login_info.memberIcon}" alt="member icon">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end text-small shadow mt-3">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/login/logout">Sign out</a></li>
+          </ul>
+        </div>
+        <#else>
         <button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/login/input'"><@msg "login.name"/></button>
         <button type="button" class="btn btn-primary" onclick="location.href='/member/tmp/code/create/input'"><@msg "signup.name"/></button>
+        </#if>
       </div>
     </div>
   </div>
