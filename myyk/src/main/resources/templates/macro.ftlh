@@ -64,7 +64,7 @@
     </#if>
 </#macro>
 
-<#--에러 메시지 -->
+<#-- 에러 메시지 -->
 <#macro errorMsg codes msg>
     <#if errors?has_content>
         <#assign hasError = false>
@@ -73,6 +73,19 @@
         </#list>
         <#if hasError == true>
             <div class="invalid-feedback"><@spring.message msg/></div>
+        </#if>
+    </#if>
+</#macro>
+
+<#-- 인풋과 독립적인 에러 메시지 -->
+<#macro errorMsgIndpt codes msg>
+    <#if errors?has_content>
+        <#assign hasError = false>
+        <#list codes as code>
+            <#if errors[code]?has_content><#assign hasError = true><#break></#if>
+        </#list>
+        <#if hasError == true>
+            <div class="caution"><@spring.message msg/></div>
         </#if>
     </#if>
 </#macro>

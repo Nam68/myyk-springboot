@@ -18,15 +18,6 @@ public interface MemberService {
     public void checkTmpMember(EmailForm emailForm) throws SystemException, AppException;
 
     /**
-     * <p>입력된 회원 정보를 검증한다.</p>
-     * 
-     * @param memberForm 회원 정보
-     * @throws SystemException 시스템에러
-     * @throws AppException 앱에러
-     */
-    public void checkMember(MemberForm memberForm) throws SystemException, AppException;
-
-    /**
      * <p>임시회원 코드를 생성한다.</p>
      * 
      * @param emailForm 이메일 정보
@@ -45,6 +36,15 @@ public interface MemberService {
      * @throws AppException 앱에러
      */
     public String getEmailByTmpCode(TmpCodeForm tmpCodeForm) throws SystemException, AppException;
+
+    /**
+     * <p>입력된 회원 정보를 검증한다.</p>
+     * 
+     * @param memberForm 회원 정보
+     * @throws SystemException 시스템에러
+     * @throws AppException 앱에러
+     */
+    public void checkMember(MemberForm memberForm) throws SystemException, AppException;
 
     /**
      * <p>회원을 생성한다.</p>

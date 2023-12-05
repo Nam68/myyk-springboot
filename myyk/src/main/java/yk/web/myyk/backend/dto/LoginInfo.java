@@ -29,7 +29,7 @@ public class LoginInfo extends BaseDto {
 		this.nickname = entity.getNickname();
 		this.region = entity.getRegion();
 		this.memberType = entity.getMemberType();
-		this.memberIcon = entity.memberIcon();
+		this.memberIcon = entity.getMemberIcon();
 	}
 	
 	public long getMemberIdx() {

@@ -11,32 +11,32 @@ public class MemberForm extends BaseForm {
     /**
      * <p>이메일 로컬파트.</p>
      */
-    private String emailLocalpart;
+    private String emailLocalpart = "";
 
     /**
      * <p>이메일 도메인</p>
      */
-    private String emailDomain;
+    private String emailDomain = "";
 
     /**
      * <p>비밀번호.</p>
      */
-    private String password;
+    private String password = "";
 
     /**
      * <p>비밀번호 확인.</p>
      */
-    private String passwordCheck;
+    private String passwordCheck = "";
 
     /**
      * <p>닉네임.</p>
      */
-    private String nickname;
+    private String nickname = "";
 
     /**
      * <p>지역.</p>
      */
-    private String region;
+    private String region = "";
 
     /**
      * <p>이메일 로컬파트를 반환한다.</p>

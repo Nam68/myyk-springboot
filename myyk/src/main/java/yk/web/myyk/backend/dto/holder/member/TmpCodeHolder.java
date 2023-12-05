@@ -7,17 +7,17 @@ public class TmpCodeHolder {
     /**
      * <p>이메일 로컬파트.</p>
      */
-    private String emailLocalpart;
+    private String emailLocalpart = "";
 
     /**
      * <p>이메일 도메인.</p>
      */
-    private String emailDomain;
+    private String emailDomain = "";
 
     /**
      * <p>임시코드</p>
      */
-    private String tmpCode;
+    private String tmpCode = "";
 
     /**
      * <p>생성자.</p>

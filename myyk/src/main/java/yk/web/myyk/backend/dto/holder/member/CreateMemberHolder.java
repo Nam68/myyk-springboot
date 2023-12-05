@@ -1,6 +1,5 @@
 package yk.web.myyk.backend.dto.holder.member;
 
-import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.util.enumerated.Region;
 

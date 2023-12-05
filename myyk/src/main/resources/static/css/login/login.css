@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.form-login {
+    width: 50%;
+}
+
+.form-icon {
+    width: 8rem;
+    height: 3.5rem;
+}
+
+/*
+    핸드폰인 경우
+*/
+@media (pointer:coarse) {
+    .form-login {
+        width: 80%;
+    }
+}

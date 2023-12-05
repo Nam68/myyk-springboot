@@ -3,11 +3,11 @@
     <div class="d-flex">
       <div id="header-logo">
         <a href="/">
-          <img class="korea-flag img-fluid rounded" src="/img/title.jpg"/>
+          <img src="/img/title.jpg"/>
         </a>
       </div>
       <div id="header-btn-set" class="align-self-center pe-3">
-        <button type="button" class="btn btn-outline-secondary me-2"><@msg "login.name"/></button>
+        <button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/login/input'"><@msg "login.name"/></button>
         <button type="button" class="btn btn-primary" onclick="location.href='/member/tmp/code/create/input'"><@msg "signup.name"/></button>
       </div>
     </div>

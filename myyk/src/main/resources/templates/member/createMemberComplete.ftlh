@@ -14,7 +14,7 @@
         <@msg "signup.complete"/>
       </h3>
 
-      <form action="/" method="POST">
+      <form action="/login/input" method="POST">
         <div class="mt-5 mb-5">
           <@msg "signup.completeMessage"/>
         </div>

@@ -10,7 +10,7 @@ public class TmpCodeForm extends BaseForm {
     /**
      * <p>임시코드.</p>
      */
-    private String tmpCode;
+    private String tmpCode = "";
 
     /**
      * <p>생성자.</p>

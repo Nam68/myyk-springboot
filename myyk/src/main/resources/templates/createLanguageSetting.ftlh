@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<#include "/lib.ftlh"> 
+<#include "/lib.ftlh">
 <link rel="stylesheet" href="/css/languageSetting.css"/>
-<title><@input "global.title"/></title>
+<title><@msg "global.title"/></title>
 </head>
 <body>
   <div>

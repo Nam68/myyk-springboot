@@ -57,6 +57,8 @@ signup:
 login:
   name: "로그인"
   toLogin: "로그인 화면으로"
+  remember: "로그인 정보를 저장합니다"
+  error: "등록되지 않은 이메일 또는 잘못된 비밀번호입니다."
 
 album:
   name: "앨범"

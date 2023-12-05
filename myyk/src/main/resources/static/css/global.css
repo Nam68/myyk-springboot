@@ -48,6 +48,7 @@ header #header-btn-set {
     display: inline-block;
 }
 .nav-link, footer i {
+	font-size: 1.2rem;
     color: var(--soft-black);
 }
 .nav-link:focus,.nav-link:hover, footer i:focus, footer i:hover {

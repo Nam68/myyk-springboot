@@ -36,7 +36,7 @@ public class MemberLogic extends BaseLogic implements MemberService {
         }
 
         // 중복된 이메일 검사하기
-        List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(email);
+        List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(encrypt(email));
         if (!memberList.isEmpty()) {
             throw new AppException(ErrorCode.LE_ME_101);
         }
@@ -76,7 +76,7 @@ public class MemberLogic extends BaseLogic implements MemberService {
             tmpCode = String.valueOf(getRandomInt(6));
         }
 
-        TmpCodeEntity entity = new TmpCodeEntity(tmpCode, email);
+        TmpCodeEntity entity = new TmpCodeEntity(tmpCode, encrypt(email));
         getRepository().getTmpCode().save(entity);
 
         return tmpCode;
@@ -90,13 +90,13 @@ public class MemberLogic extends BaseLogic implements MemberService {
         if (!optional.isPresent()) {
             throw new SystemException(hashedTmpCode);
         }
-        return optional.get().getEmail();
+        return decrypt(optional.get().getEmail());
     }
 
     @Override
     public String createMember(MemberForm memberForm) throws SystemException, AppException {
         String email = combineEmail(memberForm.getEmailLocalpart(), memberForm.getEmailDomain());
-        MemberDto dto = new MemberDto(email, memberForm.getPassword(), memberForm.getNickname(), memberForm.getRegion());
+        MemberDto dto = new MemberDto(encrypt(email), memberForm.getPassword(), memberForm.getNickname(), memberForm.getRegion());
         MemberEntity entity = new MemberEntity(dto);
         getRepository().getMember().save(entity);
         return email;

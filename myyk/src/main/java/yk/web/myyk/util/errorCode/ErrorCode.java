@@ -206,6 +206,7 @@ public enum ErrorCode {
      * 논리 에러
      * 
      * ME : 회원
+     * LG : 로그인
      */
 
     /**
@@ -217,6 +218,11 @@ public enum ErrorCode {
      * <p>닉네임이 중복된 경우.</p>
      */
     LE_ME_102("nickname is duplicated."),
+
+    /**
+     * <p>로그인 에러.</p>
+     */
+    LE_LG_101("login error."),
 
     ;
     private String codeExplain;

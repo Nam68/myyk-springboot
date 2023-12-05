@@ -10,13 +10,11 @@ import yk.web.myyk.backend.dto.LoginInfo;
 import yk.web.myyk.backend.entity.member.AutoLoginEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
-import yk.web.myyk.backend.service.member.LoginService;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service
-public class LoginLogic extends BaseLogic implements LoginService {
+public class LoginLogic2 extends BaseLogic {
 
-	@Override
 	public LoginInfo find(LoginDTO dto) throws SystemException {
 		
 		List<MemberEntity> all = getRepository().getMember().findAllByEmail(encrypt(dto.getEmail()));
@@ -32,7 +30,6 @@ public class LoginLogic extends BaseLogic implements LoginService {
 		return new LoginInfo(entity);
 	}
 
-	@Override
 	@Transactional
 	public String createAutoLoginSession(LoginDTO dto) throws SystemException {
 		

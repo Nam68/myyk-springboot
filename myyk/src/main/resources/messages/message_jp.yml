@@ -57,6 +57,8 @@ signup:
 login:
   name: "ログイン"
   toLogin: "ログイン画面へ"
+  remember: "ログイン情報をセーブします"
+  error: "登録されていないメール、また、誤ったパスワードです。"
 
 album:
   name: "アルバム"

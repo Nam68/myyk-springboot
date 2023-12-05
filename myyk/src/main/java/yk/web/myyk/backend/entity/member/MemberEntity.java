@@ -38,15 +38,15 @@ public class MemberEntity extends BaseEntityWithTime {
     @Column(name = "MEMBER_IDX")
     private Long memberIdx;
 
+    @NaturalId
+    @Column(name = "EMAIL")
+    private String email;
+
     @Column(name = "PASSWORD")
     private String password;
 
     @Column(name = "PASSWORD_SALT")
     private String passwordSalt;
-
-    @NaturalId
-    @Column(name = "EMAIL")
-    private String email;
 
     @Column(name = "NICKNAME")
     private String nickname;
@@ -128,6 +128,24 @@ public class MemberEntity extends BaseEntityWithTime {
     }
 
     /**
+     * <p>비밀번호 솔트를 반환한다.</p>
+     * 
+     * @return 비밀번호 솔트
+     */
+    public String getPasswordSalt() {
+        return passwordSalt;
+    }
+
+    /**
+     * <p>비밀번호를 반환한다.</p>
+     * 
+     * @return 비밀번호
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
      * <p>닉네임을 반환한다.</p>
      * 
      * @return 닉네임
@@ -159,7 +177,7 @@ public class MemberEntity extends BaseEntityWithTime {
      * 
      * @return 회원 아이콘
      */
-    public String memberIcon() {
+    public String getMemberIcon() {
         return memberIcon;
     }
 
