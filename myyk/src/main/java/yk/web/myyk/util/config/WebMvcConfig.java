@@ -25,9 +25,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
         addInterceptor(registry, dataCheckInterceptor());
         addInterceptor(registry, setEnumInterceptor());
         addInterceptor(registry, sessionClearInterceptor());
+        addInterceptor(registry, autoLoginInterceptor());
 
 //        addInterceptor(registry, categoryInterceptor());
-//        addInterceptor(registry, autoLoginInterceptor());
 
 //        addInterceptor(registry, accessCheckInterceptor());
 

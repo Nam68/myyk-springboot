@@ -83,7 +83,7 @@ public class RepositoryFactory extends BaseApp {
         // 마지막 사용 시각이 한 달 전인 토큰은 삭제
         List<LoginToken> list = loginTokenRepository.findAll();
         for (LoginToken token : list) {
-            if (token.getLastUsedTime().isBefore(LocalDateTime.now().minusMonths(1))) {
+            if (token.getLastUsedTime().isBefore(LocalDateTime.now().minusMonths(Constant.getMemberAutoLoginMonth()))) {
                 loginTokenRepository.delete(token);
             }
         }

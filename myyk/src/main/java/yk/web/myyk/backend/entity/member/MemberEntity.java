@@ -19,6 +19,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
+import yk.web.myyk.backend.dto.login.AdminInfo;
+import yk.web.myyk.backend.dto.login.LoginInfo;
+import yk.web.myyk.backend.dto.login.MemberInfo;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.util.comparator.MyComparator;
@@ -191,5 +194,15 @@ public class MemberEntity extends BaseEntityWithTime {
     public List<AccountBookAuthEntity> getAccountBookAuthList() {
         return accountBookAuthList;
     }
-    
+
+    public LoginInfo getLoginInfo() {
+        LoginInfo loginInfo = null;
+        if (MemberType.ADMIN.equals(memberType)) {
+            loginInfo = new AdminInfo();
+        } else {
+            loginInfo = new MemberInfo();
+        }
+        loginInfo.setByLoginForm(this);
+        return loginInfo;
+    }
 }

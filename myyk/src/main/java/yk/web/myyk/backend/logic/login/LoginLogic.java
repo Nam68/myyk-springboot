@@ -5,15 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import yk.web.myyk.backend.dto.form.login.LoginForm;
-import yk.web.myyk.backend.dto.login.AdminInfo;
 import yk.web.myyk.backend.dto.login.LoginInfo;
-import yk.web.myyk.backend.dto.login.MemberInfo;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.entity.token.LoginToken;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.login.LoginService;
 import yk.web.myyk.util.constant.Constant;
-import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
@@ -37,15 +34,7 @@ public class LoginLogic extends BaseLogic implements LoginService {
             throw new AppException(ErrorCode.LE_LG_101);
         }
 
-        LoginInfo loginInfo = null;
-        if (member.getMemberType().equals(MemberType.ADMIN)) {
-            loginInfo = new AdminInfo();
-        } else {
-            loginInfo = new MemberInfo();
-        }
-        loginInfo.setByLoginForm(member);
-
-        return loginInfo;
+        return member.getLoginInfo();
     }
 
     @Override

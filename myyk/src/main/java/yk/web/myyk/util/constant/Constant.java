@@ -28,6 +28,10 @@ public class Constant {
     private int cookieOneDay;
     private static int staticCookieOneDay;
 
+    @Value("${value.cookie.oneYear}")
+    private int cookieOneYear;
+    private static int staticCookieOneYear;
+
     @Value("${value.member.password.saltLength}")
     private int memberPasswordSaltLength;
     private static int staticMemberPasswordSaltLength;
@@ -47,6 +51,10 @@ public class Constant {
     @Value("${value.member.nickname.max}")
     private int memberNicknameMax;
     private static int staticMemberNicknameMax;
+
+    @Value("${value.member.autoLogin.month}")
+    private int memberAutoLoginMonth;
+    private static int staticMemberAutoLoginMonth;
 
     @Value("${value.member.icon.default}")
     private String memberIconDefault;
@@ -75,11 +83,13 @@ public class Constant {
         Constant.staticEncryptKey = encryptKey;
         Constant.staticCookieDefaultTime = cookieDefaultTime;
         Constant.staticCookieOneDay = cookieOneDay;
+        Constant.staticCookieOneYear = cookieOneYear;
         Constant.staticMemberPasswordSaltLength = memberPasswordSaltLength;
         Constant.staticMemberPasswordHashingTimes = memberPasswordHashingTimes;
         Constant.staticMemberPasswordMin = memberPasswordMin;
         Constant.staticMemberPasswordMax = memberPasswordMax;
         Constant.staticMemberNicknameMax = memberNicknameMax;
+        Constant.staticMemberAutoLoginMonth = memberAutoLoginMonth;
         Constant.staticMemberIconDefault = memberIconDefault;
         Constant.staticTmpCodeLimitMinutes = tmpCodeLimitMinutes;
         Constant.staticTmpCodeLimitTimes = tmpCodeLimitTimes;
@@ -87,30 +97,58 @@ public class Constant {
         Constant.staticUrlTry = urlTry;
     }
 
+    /**
+     * @return 해싱 반복 횟수
+     */
     public static int getHashingTimes() {
         return staticHashingTimes;
     }
 
+    /**
+     * @return 해싱 솔트
+     */
     public static String getHashingSalt() {
         return staticHashingSalt;
     }
 
+    /**
+     * @return 암호화 키
+     */
     public static String getEncryptKey() {
         return staticEncryptKey;
     }
 
+    /**
+     * @return 쿠키 디폴트 시간
+     */
     public static int getCookieDefaultTime() {
         return staticCookieDefaultTime;
     }
 
+    /**
+     * @return 쿠키 1일
+     */
     public static int getCookieOneDay() {
         return staticCookieOneDay;
     }
 
+    /**
+     * @return 쿠키 1년
+     */
+    public static int getCookieOneYear() {
+        return staticCookieOneYear;
+    }
+
+    /**
+     * @return 회원 비밀번호 솔트 길이
+     */
     public static int getMemberPasswordSaltLength() {
         return staticMemberPasswordSaltLength;
     }
 
+    /**
+     * @return 회원 비밀번호 해싱 반복 횟수
+     */
     public static int getMemberPasswordHashingTimes() {
         return staticMemberPasswordHashingTimes;
     }
@@ -136,22 +174,41 @@ public class Constant {
         return staticMemberNicknameMax;
     }
 
+    /**
+     * @return 회원 기본 아이콘
+     */
     public static String getMemberIconDefault() {
         return staticMemberIconDefault;
+    }
+
+    /**
+     * @return 회원 자동 로그인 지속 개월
+     */
+    public static int getMemberAutoLoginMonth() {
+        return staticMemberAutoLoginMonth;
     }
 
     public static int getTmpCodeLImitMinutes() {
         return staticTmpCodeLimitMinutes;
     }
 
+    /**
+     * @return 임시회원 코드 마감시각
+     */
     public static int getTmpCodeLimitTimes() {
         return staticTmpCodeLimitTimes;
     }
 
+    /**
+     * @return URL 타임아웃 시도 초
+     */
     public static int getUrlTimeout() {
         return staticUrlTimeout;
     }
 
+    /**
+     * @return URL 타임아웃 시도 횟수
+     */
     public static int getUrlTry() {
         return staticUrlTry;
     }

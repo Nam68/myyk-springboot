@@ -19,7 +19,7 @@ import yk.web.myyk.util.constant.Constant;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
-public class BaseApp {
+public class BaseApp extends KeyName {
 
     private static final String SHA_256 = "SHA-256";
     private static final String AES = "AES";

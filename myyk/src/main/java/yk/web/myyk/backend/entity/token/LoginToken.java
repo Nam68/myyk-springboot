@@ -50,7 +50,7 @@ public class LoginToken extends BaseEntityWithTime {
     public LoginToken(MemberEntity member) {
         this.tokenId = getRandomString(20);
         this.member = member;
-        this.lastUsedTime = LocalDateTime.now();
+        updateLastUsedTime();
     }
 
     /**
@@ -78,5 +78,12 @@ public class LoginToken extends BaseEntityWithTime {
      */
     public LocalDateTime getLastUsedTime() {
         return lastUsedTime;
+    }
+
+    /**
+     * <p>마지막 사용 시각을 최신화한다.</p>
+     */
+    public void updateLastUsedTime() {
+        this.lastUsedTime = LocalDateTime.now();
     }
 }

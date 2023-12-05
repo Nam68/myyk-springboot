@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.util.constant.Constant;
-import yk.web.myyk.util.constant.KeyName;
+import yk.web.myyk.util.KeyName;
 import yk.web.myyk.util.constant.MyLocale;
 
 public class CookieUtil {

@@ -28,6 +28,7 @@ value:
   cookie:
     defaultTime: 2592000 #한달
     oneDay: 86400 #하루
+    oneYear: 31536000 #일년
   tmpCode:
     limit:
       minutes: 20 #분 단위
@@ -40,6 +41,8 @@ value:
       max: 30 #비밀번호 최대길이
     nickname:
       max: 10 #닉네임 최대길이
+    autoLogin:
+      month: 3 #자동로그인 토큰 지속 개월
   url:
     timeout: 5000 #5초
     try: 3 #3번 연결 시도
