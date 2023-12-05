@@ -16,4 +16,14 @@ public interface LoginService {
      * @throws AppException 앱에러
      */
     public LoginInfo getLoginInfo(LoginForm loginForm) throws SystemException, AppException;
+
+    /**
+     * <p>로그인 토큰을 생성한다.</p>
+     * 
+     * @param loginInfo 로그인 정보
+     * @return 토큰 아이디
+     * @throws SystemException 시스템에러
+     * @throws AppException 앱에러
+     */
+    public String createLoginToken(LoginInfo loginInfo) throws SystemException, AppException;
 }

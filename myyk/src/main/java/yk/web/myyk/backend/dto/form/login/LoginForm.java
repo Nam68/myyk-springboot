@@ -63,7 +63,7 @@ public class LoginForm extends BaseForm {
      * 
      * @return 자동 로그인 여부
      */
-    public boolean getAutoLogin() {
+    public boolean isAutoLogin() {
         return autoLogin;
     }
 

@@ -1,10 +1,16 @@
 package yk.web.myyk.backend.dto.login;
 
+import yk.web.myyk.backend.dto.BaseDto;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
 
-public class MemberInfo implements LoginInfo {
+public class MemberInfo extends BaseDto implements LoginInfo {
+
+    /**
+     * <p>이메일.</p>
+     */
+    private String email;
 
     /**
      * <p>회원 아이콘.</p>
@@ -23,9 +29,20 @@ public class MemberInfo implements LoginInfo {
 
     @Override
     public void setByLoginForm(MemberEntity memberEntity) {
+        this.email = memberEntity.getEmail();
         this.memberIcon = memberEntity.getMemberIcon();
         this.region = memberEntity.getRegion();
         this.memberType = memberEntity.getMemberType();
+    }
+
+    @Override
+    public String getEncryptedEmail() {
+        return email;
+    }
+
+    @Override
+    public String getDecryptedEmail() {
+        return decrypt(email);
     }
 
     @Override

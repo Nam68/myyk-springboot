@@ -36,4 +36,9 @@ public class KeyName {
      * <p>로그인 정보</p>
      */
     public static final String LOGIN_INFO = "login_info";
+
+    /**
+     * <p>자동 로그인</p>
+     */
+    public static final String AUTO_LOGIN = "auto_login";
 }

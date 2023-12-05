@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.dto.form.login.LoginForm;
 import yk.web.myyk.backend.dto.login.AdminInfo;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.dto.login.MemberInfo;
 import yk.web.myyk.backend.entity.member.MemberEntity;
+import yk.web.myyk.backend.entity.token.LoginToken;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.login.LoginService;
 import yk.web.myyk.util.constant.Constant;
@@ -25,10 +25,9 @@ public class LoginLogic extends BaseLogic implements LoginService {
     public LoginInfo getLoginInfo(LoginForm loginForm) throws SystemException, AppException {
 
         List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(encrypt(loginForm.getEmail()));
-        if (memberList == null || memberList.isEmpty() || memberList.size() > 1) {
+        if (memberList.isEmpty() || memberList.size() > 1) {
             throw new AppException(ErrorCode.LE_LG_101);
         }
-
         MemberEntity member = memberList.get(0);
 
         int hashingTimes = Constant.getMemberPasswordHashingTimes();
@@ -47,5 +46,19 @@ public class LoginLogic extends BaseLogic implements LoginService {
         loginInfo.setByLoginForm(member);
 
         return loginInfo;
+    }
+
+    @Override
+    public String createLoginToken(LoginInfo loginInfo) throws SystemException, AppException {
+        List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(loginInfo.getEncryptedEmail());
+        if (memberList.isEmpty() || memberList.size() > 1) {
+            throw new AppException(ErrorCode.LE_LG_101);
+        }
+        MemberEntity member = memberList.get(0);
+
+        LoginToken token = new LoginToken(member);
+        getRepository().getLoginToken().save(token);
+
+        return token.getTokenId();
     }
 }
