@@ -37,6 +37,13 @@ member:
     name: "지역"
     ko: "대한민국"
     jp: "일본"
+  type:
+    name: "회원등급"
+    banned: "회원정지"
+    withdraw: "탈퇴"
+    tmpMember: "임시회원"
+    member: "정회원"
+    admin: "관리자"
 
 signup:
   name: "회원가입"
@@ -59,6 +66,9 @@ login:
   toLogin: "로그인 화면으로"
   remember: "로그인 정보를 저장합니다"
   error: "등록되지 않은 이메일 또는 잘못된 비밀번호입니다."
+
+logout:
+  name: "로그아웃"
 
 album:
   name: "앨범"

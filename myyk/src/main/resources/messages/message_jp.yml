@@ -37,6 +37,13 @@ member:
     name: "地域"
     ko: "大韓民国"
     jp: "日本"
+  type:
+    name: "会員ランク"
+    banned: "会員停止"
+    withdraw: "退会"
+    tmpMember: "仮会員"
+    member: "正会員"
+    admin: "管理者"
 
 signup:
   name: "アカウント登録"
@@ -59,6 +66,9 @@ login:
   toLogin: "ログイン画面へ"
   remember: "ログイン情報をセーブします"
   error: "登録されていないメール、また、誤ったパスワードです。"
+
+logout:
+  name: "ログアウト"
 
 album:
   name: "アルバム"

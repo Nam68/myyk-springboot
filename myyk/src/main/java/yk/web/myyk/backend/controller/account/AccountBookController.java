@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.dto.AccountDTO;
-import yk.web.myyk.backend.dto.LoginInfo;
+import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.annotation.CategorySetter;

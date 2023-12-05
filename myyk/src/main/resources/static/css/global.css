@@ -50,7 +50,7 @@ header #header-btn-set {
 #header-member-holder {
     color: var(--soft-black);
 }
-#header-member-holder > .rounded-circle {
+#header-member-holder .rounded-circle {
     width:3rem;
     height:3rem;
 }

@@ -1,6 +1,7 @@
 package yk.web.myyk.backend.dto.login;
 
 import yk.web.myyk.backend.entity.member.MemberEntity;
+import yk.web.myyk.util.enumerated.MemberType;
 
 public interface LoginInfo {
 
@@ -38,4 +39,11 @@ public interface LoginInfo {
      * @return 닉네임
      */
     public String getNickname();
+
+    /**
+     * <p>회원 등급을 반환한다.</p>
+     * 
+     * @return 회원 등급
+     */
+    public MemberType getMemberType();
 }

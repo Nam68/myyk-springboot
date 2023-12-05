@@ -2,6 +2,7 @@ package yk.web.myyk.backend.dto.login;
 
 import yk.web.myyk.backend.dto.BaseDto;
 import yk.web.myyk.backend.entity.member.MemberEntity;
+import yk.web.myyk.util.enumerated.MemberType;
 
 public class AdminInfo extends BaseDto implements LoginInfo {
 
@@ -45,5 +46,10 @@ public class AdminInfo extends BaseDto implements LoginInfo {
     @Override
     public String getMemberIcon() {
         return memberIcon;
+    }
+
+    @Override
+    public MemberType getMemberType() {
+        return MemberType.ADMIN;
     }
 }

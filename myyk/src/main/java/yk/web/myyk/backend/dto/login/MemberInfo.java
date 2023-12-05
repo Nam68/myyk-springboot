@@ -75,6 +75,7 @@ public class MemberInfo extends BaseDto implements LoginInfo {
      * 
      * @return 회원 등급
      */
+    @Override
     public MemberType getMemberType() {
         return memberType;
     }

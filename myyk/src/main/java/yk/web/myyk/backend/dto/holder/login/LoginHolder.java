@@ -14,6 +14,11 @@ public class LoginHolder extends BaseHolder {
     private String email = "";
 
     /**
+     * <p>자동 로그인 여부.</p>
+     */
+    private boolean autoLogin = false;
+
+    /**
      * <p>생성자.</p>
      */
     public LoginHolder() {
@@ -27,6 +32,7 @@ public class LoginHolder extends BaseHolder {
      */
     public LoginHolder(LoginForm form) {
         this.email = form.getEmail();
+        this.autoLogin = form.isAutoLogin();
     }
 
     /**
@@ -36,5 +42,14 @@ public class LoginHolder extends BaseHolder {
      */
     public String getEmail() {
         return email;
+    }
+
+    /**
+     * <p>자동 로그인 여부를 반환한다.</p>
+     * 
+     * @return 자동 로그인 여부
+     */
+    public boolean isAutoLogin() {
+        return autoLogin;
     }
 }

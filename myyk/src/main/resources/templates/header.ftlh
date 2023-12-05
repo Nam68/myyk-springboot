@@ -8,18 +8,23 @@
       </div>
       <div id="header-btn-set" class="align-self-center pe-3">
         <#if login_info?has_content>
-        <div class="flex-shrink-0 dropdown">
-          <a class="text-decoration-none dropdown-toggle"id="header-member-holder" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-            <span id="header-nickname-holder">${login_info.nickname}</span>
-            <img class="rounded-circle" src="${login_info.memberIcon}" alt="member icon">
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end text-small shadow mt-3">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/login/logout">Sign out</a></li>
-          </ul>
+        <div class="row">
+          <div class="col text-end" id="header-nickname-holder">
+            <div class="row">${login_info.nickname}</div>
+            <div class="row"><@msg "member.type.${login_info.memberType.value}"/></div>
+          </div>
+          <div class="col flex-shrink-0 dropdown">
+            <a class="text-decoration-none dropdown-toggle"id="header-member-holder" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="rounded-circle" src="${login_info.memberIcon}" alt="member icon">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end text-small shadow mt-3">
+              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/login/logout"><@msg "logout.name"/></a></li>
+            </ul>
+          </div>
         </div>
         <#else>
         <button type="button" class="btn btn-outline-secondary me-2" onclick="location.href='/login/input'"><@msg "login.name"/></button>
@@ -45,7 +50,7 @@
       </a>
     </div>
     <div class="col">
-      <a href="#" class="nav-link text-decoration-none">
+      <a href="/account" class="nav-link text-decoration-none">
         <div class="header-icon"><i class="bi bi-calculator"></i></div>
         <div class="header-item"><@msg "account.name"/></div>
       </a>
