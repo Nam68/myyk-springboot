@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <#include "/lib.ftlh">
 <title><@msg "global.title"/></title>
-<link rel="stylesheet" href="/css/login/login.css"/>
+<link rel="stylesheet" href="/css/login.css"/>
 </head>
 <body>
   <main class="form-login">
@@ -38,5 +38,5 @@
     </div>
   </main>
 </body>
-<script src="/js/login/login.js"></script>
+<script src="/js/login.js"></script>
 </html>

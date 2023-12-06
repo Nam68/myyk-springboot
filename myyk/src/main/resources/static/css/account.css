@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#account-data-holder {
+    color: var(--soft-black);
+}
+#account-data-holder .title {
+    font-size: 1.2rem;
+}
+.account-book-selected {
+    color: white;
+    background-color: var(--primary-color);
+}

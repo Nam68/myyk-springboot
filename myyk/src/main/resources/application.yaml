@@ -15,7 +15,15 @@ spring:
     suffix: .ftlh
     cache: false
     expose-session-attributes: true
----    
+
+server:
+  error:
+    whitelabel:
+      enabled: true           # 화이트 라벨 페이지 유무 (default : true) 
+    include-stacktrace: never # 오류 응답에 stacktrace 내용을 포함할 지 여부 (default : always)
+    path: /error              # 오류 응답을 처리할 핸들러(ErrorController) path (default : /error)
+
+---
 # 언어설정
 spring:
   messages:

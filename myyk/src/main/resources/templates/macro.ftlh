@@ -15,17 +15,23 @@
 
 <#-- 확인버튼 -->
 <#macro confirmBtn>
-    <button class="btn btn-primary" onclick="mySubmit()"><@spring.message "global.confirm"/></button>
+    <div class="d-grid gap-3 bottom-btn-set">
+        <button class="btn btn-primary" onclick="mySubmit()"><@spring.message "global.confirm"/></button>
+    </div>
 </#macro>
 
 <#-- 홈으로 버튼 -->
 <#macro toHomeBtn>
-    <button class="btn btn-outline-secondary" onclick="location.href='/'"><@spring.message "global.toHome"/></button>
+    <div class="d-grid gap-3 bottom-btn-set">
+        <button class="btn btn-outline-secondary" onclick="location.href='/'"><@spring.message "global.toHome"/></button>
+    </div>
 </#macro>
 
 <#-- 뒤로가기 버튼 -->
 <#macro backBtn>
-    <button class="btn btn-outline-secondary" onclick="history.back()"><@spring.message "global.back"/></button>
+    <div class="d-grid gap-3 bottom-btn-set">
+        <button class="btn btn-outline-secondary" onclick="history.back()"><@spring.message "global.back"/></button>
+    </div>
 </#macro>
 
 <#-- 확인 & 홈으로 버튼세트 -->

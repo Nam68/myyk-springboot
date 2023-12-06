@@ -7,11 +7,15 @@ global:
   error: "시스템 에러가 발생했습니다\\r\\n관리자에게 문의해주십시오"
 
 error:
+  name: 에러
   system:
     name: "시스템 에러"
     title: "시스템 에러가 발생했습니다"
     message: "에러 내용"
     script: "에러가 반복될 경우 출력된 에러 내용을 첨부하여 관리자에게 문의해주십시오"
+  noHandler:
+    name: "존재하지 않는 페이지"
+    message: "잘못된 경로로 접근했습니다"
 
 member:
   name: "회원"
