@@ -18,19 +18,25 @@
       <div class="row mb-4" id="account-data-holder">
 
         <div class="col-3 border">
-          <div class="title text-center border-bottom p-2 mb-2">account book list</div>
-          <div class="p-2 pb-4 border-bottom">
-            <div class="p-2 rounded account-book-name account-book-selected" role="button">&nbsp;account A</div>
-            <div class="p-2 rounded account-book-name" role="button">&nbsp;account B</div>
+          <div class="title text-center border-bottom p-2"><@msg "account.list"/></div>
+          <div class="p-2 border-bottom">
+            <#if !holder.accountList?has_content>
+            <div class="p-2 mt-1 mb-1 rounded account-book-name account-book-selected" role="button">&nbsp;account A</div>
+            <div class="p-2 mt-1 mb-1 rounded account-book-name" role="button">&nbsp;account B</div>
+            <div class="p-2 mt-1 mb-1 rounded account-book-name" role="button">&nbsp;account C</div>
+            <#else>
             <div class="p-2 rounded account-book-name" role="button">&nbsp;account C</div>
+            </#if>
           </div>
           <div class="text-center p-2 row">
-            <button class="btn btn-outline-primary">add or edit <i class="bi bi-gear-fill"></i></button>
+            <button class="btn btn-outline-primary" onclick="location.href='/account/book/edit'">
+              <@msg "account.createOrUpdate"/>&nbsp;<i class="bi bi-gear-fill"></i>
+            </button>
           </div>
         </div>
 
         <div class="col border">
-          <div class="title text-center border-bottom p-2">account book name</div>
+          <div class="title text-center border-bottom p-2">account A</div>
           <div class="m-2">
             data
           </div>

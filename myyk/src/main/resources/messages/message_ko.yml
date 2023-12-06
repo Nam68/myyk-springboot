@@ -82,6 +82,10 @@ plan:
 
 account:
   name: "가계부"
+  list: "가계부 목록"
+  createOrUpdate: "가계부 생성 및 편집"
+  create:
+    name: "가계부 생성"
 
 board:
   name: "게시판"

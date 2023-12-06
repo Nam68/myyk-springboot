@@ -40,3 +40,15 @@ function mySubmit() {
     }
     form.submit();
 }
+
+function mySubmit(action, parameters) {
+    const form = $('<form>', {action:action, method:'POST'});
+
+    for (var key in parameters) {
+        alert(key + ' = ' + parameters[key]);
+        form.append($('<input>', {name:key, value:parameters[key]}));
+    }
+
+    $('body').append(form);
+    form.submit();
+}

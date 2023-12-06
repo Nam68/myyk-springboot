@@ -78,6 +78,10 @@ plan:
 
 account:
   name: "家計簿"
+  list: "家計簿リスト"
+  createOrUpdate: "家計簿登録および編集"
+  create:
+    name: "家計簿登録"
 
 board:
   name: "掲示板"

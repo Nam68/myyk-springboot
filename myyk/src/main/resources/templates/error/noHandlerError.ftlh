@@ -16,13 +16,11 @@
 
       <div class="mb-4">
         <div class="fs-4">
-          <strong><@msg "error.noHandler.message"/></strong>
+          <@msg "error.noHandler.message"/>
         </div>
       </div>
 
-      <div class="d-grid gap-3 bottom-btn-set">
-        <@toHomeBtn/>
-      </div>
+      <@toHomeBtn/>
 
     </div>
   </div>

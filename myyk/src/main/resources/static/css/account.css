@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+/*
+ * 메인 화면
+ */
+
 #account-data-holder {
     color: var(--soft-black);
 }
@@ -10,3 +14,22 @@
     color: white;
     background-color: var(--primary-color);
 }
+.account-book-name:not(.account-book-selected):hover {
+    background-color: var(--primary-color-faint);
+}
+
+/*
+ * 가계부 등록 편집
+ */
+#account-list-holder .card {
+    color: var(--soft-black);
+}
+#account-list-holder .card:hover {
+    cursor: default;
+    color: var(--soft-black);
+}
+#account-list-holder .card:last-child:hover {
+    background-color: var(--primary-color-faint);
+}
+
+

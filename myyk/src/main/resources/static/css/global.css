@@ -4,6 +4,7 @@ html {
     font-size: 16px;
     margin: 0;
 
+    --primary-color-faint:#E3FAFF;
     --primary-color-soft:#9EEAF9;
     --primary-color:#6EDFF6;
     --primary-color-hard:#3DD5F3;
