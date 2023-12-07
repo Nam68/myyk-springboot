@@ -99,13 +99,9 @@ public class MemberEntity extends BaseEntityWithTime {
      * @param memberIcon 회원 아이콘
      */
     public MemberEntity(MemberDto dto, String memberIcon) {
-
-        int saltLength = Constant.getMemberPasswordSaltLength();
-        int hashingTimes = Constant.getMemberPasswordHashingTimes();
-
-        this.email = dto.getEmail();
-        this.passwordSalt = getRandomString(saltLength);
-        this.password = hashing(dto.getPassword(), passwordSalt, hashingTimes);
+        this.email = encrypt(dto.getEmail());
+        this.passwordSalt = createPasswordSalt();
+        this.password = getHashedPassword(dto.getPassword());
         this.nickname = dto.getNickname();
         this.region = dto.getRegion();
         this.memberType = MemberType.TMP_MEMBER;
@@ -127,7 +123,7 @@ public class MemberEntity extends BaseEntityWithTime {
      * @return 이메일
      */
     public String getEmail() {
-        return email;
+        return decrypt(email);
     }
 
     /**
@@ -146,6 +142,27 @@ public class MemberEntity extends BaseEntityWithTime {
      */
     public String getPassword() {
         return password;
+    }
+
+    /**
+     * <p>비밀번호 솔트를 생성한다.</p>
+     * 
+     * @return 비밀번호 솔트
+     */
+    private String createPasswordSalt() {
+        int saltLength = Constant.getMemberPasswordSaltLength();
+        return getRandomString(saltLength);
+    }
+
+    /**
+     * <p>비밀번호를 해싱한다.</p>
+     * 
+     * @param password 비밀번호
+     * @return 해싱된 비밀번호
+     */
+    private String getHashedPassword(String password) {
+        int hashingTimes = Constant.getMemberPasswordHashingTimes();
+        return hashing(getPassword(), passwordSalt, hashingTimes);
     }
 
     /**
@@ -195,6 +212,11 @@ public class MemberEntity extends BaseEntityWithTime {
         return accountBookAuthList;
     }
 
+    /**
+     * <p>인스턴스를 로그인 정보로 변환해서 반환한다.</p>
+     * 
+     * @return 로그인 정보
+     */
     public LoginInfo getLoginInfo() {
         LoginInfo loginInfo = null;
         if (MemberType.ADMIN.equals(memberType)) {

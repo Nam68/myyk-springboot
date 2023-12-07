@@ -73,8 +73,6 @@ public class CreateTmpMemberCodeController extends BaseController {
         String tmpCode = getService().getMember().createTmpMember(emailForm);
 
         request.setAttribute(HOLDER, new TmpCodeHolder(emailForm, tmpCode));
-        removeForm(session, EmailForm.class);
-
         return "member/checkTmpMemberCodeInput";
 //      getService().getEmail().sendTmpMemberCode(emailForm, tmpCode);
 //      return "redirect:/member/tmp/code/create/complete";
@@ -88,6 +86,7 @@ public class CreateTmpMemberCodeController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/complete", method = RequestMethod.POST)
+    @DataCheck(target = {EmailForm.class})
     @SessionClear
     public String complete(HttpSession session) throws SystemException {
         return "member/checkTmpMemberCodeInput";

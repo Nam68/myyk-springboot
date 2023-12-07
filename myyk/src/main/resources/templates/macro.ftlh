@@ -50,17 +50,6 @@
     </div>
 </#macro>
 
-<#-- 지역 풀다운 메뉴 -->
-<#macro regionSelect>
-    <select class="form-select" name="region">
-        <#list Region as r>
-        <option value="${r.value}"<#if holder.region.value == r.value> selected</#if>>
-            <@msg "member.region.${r.value}"/>
-        </option>
-        </#list>
-    </select>
-</#macro>
-
 <#-- 에러 체크 -->
 <#macro error codes>
     <#if errors?has_content>
@@ -94,4 +83,24 @@
             <div class="caution"><@spring.message msg/></div>
         </#if>
     </#if>
+</#macro>
+
+<#-- 지역 풀다운 메뉴 -->
+<#macro regionSelect>
+    <select class="form-select" name="region">
+        <#list Region as r>
+        <option value="${r.value}"<#if holder.region.value == r.value> selected</#if>>
+            <@msg "member.region.${r.value}"/>
+        </option>
+        </#list>
+    </select>
+</#macro>
+
+<#-- 세금 풀다운 메뉴 -->
+<#macro taxSelect>
+    <select class="form-select" name="tax">
+        <#list TaxRate as t>
+        <option value="${t.rate}">${t.value}</option>
+        </#list>
+    </select>
 </#macro>

@@ -1,5 +1,6 @@
 package yk.web.myyk.backend.logic.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.form.member.TmpCodeForm;
+import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.entity.member.TmpCodeEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
@@ -36,7 +38,7 @@ public class MemberLogic extends BaseLogic implements MemberService {
         }
 
         // 중복된 이메일 검사하기
-        List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(encrypt(email));
+        List<MemberEntity> memberList = getRepository().getMember().findByEmail(encrypt(email));
         if (!memberList.isEmpty()) {
             throw new AppException(ErrorCode.LE_ME_101);
         }
@@ -53,7 +55,7 @@ public class MemberLogic extends BaseLogic implements MemberService {
 
         // 중복된 닉네임 검사하기
         if (memberForm.getNickname() != null) {
-            List<MemberEntity> list = getRepository().getMember().findAllByNickname(memberForm.getNickname());
+            List<MemberEntity> list = getRepository().getMember().findByNickname(memberForm.getNickname());
             if (!list.isEmpty()) {
                 errors.put(ErrorCode.LE_ME_102.name(), ErrorCode.LE_ME_102);
             }
@@ -68,15 +70,17 @@ public class MemberLogic extends BaseLogic implements MemberService {
     @Transactional
     public String createTmpMember(EmailForm emailForm) throws SystemException, AppException {
 
+        int tmpCodeLength = 6;
+
         String email = combineEmail(emailForm);
-        String tmpCode = getRandomString(6);
+        String tmpCode = getRandomString(tmpCodeLength);
 
         // 중복된 코드를 생성하지 않음
         while (getRepository().getTmpCode().findByTmpCode(tmpCode).isPresent()) {
-            tmpCode = String.valueOf(getRandomInt(6));
+            tmpCode = getRandomString(tmpCodeLength);
         }
 
-        TmpCodeEntity entity = new TmpCodeEntity(tmpCode, encrypt(email));
+        TmpCodeEntity entity = new TmpCodeEntity(tmpCode, email);
         getRepository().getTmpCode().save(entity);
 
         return tmpCode;
@@ -88,18 +92,31 @@ public class MemberLogic extends BaseLogic implements MemberService {
         String hashedTmpCode = hashing(tmpCodeForm.getTmpCode());
         Optional<TmpCodeEntity> optional = getRepository().getTmpCode().findByTmpCode(hashedTmpCode);
         if (!optional.isPresent()) {
-            throw new SystemException(hashedTmpCode);
+            throw new SystemException(ErrorCode.LE_TM_101, MemberLogic.class);
         }
         return decrypt(optional.get().getEmail());
     }
 
     @Override
+    @Transactional
     public String createMember(MemberForm memberForm) throws SystemException, AppException {
         String email = combineEmail(memberForm.getEmailLocalpart(), memberForm.getEmailDomain());
-        MemberDto dto = new MemberDto(encrypt(email), memberForm.getPassword(), memberForm.getNickname(), memberForm.getRegion());
+        MemberDto dto = new MemberDto(email, memberForm.getPassword(), memberForm.getNickname(), memberForm.getRegion());
         MemberEntity entity = new MemberEntity(dto);
         getRepository().getMember().save(entity);
         return email;
+    }
+
+    @Override
+    public List<MemberDto> getAllExceptSelf(LoginInfo loginInfo) throws SystemException, AppException {
+
+        List<MemberEntity> entityList = getRepository().getMember().findByEmailNot(encrypt(loginInfo.getEmail()));
+        List<MemberDto> result = new ArrayList<>();
+
+        for (MemberEntity entity : entityList) {
+            result.add(new MemberDto(entity.getEmail(), null, entity.getNickname(), entity.getRegion()));
+        }
+        return result;
     }
 
 //	@Override

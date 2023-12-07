@@ -35,6 +35,6 @@ public class AccountController extends BaseController {
     @RequestMapping("/book/edit")
     public String edit(HttpServletRequest request) throws SystemException {
         request.setAttribute(HOLDER, new AccountMainHolder());
-        return "account/book/edit";
+        return "account/book/accountEdit";
     }
 }

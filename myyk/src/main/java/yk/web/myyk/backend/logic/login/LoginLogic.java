@@ -21,7 +21,7 @@ public class LoginLogic extends BaseLogic implements LoginService {
     @Override
     public LoginInfo getLoginInfo(LoginForm loginForm) throws SystemException, AppException {
 
-        List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(encrypt(loginForm.getEmail()));
+        List<MemberEntity> memberList = getRepository().getMember().findByEmail(encrypt(loginForm.getEmail()));
         if (memberList.isEmpty() || memberList.size() > 1) {
             throw new AppException(ErrorCode.LE_LG_101);
         }
@@ -39,7 +39,7 @@ public class LoginLogic extends BaseLogic implements LoginService {
 
     @Override
     public String createLoginToken(LoginInfo loginInfo) throws SystemException, AppException {
-        List<MemberEntity> memberList = getRepository().getMember().findAllByEmail(loginInfo.getEncryptedEmail());
+        List<MemberEntity> memberList = getRepository().getMember().findByEmail(encrypt(loginInfo.getEmail()));
         if (memberList.isEmpty() || memberList.size() > 1) {
             throw new AppException(ErrorCode.LE_LG_101);
         }

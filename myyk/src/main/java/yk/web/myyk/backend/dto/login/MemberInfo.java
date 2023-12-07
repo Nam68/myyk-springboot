@@ -42,13 +42,8 @@ public class MemberInfo extends BaseDto implements LoginInfo {
     }
 
     @Override
-    public String getEncryptedEmail() {
+    public String getEmail() {
         return email;
-    }
-
-    @Override
-    public String getDecryptedEmail() {
-        return decrypt(email);
     }
 
     @Override

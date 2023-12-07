@@ -23,6 +23,6 @@ public interface TmpCodeRepository extends JpaRepository<TmpCodeEntity, Long> {
      * @param email 이메일
      * @return 확인코드 리스트
      */
-    public List<TmpCodeEntity> findAllByEmail(String email);
+    public List<TmpCodeEntity> findByEmail(String email);
 
 }

@@ -1,5 +1,7 @@
 package yk.web.myyk.backend.dto.holder;
 
-public class BaseHolder {
+import yk.web.myyk.util.BaseApp;
+
+public class BaseHolder extends BaseApp {
 
 }

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import yk.web.myyk.util.annotation.SetEnum;
 import yk.web.myyk.util.enumerated.BaseEnum;
 import yk.web.myyk.util.enumerated.Region;
+import yk.web.myyk.util.enumerated.TaxRate;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -39,6 +40,8 @@ public class SetEnumInterceptor extends BaseInterceptor {
 
             if (Region.class.getSimpleName().equals(enumName)) {
                 request.setAttribute(enumName, Region.values());
+            } else if (TaxRate.class.getSimpleName().equals(enumName)) {
+                request.setAttribute(enumName, TaxRate.values());
             } else {
                 throw new SystemException(ErrorCode.EN_102, SetEnumInterceptor.class);
             }

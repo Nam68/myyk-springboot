@@ -1,8 +1,5 @@
 package yk.web.myyk.util.enumerated;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum TaxRate implements BaseEnum {
 	
 	LOW("8%", 0.08),

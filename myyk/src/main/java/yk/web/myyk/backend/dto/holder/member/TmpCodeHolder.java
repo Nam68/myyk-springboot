@@ -1,8 +1,9 @@
 package yk.web.myyk.backend.dto.holder.member;
 
 import yk.web.myyk.backend.dto.form.member.EmailForm;
+import yk.web.myyk.backend.dto.holder.BaseHolder;
 
-public class TmpCodeHolder {
+public class TmpCodeHolder extends BaseHolder {
 
     /**
      * <p>이메일 로컬파트.</p>

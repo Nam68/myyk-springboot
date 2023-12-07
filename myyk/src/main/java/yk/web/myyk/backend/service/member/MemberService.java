@@ -1,8 +1,12 @@
 package yk.web.myyk.backend.service.member;
 
+import java.util.List;
+
+import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.form.member.TmpCodeForm;
+import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -28,7 +32,7 @@ public interface MemberService {
     public String createTmpMember(EmailForm emailForm) throws SystemException, AppException;
 
     /**
-     * <p>임시코드를 통해 이메일을 가져온다.</p>
+     * <p>임시코드를 통해 이메일을 반환한다.</p>
      * 
      * @param tmpCodeForm 임시코드 정보
      * @return 이메일
@@ -56,40 +60,16 @@ public interface MemberService {
      */
     public String createMember(MemberForm memberForm) throws SystemException, AppException;
 
-//    /**
-//     * <p>임시 코드를 통해 이메일을 찾아낸다.</p>
-//     * 
-//     * @param tmpCode 임시코드
-//     * @return 이메일
-//     * @throws SystemException 시스템 에러
-//     */
-//    public String findMailByTmpCode(EmailTmpCodeForm form) throws SystemException, AppException;
-//	
-//	/**
-//	 * <p>이메일이 존재하는지 검증한다.</p>
-//	 * 
-//	 * @param email 이메일
-//	 * @return 에러
-//	 * @throws SystemException 시스템 에러
-//	 */
-//	public Map<String, String> emailValidate(String email) throws SystemException;
-//	
-//	/**
-//	 * <p>신규가입 회원정보를 검증한다.</p>
-//	 * 
-//	 * @param dto 회원
-//	 * @return 에러
-//	 * @throws SystemException 시스템 에러
-//	 */
-//	public Map<String, String> createVaildate(MemberDTO dto) throws SystemException;
-//
-//	/**
-//	 * <p>회원을 생성한다.</p>
-//	 * 
-//	 * @param dto 회원
-//	 * @throws SystemException 시스템 에러
-//	 */
-//	public void create(MemberDTO dto) throws SystemException;
+    /**
+     * <p>로그인한 본인을 제외한 모든 회원을 반환한다.</p>
+     * 
+     * @param loginInfo 로그인 정보
+     * @return 회원 리스트
+     * @throws SystemException 시스템에러
+     * @throws AppException 앱에러
+     */
+    public List<MemberDto> getAllExceptSelf(LoginInfo loginInfo) throws SystemException, AppException;
+
 //	
 //	/**
 //	 * <p>회원 등급에 해당하는 모든 회원을 불러온다.</p>

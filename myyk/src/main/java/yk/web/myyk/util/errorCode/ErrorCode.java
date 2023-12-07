@@ -207,6 +207,7 @@ public enum ErrorCode {
      * 
      * ME : 회원
      * LG : 로그인
+     * TM : 임시회원
      */
 
     /**
@@ -223,6 +224,11 @@ public enum ErrorCode {
      * <p>로그인 에러.</p>
      */
     LE_LG_101("login error."),
+
+    /**
+     * <p>임시회원 코드가 존재하지 않음.</p>
+     */
+    LE_TM_101("temporary code does not exist.")
 
     ;
     private String codeExplain;

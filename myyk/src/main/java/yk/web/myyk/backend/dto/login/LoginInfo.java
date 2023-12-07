@@ -13,18 +13,11 @@ public interface LoginInfo {
     public void setByLoginForm(MemberEntity memberEntity);
 
     /**
-     * <p>암호화된 이메일을 반환한다.</p>
+     * <p>이메일을 반환한다.</p>
      * 
-     * @return 암호화된 이메일
+     * @return 이메일
      */
-    public String getEncryptedEmail();
-
-    /**
-     * <p>복호화된 이메일을 반환한다.</p>
-     * 
-     * @return 복호화된 이메일
-     */
-    public String getDecryptedEmail();
+    public String getEmail();
 
     /**
      * <p>회원 아이콘을 반환한다.</p>

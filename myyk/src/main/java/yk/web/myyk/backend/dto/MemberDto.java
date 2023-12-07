@@ -1,5 +1,6 @@
 package yk.web.myyk.backend.dto;
 
+import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.Region;
 
 public class MemberDto extends BaseDto {
@@ -19,6 +20,13 @@ public class MemberDto extends BaseDto {
         // nop
     }
 
+    public MemberDto(MemberEntity entity) {
+        setEmail(entity.getEmail());
+        setPassword(entity.getPassword());
+        setNickname(entity.getNickname());
+        setRegion(entity.getRegion());
+    }
+
     public MemberDto(String email, String password, String nickname, Region region) {
         setEmail(email);
         setPassword(password);
@@ -31,11 +39,11 @@ public class MemberDto extends BaseDto {
     }
 
     public String getEmail() {
-        return decrypt(email);
+        return email;
     }
 
     public void setEmail(String email) {
-        this.email = encrypt(email);
+        this.email = email;
     }
 
     public String getPassword() {

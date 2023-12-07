@@ -21,7 +21,7 @@ public class EmailLogic extends BaseLogic implements EmailService {
         String email = combineEmail(emailForm);
 
         // 로봇 대책
-        if (getRepository().getTmpCode().findAllByEmail(encode(email)).size() > Constant.getTmpCodeLimitTimes()) {
+        if (getRepository().getTmpCode().findByEmail(encrypt(email)).size() > Constant.getTmpCodeLimitTimes()) {
             throw new SystemException(ErrorCode.CT_101, EmailLogic.class);
         }
 

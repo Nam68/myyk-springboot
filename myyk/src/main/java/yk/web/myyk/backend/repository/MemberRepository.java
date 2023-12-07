@@ -17,7 +17,15 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
      * @param email 이메일
      * @return 회원 리스트
      */
-    public List<MemberEntity> findAllByEmail(String email);
+    public List<MemberEntity> findByEmail(String email);
+
+    /**
+     * <p>해당 이메일을 제외한 모든 회원 리스트를 가져온다.</p>
+     * 
+     * @param email 이메일
+     * @return 회원 리스트
+     */
+    public List<MemberEntity> findByEmailNot(String email);
 
     /**
      * <p>닉네임을 통해 모든 회원 리스트를 가져온다.</p>
@@ -25,7 +33,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
      * @param nickname 닉네임
      * @return 회원 리스트
      */
-    public List<MemberEntity> findAllByNickname(String nickname);
+    public List<MemberEntity> findByNickname(String nickname);
 
     /**
      * <p>회원 등급을 통해 모든 회원 리스트를 가져온다.</p>
@@ -33,6 +41,6 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
      * @param memberType 회원등급
      * @return 회원 리스트
      */
-    public List<MemberEntity> findAllByMemberType(MemberType memberType);
+    public List<MemberEntity> findByMemberType(MemberType memberType);
 
 }

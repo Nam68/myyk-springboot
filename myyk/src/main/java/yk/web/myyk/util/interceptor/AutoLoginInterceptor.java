@@ -37,27 +37,31 @@ public class AutoLoginInterceptor extends BaseInterceptor {
             return true;
         }
 
-        String tokenId = decrypt(CookieUtil.getValue(AUTO_LOGIN, request));
+        // 세션에 로그인 정보가 있는 경우는 그대로 진행
+        boolean hasLoginInfo = getSessionAttribute(request, LOGIN_INFO, LoginInfo.class) != null;
+        if (hasLoginInfo) {
+            return true;
+        }
 
         // 자동 로그인 쿠키가 없는 경우는 그대로 진행
+        String tokenId = decrypt(CookieUtil.getValue(AUTO_LOGIN, request));
         if (tokenId == null || tokenId.isEmpty()) {
             return true;
         }
 
+        // 자동 로그인 토큰이 없는 경우는 그대로 진행
         Optional<LoginToken> loginToken = loginTokenRepository.findByTokenId(tokenId);
-
-        // 자동 로그인 토큰이 없어도 그대로 진행
         if (!loginToken.isPresent()) {
             return true;
         }
 
+        // 해당 회원 정보를 가져오지 못한 경우는 그대로 진행
         MemberEntity member = loginToken.get().getMemberEntity();
-
-        // 해당 회원 정보를 가져오지 못했어도 그대로 진행
         if (member == null) {
             return true;
         }
 
+        // 자동 로그인
         LoginInfo loginInfo = member.getLoginInfo();
         setSessionAttribute(request, LOGIN_INFO, loginInfo);
 

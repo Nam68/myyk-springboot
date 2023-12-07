@@ -14,5 +14,14 @@ $('#account-list-holder .card-body span:eq(1)').on('click', function () {
 
 // 가계부 등록
 $('#account-list-holder .card-body:last').on('click', function () {
-    location.href='/account/book/create';
+    location.href='/account/book/create/input';
+});
+
+// 가계부 등록 부가세 에리어 여닫기
+$('input[name=isTaxIncluded]').on('change', function () {
+    if ($(this).val() == 'true') {
+        $('.tax-setting-area').slideUp();
+    } else {
+        $('.tax-setting-area').slideDown();
+    }
 });

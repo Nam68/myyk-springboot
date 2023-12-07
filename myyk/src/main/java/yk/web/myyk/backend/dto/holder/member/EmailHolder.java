@@ -1,11 +1,12 @@
 package yk.web.myyk.backend.dto.holder.member;
 
 import yk.web.myyk.backend.dto.form.member.EmailForm;
+import yk.web.myyk.backend.dto.holder.BaseHolder;
 
 /**
  * <p>이메일 홀더.</p>
  */
-public class EmailHolder {
+public class EmailHolder extends BaseHolder {
 
     /**
      * <p>이메일 로컬파트.</p>
