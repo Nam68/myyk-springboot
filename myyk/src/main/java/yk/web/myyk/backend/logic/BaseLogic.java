@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import yk.web.myyk.backend.BaseMvc;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.factory.RepositoryFactory;
-import yk.web.myyk.util.config.MailConfig;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.mail.FreeMarkerFactory;
 import yk.web.myyk.util.mail.MailTemplate;

@@ -9,6 +9,7 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 import yk.web.myyk.backend.logic.BaseLogic;
+import yk.web.myyk.util.constant.Constant;
 import yk.web.myyk.util.exception.ApiException;
 
 public class BaseExternalLogic extends BaseLogic {
@@ -20,8 +21,8 @@ public class BaseExternalLogic extends BaseLogic {
 		while(true) {
 			try {
 				HttpsURLConnection conn = (HttpsURLConnection) new URL(url.getUrl()).openConnection();
-				conn.setConnectTimeout(getConstants().getUrlTimeout());
-				conn.setReadTimeout(getConstants().getUrlTimeout());
+				conn.setConnectTimeout(Constant.getUrlTimeout());
+				conn.setReadTimeout(Constant.getUrlTimeout());
 				conn.setDoInput(true);
 				conn.setDoOutput(true);
 				conn.connect();
@@ -29,7 +30,7 @@ public class BaseExternalLogic extends BaseLogic {
 			} catch (IOException e) {
 				e.printStackTrace();
 				tryCount++;
-				if (tryCount >= getConstants().getUrlTry()) {
+				if (tryCount >= Constant.getUrlTry()) {
 					throw new ApiException();
 				}
 			}

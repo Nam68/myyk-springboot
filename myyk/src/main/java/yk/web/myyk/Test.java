@@ -1,12 +1,5 @@
 package yk.web.myyk;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import yk.web.myyk.util.BaseApp;
-import yk.web.myyk.util.enumerated.BaseEnum;
-import yk.web.myyk.util.enumerated.Region;
-
 public class Test {
 
     public static void main(String[] args) {

@@ -11,7 +11,8 @@ public class SubCategoryDTO extends CategoryDTO<SubCategoryDTO> {
 	
 	private long parentCategoryIdx;
 	
-	private List<AccountDTO> accountList = new ArrayList<>();
+	@SuppressWarnings("unused")
+    private List<AccountDTO> accountList = new ArrayList<>();
 	
 	@Deprecated
 	public SubCategoryDTO() {

@@ -7,21 +7,17 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Map.Entry;
 
-import org.glassfish.jaxb.runtime.v2.runtime.reflect.Accessor.GetterSetterReflection;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Nullable;
-import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.AccountBookDTO;
-import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.repository.AccountBookAuthRepository;
 import yk.web.myyk.backend.service.account.AccountBookService;
-import yk.web.myyk.util.comparator.MyComparator;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service

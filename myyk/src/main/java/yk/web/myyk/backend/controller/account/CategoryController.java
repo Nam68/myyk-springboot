@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.PrimeCategoryDTO;
-import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.annotation.CategorySetter;
 import yk.web.myyk.util.enumerated.Category;
@@ -32,7 +31,8 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping("/list")
 	public String list(long accountBookIdx, HttpServletRequest request) throws SystemException {
-		List<PrimeCategoryDTO> list = getService().getCategory().getPrimeCategory(accountBookIdx);
+		@SuppressWarnings("unused")
+        List<PrimeCategoryDTO> list = getService().getCategory().getPrimeCategory(accountBookIdx);
 //		request.setAttribute(LIST, list);
 //		request.setAttribute(IDX, accountBookIdx);
 		return "account/listCategory";

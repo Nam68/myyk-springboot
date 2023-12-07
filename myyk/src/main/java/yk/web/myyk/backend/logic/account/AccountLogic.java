@@ -32,7 +32,8 @@ public class AccountLogic extends BaseLogic implements AccountService {
 		return Error.SUCCESS;
 	}
 	
-	@Override
+	@SuppressWarnings("unused")
+    @Override
 	public List<AccountDTO> search(AccountBookDTO accountBookDto) throws SystemException {
 		List<AccountDTO> list = new ArrayList<>();
 		for (PrimeCategoryDTO primeCategory : accountBookDto.getCategoryList()) {

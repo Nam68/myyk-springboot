@@ -12,8 +12,6 @@ import yk.web.myyk.util.BaseApp;
 
 public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
 
-    private static final String LANGUAGE_SETTING = "/language/setting";
-
     protected static final int BOTH_ANNOTATION = 0;
     protected static final int TYPE_ANNOTATION = 1;
     protected static final int METHOD_ANNOTATION = 2;

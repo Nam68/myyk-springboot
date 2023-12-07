@@ -10,7 +10,6 @@ import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.form.member.TmpCodeForm;
 import yk.web.myyk.backend.dto.holder.member.CreateMemberHolder;
-import yk.web.myyk.backend.dto.holder.member.EmailHolder;
 import yk.web.myyk.util.annotation.DataCheck;
 import yk.web.myyk.util.annotation.SessionClear;
 import yk.web.myyk.util.annotation.SetEnum;

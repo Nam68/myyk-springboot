@@ -2,9 +2,7 @@ package yk.web.myyk.backend.entity.account;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.Column;
@@ -147,7 +145,8 @@ public class CategoryEntity extends BaseEntity {
 	 * 
 	 * @return 카테고리 아이콘
 	 */
-	public String getIcon() {
+	@SuppressWarnings("deprecation")
+    public String getIcon() {
 		return getOption().getIcon();
 	}
 
@@ -156,7 +155,8 @@ public class CategoryEntity extends BaseEntity {
 	 * 
 	 * @return 카테고리 컬러
 	 */
-	public String getColor() {
+	@SuppressWarnings("deprecation")
+    public String getColor() {
 		return getOption().getColor();
 	}
 	

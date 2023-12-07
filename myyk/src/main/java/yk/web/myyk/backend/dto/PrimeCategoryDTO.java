@@ -13,7 +13,8 @@ public class PrimeCategoryDTO extends CategoryDTO<PrimeCategoryDTO> {
 	
 	private List<SubCategoryDTO> subCategory = new ArrayList<>();
 	
-	private List<AccountDTO> accountList = new ArrayList<>();
+	@SuppressWarnings("unused")
+    private List<AccountDTO> accountList = new ArrayList<>();
 	
 	@Deprecated
 	public PrimeCategoryDTO() {

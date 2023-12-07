@@ -5,7 +5,6 @@ import java.util.Map;
 
 import yk.web.myyk.util.constant.Constant;
 import yk.web.myyk.util.errorCode.ErrorCode;
-import yk.web.myyk.util.exception.AppException;
 
 /**
  * <p>회원에 필요한 값을 검증한다.</p>

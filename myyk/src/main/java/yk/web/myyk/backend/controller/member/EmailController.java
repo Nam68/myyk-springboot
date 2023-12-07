@@ -1,12 +1,8 @@
 package yk.web.myyk.backend.controller.member;
 
-import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.util.annotation.CategorySetter;
 import yk.web.myyk.util.enumerated.Category;

@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import yk.web.myyk.backend.entity.BaseEntity;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 
@@ -45,7 +44,8 @@ public class AccountBookAuthEntity extends BaseEntityWithTime {
 		accountBook.getAuthList().add(this);
 	}
 	
-	public AccountBookAuthEntity(MemberEntity member, AccountBookEntity accountBook, boolean writable) {
+	@SuppressWarnings("deprecation")
+    public AccountBookAuthEntity(MemberEntity member, AccountBookEntity accountBook, boolean writable) {
 		this.member = member;
 		this.accountBook = accountBook;
 		this.writable = writable;
