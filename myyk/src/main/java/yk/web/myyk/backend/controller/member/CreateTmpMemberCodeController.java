@@ -66,7 +66,7 @@ public class CreateTmpMemberCodeController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/execute", method = RequestMethod.POST)
-    @DataCheck(target = {EmailForm.class})
+    @DataCheck(target = EmailForm.class)
     public String execute(HttpSession session, HttpServletRequest request) throws SystemException {
 
         EmailForm emailForm = getForm(session, EmailForm.class);
@@ -86,7 +86,7 @@ public class CreateTmpMemberCodeController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/complete", method = RequestMethod.POST)
-    @DataCheck(target = {EmailForm.class})
+    @DataCheck(target = EmailForm.class)
     @SessionClear
     public String complete(HttpSession session) throws SystemException {
         return "member/checkTmpMemberCodeInput";

@@ -31,6 +31,12 @@
 #account-list-holder .card:last-child:hover {
     background-color: var(--primary-color-faint);
 }
+#auth-member-holder {
+	color: var(--soft-black);
+    min-height: 10rem;
+    max-height: 10rem;
+    overflow: auto;
+}
 
 
 

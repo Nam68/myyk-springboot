@@ -96,12 +96,14 @@ account:
     name: "통화단위"
     won: "원"
     yen: "엔"
-  auth:
-    name: "권한"
-    read: "읽기 권한"
-    write: "쓰기 권한"
   create:
     name: "가계부 생성"
 
 board:
   name: "게시판"
+
+share:
+  name: "공유 설정"
+  read: "읽기 권한"
+  write: "쓰기 권한"
+  checkForRegister: "공유할 회원을 선택해주세요"

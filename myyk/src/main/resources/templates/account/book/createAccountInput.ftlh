@@ -16,6 +16,7 @@
       </h3>
 
       <form action="/account/book/create/confirm" method="POST">
+
         <#-- 가계부 이름 -->
         <div class="mb-5">
           <label class="form-label"><@msg "account.create.name"/></label>
@@ -29,16 +30,16 @@
           <div class="row">
             <div class="col">
               <div class="form-check">
-                <input class="form-check-input" id="isTaxIncluded" type="radio" name="isTaxIncluded" value="true">
-                <label class="form-check-label" for="isTaxIncluded">
+                <input class="form-check-input" id="taxIncluded" type="radio" name="taxIncluded" value="true">
+                <label class="form-check-label" for="taxIncluded">
                   <@msg "account.rate.include.always"/>
                 </label>
               </div>
             </div>
             <div class="col">
               <div class="form-check">
-                <input class="form-check-input" id="isNotTaxIncluded" type="radio" name="isTaxIncluded" value="false" checked>
-                <label class="form-check-label" for="isNotTaxIncluded">
+                <input class="form-check-input" id="notTaxIncluded" type="radio" name="taxIncluded" value="false" checked>
+                <label class="form-check-label" for="notTaxIncluded">
                   <@msg "account.rate.include.each"/>
                 </label>
               </div>
@@ -69,8 +70,30 @@
 
         <#-- 권한 설정 -->
         <div class="mb-5">
-          <label class="form-label"><@msg "account.auth.name"/></label>
+          <label class="form-label"><@msg "share.name"/></label>
+          <div id="auth-member-holder" class="card mt-2 mb-2">
+            <div class="card-body">
+              <#list holder.memberList as m>
+              <div class="position-relative">
+                <div class="d-inline">
+                  ${ m.nickname }&nbsp;(<@maskedEmail "${m.emailLocalpart}" "${m.emailDomain}"/>)
+                </div>
+                <div class="member-holder position-absolute top-50 end-0 translate-middle-y pe-3 row ">
+                  <div class="form-check form-switch col me-5">
+                    <input class="form-check-input" id="read-${m.memberIdx}" type="checkbox" name="readAuth" value="${m.memberIdx}" role="switch">
+                    <label class="form-check-label" for="read-${m.memberIdx}"><@msg "share.read"/></label>
+                  </div>
+                  <div class="form-check form-switch col">
+                    <input class="form-check-input" id="write-${m.memberIdx}" type="checkbox" name="writeAuth" value="${m.memberIdx}" role="switch" disabled>
+                    <label class="form-check-label" for="write-${m.memberIdx}"><@msg "share.write"/></label>
+                  </div>
+                </div>
+              </div>
+              </#list>
+            </div>
+          </div>
         </div>
+
       </form>
 
       <@confirmBack/>

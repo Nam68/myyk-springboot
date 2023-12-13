@@ -104,3 +104,8 @@
         </#list>
     </select>
 </#macro>
+
+<#-- 이메일 마스크화 -->
+<#macro maskedEmail emailLocalpart emailDomain>
+    ${emailLocalpart?left_pad(4, '*')}@${emailDomain}
+</#macro>

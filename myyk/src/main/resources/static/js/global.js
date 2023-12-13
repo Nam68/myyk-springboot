@@ -41,7 +41,7 @@ function mySubmit() {
     form.submit();
 }
 
-function mySubmit(action, parameters) {
+function mySubmitWithParam(action, parameters) {
     const form = $('<form>', {action:action, method:'POST'});
 
     for (var key in parameters) {

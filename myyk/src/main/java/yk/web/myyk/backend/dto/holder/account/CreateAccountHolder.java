@@ -24,12 +24,31 @@ public class CreateAccountHolder extends BaseHolder {
         }
     }
 
+    /**
+     * <p>회원 리스트(본인 제외)를 반환한다.</p>
+     * 
+     * @return 회원 리스트(본인 제외)
+     */
+    public List<MemberHolder> getMemberList() {
+        return memberList;
+    }
+
     public class MemberHolder extends BaseHolder {
 
         /**
-         * <p>이메일.</p>
+         * <p>회원 IDX.</p>
          */
-        private String email = "";
+        private long memberIdx = 0;
+
+        /**
+         * <p>이메일 로컬파트.</p>
+         */
+        private String emailLocalpart = "";
+
+        /**
+         * <p>이메일 도메인.</p>
+         */
+        private String emailDomain = "";
 
         /**
          * <p>닉네임.</p>
@@ -43,17 +62,38 @@ public class CreateAccountHolder extends BaseHolder {
          * @param nickname 닉네임
          */
         public MemberHolder(MemberDto dto) {
-            this.email = dto.getEmail();
+            String[] email = dto.getEmail().split("@");
+            this.emailLocalpart = email[0];
+            this.emailDomain = email[1];
+            this.memberIdx = dto.getMemberIdx();
             this.nickname = dto.getNickname();
         }
 
         /**
-         * <p>이메일을 반환한다.</p>
+         * <p>회원 IDX를 반환한다.</p>
          * 
-         * @return 이메일
+         * @return 회원IDX
          */
-        public String getEmail() {
-            return email;
+        public long getMemberIdx() {
+            return memberIdx;
+        }
+
+        /**
+         * <p>이메일 로컬파트를 반환한다.</p>
+         * 
+         * @return 이메일 로컬파트
+         */
+        public String getEmailLocalpart() {
+            return emailLocalpart;
+        }
+
+        /**
+         * <p>이메일 도메인을 반환한다.</p>
+         * 
+         * @return 이메일 도메인
+         */
+        public String getEmailDomain() {
+            return emailDomain;
         }
 
         /**

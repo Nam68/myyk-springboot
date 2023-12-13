@@ -92,12 +92,14 @@ account:
     name: "通貨単位"
     won: "ウォン"
     yen: "円"
-  auth:
-    name: "권한"
-    read: "읽기 권한"
-    write: "쓰기 권한"
   create:
     name: "家計簿登録"
 
 board:
   name: "掲示板"
+
+share:
+  name: "共有設定"
+  read: "閲覧権限"
+  write: "編集権限"
+  checkForRegister: "共有する会員を選んでください"

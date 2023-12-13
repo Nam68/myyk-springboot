@@ -94,7 +94,7 @@ public class MemberLogic extends BaseLogic implements MemberService {
         if (!optional.isPresent()) {
             throw new SystemException(ErrorCode.LE_TM_101, MemberLogic.class);
         }
-        return decrypt(optional.get().getEmail());
+        return optional.get().getEmail();
     }
 
     @Override

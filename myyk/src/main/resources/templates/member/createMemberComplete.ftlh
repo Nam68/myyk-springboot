@@ -22,7 +22,7 @@
 
       <div class="d-grid gap-3 bottom-btn-set">
         <button class="btn btn-primary" onclick="mySubmit()"><@msg "login.toLogin"/></button>
-        <button class="btn btn-outline-secondary" onclick="history.back()"><@msg "global.toHome"/></button>
+        <button class="btn btn-outline-secondary" onclick="location.href='/'"><@msg "global.toHome"/></button>
       </div>
 
     </div>
