@@ -27,11 +27,22 @@ $('input[name=taxIncluded]').on('change', function () {
 });
 
 // 가계부 등록 권한설정 트리거
-$('.member-holder input:eq(0)').on('change', function() {
+$('[name=readAuth]').on('change', function() {
+
+    const writhAuth = $(this).closest('.member-holder').find('[name=writeAuth]');
+
     if ($(this).prop('checked')) {
-        $('.member-holder input:eq(1)').prop('disabled', false);
+        writhAuth.prop('disabled', false);
     } else {
-        $('.member-holder input:eq(1)').prop('checked', false);
-        $('.member-holder input:eq(1)').prop('disabled', true);
+        writhAuth.prop('checked', false);
+        writhAuth.prop('disabled', true);
+    }
+});
+
+// 가계부 쓰기권한 안내
+$('.write-auth-area').on('click', function() {
+    let isDisabled = $(this).find('[name=writeAuth]').prop('disabled');
+    if (isDisabled) {
+        alert(writhAuthDisabled);
     }
 });

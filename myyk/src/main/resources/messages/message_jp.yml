@@ -28,6 +28,7 @@ member:
     name: "認証コード"
     check: "認証コード確認"
     notReady: "メールサービスは点検中のため、認証コード確認は省略されます。<br>20分以内にアカウント登録を完了してください。"
+    error: "存在しないコードです。コードをもう一度確認してください。"
   password:
     name: "パスワード"
     check: "パスワード確認"
@@ -85,8 +86,9 @@ account:
     name: "消費税"
     include:
       name: "消費税設定"
-      always: "常に含める"
-      each: "個別に設定する"
+      always: "税込が基本"
+      each: "税抜きが基本"
+      info: "家計簿に記録する際にも個別設定ができます"
     base: "基本税率"
   currency:
     name: "通貨単位"
@@ -94,6 +96,10 @@ account:
     yen: "円"
   create:
     name: "家計簿登録"
+  error:
+    accountNameEmpty: "家計簿名を入力してください。"
+    accountNameMax: "家計簿名は10字以内に入力してください。"
+    accountNameDupl: "既に存在している家計簿名です。"
 
 board:
   name: "掲示板"
@@ -103,3 +109,4 @@ share:
   read: "閲覧権限"
   write: "編集権限"
   checkForRegister: "共有する会員を選んでください"
+  disabled: "編集権限は閲覧権限を設定してから付与できます。"

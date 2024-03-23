@@ -9,6 +9,11 @@ import yk.web.myyk.util.enumerated.Region;
 public class MemberForm extends BaseForm {
 
     /**
+     * <p>회원 IDX.</p>
+     */
+    private long memberIdx = 0;
+
+    /**
      * <p>이메일 로컬파트.</p>
      */
     private String emailLocalpart = "";
@@ -37,6 +42,24 @@ public class MemberForm extends BaseForm {
      * <p>지역.</p>
      */
     private String region = "";
+
+    /**
+     * <p>회원 IDX를 반환한다.</p>
+     * 
+     * @return 회원 IDX
+     */
+    public long getMemberIdx() {
+        return memberIdx;
+    }
+
+    /**
+     * <p>회원 IDX를 설정한다.</p>
+     * 
+     * @param memberIdx 회원 IDX
+     */
+    public void setMemberIdx(long memberIdx) {
+        this.memberIdx = memberIdx;
+    }
 
     /**
      * <p>이메일 로컬파트를 반환한다.</p>

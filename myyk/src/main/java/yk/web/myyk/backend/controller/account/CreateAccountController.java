@@ -16,6 +16,7 @@ import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.annotation.DataCheck;
 import yk.web.myyk.util.annotation.SessionClear;
 import yk.web.myyk.util.annotation.SetEnum;
+import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.TaxRate;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
@@ -24,33 +25,53 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/account/book/create")
 public class CreateAccountController extends BaseController {
 
+    /**
+     * <p>가계부 생성 입력화면.</p>
+     * 
+     * @param request 리퀘스트
+     * @return 뷰 이름
+     * @throws SystemException 시스템에러
+     */
     @RequestMapping("/input")
-    @SetEnum(target = TaxRate.class)
+    @SetEnum(target = {TaxRate.class, Currency.class})
     public String input(HttpServletRequest request) throws SystemException {
         LoginInfo loginInfo = (LoginInfo) request.getSession().getAttribute(LOGIN_INFO);
         List<MemberDto> list = getService().getMember().getAllExceptSelf(loginInfo);
-        request.setAttribute(HOLDER, new CreateAccountHolder(list));
+        request.setAttribute(HOLDER, new CreateAccountHolder(loginInfo, list));
         return "account/book/createAccountInput";
     }
 
+    /**
+     * <p>가계부 생성 확인화면.</p>
+     * 
+     * @param form 폼
+     * @param session 세션
+     * @param request 리퀘스트
+     * @return 뷰 이름
+     * @throws SystemException 시스템에러
+     */
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
-    @SetEnum(target = TaxRate.class)
+    @SetEnum(target = {TaxRate.class, Currency.class})
     public String confirm(CreateAccountForm form, HttpSession session, HttpServletRequest request) throws SystemException {
+        LoginInfo loginInfo = (LoginInfo) request.getSession().getAttribute(LOGIN_INFO);
+        List<MemberDto> list = getService().getMember().getAllExceptSelf(loginInfo);
+        request.setAttribute(HOLDER, new CreateAccountHolder(list, form));
         try {
-            getService().getAccountBook();
+            getService().getAccount().checkAccount(form);
+            setForm(session, form);
+            return "account/book/createAccountConfirm";
         } catch (AppException e) {
-            request.setAttribute(HOLDER, new CreateAccountHolder());
             request.setAttribute(ERRORS, e.getErrors());
             return "account/book/createAccountInput";
         }
-        setForm(session, form);
-        return "account/book/createAccountConfirm";
     }
 
     @RequestMapping(path = "/execute", method = RequestMethod.POST)
     @DataCheck(target = CreateAccountForm.class)
-    public String execute() throws SystemException {
-        return "redirect:/account/book/complete";
+    public String execute(HttpSession session) throws SystemException {
+        CreateAccountForm form = getForm(session, CreateAccountForm.class);
+        getService().getAccount().createAccount(form);
+        return "redirect:/account/book/create/complete";
     }
 
     @RequestMapping(params = "/complete", method = RequestMethod.POST)

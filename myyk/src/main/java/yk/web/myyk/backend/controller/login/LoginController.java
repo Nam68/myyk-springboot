@@ -53,7 +53,7 @@ public class LoginController extends BaseController {
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
     public String confirm(LoginForm form, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws SystemException {
         try {
-            LoginInfo loginInfo = getService().getLogin().getLoginInfo(form);
+            LoginInfo loginInfo = getService().getLogin().createLoginInfo(form);
             session.setAttribute(LOGIN_INFO, loginInfo);
 
             if (form.isAutoLogin()) {

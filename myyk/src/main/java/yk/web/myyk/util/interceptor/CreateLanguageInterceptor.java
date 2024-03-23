@@ -9,14 +9,14 @@ import yk.web.myyk.util.cookie.CookieUtil;
 
 public class CreateLanguageInterceptor extends BaseInterceptor {
 
-    private static final String LANGUAGE_SETTING = "/languageSetting/create";
+    private static final String LANGUAGE_SETTING_URI = "/languageSetting/create";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
 
         // 원래 URL이 언어설정이었다면 그대로 보낸다.
-        if (request.getRequestURI().toString().equals(LANGUAGE_SETTING)) {
+        if (request.getRequestURI().toString().equals(LANGUAGE_SETTING_URI)) {
                 return true;
         }
         
@@ -35,7 +35,7 @@ public class CreateLanguageInterceptor extends BaseInterceptor {
             String lang = CookieUtil.getValue(LANGUAGE_SETTING_SAVE, request);
             if (lang == null || "".equals(lang)) {
                 // 로컬 쿠키 정보마저 없으면 언어설정으로 리다이렉트
-                response.sendRedirect(LANGUAGE_SETTING);
+                response.sendRedirect(LANGUAGE_SETTING_URI);
                 return false;
             } else {
                 // 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅

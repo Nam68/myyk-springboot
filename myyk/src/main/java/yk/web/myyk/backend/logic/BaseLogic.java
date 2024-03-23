@@ -1,5 +1,6 @@
 package yk.web.myyk.backend.logic;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import yk.web.myyk.backend.BaseMvc;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.factory.RepositoryFactory;
 import yk.web.myyk.util.errorCode.ErrorCode;
+import yk.web.myyk.util.exception.AppException;
+import yk.web.myyk.util.exception.SystemException;
 import yk.web.myyk.util.mail.FreeMarkerFactory;
 import yk.web.myyk.util.mail.MailTemplate;
 import yk.web.myyk.util.mail.MailText;

@@ -51,12 +51,12 @@ public class CategoryEntity extends BaseEntity {
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
 	private SubCategoryOptionEntity parentCategoryOption;
 	
-	@ManyToOne
-	@JoinColumn(name = "ACCOUNT_BOOK_IDX")	
-	private AccountBookEntity accountBook;
+//	@ManyToOne
+//	@JoinColumn(name = "ACCOUNT_BOOK_IDX")	
+//	private AccountBookEntity accountBook;
 	
-	@OneToMany(mappedBy = "category")
-	private List<AccountEntity> accountList = new ArrayList<>();
+//	@OneToMany(mappedBy = "category")
+//	private List<AccountEntity> accountList = new ArrayList<>();
 	
 	@Deprecated
 	public CategoryEntity() {
@@ -92,26 +92,26 @@ public class CategoryEntity extends BaseEntity {
 	 * @param T 카테고리DTO의 옵션 DTO
 	 * @param dto DTO
 	 */
-	public <T extends CategoryDTO<T>> CategoryEntity(CategoryDTO<T> dto, AccountBookEntity accountBook) throws SystemException {
-		this.koCategoryName = dto.getKoCategoryName();
-		this.jpCategoryName = dto.getJpCategoryName();
-		this.accountBook = accountBook;
-		
-		// DTO가 가지고 있는 옵션에 따라 생성 처리 분기
-		if (dto.getOption() instanceof PrimeCategoryDTO) {
-			// 1차
-			PrimeCategoryDTO option = (PrimeCategoryDTO) dto.getOption();
-			this.option = new CategoryOptionEntity(this, option);
-		} else if (dto.getOption() instanceof SubCategoryDTO) {
-			// 서브
-			SubCategoryDTO option = (SubCategoryDTO) dto.getOption();
-			CategoryEntity parentCategory = new CategoryEntity(option.getParentCategoryIdx());
-			SubCategoryOptionEntity parentCategoryOption = new SubCategoryOptionEntity(this, parentCategory);
-			this.parentCategoryOption = parentCategoryOption;
-		} else {
-			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
-		}
-	}
+//	public <T extends CategoryDTO<T>> CategoryEntity(CategoryDTO<T> dto, AccountBookEntity accountBook) throws SystemException {
+//		this.koCategoryName = dto.getKoCategoryName();
+//		this.jpCategoryName = dto.getJpCategoryName();
+//		this.accountBook = accountBook;
+//		
+//		// DTO가 가지고 있는 옵션에 따라 생성 처리 분기
+//		if (dto.getOption() instanceof PrimeCategoryDTO) {
+//			// 1차
+//			PrimeCategoryDTO option = (PrimeCategoryDTO) dto.getOption();
+//			this.option = new CategoryOptionEntity(this, option);
+//		} else if (dto.getOption() instanceof SubCategoryDTO) {
+//			// 서브
+//			SubCategoryDTO option = (SubCategoryDTO) dto.getOption();
+//			CategoryEntity parentCategory = new CategoryEntity(option.getParentCategoryIdx());
+//			SubCategoryOptionEntity parentCategoryOption = new SubCategoryOptionEntity(this, parentCategory);
+//			this.parentCategoryOption = parentCategoryOption;
+//		} else {
+//			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
+//		}
+//	}
 	
 	/**
 	 * <p>카테고리 인덱스를 반환한다.</p>
@@ -229,7 +229,7 @@ public class CategoryEntity extends BaseEntity {
 	 * 
 	 * @return 회계 리스트
 	 */
-	public List<AccountEntity> getAccountList() {
-		return accountList;
-	}
+//	public List<AccountEntity> getAccountList() {
+//		return accountList;
+//	}
 }

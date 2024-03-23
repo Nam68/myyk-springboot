@@ -8,6 +8,11 @@ import yk.web.myyk.util.enumerated.Region;
 public class MemberInfo extends BaseDto implements LoginInfo {
 
     /**
+     * <p>회원 IDX.</p>
+     */
+    private long memberIdx;
+
+    /**
      * <p>이메일.</p>
      */
     private String email;
@@ -34,11 +39,17 @@ public class MemberInfo extends BaseDto implements LoginInfo {
 
     @Override
     public void setByLoginForm(MemberEntity memberEntity) {
+        this.memberIdx = memberEntity.getMemberIdx();
         this.email = memberEntity.getEmail();
         this.nickname = memberEntity.getNickname();
         this.memberIcon = memberEntity.getMemberIcon();
         this.region = memberEntity.getRegion();
         this.memberType = memberEntity.getMemberType();
+    }
+    
+    @Override
+    public long getMemberIdx() {
+        return memberIdx;
     }
 
     @Override
@@ -56,11 +67,7 @@ public class MemberInfo extends BaseDto implements LoginInfo {
         return memberIcon;
     }
 
-    /**
-     * <p>지역을 반환한다.</p>
-     * 
-     * @return 지역
-     */
+    @Override
     public Region getRegion() {
         return region;
     }

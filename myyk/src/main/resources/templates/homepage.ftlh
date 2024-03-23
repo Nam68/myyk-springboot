@@ -19,7 +19,21 @@
 
     hello, world!
 
+<br>
+<br>
 
+    ** ADMIN **
+    <br>
+    IDX : 11
+    <br>
+    EMAIL : admin@sharing.myyk
+    <br>
+    PASSWORD : 1234
+
+<form action="/member/update/passwordReset" method="post">
+<#-- 임시로 HomepageController에 격납 -->
+<input name="memberIdx">&nbsp;<button type="submit" id="passwordResetButton">Reset</button>
+</form>
 
 
 

@@ -32,6 +32,7 @@ member:
     name: "인증코드"
     check: "인증코드 확인"
     notReady: "메일 기능의 점검으로 인해, 인증코드 확인은 생략됩니다.<br><span class=\"caution\">20분 이내</span>에 회원가입을 완료해주세요."
+    error: "존재하지 않는 코드입니다. 입력하신 코드를 확인해주세요."
   password:
     name: "비밀번호"
     check: "비밀번호 확인"
@@ -89,8 +90,9 @@ account:
     name: "부가세"
     include:
       name: "부가세 포함 여부"
-      always: "항상 포함한다"
-      each: "개별로 설정한다"
+      always: "기본 포함"
+      each: "기본 제외"
+      info: "가계부에 기록할 때에도 개별로 설정할 수 있습니다"
     base: "기본 세율"
   currency:
     name: "통화단위"
@@ -98,6 +100,11 @@ account:
     yen: "엔"
   create:
     name: "가계부 생성"
+    check: "가계부 생성 확인"
+  error:
+    accountNameEmpty: "가계부 이름을 입력해주세요"
+    accountNameMax: "가계부 이름은 10자 이내로 입력해주세요"
+    accountNameDupl: "이미 존재하는 가계부 이름입니다"
 
 board:
   name: "게시판"
@@ -107,3 +114,4 @@ share:
   read: "읽기 권한"
   write: "쓰기 권한"
   checkForRegister: "공유할 회원을 선택해주세요"
+  disabled: "쓰기 권한은 읽기 권한을 설정한 후에 부여할 수 있습니다."

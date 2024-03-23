@@ -11,5 +11,4 @@ public interface BaseEnum {
      * @return 화면에 표시될 이넘 값
      */
     public String getValue();
-
 }

@@ -15,6 +15,7 @@ public enum ErrorCode {
      * EN : 이넘
      * ET : 엔티티
      * IC : 인터셉터
+     * LG : 로그인
      * MA : 메일
      */
 
@@ -119,6 +120,11 @@ public enum ErrorCode {
     IC_102("data is not set."),
 
     /**
+     * <p>로그인 정보가 존재하지 않았을 경우의 에러.</p>
+     */
+    LG_101("login data does not exist."),
+
+    /**
      * <p>메일 전송 시의 에러.</p>
      */
     MA_101("failed to send mail."),
@@ -135,9 +141,25 @@ public enum ErrorCode {
 
     /*
      * 엔티티 에러
-     * 
+     *
+     * AC : 가계부
      * ME : 회원
      */
+
+    /**
+     * <p>가계부 이름이 비어있는 경우.</p>
+     */
+    EE_AC_101("account name is empty."),
+
+    /**
+     * <p>가계부 이름 최대길이를 초과한 경우.</p>
+     */
+    EE_AC_102("account name is too long."),
+
+    /**
+     * <p>가계부 이름이 중복된 경우.</p>
+     */
+    EE_AC_103("this account name exists already."),
 
     /**
      * <p>이메일 로컬파트가 빈 값인 경우.</p>
@@ -174,12 +196,12 @@ public enum ErrorCode {
     /**
      * <p>비밀번호가 8자가 되지 않는 경우.</p>
      */
-    EE_ME_107("password must be at least 8 characters long(excluding 8)."),
+    EE_ME_107("password is too short."),
 
     /**
      * <p>비밀번호가 30자 이상인 경우.</p>
      */
-    EE_ME_108("password must be less than 30 characters(excluding 30)."),
+    EE_ME_108("password is too long."),
 
     /**
      * <p>비밀번호가 대소문자 숫자 조합이 아닌 경우.</p>
@@ -199,12 +221,12 @@ public enum ErrorCode {
     /**
      * <p>닉네임이 10자를 넘어선 경우.</p>
      */
-    EE_ME_112("nickname must be less than 10 characters(excluding 10)."),
+    EE_ME_112("nickname is too long."),
 
 
     /*
      * 논리 에러
-     * 
+     *
      * ME : 회원
      * LG : 로그인
      * TM : 임시회원
@@ -226,7 +248,7 @@ public enum ErrorCode {
     LE_LG_101("login error."),
 
     /**
-     * <p>임시회원 코드가 존재하지 않음.</p>
+     * <p>임시회원코드가 존재하지 않음.</p>
      */
     LE_TM_101("temporary code does not exist.")
 
@@ -238,7 +260,7 @@ public enum ErrorCode {
 
     /**
      * <p>에러의 설명을 반환한다. 반드시 {@link getErrorMessage}와 함께 사용할 것.</p>
-     * 
+     *
      * @return 에러 설명
      */
     private String getCodeExplain() {
@@ -246,9 +268,9 @@ public enum ErrorCode {
     }
 
     /**
-     * <p>완성된 에러 메시지를 반환한다.</p> 
+     * <p>완성된 에러 메시지를 반환한다.</p>
      * <p>에러가 일어난 클래스명 + 에러 설명 + (에러 코드)의 구성.</p>
-     * 
+     *
      * @param errorCode 에러 코드
      * @param clazz 클래스
      * @return 에러 메시지

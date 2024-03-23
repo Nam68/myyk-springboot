@@ -1,27 +1,159 @@
 package yk.web.myyk.backend.dto.holder.account;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import yk.web.myyk.backend.dto.MemberDto;
+import yk.web.myyk.backend.dto.form.account.CreateAccountForm;
 import yk.web.myyk.backend.dto.holder.BaseHolder;
+import yk.web.myyk.backend.dto.login.LoginInfo;
+import yk.web.myyk.util.enumerated.Currency;
+import yk.web.myyk.util.enumerated.Region;
+import yk.web.myyk.util.enumerated.TaxRate;
 
 public class CreateAccountHolder extends BaseHolder {
 
     /**
+     * <p>가계부 이름.</p>
+     */
+    private String accountName = "";
+
+    /**
+     * <p>세금 포함 여부.</p>
+     */
+    private boolean taxIncluded = false;
+
+    /**
+     * <p>세율.</p>
+     */
+    private TaxRate tax = TaxRate.LOW;
+
+    /**
+     * <p>통화단위.</p>
+     */
+    private Currency currency = Currency.WON;
+
+    /**
+     * <p>읽기 권한 목록.</p>
+     */
+    private Map<Long, Boolean> readAuthMap = new HashMap<>();
+
+    /**
+     * <p>쓰기 권한 목록.</p>
+     */
+    private Map<Long, Boolean> writeAuthMap = new HashMap<>();
+
+    /**
      * <p>회원 리스트(본인 제외).</p>
      */
-    private List<MemberHolder> memberList = new ArrayList<>();
+    private List<AccountMemberHolder> memberList = new ArrayList<>();
 
     /**
      * <p>생성자.</p>
      * 
-     * @param memberList 회원 리스트(본인 제외).
+     * @param memberDtoList 회원 리스트(본인 제외)
      */
     public CreateAccountHolder(List<MemberDto> memberDtoList) {
         for (MemberDto dto : memberDtoList) {
-            memberList.add(new MemberHolder(dto));
+            memberList.add(new AccountMemberHolder(dto));
         }
+    }
+
+    /**
+     * <p>생성자.</p>
+     * 
+     * @param memberDtoList 회원 리스트(본인 제외)
+     */
+    public CreateAccountHolder(LoginInfo loginInfo, List<MemberDto> memberDtoList) {
+        this(memberDtoList);
+        Region region = loginInfo.getRegion();
+        switch (region) {
+            case KOREA:
+                tax = TaxRate.HIGH;
+                currency = Currency.WON;
+                break;
+            case JAPAN:
+                tax = TaxRate.LOW;
+                currency = Currency.YEN;
+                break;
+        }
+    }
+
+    /**
+     * <p>생성자.</p>
+     * 
+     * @param memberDtoList 회원 리스트(본인 제외)
+     * @param form 폼
+     */
+    public CreateAccountHolder(List<MemberDto> memberDtoList, CreateAccountForm form) {
+        this(memberDtoList);
+        this.accountName = form.getAccountName();
+        this.taxIncluded = form.isTaxIncluded();
+        this.tax = form.getTax();
+        this.currency = form.getCurrency();
+
+        for (long memberIdx : form.getReadAuthList()) {
+            readAuthMap.put(memberIdx, true);
+        }
+        for (long memberIdx : form.getWriteAuthList()) {
+            writeAuthMap.put(memberIdx, true);
+        }
+    }
+
+    /**
+     * <p>가계부 이름을 반환한다.</p>
+     * 
+     * @return 가계부 이름
+     */
+    public String getAccountName() {
+        return accountName;
+    }
+
+    /**
+     * <p>세금 포함 여부를 반환한다.</p>
+     * 
+     * @return 세금 포함 여부
+     */
+    public boolean isTaxIncluded() {
+        return taxIncluded;
+    }
+
+    /**
+     * <p>세율을 반환한다.</p>
+     * 
+     * @return 세율
+     */
+    public TaxRate getTax() {
+        return tax;
+    }
+
+    /**
+     * <p>통화단위를 반환한다.</p>
+     * 
+     * @return 통화단위
+     */
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    /**
+     * <p>읽기권한 리스트를 반환한다.</p>
+     * 
+     * @return 읽기권한 맵
+     */
+    public Map<Long, Boolean> getReadAuthMap() {
+        return readAuthMap;
+    }
+
+    /**
+     * <p>쓰기권한 리스트를 반환한다.</p>
+     * 
+     * @return 쓰기권한 맵
+     */
+    public Map<Long, Boolean> getWriteAuthMap() {
+        return writeAuthMap;
     }
 
     /**
@@ -29,80 +161,7 @@ public class CreateAccountHolder extends BaseHolder {
      * 
      * @return 회원 리스트(본인 제외)
      */
-    public List<MemberHolder> getMemberList() {
+    public List<AccountMemberHolder> getMemberList() {
         return memberList;
-    }
-
-    public class MemberHolder extends BaseHolder {
-
-        /**
-         * <p>회원 IDX.</p>
-         */
-        private long memberIdx = 0;
-
-        /**
-         * <p>이메일 로컬파트.</p>
-         */
-        private String emailLocalpart = "";
-
-        /**
-         * <p>이메일 도메인.</p>
-         */
-        private String emailDomain = "";
-
-        /**
-         * <p>닉네임.</p>
-         */
-        private String nickname = "";
-
-        /**
-         * <p>생성자.</p>
-         * 
-         * @param email 이메일
-         * @param nickname 닉네임
-         */
-        public MemberHolder(MemberDto dto) {
-            String[] email = dto.getEmail().split("@");
-            this.emailLocalpart = email[0];
-            this.emailDomain = email[1];
-            this.memberIdx = dto.getMemberIdx();
-            this.nickname = dto.getNickname();
-        }
-
-        /**
-         * <p>회원 IDX를 반환한다.</p>
-         * 
-         * @return 회원IDX
-         */
-        public long getMemberIdx() {
-            return memberIdx;
-        }
-
-        /**
-         * <p>이메일 로컬파트를 반환한다.</p>
-         * 
-         * @return 이메일 로컬파트
-         */
-        public String getEmailLocalpart() {
-            return emailLocalpart;
-        }
-
-        /**
-         * <p>이메일 도메인을 반환한다.</p>
-         * 
-         * @return 이메일 도메인
-         */
-        public String getEmailDomain() {
-            return emailDomain;
-        }
-
-        /**
-         * <p>닉네임을 반환한다.</p>
-         * 
-         * @return 닉네임
-         */
-        public String getNickname() {
-            return nickname;
-        }
     }
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import yk.web.myyk.backend.dto.form.BaseForm;
+import yk.web.myyk.util.enumerated.Currency;
+import yk.web.myyk.util.enumerated.TaxRate;
 
 /**
  * <p>가계부 생성 폼.</p>
@@ -23,7 +25,7 @@ public class CreateAccountForm extends BaseForm {
     /**
      * <p>세율.</p>
      */
-    private double tax = 0.0;
+    private double tax = 0;
 
     /**
      * <p>통화단위.</p>
@@ -81,8 +83,8 @@ public class CreateAccountForm extends BaseForm {
      * 
      * @return 세율
      */
-    public double getTax() {
-        return tax;
+    public TaxRate getTax() {
+        return TaxRate.getTaxRate(tax);
     }
 
     /**
@@ -99,8 +101,8 @@ public class CreateAccountForm extends BaseForm {
      * 
      * @return 통화단위
      */
-    public String getCurrency() {
-        return currency;
+    public Currency getCurrency() {
+        return Currency.getCurrency(currency);
     }
 
     /**

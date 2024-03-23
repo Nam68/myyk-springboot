@@ -100,12 +100,25 @@
 <#macro taxSelect>
     <select class="form-select" name="tax">
         <#list TaxRate as t>
-        <option value="${t.rate}">${t.value}</option>
+        <option value="${t.rate}"<#if holder.tax.value == t.value> selected</#if>>
+            ${t.value}
+        </option>
+        </#list>
+    </select>
+</#macro>
+
+<#-- 통화단위 풀다운 메뉴 -->
+<#macro currencySelect>
+    <select class="form-select" name="currency">
+        <#list Currency as c>
+        <option value="${c.value}"<#if holder.currency.value == c.value> selected</#if>>
+            <@msg "account.currency.won"/>
+        </option>
         </#list>
     </select>
 </#macro>
 
 <#-- 이메일 마스크화 -->
 <#macro maskedEmail emailLocalpart emailDomain>
-    ${emailLocalpart?left_pad(4, '*')}@${emailDomain}
+    ${emailLocalpart[0..3]?right_pad(8, '*')}@${emailDomain}
 </#macro>

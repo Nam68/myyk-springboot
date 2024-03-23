@@ -62,7 +62,7 @@ public class AutoLoginInterceptor extends BaseInterceptor {
         }
 
         // 자동 로그인
-        LoginInfo loginInfo = member.getLoginInfo();
+        LoginInfo loginInfo = member.createLoginInfo();
         setSessionAttribute(request, LOGIN_INFO, loginInfo);
 
         loginToken.get().updateLastUsedTime();

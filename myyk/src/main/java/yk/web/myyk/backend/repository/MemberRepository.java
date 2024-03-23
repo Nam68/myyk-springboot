@@ -43,4 +43,12 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
      */
     public List<MemberEntity> findByMemberType(MemberType memberType);
 
+    /**
+     * <p>회원 IDX 리스트에 해당되는 모든 회원을 가져온다.</p>
+     * 
+     * @param memberIdx 회원 IDX 리스트
+     * @return 회원 리스트
+     */
+    public List<MemberEntity> findByMemberIdxIn(List<Long> memberIdx);
+
 }

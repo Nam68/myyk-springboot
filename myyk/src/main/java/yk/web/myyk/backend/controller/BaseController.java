@@ -1,11 +1,16 @@
 package yk.web.myyk.backend.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.BaseMvc;
 import yk.web.myyk.backend.dto.form.BaseForm;
+import yk.web.myyk.backend.dto.holder.BaseHolder;
 import yk.web.myyk.backend.factory.ServiceFactory;
+import yk.web.myyk.util.errorCode.ErrorCode;
 
 /**
  * <p>기본 컨트롤러.</p>
@@ -22,6 +27,11 @@ public class BaseController extends BaseMvc {
      */
     protected static final String ERRORS = "errors";
 
+    /**
+     * <p>화면에 빈 문자열을 출력할 때.</p>
+     */
+    protected static final String EMPTY = "";
+
     @Autowired
     private ServiceFactory serviceFactory;
 
@@ -36,7 +46,7 @@ public class BaseController extends BaseMvc {
 
     /**
      * <p>세션에 저장된 폼을 제거한다.</p>
-     * 
+     *
      * @param <T> {@link BaseForm}을 상속받은 폼
      * @param session 세션
      * @param form 폼
@@ -47,7 +57,7 @@ public class BaseController extends BaseMvc {
 
     /**
      * <p>세션에 저장된 폼을 제거한다.</p>
-     * 
+     *
      * @param <T> {@link BaseForm}을 상속받은 폼
      * @param session 세션
      * @param form 폼의 클래스
@@ -65,7 +75,7 @@ public class BaseController extends BaseMvc {
 
     /**
      * <p>폼을 세션에 저장한다.</p>
-     * 
+     *
      * @param <T> {@link BaseForm}
      * @param session 세션
      * @param form 폼
@@ -76,7 +86,7 @@ public class BaseController extends BaseMvc {
 
     /**
      * <p>세션에서 폼을 가져온다.</p>
-     * 
+     *
      * @param <T> {@link BaseForm}
      * @param session 세션
      * @param form 폼 클래스
@@ -87,4 +97,24 @@ public class BaseController extends BaseMvc {
         return (T) session.getAttribute(form.getSimpleName());
     }
 
+    /**
+     * <p>리퀘스트에 홀더를 저장한다.</p>
+     *
+     * @param <T> {@link BaseHolder}
+     * @param request 리퀘스트
+     * @param holder 홀더
+     */
+    protected <T extends BaseHolder> void setHolder(HttpServletRequest request, T holder) {
+        request.setAttribute(HOLDER, holder);
+    }
+
+    /**
+     * <p>리퀘스트에 에러 리스트를 저장한다.</p>
+     *
+     * @param request 리퀘스트
+     * @param errors 에러 리스트
+     */
+    protected void setErrors(HttpServletRequest request, Map<String, ErrorCode> errors) {
+        request.setAttribute(ERRORS, errors);
+    }
 }

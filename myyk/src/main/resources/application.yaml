@@ -54,4 +54,6 @@ value:
   url:
     timeout: 5000 #5초
     try: 3 #3번 연결 시도
-  
+  account:
+    name:
+      max: 10 #가계부 이름 최대길이

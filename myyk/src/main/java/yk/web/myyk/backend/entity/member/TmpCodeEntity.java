@@ -47,5 +47,4 @@ public class TmpCodeEntity extends BaseEntityWithTime {
     public String getEmail() {
         return decrypt(email);
     }
-
 }

@@ -20,7 +20,7 @@ import yk.web.myyk.backend.dto.login.AdminInfo;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.dto.login.MemberInfo;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
-import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
+import yk.web.myyk.backend.entity.account.AccountAuthEntity;
 import yk.web.myyk.util.constant.Constant;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
@@ -69,7 +69,7 @@ public class MemberEntity extends BaseEntityWithTime {
 //          inverseJoinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"))
 //  private List<AccountBookEntity> accountBookList;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
-    private List<AccountBookAuthEntity> accountBookAuthList = new ArrayList<>();
+    private List<AccountAuthEntity> accountAuthList = new ArrayList<>();
 
     /**
      * <p>생성자.</p>
@@ -77,6 +77,10 @@ public class MemberEntity extends BaseEntityWithTime {
     @Deprecated
     public MemberEntity() {
         // nop
+    }
+    
+    public MemberEntity(long memberIdx) {
+        setMemberIdx(memberIdx);
     }
 
     /**
@@ -95,13 +99,22 @@ public class MemberEntity extends BaseEntityWithTime {
      * @param memberIcon 회원 아이콘
      */
     public MemberEntity(MemberDto dto, String memberIcon) {
-        this.email = encrypt(dto.getEmail());
-        this.passwordSalt = createPasswordSalt();
-        this.password = getHashedPassword(dto.getPassword());
-        this.nickname = dto.getNickname();
-        this.region = dto.getRegion();
-        this.memberType = MemberType.TMP_MEMBER;
-        this.memberIcon = memberIcon;
+        setEmail(dto.getEmail());
+        setPasswordSalt(createPasswordSalt());
+        setPassword(dto.getPassword());
+        setNickname(dto.getNickname());
+        setRegion(dto.getRegion());
+        setMemberType(MemberType.TMP_MEMBER);
+        setMemberIcon(memberIcon);
+    }
+
+    /**
+     * <p>회원 IDX를 설정한다.</p>
+     * 
+     * @param memberIdx 회원 IDX
+     */
+    public void setMemberIdx(long memberIdx) {
+        this.memberIdx = memberIdx;
     }
 
     /**
@@ -114,12 +127,30 @@ public class MemberEntity extends BaseEntityWithTime {
     }
 
     /**
+     * <p>이메일을 설정한다.</p>
+     *
+     * @param email 이메일
+     */
+    private void setEmail(String email) {
+        this.email = encrypt(email);
+    }
+
+    /**
      * <p>이메일을 반환한다.</p>
      * 
      * @return 이메일
      */
     public String getEmail() {
         return decrypt(email);
+    }
+
+    /**
+     * <p>비밀번호 솔트를 설정한다.</p>
+     * 
+     * @param passwordSalt 비밀번호 솔트
+     */
+    public void setPasswordSalt(String passwordSalt) {
+        this.passwordSalt = passwordSalt;
     }
 
     /**
@@ -131,6 +162,14 @@ public class MemberEntity extends BaseEntityWithTime {
         return passwordSalt;
     }
 
+    /**
+     * <p>비밀번호를 설정한다.</p>
+     * 
+     * @param password 비밀번호
+     */
+    public void setPassword(String password) {
+        this.password = getHashedPassword(password);
+    }
     /**
      * <p>비밀번호를 반환한다.</p>
      * 
@@ -158,7 +197,24 @@ public class MemberEntity extends BaseEntityWithTime {
      */
     private String getHashedPassword(String password) {
         int hashingTimes = Constant.getMemberPasswordHashingTimes();
-        return hashing(getPassword(), passwordSalt, hashingTimes);
+        return hashing(password, passwordSalt, hashingTimes);
+    }
+
+    /**
+     * <p>비밀번호를 리셋한다.</p>
+     */
+    public void resetPassword() {
+        setPasswordSalt(createPasswordSalt());
+        setPassword("1234");
+    }
+
+    /**
+     * <p>닉네임을 설정한다.</p>
+     * 
+     * @param nickname 닉네임
+     */
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /**
@@ -171,6 +227,15 @@ public class MemberEntity extends BaseEntityWithTime {
     }
 
     /**
+     * <p>지역을 설정한다.</p>
+     * 
+     * @param region 지역
+     */
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    /**
      * <p>지역을 반환한다.</p>
      * 
      * @return 지역
@@ -180,12 +245,30 @@ public class MemberEntity extends BaseEntityWithTime {
     }
 
     /**
+     * <p>회원 등급을 설정한다.</p>
+     * 
+     * @param memberType 회원 등급
+     */
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
+    }
+
+    /**
      * <p>회원 등급을 반환한다.</p>
      * 
      * @return 회원 등급
      */
     public MemberType getMemberType() {
         return memberType;
+    }
+
+    /**
+     * <p>회원 아이콘을 설정한다.</p>
+     * 
+     * @param memberIcon 회원 아이콘
+     */
+    public void setMemberIcon(String memberIcon) {
+        this.memberIcon = memberIcon;
     }
 
     /**
@@ -204,8 +287,8 @@ public class MemberEntity extends BaseEntityWithTime {
      * @deprecated 가급적 레포지토리를 통해서 정렬해서 불러올 것
      */
     @Deprecated
-    public List<AccountBookAuthEntity> getAccountBookAuthList() {
-        return accountBookAuthList;
+    public List<AccountAuthEntity> getAccountBookAuthList() {
+        return accountAuthList;
     }
 
     /**
@@ -213,7 +296,7 @@ public class MemberEntity extends BaseEntityWithTime {
      * 
      * @return 로그인 정보
      */
-    public LoginInfo getLoginInfo() {
+    public LoginInfo createLoginInfo() {
         LoginInfo loginInfo = null;
         if (MemberType.ADMIN.equals(memberType)) {
             loginInfo = new AdminInfo();

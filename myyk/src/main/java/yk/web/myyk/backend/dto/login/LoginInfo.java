@@ -2,6 +2,7 @@ package yk.web.myyk.backend.dto.login;
 
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.MemberType;
+import yk.web.myyk.util.enumerated.Region;
 
 public interface LoginInfo {
 
@@ -11,6 +12,13 @@ public interface LoginInfo {
      * @param memberEntity 회원 엔티티
      */
     public void setByLoginForm(MemberEntity memberEntity);
+
+    /**
+     * <p>회원 IDX를 반환한다.</p>
+     * 
+     * @return 회원 IDX
+     */
+    public long getMemberIdx();
 
     /**
      * <p>이메일을 반환한다.</p>
@@ -39,4 +47,11 @@ public interface LoginInfo {
      * @return 회원 등급
      */
     public MemberType getMemberType();
+
+    /**
+     * <p>지역을 반환한다.</p>
+     * 
+     * @return 지역
+     */
+    public Region getRegion();
 }

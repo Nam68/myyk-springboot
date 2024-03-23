@@ -1,5 +1,10 @@
 package yk.web.myyk.backend;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import jakarta.servlet.http.HttpSession;
+import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.BaseApp;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
@@ -21,17 +26,27 @@ public class BaseMvc extends BaseApp {
      */
     private static final int EMAIL_DOMAIN = 1;
 
-//	protected static LoginInfo getLoginInfo() {
-//		HttpSession session = getCurrentSession();
-//		return (LoginInfo) session.getAttribute(LOGIN_INFO);
-//	}
+    /**
+     * <p>현재 세션을 반환한다.</p>
+     * 
+     * @return 세션
+     */
+    private static HttpSession getCurrentSession() {
+        ServletRequestAttributes servletRequestAttribute = 
+                (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession httpSession = servletRequestAttribute.getRequest().getSession(true);
+        return httpSession;
+    }
 
-//	private static HttpSession getCurrentSession() {
-//		ServletRequestAttributes servletRequestAttribute = 
-//				(ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//	    HttpSession httpSession = servletRequestAttribute.getRequest().getSession(true);
-//	    return httpSession;
-//	}
+    /**
+     * <p>현재 로그인 정보를 반환한다.</p>
+     * 
+     * @return 로그인 정보
+     */
+    protected static LoginInfo getLoginInfo() {
+        HttpSession session = getCurrentSession();
+        return (LoginInfo) session.getAttribute(LOGIN_INFO);
+    }
 
     /**
      * <p>이메일에서 로컬파트를 반환한다.</p>

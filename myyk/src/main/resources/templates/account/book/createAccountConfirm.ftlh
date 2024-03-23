@@ -12,18 +12,15 @@
     <div id="wrapper">
 
       <h3 class="title">
-        <@msg "account.create.name"/>
+        <@msg "account.create.check"/>
       </h3>
 
-      <form action="/account/book/create/confirm" method="POST">
+      <form action="/account/book/create/excute" method="POST">
 
         <#-- 가계부 이름 -->
         <div class="mb-5">
           <label class="form-label"><@msg "account.accountName"/></label>
-          <input type="text" class="form-control<@error ['EE_ME_101']/>" name="accountName" value="${holder.accountName}">
-          <@errorMsg ['EE_AC_101'] 'account.error.accountNameEmpty'/>
-          <@errorMsg ['EE_AC_102'] 'account.error.accountNameMax'/>
-          <@errorMsg ['EE_AC_103'] 'account.error.accountNameDupl'/>
+          <div>${holder.accountName}</div>
         </div>
 
         <#-- 세금 설정 -->
@@ -77,13 +74,13 @@
                 <div class="member-holder position-absolute top-50 end-0 translate-middle-y pe-3 row ">
                   <div class="form-check form-switch col me-5">
                     <#assign readable = false>
-                    <#if holder.readAuthMap?has_content><#if holder.readAuthMap[memberIdx]?has_content><#assign readable = true></#if></#if>
+                    <#if holder.readAuthMap[memberIdx]?has_content><#assign readable = true></#if>
                     <input class="form-check-input" id="read-${m.memberIdx}" type="checkbox" name="readAuth" value="${m.memberIdx}" role="switch" <#if readable>checked</#if>>
                     <label class="form-check-label" for="read-${m.memberIdx}"><@msg "share.read"/></label>
                   </div>
                   <div class="form-check form-switch col">
                     <#assign writable = false>
-                    <#if holder.writeAuthMap?has_content><#if holder.writeAuthMap[memberIdx]?has_content><#assign writable = true></#if></#if>
+                    <#if holder.writeAuthMap[memberIdx]?has_content><#assign writable = true></#if>
                     <input class="form-check-input" id="write-${m.memberIdx}" type="checkbox" name="writeAuth" value="${m.memberIdx}" role="switch" <#if writable>checked<#else>disabled</#if>>
                     <label class="form-check-label" for="write-${m.memberIdx}"><@msg "share.write"/></label>
                   </div>

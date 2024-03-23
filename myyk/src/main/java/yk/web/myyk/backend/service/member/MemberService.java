@@ -61,6 +61,15 @@ public interface MemberService {
     public String createMember(MemberForm memberForm) throws SystemException, AppException;
 
     /**
+     * <p>회원의 비밀번호를 리셋한다.</p>
+     * 
+     * @param memberForm 회원 정보
+     * @throws SystemException 시스템에러
+     * @throws AppException 앱에러
+     */
+    public void resetPassword(MemberForm memberForm) throws SystemException, AppException;
+
+    /**
      * <p>로그인한 본인을 제외한 모든 회원을 반환한다.</p>
      * 
      * @param loginInfo 로그인 정보
@@ -69,32 +78,4 @@ public interface MemberService {
      * @throws AppException 앱에러
      */
     public List<MemberDto> getAllExceptSelf(LoginInfo loginInfo) throws SystemException, AppException;
-
-//	
-//	/**
-//	 * <p>회원 등급에 해당하는 모든 회원을 불러온다.</p>
-//	 * 
-//	 * @param memberType 회원등급
-//	 * @return 회원 리스트
-//	 * @throws SystemException 시스템 에러
-//	 */
-//	public List<MemberDTO> findAllByMemberType(MemberType memberType) throws SystemException;
-//	
-//	/**
-//	 * <p>관리자와 회원 등급에 해당하는 모든 회원을 불러온다.</p>
-//	 * 
-//	 * @return 회원 리스트
-//	 * @throws SystemException 시스템 에러
-//	 */
-//	public List<MemberDTO> findAllAdminAndMember() throws SystemException;
-//	
-//	/**
-//	 * <p>로그인 유저를 제외한 관리자와 회원 등급에 해당하는 모든 회원을 불러온다.</p>
-//	 * 
-//	 * @param loginInfo 로그인 유저
-//	 * @return 회원 리스트
-//	 * @throws SystemException 시스템 에러
-//	 */
-//	public List<MemberDTO> findAllAdminAndMember(LoginInfo loginInfo) throws SystemException;
-	
 }

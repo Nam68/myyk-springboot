@@ -21,10 +21,16 @@ public class MemberDto extends BaseDto {
     }
 
     public MemberDto(MemberEntity entity) {
+        setMemberIdx(entity.getMemberIdx());
         setEmail(entity.getEmail());
         setPassword(entity.getPassword());
         setNickname(entity.getNickname());
         setRegion(entity.getRegion());
+    }
+
+    public MemberDto(long memberIdx, String email, String password, String nickname, Region region) {
+        this(email, password, nickname, region);
+        setMemberIdx(memberIdx);
     }
 
     public MemberDto(String email, String password, String nickname, Region region) {
@@ -36,6 +42,10 @@ public class MemberDto extends BaseDto {
 
     public long getMemberIdx() {
         return memberIdx;
+    }
+
+    public void setMemberIdx(long memberIdx) {
+        this.memberIdx = memberIdx;
     }
 
     public String getEmail() {

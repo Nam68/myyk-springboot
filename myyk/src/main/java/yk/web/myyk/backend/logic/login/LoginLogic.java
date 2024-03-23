@@ -19,7 +19,7 @@ import yk.web.myyk.util.exception.SystemException;
 public class LoginLogic extends BaseLogic implements LoginService {
 
     @Override
-    public LoginInfo getLoginInfo(LoginForm loginForm) throws SystemException, AppException {
+    public LoginInfo createLoginInfo(LoginForm loginForm) throws SystemException, AppException {
 
         List<MemberEntity> memberList = getRepository().getMember().findByEmail(encrypt(loginForm.getEmail()));
         if (memberList.isEmpty() || memberList.size() > 1) {
@@ -34,7 +34,7 @@ public class LoginLogic extends BaseLogic implements LoginService {
             throw new AppException(ErrorCode.LE_LG_101);
         }
 
-        return member.getLoginInfo();
+        return member.createLoginInfo();
     }
 
     @Override

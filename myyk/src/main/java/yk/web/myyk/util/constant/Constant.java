@@ -76,6 +76,10 @@ public class Constant {
     private int urlTry;
     private static int staticUrlTry;
 
+    @Value("${value.account.name.max}")
+    private int accountNameMax;
+    private static int staticAccountNameMax;
+
     @PostConstruct
     public void init() {
         Constant.staticHashingSalt = hashingSalt;
@@ -95,6 +99,7 @@ public class Constant {
         Constant.staticTmpCodeLimitTimes = tmpCodeLimitTimes;
         Constant.staticUrlTimeout = urlTimeout;
         Constant.staticUrlTry = urlTry;
+        Constant.staticAccountNameMax = accountNameMax;
     }
 
     /**
@@ -211,6 +216,13 @@ public class Constant {
      */
     public static int getUrlTry() {
         return staticUrlTry;
+    }
+
+    /**
+     * @return 가계부 이름 최대 길이
+     */
+    public static int getAccountNameMax() {
+        return staticAccountNameMax;
     }
 
 }
