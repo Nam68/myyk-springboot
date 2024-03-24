@@ -26,7 +26,7 @@ public class GeneralExceptionHandler {
     @ExceptionHandler({PermissionException.class})
     public ModelAndView permissionExceptionHandler(PermissionException e) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("global/permissionError");
+        mav.setViewName("error/permissionError");
         mav.addObject("status", e.getPermissionStatus());
         mav.addObject("memberType", e.getMemberType());
 

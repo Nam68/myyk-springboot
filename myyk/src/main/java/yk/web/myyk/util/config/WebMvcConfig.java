@@ -2,7 +2,6 @@ package yk.web.myyk.util.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -26,6 +25,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         addInterceptor(registry, setEnumInterceptor());
         addInterceptor(registry, sessionClearInterceptor());
         addInterceptor(registry, autoLoginInterceptor());
+        addInterceptor(registry, accessCheckInterceptor());
 
 //        addInterceptor(registry, categoryInterceptor());
 
@@ -33,7 +33,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 //          registry.addInterceptor(new WebContentInterceptor())
 //                  .excludePathPatterns("/css/**", "/images/**", "/js/**");
-//          
+//
 //          // POST 뒤로가기 방지
 //          CacheControl cacheControl = CacheControl.maxAge(Duration.ofDays(365));
 //      WebContentInterceptor webContentInterceptor = new WebContentInterceptor();
@@ -42,7 +42,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     private <T extends BaseInterceptor> void addInterceptor(InterceptorRegistry registry, T interceptor) {
-        registry.addInterceptor((HandlerInterceptor) interceptor).excludePathPatterns("/css/**", "/img/**", "/js/**");
+        registry.addInterceptor(interceptor).excludePathPatterns("/css/**", "/img/**", "/js/**");
     }
 
     @Bean
@@ -65,6 +65,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return new SessionClearInterceptor();
     }
 
+    @Bean
+    public AccessCheckInterceptor accessCheckInterceptor() {
+        return new AccessCheckInterceptor();
+    }
+
 
 
 
@@ -76,11 +81,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
     public AutoLoginInterceptor autoLoginInterceptor() {
         return new AutoLoginInterceptor();
-    }
-
-    @Bean
-    public AccessCheckInterceptor accessCheckInterceptor() {
-        return new AccessCheckInterceptor();
     }
 
 }

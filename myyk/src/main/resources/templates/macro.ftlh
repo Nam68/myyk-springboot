@@ -34,6 +34,13 @@
     </div>
 </#macro>
 
+<#-- 뒤로가기(url지정) 버튼세트 -->
+<#macro backBtnWithUrl url>
+    <div class="d-grid gap-3 bottom-btn-set">
+        <button class="btn btn-outline-secondary" onclick="backWithUrl('${url}')"><@spring.message "global.back"/></button>
+    </div>
+</#macro>
+
 <#-- 확인 & 홈으로 버튼세트 -->
 <#macro confirmHome>
     <div class="d-grid gap-3 bottom-btn-set">

@@ -6,8 +6,8 @@
 <title><@msg "global.title"/></title>
 <link rel="stylesheet" href="/css/login.css"/>
 </head>
-<body>
-  <main class="form-login">
+<body class="text-center">
+  <main class="form-login position-absolute top-50 start-50 translate-middle">
     <form action="/login/confirm" method="POST">
       <img class="form-icon mb-1" src="/img/title.jpg" alt="..." onclick="location.href='/'" role="button">
       <h1 class="h3 mb-3 fw-normal"><@msg "login.name"/></h1>
