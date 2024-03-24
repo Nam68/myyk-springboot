@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import yk.web.myyk.util.constant.Constant;
-import yk.web.myyk.util.enumerated.Region;
 import yk.web.myyk.util.errorCode.ErrorCode;
 
 /**

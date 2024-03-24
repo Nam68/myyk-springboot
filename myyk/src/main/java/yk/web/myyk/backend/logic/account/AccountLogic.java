@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +74,7 @@ public class AccountLogic extends BaseLogic implements AccountService {
 //	@Override
 //	@Transactional
 //	public Error createAccount(AccountDTO dto) throws SystemException {
-//		
+//
 //		AccountEntity entity = new AccountEntity(dto);
 //		try {
 //			getRepository().getAccount().save(entity);
@@ -85,7 +83,7 @@ public class AccountLogic extends BaseLogic implements AccountService {
 //		}
 //		return Error.SUCCESS;
 //	}
-//	
+//
 //	@SuppressWarnings("unused")
 //    @Override
 //	public List<AccountDTO> search(AccountBookDTO accountBookDto) throws SystemException {
@@ -95,5 +93,5 @@ public class AccountLogic extends BaseLogic implements AccountService {
 //		}
 //		return null;
 //	}
-	
+
 }

@@ -16,7 +16,7 @@ public class HomepageController extends BaseController {
 
     /**
      * <p>홈페이지 화면.</p>
-     * 
+     *
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
@@ -27,14 +27,14 @@ public class HomepageController extends BaseController {
 
     /**
      * <p>비밀번호를 리셋한다.</p>
-     * 
+     *
      * @param email 대상 이메일
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/member/update/passwordReset", method = RequestMethod.POST)
     public String passwordReset(MemberForm memberForm) throws SystemException {
-        getService().getMember().resetPassword(memberForm);
+//        getService().getMember().resetPassword(memberForm);
         return "homepage";
     }
 }

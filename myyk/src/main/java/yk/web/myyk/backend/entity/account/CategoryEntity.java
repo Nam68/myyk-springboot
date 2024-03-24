@@ -11,14 +11,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import yk.web.myyk.backend.dto.CategoryDTO;
-import yk.web.myyk.backend.dto.PrimeCategoryDTO;
-import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.entity.BaseEntity;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
@@ -28,7 +23,7 @@ import yk.web.myyk.util.exception.SystemException;
 public class CategoryEntity extends BaseEntity {
 
 	private static final String BASIC_CATEGORY_NAME = "::BASIC CATEGORY::";
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CATEGORY_IDX")
@@ -37,35 +32,35 @@ public class CategoryEntity extends BaseEntity {
 	@NaturalId
 	@Column(name = "KO_CATEGORY_NAME")
 	private String koCategoryName;
-	
+
 	@NaturalId
 	@Column(name = "JP_CATEGORY_NAME")
 	private String jpCategoryName;
-	
+
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
 	private CategoryOptionEntity option;
 
 	@OneToMany(mappedBy = "parentCategory")
 	private List<SubCategoryOptionEntity> subCategory = new ArrayList<>();
-	
+
 	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
 	private SubCategoryOptionEntity parentCategoryOption;
-	
+
 //	@ManyToOne
-//	@JoinColumn(name = "ACCOUNT_BOOK_IDX")	
+//	@JoinColumn(name = "ACCOUNT_BOOK_IDX")
 //	private AccountBookEntity accountBook;
-	
+
 //	@OneToMany(mappedBy = "category")
 //	private List<AccountEntity> accountList = new ArrayList<>();
-	
+
 	@Deprecated
 	public CategoryEntity() {
 		// 하이버네이트용
 	}
-	
+
 	/**
 	 * <p>인덱스와 이름만을 가지고 있는 베이직 카테고리를 생성한다.</p>
-	 * 
+	 *
 	 * @param isBasic 베이직 카테고리인지의 여부 | 베이직 카테고리면 false를 투입
 	 */
 	public CategoryEntity(boolean isUsable) {
@@ -76,19 +71,19 @@ public class CategoryEntity extends BaseEntity {
 		this.koCategoryName = BASIC_CATEGORY_NAME;
 		this.jpCategoryName = BASIC_CATEGORY_NAME;
 	}
-	
+
 	/**
 	 * <p>인덱스만 사용해서 카테고리를 생성한다.</p>
-	 * 
+	 *
 	 * @param categoryIdx 카테고리IDX
 	 */
 	public CategoryEntity(long categoryIdx) {
 		this.categoryIdx = categoryIdx;
 	}
-	
+
 	/**
 	 * <p>이름을 입력해서 카테고리를 생성한다.</p>
-	 * 
+	 *
 	 * @param T 카테고리DTO의 옵션 DTO
 	 * @param dto DTO
 	 */
@@ -96,7 +91,7 @@ public class CategoryEntity extends BaseEntity {
 //		this.koCategoryName = dto.getKoCategoryName();
 //		this.jpCategoryName = dto.getJpCategoryName();
 //		this.accountBook = accountBook;
-//		
+//
 //		// DTO가 가지고 있는 옵션에 따라 생성 처리 분기
 //		if (dto.getOption() instanceof PrimeCategoryDTO) {
 //			// 1차
@@ -112,37 +107,37 @@ public class CategoryEntity extends BaseEntity {
 //			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
 //		}
 //	}
-	
+
 	/**
 	 * <p>카테고리 인덱스를 반환한다.</p>
-	 * 
+	 *
 	 * @return 카테고리 인덱스
 	 */
 	public long getCategoryIdx() {
 		return categoryIdx;
 	}
-	
+
 	/**
 	 * <p>카테고리 이름(한국어)을 반환한다.</p>
-	 * 
+	 *
 	 * @return 카테고리 이름(한국어)
 	 */
 	public String getKoCategoryName() {
 		return koCategoryName;
 	}
-	
+
 	/**
 	 * <p>카테고리 이름(일본어)을 반환한다.</p>
-	 * 
+	 *
 	 * @return 카테고리 이름(일본어)
 	 */
 	public String getJpCategoryName() {
 		return jpCategoryName;
 	}
-	
+
 	/**
 	 * <p>카테고리 아이콘을 반환한다.</p>
-	 * 
+	 *
 	 * @return 카테고리 아이콘
 	 */
 	@SuppressWarnings("deprecation")
@@ -152,27 +147,27 @@ public class CategoryEntity extends BaseEntity {
 
 	/**
 	 * <p>카테고리 컬러를 반환한다.</p>
-	 * 
+	 *
 	 * @return 카테고리 컬러
 	 */
 	@SuppressWarnings("deprecation")
     public String getColor() {
 		return getOption().getColor();
 	}
-	
+
 	/**
 	 * <p>1차카테고리인지 아닌지를 반환한다.</p>
-	 * 
+	 *
 	 * @return 1차카테고리면 true
 	 */
 	public boolean isPrime() {
 		return option != null;
 	}
-	
+
 	/**
 	 * <p>카테고리 옵션을 가져온다.
 	 * <br>1차 카테고리가 아닌 경우 에러를 발생시킨다.</p>
-	 * 
+	 *
 	 * @return 카테고리 옵션
 	 */
 	public CategoryOptionEntity getOption() {
@@ -181,10 +176,10 @@ public class CategoryEntity extends BaseEntity {
 		}
 		return option;
 	}
-	
+
 	/**
 	 * <p>서브 카테고리 리스트를 반환한다.</p>
-	 * 
+	 *
 	 * @return 서브 카테고리 리스트
 	 */
 	public List<CategoryEntity> getSubCategory() {
@@ -197,10 +192,10 @@ public class CategoryEntity extends BaseEntity {
 		}
 		return subCategoryList;
 	}
-	
+
 	/**
 	 * <p>부모 카테고리를 반환한다.</p>
-	 * 
+	 *
 	 * @return 부모 카테고리
 	 */
 	public CategoryEntity getParentCategory() {
@@ -209,10 +204,10 @@ public class CategoryEntity extends BaseEntity {
 		}
 		return parentCategoryOption.getParentCategory();
 	}
-	
+
 	/**
 	 * <p>부모 카테고리 옵션 엔티티를 반환한다.</p>
-	 * 
+	 *
 	 * @deprecated 카테고리 생성시 필요한 경우에 한해서 사용할 것.
 	 * @return 부모 카테고리 옵션 엔티티
 	 */
@@ -223,10 +218,10 @@ public class CategoryEntity extends BaseEntity {
 		}
 		return parentCategoryOption;
 	}
-	
+
 	/**
 	 * <p>회계 리시트를 반환한다.</p>
-	 * 
+	 *
 	 * @return 회계 리스트
 	 */
 //	public List<AccountEntity> getAccountList() {

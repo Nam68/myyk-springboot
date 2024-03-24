@@ -37,7 +37,7 @@
 
 
 <button onclick="openLoading()">loading on</button>
-<button onclick="closeLoading()">loading off</button>
+<button onclick="closeLoading()" style="z-index:2000;">loading off</button>
 
 
     </div>

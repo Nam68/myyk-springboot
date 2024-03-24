@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import yk.web.myyk.backend.entity.BaseEntity;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 
@@ -40,11 +39,11 @@ public class AccountAuthEntity extends BaseEntityWithTime {
 
     /**
      * <p>생성자.</p>
-     * 
+     *
      * @param memberEntity 회원 엔티티
      */
     public AccountAuthEntity(MemberEntity memberEntity) {
-        
+
     }
 
     public AccountEntity getAccount() {
