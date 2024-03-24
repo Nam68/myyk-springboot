@@ -11,3 +11,7 @@
     </ul>
   </footer>
 </div>
+<div id="loading-modal"></div>
+<div id="loading-spinner" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>

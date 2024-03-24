@@ -1,8 +1,8 @@
 /**
  * 공통기능
  */
-function preventDoubleClick() {
-    
+function preventDoubleClick(button) {
+    button.addClass('btn-disabled');
 }
 
 /**
@@ -11,16 +11,17 @@ function preventDoubleClick() {
 
 // 입력 로딩 화면
 function openLoading() {
+    centerAlignDiv($('#loading-spinner'), 'flex');
     $('#loading-modal').css('display', 'flex');
-    $('.loading-spinner').css('display', 'flex');
+    $('#loading-spinner').css('display', 'flex');
 }
 function closeLoading() {
     $('#loading-modal').css('display', 'none');
-    $('.loading-spinner').css('display', 'none');
+    $('#loading-spinner').css('display', 'none');
 }
 
 // 타깃을 화면 정가운데로 정렬
-function centerAlignDiv(target) {
+function centerAlignDiv(target, position) {
     let width = target.width();
     let height = target.height();
 
@@ -30,7 +31,7 @@ function centerAlignDiv(target) {
     let newWidth = (screenX / 2) - (width / 2);
     let newHeight = (screenY / 2) - (height / 2);
 
-    target.css('position', 'relative');
+    target.css('position', position);
     target.css('left', newWidth);
     target.css('top', newHeight);
 }
@@ -39,7 +40,10 @@ function centerAlignDiv(target) {
  * 서브밋 제어
  */
 
-function mySubmit() {
+function mySubmit(button) {
+
+    openLoading();
+
     const form = $('form');
     if (form.length > 1 || form.length <= 0) {
         alert(globalError);
@@ -49,6 +53,9 @@ function mySubmit() {
 }
 
 function mySubmitWithParam(action, parameters) {
+
+    openLoading();
+
     const form = $('<form>', {action:action, method:'POST'});
 
     for (var key in parameters) {
@@ -61,6 +68,9 @@ function mySubmitWithParam(action, parameters) {
 }
 
 function backWithUrl(url) {
+
+    openLoading();
+
     const form = $('form');
     if (form.length > 1 || form.length <= 0) {
         alert(globalError);

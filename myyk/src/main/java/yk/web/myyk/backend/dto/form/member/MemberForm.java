@@ -46,7 +46,7 @@ public class MemberForm extends BaseForm {
     /**
      * <p>지역.</p>
      */
-    private String region = "";
+    private String region = Region.KOREA.getValue();
 
     /**
      * <p>회원 IDX를 반환한다.</p>

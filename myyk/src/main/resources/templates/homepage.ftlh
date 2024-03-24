@@ -36,6 +36,10 @@
 </form>
 
 
+<button onclick="openLoading()">loading on</button>
+<button onclick="closeLoading()">loading off</button>
+
+
     </div>
   </div>
 </body>
