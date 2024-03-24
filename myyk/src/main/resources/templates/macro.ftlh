@@ -50,6 +50,14 @@
     </div>
 </#macro>
 
+<#-- 확인 & 뒤로가기(url지정) 버튼세트 -->
+<#macro confirmBackWithUrl url>
+    <div class="d-grid gap-3 bottom-btn-set">
+        <button class="btn btn-primary" onclick="mySubmit()"><@spring.message "global.confirm"/></button>
+        <button class="btn btn-outline-secondary" onclick="backWithUrl('${url}')"><@spring.message "global.back"/></button>
+    </div>
+</#macro>
+
 <#-- 에러 체크 -->
 <#macro error codes>
     <#if errors?has_content>

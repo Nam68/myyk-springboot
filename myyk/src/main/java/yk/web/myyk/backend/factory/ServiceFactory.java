@@ -10,10 +10,10 @@ import yk.web.myyk.backend.service.account.AccountService;
 import yk.web.myyk.backend.service.account.CategoryService;
 import yk.web.myyk.backend.service.external.BootstrapService;
 import yk.web.myyk.backend.service.login.LoginService;
+import yk.web.myyk.backend.service.member.CreateMember;
 import yk.web.myyk.backend.service.member.CreateTmpMember;
 import yk.web.myyk.backend.service.member.EmailService;
 import yk.web.myyk.backend.service.member.FindEmailByTmpCode;
-import yk.web.myyk.backend.service.member.MemberService;
 
 @Component
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -25,6 +25,8 @@ public class ServiceFactory {
     @Autowired
     private FindEmailByTmpCode findEmailbyTmpCode;
 
+    @Autowired
+    private CreateMember createMember;
 
 
 
@@ -32,9 +34,6 @@ public class ServiceFactory {
 
     @Autowired
     private EmailService emailService;
-
-    @Autowired
-    private MemberService memberService;
 
     @Autowired
     private LoginService loginService;
@@ -53,10 +52,6 @@ public class ServiceFactory {
 
     public EmailService getEmail() {
         return emailService;
-    }
-
-    public MemberService getMember() {
-        return memberService;
     }
 
     public LoginService getLogin() {
@@ -90,5 +85,9 @@ public class ServiceFactory {
 
     public FindEmailByTmpCode getFindEmailByTmpCode() {
         return findEmailbyTmpCode;
+    }
+
+    public CreateMember getCreateMember() {
+        return createMember;
     }
 }

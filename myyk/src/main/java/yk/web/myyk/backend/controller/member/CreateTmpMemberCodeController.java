@@ -47,8 +47,9 @@ public class CreateTmpMemberCodeController extends BaseController {
      */
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
     public String confirm(EmailForm emailForm, HttpSession session, HttpServletRequest request) throws SystemException {
+
+        CreateTmpMember logic = getService().getCreateTmpMember();
         try {
-            CreateTmpMember logic = getService().getCreateTmpMember();
             logic.setEmailLocalpart(emailForm.getEmailLocalpart());
             logic.setEmailDomain(emailForm.getEmailDomain());
             logic.validate();

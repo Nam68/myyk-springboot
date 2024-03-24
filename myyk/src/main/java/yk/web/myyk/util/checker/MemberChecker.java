@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import yk.web.myyk.util.constant.Constant;
+import yk.web.myyk.util.enumerated.Region;
 import yk.web.myyk.util.errorCode.ErrorCode;
 
 /**
@@ -13,7 +14,7 @@ public class MemberChecker extends BaseChecker {
 
     /**
      * <p>이메일을 검증한다.</p>
-     * 
+     *
      * @param emailLocalpart 이메일 로컬파트
      * @param emailDomain 이메일 도메인
      * @return 에러 리스트
@@ -37,7 +38,7 @@ public class MemberChecker extends BaseChecker {
 
     /**
      * <p>비밀번호를 검증한다.</p>
-     * 
+     *
      * @param password 비밀번호
      * @return 에러 리스트
      */
@@ -62,7 +63,7 @@ public class MemberChecker extends BaseChecker {
 
     /**
      * <p>비밀번호 확인을 검증한다.</p>
-     * 
+     *
      * @param password 비밀번호
      * @param passwordCheck 비밀번호 확인
      * @return 에러 리스트
@@ -83,7 +84,7 @@ public class MemberChecker extends BaseChecker {
 
     /**
      * <p>닉네임을 검증한다.</p>
-     * 
+     *
      * @param nickname 닉네임
      * @return 에러 리스트
      */
@@ -97,6 +98,26 @@ public class MemberChecker extends BaseChecker {
         }
         if (nickname.length() > Constant.getMemberNicknameMax()) {
             setError(errors, ErrorCode.EE_ME_112);
+        }
+        return errors;
+    }
+
+    /**
+     * <p>닉네임 타언어를 검증한다.</p>
+     *
+     * @param nickname 닉네임 타언어
+     * @return 에러 리스트
+     */
+    public static Map<String, ErrorCode> checkNicknameLang(String nicknameLang) {
+
+        Map<String, ErrorCode> errors = new HashMap<>();
+
+        if (isEmpty(nicknameLang)) {
+            setError(errors, ErrorCode.EE_ME_113);
+            return errors;
+        }
+        if (nicknameLang.length() > Constant.getMemberNicknameMax()) {
+            setError(errors, ErrorCode.EE_ME_114);
         }
         return errors;
     }

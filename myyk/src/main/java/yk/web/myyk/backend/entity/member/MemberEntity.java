@@ -50,6 +50,9 @@ public class MemberEntity extends BaseEntityWithTime {
     @Column(name = "NICKNAME")
     private String nickname;
 
+    @Column(name = "NICKNAME_LANG")
+    private String nicknameLang;
+
     @Column(name = "REGION")
     @Enumerated(EnumType.STRING)
     private Region region;
@@ -64,8 +67,8 @@ public class MemberEntity extends BaseEntityWithTime {
     // 단순한 다대다이므로 사용하기 어려워서 패스
 //  @ManyToMany(fetch = FetchType.LAZY, targetEntity = AccountBookEntity.class)
 //  @JoinTable(
-//          name = "ACCOUNT_BOOK_MEMBER_RTBL", 
-//          joinColumns = @JoinColumn(name = "MEMBER_IDX"), 
+//          name = "ACCOUNT_BOOK_MEMBER_RTBL",
+//          joinColumns = @JoinColumn(name = "MEMBER_IDX"),
 //          inverseJoinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"))
 //  private List<AccountBookEntity> accountBookList;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
@@ -78,14 +81,14 @@ public class MemberEntity extends BaseEntityWithTime {
     public MemberEntity() {
         // nop
     }
-    
+
     public MemberEntity(long memberIdx) {
         setMemberIdx(memberIdx);
     }
 
     /**
      * <p>생성자.</p>
-     * 
+     *
      * @param dto DTO
      */
     public MemberEntity(MemberDto dto) {
@@ -94,7 +97,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>생성자.</p>
-     * 
+     *
      * @param dto DTO
      * @param memberIcon 회원 아이콘
      */
@@ -103,6 +106,7 @@ public class MemberEntity extends BaseEntityWithTime {
         setPasswordSalt(createPasswordSalt());
         setPassword(dto.getPassword());
         setNickname(dto.getNickname());
+        setNicknameLang(dto.getNicknameLang());
         setRegion(dto.getRegion());
         setMemberType(MemberType.TMP_MEMBER);
         setMemberIcon(memberIcon);
@@ -110,7 +114,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>회원 IDX를 설정한다.</p>
-     * 
+     *
      * @param memberIdx 회원 IDX
      */
     public void setMemberIdx(long memberIdx) {
@@ -119,7 +123,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>회원 IDX를 반환한다.</p>
-     * 
+     *
      * @return 회원 IDX
      */
     public long getMemberIdx() {
@@ -137,7 +141,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>이메일을 반환한다.</p>
-     * 
+     *
      * @return 이메일
      */
     public String getEmail() {
@@ -146,7 +150,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>비밀번호 솔트를 설정한다.</p>
-     * 
+     *
      * @param passwordSalt 비밀번호 솔트
      */
     public void setPasswordSalt(String passwordSalt) {
@@ -155,7 +159,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>비밀번호 솔트를 반환한다.</p>
-     * 
+     *
      * @return 비밀번호 솔트
      */
     public String getPasswordSalt() {
@@ -164,7 +168,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>비밀번호를 설정한다.</p>
-     * 
+     *
      * @param password 비밀번호
      */
     public void setPassword(String password) {
@@ -172,7 +176,7 @@ public class MemberEntity extends BaseEntityWithTime {
     }
     /**
      * <p>비밀번호를 반환한다.</p>
-     * 
+     *
      * @return 비밀번호
      */
     public String getPassword() {
@@ -181,7 +185,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>비밀번호 솔트를 생성한다.</p>
-     * 
+     *
      * @return 비밀번호 솔트
      */
     private String createPasswordSalt() {
@@ -191,7 +195,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>비밀번호를 해싱한다.</p>
-     * 
+     *
      * @param password 비밀번호
      * @return 해싱된 비밀번호
      */
@@ -210,7 +214,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>닉네임을 설정한다.</p>
-     * 
+     *
      * @param nickname 닉네임
      */
     public void setNickname(String nickname) {
@@ -219,7 +223,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>닉네임을 반환한다.</p>
-     * 
+     *
      * @return 닉네임
      */
     public String getNickname() {
@@ -227,8 +231,26 @@ public class MemberEntity extends BaseEntityWithTime {
     }
 
     /**
+     * <p>닉네임 타언어를 설정한다.</p>
+     *
+     * @param nicknameLang 닉네임 타언어
+     */
+    public void setNicknameLang(String nicknameLang) {
+        this.nicknameLang = nicknameLang;
+    }
+
+    /**
+     * <p>닉네임 타언어를 반환한다.</p>
+     *
+     * @return 닉네임 타언어
+     */
+    public String getNicknameLang() {
+        return nicknameLang;
+    }
+
+    /**
      * <p>지역을 설정한다.</p>
-     * 
+     *
      * @param region 지역
      */
     public void setRegion(Region region) {
@@ -237,7 +259,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>지역을 반환한다.</p>
-     * 
+     *
      * @return 지역
      */
     public Region getRegion() {
@@ -246,7 +268,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>회원 등급을 설정한다.</p>
-     * 
+     *
      * @param memberType 회원 등급
      */
     public void setMemberType(MemberType memberType) {
@@ -255,7 +277,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>회원 등급을 반환한다.</p>
-     * 
+     *
      * @return 회원 등급
      */
     public MemberType getMemberType() {
@@ -264,7 +286,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>회원 아이콘을 설정한다.</p>
-     * 
+     *
      * @param memberIcon 회원 아이콘
      */
     public void setMemberIcon(String memberIcon) {
@@ -273,7 +295,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>회원 아이콘을 반환한다.</p>
-     * 
+     *
      * @return 회원 아이콘
      */
     public String getMemberIcon() {
@@ -282,7 +304,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>가계부 권한 엔티티 리스트를 반환한다.</p>
-     * 
+     *
      * @return 가계부 권한 엔티티 리스트
      * @deprecated 가급적 레포지토리를 통해서 정렬해서 불러올 것
      */
@@ -293,7 +315,7 @@ public class MemberEntity extends BaseEntityWithTime {
 
     /**
      * <p>인스턴스를 로그인 정보로 변환해서 반환한다.</p>
-     * 
+     *
      * @return 로그인 정보
      */
     public LoginInfo createLoginInfo() {

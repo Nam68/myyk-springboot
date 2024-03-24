@@ -13,6 +13,8 @@ public class MemberDto extends BaseDto {
 
     private String nickname;
 
+    private String nicknameLang;
+
     private Region region;
 
     @Deprecated
@@ -25,15 +27,16 @@ public class MemberDto extends BaseDto {
         setEmail(entity.getEmail());
         setPassword(entity.getPassword());
         setNickname(entity.getNickname());
+        setNicknameLang(entity.getNicknameLang());
         setRegion(entity.getRegion());
     }
 
-    public MemberDto(long memberIdx, String email, String password, String nickname, Region region) {
-        this(email, password, nickname, region);
+    public MemberDto(long memberIdx, String email, String password, String nickname, String nicknameLang, Region region) {
+        this(email, password, nickname, nicknameLang, region);
         setMemberIdx(memberIdx);
     }
 
-    public MemberDto(String email, String password, String nickname, Region region) {
+    public MemberDto(String email, String password, String nickname, String nicknameLang, Region region) {
         setEmail(email);
         setPassword(password);
         setNickname(nickname);
@@ -70,6 +73,14 @@ public class MemberDto extends BaseDto {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getNicknameLang() {
+        return nicknameLang;
+    }
+
+    public void setNicknameLang(String nicknameLang) {
+        this.nicknameLang = nicknameLang;
     }
 
     public Region getRegion() {

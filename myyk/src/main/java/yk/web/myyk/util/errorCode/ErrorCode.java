@@ -223,6 +223,16 @@ public enum ErrorCode {
      */
     EE_ME_112("nickname is too long."),
 
+    /**
+     * <p>닉네임이 비어있는 경우 경우.</p>
+     */
+    EE_ME_113("nickname is empty."),
+
+    /**
+     * <p>닉네임이 10자를 넘어선 경우.</p>
+     */
+    EE_ME_114("nickname is too long."),
+
 
     /*
      * 논리 에러
@@ -241,6 +251,11 @@ public enum ErrorCode {
      * <p>닉네임이 중복된 경우.</p>
      */
     LE_ME_102("nickname is duplicated."),
+
+    /**
+     * <p>닉네임 타언어가 중복된 경우.</p>
+     */
+    LE_ME_103("nickname for another language is duplicated."),
 
     /**
      * <p>로그인 에러.</p>

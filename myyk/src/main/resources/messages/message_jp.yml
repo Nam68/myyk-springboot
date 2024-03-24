@@ -34,6 +34,8 @@ member:
     check: "パスワード確認"
   nickname:
     name: "ニックネーム"
+  nicknameLang:
+    name: "ニックネーム（英語または韓国語）"
   region:
     name: "地域"
     ko: "大韓民国"

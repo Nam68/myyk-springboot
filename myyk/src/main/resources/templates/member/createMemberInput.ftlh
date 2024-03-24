@@ -53,6 +53,15 @@
           <@errorMsg ['LE_ME_102'] 'signup.error.nicknameDupl'/>
         </div>
 
+        <#-- 닉네임 타언어 -->
+        <div class="mb-5">
+          <label class="form-label"><@msg "member.nicknameLang.name"/></label>
+          <input type="text" class="form-control<@error ['EE_ME_113', 'EE_ME_114', 'LE_ME_103']/>" name="nicknameLang" value="${holder.nicknameLang}">
+          <@errorMsg ['EE_ME_113'] 'signup.error.nicknameEmpty'/>
+          <@errorMsg ['EE_ME_114'] 'signup.error.nicknameMax'/>
+          <@errorMsg ['LE_ME_103'] 'signup.error.nicknameDupl'/>
+        </div>
+
         <#-- 지역 -->
         <div class="mb-5">
           <label class="form-label"><@msg "member.region.name"/></label>

@@ -25,18 +25,14 @@ public class CreateMemberHolder extends BaseHolder {
     private String nickname = "";
 
     /**
+     * <p>닉네임 타언어.</p>
+     */
+    private String nicknameLang = "";
+
+    /**
      * <p>지역.</p>
      */
     private Region region = Region.KOREA;
-
-    /**
-     * <p>이메일 로컬파트를 반환한다.</p>
-     * 
-     * @return 이메일 로컬파트
-     */
-    public String getEmailLocalpart() {
-        return emailLocalpart;
-    }
 
     /**
      * <p>생성자.</p>
@@ -47,27 +43,29 @@ public class CreateMemberHolder extends BaseHolder {
 
     /**
      * <p>생성자.</p>
-     * 
+     *
      * @param form 회원 정보.
      */
     public CreateMemberHolder(MemberForm form) {
         this.emailLocalpart = form.getEmailLocalpart();
         this.emailDomain = form.getEmailDomain();
         this.nickname = form.getNickname();
+        this.nicknameLang = form.getNicknameLang();
+        this.region = form.getRegion();
     }
 
     /**
-     * <p>이메일 로컬파트를 설정한다.</p>
-     * 
-     * @param emailLocalpart 이메일 로컬파트
+     * <p>이메일 로컬파트를 반환한다.</p>
+     *
+     * @return 이메일 로컬파트
      */
-    public void setEmailLocalpart(String emailLocalpart) {
-        this.emailLocalpart = emailLocalpart;
+    public String getEmailLocalpart() {
+        return emailLocalpart;
     }
 
     /**
      * <p>이메일 도메인을 반환한다.</p>
-     * 
+     *
      * @return 이메일 도메인
      */
     public String getEmailDomain() {
@@ -75,17 +73,8 @@ public class CreateMemberHolder extends BaseHolder {
     }
 
     /**
-     * <p>이메일 도메인을 설정한다.</p>
-     * 
-     * @param emailDomain 이메일 도메인
-     */
-    public void setEmailDomain(String emailDomain) {
-        this.emailDomain = emailDomain;
-    }
-
-    /**
      * <p>닉네임을 반환한다.</p>
-     * 
+     *
      * @return 닉네임
      */
     public String getNickname() {
@@ -93,29 +82,20 @@ public class CreateMemberHolder extends BaseHolder {
     }
 
     /**
-     * <p>닉네임을 설정한다.</p>
-     * 
-     * @param nickname 닉네임
+     * <p>닉네임 타언어를 반환한다.</p>
+     *
+     * @return 닉네임 타언어
      */
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public String getNicknameLang() {
+        return nicknameLang;
     }
 
     /**
      * <p>지역을 반환한다.</p>
-     * 
+     *
      * @return 지역
      */
     public Region getRegion() {
         return region;
-    }
-
-    /**
-     * <p>지역을 설정한다.</p>
-     * 
-     * @param region 지역
-     */
-    public void setRegion(Region region) {
-        this.region = region;
     }
 }

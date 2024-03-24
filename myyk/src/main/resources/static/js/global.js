@@ -1,4 +1,11 @@
 /**
+ * 공통기능
+ */
+function preventDoubleClick() {
+    
+}
+
+/**
  * CSS 제어
  */
 
@@ -50,5 +57,15 @@ function mySubmitWithParam(action, parameters) {
     }
 
     $('body').append(form);
+    form.submit();
+}
+
+function backWithUrl(url) {
+    const form = $('form');
+    if (form.length > 1 || form.length <= 0) {
+        alert(globalError);
+        return false;
+    }
+    form.attr('action', url);
     form.submit();
 }

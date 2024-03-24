@@ -10,6 +10,7 @@ html {
     --primary-color-hard:#3DD5F3;
 
     --soft-black:#666666;
+    --soft-gray: #BDBDBD;
 }
 body {
     text-decoration: none;
@@ -222,6 +223,12 @@ footer {
     color:#fff;
     background-color:var(--primary-color);
     border-color:var(--primary-color);
+}
+.btn-disabled, .btn-disabled:hover {
+    color:#fff;
+    background-color:var(--soft-gray);
+    border-color:var(--soft-gray);
+    pointer-events: none;
 }
 
 /* 

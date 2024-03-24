@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
-import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.form.member.TmpCodeForm;
 import yk.web.myyk.backend.dto.holder.member.CreateMemberHolder;
 import yk.web.myyk.backend.dto.holder.member.TmpCodeHolder;
+import yk.web.myyk.backend.service.member.CreateMember;
 import yk.web.myyk.backend.service.member.FindEmailByTmpCode;
 import yk.web.myyk.util.annotation.DataCheck;
 import yk.web.myyk.util.annotation.SessionClear;
@@ -50,10 +50,10 @@ public class CreateMemberController extends BaseController {
             setErrors(request, e.getErrors());
             return "member/checkTmpMemberCodeInput";
         }
-        CreateMemberHolder holder = new CreateMemberHolder();
-        holder.setEmailLocalpart(logic.getEmailLocalpart());
-        holder.setEmailDomain(logic.getEmailDomain());
-        setHolder(request, holder);
+        MemberForm memberForm = new MemberForm();
+        memberForm.setEmailLocalpart(logic.getEmailLocalpart());
+        memberForm.setEmailDomain(logic.getEmailDomain());
+        setHolder(request, new CreateMemberHolder(memberForm));
         return "member/createMemberInput";
     }
 
@@ -69,11 +69,14 @@ public class CreateMemberController extends BaseController {
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
     @SetEnum(target = {Region.class})
     public String confirm(MemberForm form, HttpSession session, HttpServletRequest request) throws SystemException {
+
+        CreateMember logic = getService().getCreateMember();
         try {
-            getService().getMember().checkMember(form);
+            setAllParameters(logic, form);
+            logic.validate();
         } catch (AppException e) {
-            request.setAttribute(HOLDER, new CreateMemberHolder(form));
-            request.setAttribute(ERRORS, e.getErrors());
+            setHolder(request, new CreateMemberHolder(form));
+            setErrors(request, e.getErrors());
             return "member/createMemberInput";
         }
         request.setAttribute(HOLDER, form);
@@ -90,9 +93,18 @@ public class CreateMemberController extends BaseController {
      */
     @RequestMapping(path = "/excute", method = RequestMethod.POST)
     @DataCheck(target = MemberForm.class)
-    public String execute(HttpSession session) throws SystemException {
+    public String execute(HttpSession session, HttpServletRequest request) throws SystemException {
         MemberForm form = getForm(session, MemberForm.class);
-        getService().getMember().createMember(form);
+        CreateMember logic = getService().getCreateMember();
+        try {
+            setAllParameters(logic, form);
+            logic.excute();
+        } catch (AppException e) {
+            setHolder(request, new CreateMemberHolder(form));
+            setErrors(request, e.getErrors());
+            removeForm(session, MemberForm.class);
+            return "member/createMemberConfirm";
+        }
         return "redirect:/member/create/complete";
     }
 
@@ -108,6 +120,22 @@ public class CreateMemberController extends BaseController {
     @SessionClear
     public String complete(HttpSession session) throws SystemException {
         return "member/createMemberComplete";
+    }
+
+    /**
+     * <p>{@link MemberForm}을 통해 {@link CreateMember}의 모든 변수를 세팅한다.</p>
+     *
+     * @param logic
+     * @param form
+     */
+    private void setAllParameters(CreateMember logic, MemberForm form) {
+        logic.setEmailLocalpart(form.getEmailLocalpart());
+        logic.setEmailDomain(form.getEmailDomain());
+        logic.setPassword(form.getPassword());
+        logic.setPasswordCheck(form.getPasswordCheck());
+        logic.setNickname(form.getNickname());
+        logic.setNicknameLang(form.getNicknameLang());
+        logic.setRegion(form.getRegion());
     }
 
 }
