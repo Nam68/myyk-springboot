@@ -10,7 +10,6 @@ import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.PrimeCategoryDTO;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
-import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.account.CategoryEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.logic.shared.SortCategoryList;
@@ -25,19 +24,20 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 	@Override
 	@Transactional
 	public List<PrimeCategoryDTO> getPrimeCategory(long accountBookIdx) throws SystemException {
-		
-		Optional<AccountBookEntity> account = getRepository().getAccountBook().findById(accountBookIdx);
-		if (!account.isPresent()) {
-			throw new SystemException(ErrorCode.AB_101, CategoryLogic.class);
-		}
-		
-		List<CategoryEntity> entityList = account.get().getCategoryList();
-		SortCategoryList sort = new SortCategoryList();
-		sort.setCatoryEntityList(entityList);
-		sort.execute();
-		return sort.getPrimeCategoryDto();
+
+//		Optional<AccountBookEntity> account = getRepository().getAccountBook().findById(accountBookIdx);
+//		if (!account.isPresent()) {
+//			throw new SystemException(ErrorCode.AB_101, CategoryLogic.class);
+//		}
+//
+//		List<CategoryEntity> entityList = account.get().getCategoryList();
+//		SortCategoryList sort = new SortCategoryList();
+//		sort.setCatoryEntityList(entityList);
+//		sort.execute();
+//		return sort.getPrimeCategoryDto();
+	    return null;
 	}
-	
+
 	@Override
 	@Transactional
 	public List<SubCategoryDTO> getSubCategory(long primeCategoryIdx) throws SystemException {
@@ -57,25 +57,25 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 	@Override
 	@Transactional
 	public <T extends CategoryDTO<T>> Error create(CategoryDTO<T> dto) throws SystemException {
-		
+
 		// DTO를 통해 카테고리가 입력될 가계부를 가져온다.
-		Optional<AccountBookEntity> accountBook = getRepository().getAccountBook().findById(dto.getAccountBookIdx());
-		if (!accountBook.isPresent()) {
-			throw new SystemException(ErrorCode.AB_101, CategoryLogic.class);
-		}
-		
-		// 카테고리 엔티티를 생성한다.
-		CategoryEntity entity = new CategoryEntity(dto, accountBook.get());
-		
-		if (entity.isPrime()) {
-			getRepository().getCategoryOption().save(entity.getOption());
-		} else {
-			getRepository().getSubCategoryOption().save(entity.getSubCategoryOption());
-		}
-		
-		getRepository().getCategory().save(entity);
-		
+//		Optional<AccountBookEntity> accountBook = getRepository().getAccountBook().findById(dto.getAccountBookIdx());
+//		if (!accountBook.isPresent()) {
+//			throw new SystemException(ErrorCode.AB_101, CategoryLogic.class);
+//		}
+//
+//		// 카테고리 엔티티를 생성한다.
+//		CategoryEntity entity = new CategoryEntity(dto, accountBook.get());
+//
+//		if (entity.isPrime()) {
+//			getRepository().getCategoryOption().save(entity.getOption());
+//		} else {
+//			getRepository().getSubCategoryOption().save(entity.getSubCategoryOption());
+//		}
+//
+//		getRepository().getCategory().save(entity);
+
 		return Error.SUCCESS;
 	}
-	
+
 }

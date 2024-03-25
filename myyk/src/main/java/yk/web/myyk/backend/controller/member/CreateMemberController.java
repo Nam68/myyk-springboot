@@ -79,7 +79,7 @@ public class CreateMemberController extends BaseController {
             setErrors(request, e.getErrors());
             return "member/createMemberInput";
         }
-        request.setAttribute(HOLDER, form);
+        setHolder(request, new CreateMemberHolder(form));
         setForm(session, form);
         return "member/createMemberConfirm";
     }
@@ -88,7 +88,8 @@ public class CreateMemberController extends BaseController {
      * <p>회원 생성.</p>
      *
      * @param session 세션
-     * @return 뷰 이름
+     * @param request 리퀘스트
+     * @return 리다이렉트
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/excute", method = RequestMethod.POST)

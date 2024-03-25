@@ -56,8 +56,56 @@ public class AccountEntity extends BaseEntityWithTime {
         this.taxRate = form.getTax();
         this.currency = form.getCurrency();
     }
-    
+
+    public AccountEntity(String accountName, boolean taxInclude, TaxRate taxRate, Currency currency) {
+        setAccountName(accountName);
+        setTaxInclude(taxInclude);
+        setTaxRate(taxRate);
+        setCurrency(currency);
+    }
+
+    /**
+     * <p>가계부 이름을 반환한다.</p>
+     *
+     * @return 가계부 이름
+     */
     public String getAccountName() {
         return accountName;
+    }
+
+    /**
+     * <p>가계부 이름을 설정한다.</p>
+     *
+     * @param accountName 가계부 이름
+     */
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    /**
+     * <p>세금포함 여부를 설정한다.</p>
+     *
+     * @param taxInclude 세금포함 여부
+     */
+    public void setTaxInclude(boolean taxInclude) {
+        this.taxInclude = taxInclude;
+    }
+
+    /**
+     * <p>세율을 설정한다.</p>
+     *
+     * @param taxRate 세율
+     */
+    public void setTaxRate(TaxRate taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    /**
+     * <p>통화단위를 설정한다.</p>
+     *
+     * @param currency 통화단위
+     */
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 }

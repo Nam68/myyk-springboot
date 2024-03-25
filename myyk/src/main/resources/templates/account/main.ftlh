@@ -17,16 +17,13 @@
 
       <div class="row mb-4" id="account-data-holder">
 
+        <#if holder.accountList?has_content>
         <div class="col-3 border">
           <div class="title text-center border-bottom p-2"><@msg "account.list"/></div>
           <div class="p-2 border-bottom">
-            <#if !holder.accountList?has_content>
             <div class="p-2 mt-1 mb-1 rounded account-book-name account-book-selected" role="button">&nbsp;account A</div>
             <div class="p-2 mt-1 mb-1 rounded account-book-name" role="button">&nbsp;account B</div>
             <div class="p-2 mt-1 mb-1 rounded account-book-name" role="button">&nbsp;account C</div>
-            <#else>
-            <div class="p-2 rounded account-book-name" role="button">&nbsp;account C</div>
-            </#if>
           </div>
           <div class="text-center p-2 row">
             <button class="btn btn-outline-primary" onclick="location.href='/account/book/edit'">
@@ -41,6 +38,11 @@
             data
           </div>
         </div>
+        <#else>
+        <button class="btn btn-outline-primary" onclick="location.href='/account/book/edit'">
+          <@msg "account.createOrUpdate"/>&nbsp;<i class="bi bi-gear-fill"></i>
+        </button>
+        </#if>
 
       </div>
       

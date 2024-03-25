@@ -1,7 +1,6 @@
 package yk.web.myyk.util.checker;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import yk.web.myyk.util.constant.Constant;
@@ -12,22 +11,23 @@ import yk.web.myyk.util.errorCode.ErrorCode;
  */
 public class AccountChecker extends BaseChecker {
 
-    public static Map<String, ErrorCode> checkName(String name, List<String> accountNameList) {
+    /**
+     * <p>가계부 이름을 검증한다.</p>
+     *
+     * @param accountName 가계부 이름
+     * @return 에러 리스트
+     */
+    public static Map<String, ErrorCode> checkName(String accountName) {
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        if (isEmpty(name)) {
+        if (isEmpty(accountName)) {
             setError(errors, ErrorCode.EE_AC_101);
             return errors;
         }
-        if (name.length() > Constant.getAccountNameMax()) {
+        if (accountName.length() > Constant.getAccountNameMax()) {
             setError(errors, ErrorCode.EE_AC_102);
             return errors;
-        }
-        for (String accountName : accountNameList) {
-            if (accountName.equals(name)) {
-                setError(errors, ErrorCode.EE_AC_103);
-            }
         }
         return errors;
     }

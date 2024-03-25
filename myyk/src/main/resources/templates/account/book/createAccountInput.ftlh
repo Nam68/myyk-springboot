@@ -32,16 +32,16 @@
           <div class="row">
             <div class="col">
               <div class="form-check">
-                <input class="form-check-input" id="taxIncluded" type="radio" name="taxIncluded" value="true"<#if holder.taxIncluded>checked</#if>>
-                <label class="form-check-label" for="taxIncluded">
+                <input class="form-check-input" id="taxInclude" type="radio" name="taxInclude" value="true"<#if holder.taxInclude>checked</#if>>
+                <label class="form-check-label" for="taxInclude">
                   <@msg "account.rate.include.always"/>
                 </label>
               </div>
             </div>
             <div class="col">
               <div class="form-check">
-                <input class="form-check-input" id="notTaxIncluded" type="radio" name="taxIncluded" value="false"<#if !holder.taxIncluded>checked</#if>>
-                <label class="form-check-label" for="notTaxIncluded">
+                <input class="form-check-input" id="notTaxInclude" type="radio" name="taxInclude" value="false"<#if !holder.taxInclude>checked</#if>>
+                <label class="form-check-label" for="notTaxInclude">
                   <@msg "account.rate.include.each"/>
                 </label>
               </div>
@@ -54,7 +54,7 @@
           <#-- 부가세율 -->
           <div class="mb-5">
             <label class="form-label"><@msg "account.rate.base"/></label>
-            <@taxSelect/>
+            <@taxRateSelect/>
           </div>
         </div>
 

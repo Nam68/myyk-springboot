@@ -15,7 +15,7 @@
         <@msg "account.createOrUpdate"/>
       </h3>
 
-      <div>
+      <form method="POST">
         <div class="mb-4" id="account-list-holder">
           <#if holder.accountList?has_content>
             <#list holder.accountList as account>
@@ -39,15 +39,15 @@
           <div class="card mt-2 mb-2">
             <div class="card-body position-relative" role="button">
               <div class="d-inline">
-                <i class="bi bi-plus-lg"></i>&nbsp;&nbsp;add account
+                <i class="bi bi-plus-lg"></i>&nbsp;&nbsp;<@msg "account.create.name"/>
               </div>
             </div>
           </div>
 
         </div>
-      </div>
+      </form>
 
-      <@backBtn/>
+      <@backBtnWithUrl "/account"/>
 
     </div>
   </div>

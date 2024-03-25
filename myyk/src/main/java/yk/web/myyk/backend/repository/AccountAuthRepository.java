@@ -11,7 +11,4 @@ public interface AccountAuthRepository extends JpaRepository<AccountAuthEntity, 
 
     public List<AccountAuthEntity> findByMemberMemberIdx(long memberIdx, Sort sort);
 
-    public static Sort getDescSort() {
-        return Sort.by(Sort.Order.desc("registeredDate"));
-    }
 }

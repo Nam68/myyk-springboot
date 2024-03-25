@@ -6,13 +6,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.AccountBookService;
-import yk.web.myyk.backend.service.account.AccountService;
 import yk.web.myyk.backend.service.account.CategoryService;
+import yk.web.myyk.backend.service.account.CreateAccount;
 import yk.web.myyk.backend.service.external.BootstrapService;
 import yk.web.myyk.backend.service.login.Login;
 import yk.web.myyk.backend.service.member.CreateMember;
 import yk.web.myyk.backend.service.member.CreateTmpMember;
 import yk.web.myyk.backend.service.member.EmailService;
+import yk.web.myyk.backend.service.member.FindAllMemberExceptMyself;
 import yk.web.myyk.backend.service.member.FindEmailByTmpCode;
 
 @Component
@@ -31,6 +32,12 @@ public class ServiceFactory {
     @Autowired
     private CreateMember createMember;
 
+    @Autowired
+    private FindAllMemberExceptMyself findAllMemberExceptMyself;
+
+    @Autowired
+    private CreateAccount createAccount;
+
 
 
 
@@ -40,9 +47,6 @@ public class ServiceFactory {
 
     @Autowired
     private AccountBookService accountBookService;
-
-    @Autowired
-    private AccountService accountService;
 
     @Autowired
     private CategoryService categoryService;
@@ -56,10 +60,6 @@ public class ServiceFactory {
 
     public AccountBookService getAccountBook() {
         return accountBookService;
-    }
-
-    public AccountService getAccount() {
-        return accountService;
     }
 
     public CategoryService getCategory() {
@@ -89,5 +89,13 @@ public class ServiceFactory {
 
     public CreateMember getCreateMember() {
         return createMember;
+    }
+
+    public FindAllMemberExceptMyself getFindAllMemberExceptMyself() {
+        return findAllMemberExceptMyself;
+    }
+
+    public CreateAccount getCreateAccount()  {
+        return createAccount;
     }
 }

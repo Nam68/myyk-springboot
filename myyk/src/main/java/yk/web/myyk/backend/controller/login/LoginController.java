@@ -33,7 +33,7 @@ public class LoginController extends BaseController {
      */
     @RequestMapping("/input")
     public String input(HttpSession session, HttpServletRequest request) throws SystemException {
-        LoginInfo loginInfo = getLoginInfo();
+        LoginInfo loginInfo = getLoginInfo(LoginController.class);
         if (loginInfo != null) {
             return "/";
         }

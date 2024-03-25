@@ -4,6 +4,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpSession;
+import yk.web.myyk.backend.controller.account.CreateAccountController;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.BaseApp;
 import yk.web.myyk.util.errorCode.ErrorCode;
@@ -28,11 +29,11 @@ public class BaseMvc extends BaseApp {
 
     /**
      * <p>현재 세션을 반환한다.</p>
-     * 
+     *
      * @return 세션
      */
     private static HttpSession getCurrentSession() {
-        ServletRequestAttributes servletRequestAttribute = 
+        ServletRequestAttributes servletRequestAttribute =
                 (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession httpSession = servletRequestAttribute.getRequest().getSession(true);
         return httpSession;
@@ -40,17 +41,21 @@ public class BaseMvc extends BaseApp {
 
     /**
      * <p>현재 로그인 정보를 반환한다.</p>
-     * 
+     *
      * @return 로그인 정보
      */
-    protected static LoginInfo getLoginInfo() {
+    protected static LoginInfo getLoginInfo(Class<? extends BaseMvc> clazz) {
         HttpSession session = getCurrentSession();
-        return (LoginInfo) session.getAttribute(LOGIN_INFO);
+        Object object = session.getAttribute(LOGIN_INFO);
+        if (object == null) {
+            throw new SystemException(ErrorCode.LG_101, clazz);
+        }
+        return (LoginInfo) object;
     }
 
     /**
      * <p>이메일에서 로컬파트를 반환한다.</p>
-     * 
+     *
      * @param email 이메일
      * @return 이메일 로컬파트
      */
@@ -60,7 +65,7 @@ public class BaseMvc extends BaseApp {
 
     /**
      * <p>이메일에서 도메인을 반환한다.</p>
-     * 
+     *
      * @param email 이메일
      * @return 이메일 도메인
      */
@@ -70,7 +75,7 @@ public class BaseMvc extends BaseApp {
 
     /**
      * <p>이메일을 분리한다.</p>
-     * 
+     *
      * @param email 이메일
      * @return 분리된 이메일의 문자열 배열
      */
@@ -81,7 +86,7 @@ public class BaseMvc extends BaseApp {
         }
         return emailParts;
     }
-    
+
     protected static String getCombinedEmail(String emailLocalpart, String emailDomain) {
         return emailLocalpart + "@" + emailDomain;
     }

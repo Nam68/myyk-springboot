@@ -14,14 +14,14 @@ import yk.web.myyk.util.enumerated.MemberType;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AccessCheck {
 
-	/**
-	 * <p>해당 등급 이상 접속 가능.</p>
-	 */
-	MemberType permitted() default MemberType.BANNED;
-	
-	/**
-	 * <p>해당 등급은 접속 불가.</p>
-	 */
-	MemberType[] denied() default {};
-	
+    /**
+     * <p>해당 등급 이상 접속 가능.</p>
+     */
+    MemberType permitted() default MemberType.BANNED;
+
+    /**
+     * <p>해당 등급은 접속 불가.</p>
+     */
+    MemberType[] denied() default {};
+
 }
