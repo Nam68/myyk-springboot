@@ -1,9 +1,6 @@
 package yk.web.myyk.backend.entity.account;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,220 +8,131 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import yk.web.myyk.backend.entity.BaseEntity;
-import yk.web.myyk.util.errorCode.ErrorCode;
-import yk.web.myyk.util.exception.SystemException;
+import yk.web.myyk.backend.entity.BaseEntityWithTime;
+import yk.web.myyk.backend.entity.member.MemberEntity;
 
 @Entity
-@Table(name = "CATEGORY_TBL")
-public class CategoryEntity extends BaseEntity {
+@Table(name = "CATEGORY_ENTITY")
+public class CategoryEntity extends BaseEntityWithTime {
 
-	private static final String BASIC_CATEGORY_NAME = "::BASIC CATEGORY::";
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CATEGORY_IDX")
+    private Long categoryIdx;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CATEGORY_IDX")
-	private Long categoryIdx;
+    @Column(name = "CATEGORY_NAME_KR")
+    private String categoryNameKr;
 
-	@NaturalId
-	@Column(name = "KO_CATEGORY_NAME")
-	private String koCategoryName;
+    @Column(name = "CATEGORY_NAME_JP")
+    private String categoryNameJp;
 
-	@NaturalId
-	@Column(name = "JP_CATEGORY_NAME")
-	private String jpCategoryName;
+    @Column(name = "CATEGORY_COLOR")
+    private String categoryColor;
 
-	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
-	private CategoryOptionEntity option;
+    @Column(name = "CATEGORY_ICON")
+    private String categoryIcon;
 
-	@OneToMany(mappedBy = "parentCategory")
-	private List<SubCategoryOptionEntity> subCategory = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    private List<SubCategoryEntity> subCategoryList;
 
-	@OneToOne(mappedBy = "category", fetch = FetchType.EAGER)
-	private SubCategoryOptionEntity parentCategoryOption;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = MemberEntity.class)
+    private MemberEntity member;
 
-//	@ManyToOne
-//	@JoinColumn(name = "ACCOUNT_BOOK_IDX")
-//	private AccountBookEntity accountBook;
+    @Deprecated
+    public CategoryEntity() {
+        // nop
+    }
 
-//	@OneToMany(mappedBy = "category")
-//	private List<AccountEntity> accountList = new ArrayList<>();
+    /**
+     * <p>카테고리 인덱스를 반환한다.</p>
+     *
+     * @return 카데고리 인덱스
+     */
+    public Long getCategoryIdx() {
+        return categoryIdx;
+    }
 
-	@Deprecated
-	public CategoryEntity() {
-		// 하이버네이트용
-	}
+    /**
+     * <p>카테고리 이름(한국어)를 반환한다.</p>
+     *
+     * @return 카테고리 이름(한국어)
+     */
+    public String getCategoryNameKr() {
+        return categoryNameKr;
+    }
 
-	/**
-	 * <p>인덱스와 이름만을 가지고 있는 베이직 카테고리를 생성한다.</p>
-	 *
-	 * @param isBasic 베이직 카테고리인지의 여부 | 베이직 카테고리면 false를 투입
-	 */
-	public CategoryEntity(boolean isUsable) {
-		if (isUsable) {
-			throw new SystemException(ErrorCode.CG_105, CategoryEntity.class);
-		}
-		this.categoryIdx = 0L;
-		this.koCategoryName = BASIC_CATEGORY_NAME;
-		this.jpCategoryName = BASIC_CATEGORY_NAME;
-	}
+    /**
+     * <p>카테고리 이름(한국어)를 설정한다.</p>
+     *
+     * @param categoryNameKr 카테고리 이름(한국어)
+     */
+    public void setCategoryNameKr(String categoryNameKr) {
+        this.categoryNameKr = categoryNameKr;
+    }
 
-	/**
-	 * <p>인덱스만 사용해서 카테고리를 생성한다.</p>
-	 *
-	 * @param categoryIdx 카테고리IDX
-	 */
-	public CategoryEntity(long categoryIdx) {
-		this.categoryIdx = categoryIdx;
-	}
+    /**
+     * <p>카테고리 이름(일본어)를 반환한다.</p>
+     *
+     * @return 카테고리 이름(일본어)
+     */
+    public String getCategoryNameJp() {
+        return categoryNameJp;
+    }
 
-	/**
-	 * <p>이름을 입력해서 카테고리를 생성한다.</p>
-	 *
-	 * @param T 카테고리DTO의 옵션 DTO
-	 * @param dto DTO
-	 */
-//	public <T extends CategoryDTO<T>> CategoryEntity(CategoryDTO<T> dto, AccountBookEntity accountBook) throws SystemException {
-//		this.koCategoryName = dto.getKoCategoryName();
-//		this.jpCategoryName = dto.getJpCategoryName();
-//		this.accountBook = accountBook;
-//
-//		// DTO가 가지고 있는 옵션에 따라 생성 처리 분기
-//		if (dto.getOption() instanceof PrimeCategoryDTO) {
-//			// 1차
-//			PrimeCategoryDTO option = (PrimeCategoryDTO) dto.getOption();
-//			this.option = new CategoryOptionEntity(this, option);
-//		} else if (dto.getOption() instanceof SubCategoryDTO) {
-//			// 서브
-//			SubCategoryDTO option = (SubCategoryDTO) dto.getOption();
-//			CategoryEntity parentCategory = new CategoryEntity(option.getParentCategoryIdx());
-//			SubCategoryOptionEntity parentCategoryOption = new SubCategoryOptionEntity(this, parentCategory);
-//			this.parentCategoryOption = parentCategoryOption;
-//		} else {
-//			throw new SystemException(ErrorCode.CG_106, CategoryEntity.class);
-//		}
-//	}
+    /**
+     * <p>카테고리 이름(일본어)를 설정한다.</p>
+     *
+     * @param categoryNameJp 카테고리 이름(일본어)
+     */
+    public void setCategoryNameJp(String categoryNameJp) {
+        this.categoryNameJp = categoryNameJp;
+    }
 
-	/**
-	 * <p>카테고리 인덱스를 반환한다.</p>
-	 *
-	 * @return 카테고리 인덱스
-	 */
-	public long getCategoryIdx() {
-		return categoryIdx;
-	}
+    /**
+     * <p>카테고리 색을 반환한다.</p>
+     *
+     * @return 카테고리 색
+     */
+    public String getCategoryColor() {
+        return categoryColor;
+    }
 
-	/**
-	 * <p>카테고리 이름(한국어)을 반환한다.</p>
-	 *
-	 * @return 카테고리 이름(한국어)
-	 */
-	public String getKoCategoryName() {
-		return koCategoryName;
-	}
+    /**
+     * <p>카테고리 색을 설정한다.</p>
+     *
+     * @param categoryColor 카테고리 색
+     */
+    public void setCategoryColor(String categoryColor) {
+        this.categoryColor = categoryColor;
+    }
 
-	/**
-	 * <p>카테고리 이름(일본어)을 반환한다.</p>
-	 *
-	 * @return 카테고리 이름(일본어)
-	 */
-	public String getJpCategoryName() {
-		return jpCategoryName;
-	}
+    /**
+     * <p>카테고리 아이콘을 반환한다.</p>
+     *
+     * @return 카테고리 아이콘
+     */
+    public String getCategoryIcon() {
+        return categoryIcon;
+    }
 
-	/**
-	 * <p>카테고리 아이콘을 반환한다.</p>
-	 *
-	 * @return 카테고리 아이콘
-	 */
-	@SuppressWarnings("deprecation")
-    public String getIcon() {
-		return getOption().getIcon();
-	}
+    /**
+     * <p>카테고리 아이콘을 설정한다.</p>
+     *
+     * @param categoryIcon 카테고리 아이콘
+     */
+    public void setCategoryIcon(String categoryIcon) {
+        this.categoryIcon = categoryIcon;
+    }
 
-	/**
-	 * <p>카테고리 컬러를 반환한다.</p>
-	 *
-	 * @return 카테고리 컬러
-	 */
-	@SuppressWarnings("deprecation")
-    public String getColor() {
-		return getOption().getColor();
-	}
-
-	/**
-	 * <p>1차카테고리인지 아닌지를 반환한다.</p>
-	 *
-	 * @return 1차카테고리면 true
-	 */
-	public boolean isPrime() {
-		return option != null;
-	}
-
-	/**
-	 * <p>카테고리 옵션을 가져온다.
-	 * <br>1차 카테고리가 아닌 경우 에러를 발생시킨다.</p>
-	 *
-	 * @return 카테고리 옵션
-	 */
-	public CategoryOptionEntity getOption() {
-		if (!isPrime()) {
-			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
-		}
-		return option;
-	}
-
-	/**
-	 * <p>서브 카테고리 리스트를 반환한다.</p>
-	 *
-	 * @return 서브 카테고리 리스트
-	 */
-	public List<CategoryEntity> getSubCategory() {
-		if (!isPrime()) {
-			throw new SystemException(ErrorCode.CG_104, CategoryEntity.class);
-		}
-		List<CategoryEntity> subCategoryList = new ArrayList<>();
-		for (SubCategoryOptionEntity subCategory : subCategory) {
-			subCategoryList.add(subCategory.getCategory());
-		}
-		return subCategoryList;
-	}
-
-	/**
-	 * <p>부모 카테고리를 반환한다.</p>
-	 *
-	 * @return 부모 카테고리
-	 */
-	public CategoryEntity getParentCategory() {
-		if (isPrime()) {
-			throw new SystemException(ErrorCode.CG_103, CategoryEntity.class);
-		}
-		return parentCategoryOption.getParentCategory();
-	}
-
-	/**
-	 * <p>부모 카테고리 옵션 엔티티를 반환한다.</p>
-	 *
-	 * @deprecated 카테고리 생성시 필요한 경우에 한해서 사용할 것.
-	 * @return 부모 카테고리 옵션 엔티티
-	 */
-	@Deprecated
-	public SubCategoryOptionEntity getSubCategoryOption() {
-		if (isPrime()) {
-			throw new SystemException(ErrorCode.CG_103, CategoryEntity.class);
-		}
-		return parentCategoryOption;
-	}
-
-	/**
-	 * <p>회계 리시트를 반환한다.</p>
-	 *
-	 * @return 회계 리스트
-	 */
-//	public List<AccountEntity> getAccountList() {
-//		return accountList;
-//	}
+    /**
+     * <p>서브 카테고리 리스트를 반환한다.</p>
+     *
+     * @return 서브 카테고리 리스트
+     */
+    public List<SubCategoryEntity> getSubCategoryList() {
+        return subCategoryList;
+    }
 }

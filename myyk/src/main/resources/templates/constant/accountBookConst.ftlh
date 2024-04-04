@@ -2,6 +2,6 @@
 <script>
 const subCategoryHolder = $('.sub-category-holder');
 const subCategorySelect = $('select[name=sub-category-select]');
-const subCategoryNon = '<@input "account.category.sub.nonSelect"/>';
-const createAccountError = '<@input "account.error.create"/>';
+const subCategoryNon = '<@input "book.category.sub.nonSelect"/>';
+const createAccountError = '<@input "book.error.create"/>';
 </script>

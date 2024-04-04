@@ -147,19 +147,34 @@ public enum ErrorCode {
      */
 
     /**
-     * <p>가계부 이름이 비어있는 경우.</p>
+     * <p>가계부 이름(한국어)이 비어있는 경우.</p>
      */
-    EE_AC_101("account name is empty."),
+    EE_AC_101("account name kr is empty."),
 
     /**
-     * <p>가계부 이름 최대길이를 초과한 경우.</p>
+     * <p>가계부 이름 최대길이를 초과한 경우(한국어).</p>
      */
-    EE_AC_102("account name is too long."),
+    EE_AC_102("account name kr is too long."),
 
     /**
-     * <p>가계부 이름이 중복된 경우.</p>
+     * <p>가계부 이름(한국어)이 중복된 경우.</p>
      */
-    EE_AC_103("this account name exists already."),
+    EE_AC_103("this account name kr exists already."),
+
+    /**
+     * <p>가계부 이름(일본어)이 비어있는 경우.</p>
+     */
+    EE_AC_104("account name jp is empty."),
+
+    /**
+     * <p>가계부 이름 최대길이를 초과한 경우(일본어).</p>
+     */
+    EE_AC_105("account name jp is too long."),
+
+    /**
+     * <p>가계부 이름(일본어)이 중복된 경우.</p>
+     */
+    EE_AC_106("this account name jp exists already."),
 
     /**
      * <p>이메일 로컬파트가 빈 값인 경우.</p>

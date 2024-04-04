@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import yk.web.myyk.backend.entity.account.AccountAuthEntity;
-import yk.web.myyk.backend.entity.account.AccountEntity;
+import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
+import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.account.CreateAccount;
@@ -24,9 +26,12 @@ import yk.web.myyk.util.exception.SystemException;
 import yk.web.myyk.util.sort.SortUtil;
 
 @Service
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CreateAccountLogic extends BaseLogic implements CreateAccount {
 
-    private String accountName;
+    private String accountNameKr;
+
+    private String accountNameJp;
 
     private boolean taxInclude;
 
@@ -39,8 +44,13 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
     private List<Long> writeAuthList;
 
     @Override
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
+    public void setAccountNameKr(String accountNameKr) {
+        this.accountNameKr = accountNameKr;
+    }
+
+    @Override
+    public void setAccountNameJp(String accountNameJp) {
+        this.accountNameJp = accountNameJp;
     }
 
     @Override
@@ -73,7 +83,8 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        errors.putAll(AccountChecker.checkName(accountName));
+        errors.putAll(AccountChecker.checkAccountNameKr(accountNameKr));
+        errors.putAll(AccountChecker.checkAccountNameJp(accountNameJp));
 
         if (!errors.isEmpty()) {
             throw new AppException(errors);
@@ -81,11 +92,15 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
 
         long loginIdx = getLoginInfo(CreateAccountLogic.class).getMemberIdx();
         Sort descSort = SortUtil.getRegisteredDateDesc();
-        List<AccountAuthEntity> authList = getRepository().getAccountAuth().findByMemberMemberIdx(loginIdx, descSort);
+        List<AccountBookAuthEntity> authList = getRepository().getAccountBookAuth().findByMemberMemberIdx(loginIdx, descSort);
 
-        for (AccountAuthEntity auth : authList) {
-            if (auth.getAccount().getAccountName().equals(accountName)) {
+        for (AccountBookAuthEntity auth : authList) {
+            if (auth.getAccount().getAccountBookNameKr().equals(accountNameKr)) {
                 setError(errors, ErrorCode.EE_AC_103);
+                break;
+            }
+            if (auth.getAccount().getAccountBookNameJp().equals(accountNameJp)) {
+                setError(errors, ErrorCode.EE_AC_106);
                 break;
             }
         }
@@ -109,13 +124,13 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
 
         // 멤버를 불러와서 권한을 생성
         List<MemberEntity> memberList = getRepository().getMember().findByMemberIdxIn(readAuthList);
-        Map<Long, AccountAuthEntity> authMap = new HashMap<>();
+        Map<Long, AccountBookAuthEntity> authMap = new HashMap<>();
         for (MemberEntity member : memberList) {
-            AccountAuthEntity auth = new AccountAuthEntity(member);
+            AccountBookAuthEntity auth = new AccountBookAuthEntity(member);
             authMap.put(member.getMemberIdx(), auth);
         }
         for (long memberIdx : writeAuthList) {
-            AccountAuthEntity auth = authMap.get(memberIdx);
+            AccountBookAuthEntity auth = authMap.get(memberIdx);
             auth.setWritable(true);
         }
 
@@ -125,17 +140,17 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
 
     @Transactional
     private void saveAccountEntity() {
-        AccountEntity entity = new AccountEntity(accountName, taxInclude, taxRate, currency);
-        getRepository().getAccount().save(entity);
+        AccountBookEntity entity = new AccountBookEntity(accountNameKr, accountNameJp, taxInclude, taxRate, currency);
+        getRepository().getAccountBook().save(entity);
     }
 
     @Transactional
-    private void saveAccountAuthList(Map<Long, AccountAuthEntity> authMap) {
-        List<AccountAuthEntity> authList = new ArrayList<>();
-        for (Entry<Long, AccountAuthEntity> entry : authMap.entrySet()) {
+    private void saveAccountAuthList(Map<Long, AccountBookAuthEntity> authMap) {
+        List<AccountBookAuthEntity> authList = new ArrayList<>();
+        for (Entry<Long, AccountBookAuthEntity> entry : authMap.entrySet()) {
             authList.add(entry.getValue());
         }
-        getRepository().getAccountAuth().saveAll(authList);
+        getRepository().getAccountBookAuth().saveAll(authList);
     }
 
 }

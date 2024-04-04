@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -18,6 +20,7 @@ import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CreateMemberLogic extends BaseLogic implements CreateMember {
 
     // setter

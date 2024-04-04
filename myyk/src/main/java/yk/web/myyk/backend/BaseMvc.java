@@ -4,7 +4,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpSession;
-import yk.web.myyk.backend.controller.account.CreateAccountController;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.BaseApp;
 import yk.web.myyk.util.errorCode.ErrorCode;

@@ -47,9 +47,9 @@ public class CategoryLogic extends BaseLogic implements CategoryService {
 			return null;
 		}
 		List<SubCategoryDTO> result = new ArrayList<>();
-		for (CategoryEntity subCategory : primeCategory.get().getSubCategory()) {
-			result.add(new SubCategoryDTO(subCategory));
-		}
+//		for (CategoryEntity subCategory : primeCategory.get().getSubCategory()) {
+//			result.add(new SubCategoryDTO(subCategory));
+//		}
 		return result;
 	}
 

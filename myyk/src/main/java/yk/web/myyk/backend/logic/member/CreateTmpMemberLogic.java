@@ -3,6 +3,8 @@ package yk.web.myyk.backend.logic.member;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -16,6 +18,7 @@ import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CreateTmpMemberLogic extends BaseLogic implements CreateTmpMember {
 
     private String emailLocalpart;
@@ -24,10 +27,12 @@ public class CreateTmpMemberLogic extends BaseLogic implements CreateTmpMember {
 
     private String tmpCode;
 
+    @Override
     public void setEmailLocalpart(String emailLocalpart) {
         this.emailLocalpart = emailLocalpart;
     }
 
+    @Override
     public void setEmailDomain(String emailDomain) {
         this.emailDomain = emailDomain;
     }
@@ -74,6 +79,7 @@ public class CreateTmpMemberLogic extends BaseLogic implements CreateTmpMember {
         this.tmpCode = tmpCode;
     }
 
+    @Override
     public String getTmpCode() {
         return tmpCode;
     }

@@ -1,6 +1,5 @@
 package yk.web.myyk.backend.entity.member;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.NaturalId;
@@ -20,7 +19,8 @@ import yk.web.myyk.backend.dto.login.AdminInfo;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.dto.login.MemberInfo;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
-import yk.web.myyk.backend.entity.account.AccountAuthEntity;
+import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
+import yk.web.myyk.backend.entity.account.CategoryEntity;
 import yk.web.myyk.util.constant.Constant;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
@@ -64,15 +64,11 @@ public class MemberEntity extends BaseEntityWithTime {
     @Column(name = "MEMBER_ICON")
     private String memberIcon;
 
-    // 단순한 다대다이므로 사용하기 어려워서 패스
-//  @ManyToMany(fetch = FetchType.LAZY, targetEntity = AccountBookEntity.class)
-//  @JoinTable(
-//          name = "ACCOUNT_BOOK_MEMBER_RTBL",
-//          joinColumns = @JoinColumn(name = "MEMBER_IDX"),
-//          inverseJoinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"))
-//  private List<AccountBookEntity> accountBookList;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
-    private List<AccountAuthEntity> accountAuthList = new ArrayList<>();
+    private List<AccountBookAuthEntity> accountBookAuthList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<CategoryEntity> categoryList;
 
     /**
      * <p>생성자.</p>
@@ -309,8 +305,8 @@ public class MemberEntity extends BaseEntityWithTime {
      * @deprecated 가급적 레포지토리를 통해서 정렬해서 불러올 것
      */
     @Deprecated
-    public List<AccountAuthEntity> getAccountBookAuthList() {
-        return accountAuthList;
+    public List<AccountBookAuthEntity> getAccountBookAuthList() {
+        return accountBookAuthList;
     }
 
     /**

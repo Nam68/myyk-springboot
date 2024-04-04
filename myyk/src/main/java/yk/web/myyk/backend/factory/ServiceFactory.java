@@ -13,6 +13,7 @@ import yk.web.myyk.backend.service.login.Login;
 import yk.web.myyk.backend.service.member.CreateMember;
 import yk.web.myyk.backend.service.member.CreateTmpMember;
 import yk.web.myyk.backend.service.member.EmailService;
+import yk.web.myyk.backend.service.member.FindAllMemberByIdx;
 import yk.web.myyk.backend.service.member.FindAllMemberExceptMyself;
 import yk.web.myyk.backend.service.member.FindEmailByTmpCode;
 
@@ -34,6 +35,9 @@ public class ServiceFactory {
 
     @Autowired
     private FindAllMemberExceptMyself findAllMemberExceptMyself;
+
+    @Autowired
+    private FindAllMemberByIdx findAllMemberByIdx;
 
     @Autowired
     private CreateAccount createAccount;
@@ -93,6 +97,10 @@ public class ServiceFactory {
 
     public FindAllMemberExceptMyself getFindAllMemberExceptMyself() {
         return findAllMemberExceptMyself;
+    }
+
+    public FindAllMemberByIdx getFindAllMemberByIdx() {
+        return findAllMemberByIdx;
     }
 
     public CreateAccount getCreateAccount()  {

@@ -25,7 +25,6 @@
 <#-- javascript constants -->
 <script>
 const globalError = '<@msg "global.error"/>';
-const writhAuthDisabled = '<@msg "share.disabled"/>';
 <#--
 const selectedLanguage = '${selected_language}';
 const unselectedLanguage = '${unselected_language}';

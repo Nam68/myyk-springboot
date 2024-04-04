@@ -50,6 +50,7 @@ function mySubmit(button) {
         return false;
     }
     form.submit();
+    closeLoading();
 }
 
 function mySubmitWithParam(action, parameters) {
@@ -65,6 +66,7 @@ function mySubmitWithParam(action, parameters) {
 
     $('body').append(form);
     form.submit();
+    closeLoading();
 }
 
 function backWithUrl(url) {
@@ -78,4 +80,5 @@ function backWithUrl(url) {
     }
     form.attr('action', url);
     form.submit();
+    closeLoading();
 }

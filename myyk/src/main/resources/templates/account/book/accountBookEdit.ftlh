@@ -12,17 +12,17 @@
     <div id="wrapper">
 
       <h3 class="title">
-        <@msg "account.createOrUpdate"/>
+        <@msg "book.createOrUpdate"/>
       </h3>
 
       <form method="POST">
         <div class="mb-4" id="account-list-holder">
-          <#if holder.accountList?has_content>
-            <#list holder.accountList as account>
+          <#if holder.accountBookList?has_content>
+            <#list holder.accountBookList as accountBook>
             <div class="card mt-2 mb-2">
-              <div class="card-body position-relative" data-idx="${ account.accountIdx }">
+              <div class="card-body position-relative" data-idx="${ accountBook.accountBookIdx }">
                 <div class="d-inline">
-                  ${ account.name }
+                  ${ accountBook.name }
                 </div>
                 <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
                   <span class="me-3" role="button">
@@ -39,8 +39,7 @@
           <div class="card mt-2 mb-2">
             <div class="card-body position-relative" role="button">
               <div class="d-inline">
-                <i class="bi bi-plus-lg"></i>&nbsp;&nbsp;<@msg "account.create.name"/>
-              </div>
+book              </div>
             </div>
           </div>
 

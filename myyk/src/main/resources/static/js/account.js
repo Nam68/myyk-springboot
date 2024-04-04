@@ -1,3 +1,9 @@
+$(document).ready(function () {
+    $('[name=readAuthList]').toArray().forEach(readAuth => {
+        writeAuthTrigger($(readAuth));
+    });
+});
+
 // 가계부 편집
 $('#account-list-holder .card-body span:eq(0)').on('click', function () {
     let action = '/account/book/update';
@@ -14,7 +20,7 @@ $('#account-list-holder .card-body span:eq(1)').on('click', function () {
 
 // 가계부 등록
 $('#account-list-holder .card-body:last').on('click', function () {
-    location.href='/account/book/create/input';
+    location.href='/account/book/create/input/info';
 });
 
 // 가계부 등록 부가세 에리어 여닫기
@@ -27,22 +33,18 @@ $('input[name=taxIncluded]').on('change', function () {
 });
 
 // 가계부 등록 권한설정 트리거
-$('[name=readAuth]').on('change', function() {
+$('[name=readAuthList]').on('change', function() {
+    writeAuthTrigger($(this));
+});
 
-    const writhAuth = $(this).closest('.member-holder').find('[name=writeAuth]');
+// 가계부 등록 권한설정 트리거 본체
+function writeAuthTrigger(readAuth) {
+    const writhAuth = readAuth.closest('.member-holder').find('[name=writeAuthList]');
 
-    if ($(this).prop('checked')) {
+    if (readAuth.prop('checked')) {
         writhAuth.prop('disabled', false);
     } else {
         writhAuth.prop('checked', false);
         writhAuth.prop('disabled', true);
     }
-});
-
-// 가계부 쓰기권한 안내
-$('.write-auth-area').on('click', function() {
-    let isDisabled = $(this).find('[name=writeAuth]').prop('disabled');
-    if (isDisabled) {
-        alert(writhAuthDisabled);
-    }
-});
+}

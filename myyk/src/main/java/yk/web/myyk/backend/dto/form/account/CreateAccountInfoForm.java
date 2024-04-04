@@ -1,16 +1,13 @@
 package yk.web.myyk.backend.dto.form.account;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import yk.web.myyk.backend.dto.form.BaseForm;
 import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.TaxRate;
 
 /**
- * <p>가계부 생성 폼.</p>
+ * <p>가계부 정보 생성 폼.</p>
  */
-public class CreateAccountForm extends BaseForm {
+public class CreateAccountInfoForm extends BaseForm {
 
     /**
      * <p>가계부 이름(한국어).</p>
@@ -36,16 +33,6 @@ public class CreateAccountForm extends BaseForm {
      * <p>통화단위.</p>
      */
     private String currency = "";
-
-    /**
-     * <p>읽기 권한 목록.</p>
-     */
-    private List<Long> readAuthList = new ArrayList<>();
-
-    /**
-     * <p>쓰기 권한 목록.</p>
-     */
-    private List<Long> writeAuthList = new ArrayList<>();
 
     /**
      * <p>가계부 이름(한국어)을 반환한다.</p>
@@ -135,41 +122,5 @@ public class CreateAccountForm extends BaseForm {
      */
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    /**
-     * <p>읽기 권한 리스트를 반환한다.</p>
-     *
-     * @return 읽기 권한 리스트
-     */
-    public List<Long> getReadAuthList() {
-        return readAuthList;
-    }
-
-    /**
-     * <p>읽기 권한 리스트를 설정한다.</p>
-     *
-     * @param readAuth 읽기 권한 리스트
-     */
-    public void setReadAuthList(List<Long> readAuthList) {
-        this.readAuthList = readAuthList;
-    }
-
-    /**
-     * <p>쓰기 권한 리스트를 반환한다.</p>
-     *
-     * @return 쓰기 권한 리스트
-     */
-    public List<Long> getWriteAuthList() {
-        return writeAuthList;
-    }
-
-    /**
-     * <p>쓰기 권한 리스트를 설정한다.</p>
-     *
-     * @param writeAuth 쓰기 권한 리스트
-     */
-    public void setWriteAuthList(List<Long> writeAuthList) {
-        this.writeAuthList = writeAuthList;
     }
 }

@@ -42,7 +42,7 @@ member:
   nickname:
     name: "닉네임"
   nicknameLang:
-    name: "닉네임(영어 및 일본어)"
+    name: "닉네임(영어 또는 일본어)"
   region:
     name: "지역"
     ko: "대한민국"
@@ -86,8 +86,13 @@ album:
 plan:
   name: "계획표"
 
-account:
+bookOrCategory: "가계부 및 카테고리 편집"
+
+book:
   name: "가계부"
+  nameLang:
+    ko: "가계부 이름"
+    jp: "가계부 이름(영어 또는 일본어)"
   list: "가계부 목록"
   createOrUpdate: "가계부 생성 및 편집"
   accountName: "가계부 이름"
@@ -111,6 +116,9 @@ account:
     accountNameMax: "가계부 이름은 10자 이내로 입력해주세요"
     accountNameDupl: "이미 존재하는 가계부 이름입니다"
 
+category:
+  createOrUpdate: "카테고리 생성 및 편집"
+
 board:
   name: "게시판"
 
@@ -119,4 +127,3 @@ share:
   read: "읽기 권한"
   write: "쓰기 권한"
   checkForRegister: "공유할 회원을 선택해주세요"
-  disabled: "쓰기 권한은 읽기 권한을 설정한 후에 부여할 수 있습니다."

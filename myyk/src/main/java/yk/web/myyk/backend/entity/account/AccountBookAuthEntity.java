@@ -13,17 +13,17 @@ import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 
 @Entity
-@Table(name = "ACCOUNT_AUTH_TBL")
-public class AccountAuthEntity extends BaseEntityWithTime {
+@Table(name = "ACCOUNT_BOOK_AUTH_TBL")
+public class AccountBookAuthEntity extends BaseEntityWithTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ACCOUNT_AUTH_IDX")
-    private Long accountAuthIdx;
+    @Column(name = "ACCOUNT_BOOK_AUTH_IDX")
+    private Long accountBookAuthIdx;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = AccountEntity.class)
-    @JoinColumn(name = "ACCOUNT_IDX")
-    private AccountEntity account;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = AccountBookEntity.class)
+    @JoinColumn(name = "ACCOUNT_BOOK_IDX")
+    private AccountBookEntity accountBook;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = MemberEntity.class)
     @JoinColumn(name = "MEMBER_IDX")
@@ -33,7 +33,7 @@ public class AccountAuthEntity extends BaseEntityWithTime {
     private boolean writable;
 
     @Deprecated
-    public AccountAuthEntity() {
+    public AccountBookAuthEntity() {
         // 하이버네이트용
     }
 
@@ -42,12 +42,12 @@ public class AccountAuthEntity extends BaseEntityWithTime {
      *
      * @param memberEntity 회원 엔티티
      */
-    public AccountAuthEntity(MemberEntity memberEntity) {
+    public AccountBookAuthEntity(MemberEntity memberEntity) {
 
     }
 
-    public AccountEntity getAccount() {
-        return account;
+    public AccountBookEntity getAccount() {
+        return accountBook;
     }
 
     public void setWritable(boolean writable) {

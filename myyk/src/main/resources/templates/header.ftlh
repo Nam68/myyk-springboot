@@ -52,7 +52,7 @@
     <div class="col">
       <a href="/account" class="nav-link text-decoration-none">
         <div class="header-icon"><i class="bi bi-calculator"></i></div>
-        <div class="header-item"><@msg "account.name"/></div>
+        <div class="header-item"><@msg "book.nameLang.${selected_language}"/></div>
       </a>
     </div>
     <div class="col">

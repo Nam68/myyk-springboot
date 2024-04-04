@@ -43,7 +43,7 @@ $('#icon-input-button').on('click', function(e) {
 	   		if (isValid(data)) {
 	   			changeIcon(iconName);
 	   		} else {
-	   			alert('<@input "account.category.create.error.notFound"/>');
+	   			alert('<@input "book.category.create.error.notFound"/>');
 	   		}
 	   	})
 	   	.fail(function(data) {

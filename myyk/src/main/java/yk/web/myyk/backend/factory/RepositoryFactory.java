@@ -10,13 +10,11 @@ import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.entity.member.TmpCodeEntity;
 import yk.web.myyk.backend.entity.token.LoginToken;
-import yk.web.myyk.backend.repository.AccountAuthRepository;
-import yk.web.myyk.backend.repository.AccountRepository;
+import yk.web.myyk.backend.repository.AccountBookAuthRepository;
+import yk.web.myyk.backend.repository.AccountBookRepository;
 import yk.web.myyk.backend.repository.CategoryRepository;
 import yk.web.myyk.backend.repository.LoginTokenRepository;
 import yk.web.myyk.backend.repository.MemberRepository;
-import yk.web.myyk.backend.repository.SubCategoryOptionRepository;
-import yk.web.myyk.backend.repository.CategoryOptionRepository;
 import yk.web.myyk.backend.repository.TmpCodeRepository;
 import yk.web.myyk.util.BaseApp;
 import yk.web.myyk.util.constant.Constant;
@@ -35,19 +33,13 @@ public class RepositoryFactory extends BaseApp {
     private LoginTokenRepository loginTokenRepository;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountBookRepository accountBookRepository;
 
     @Autowired
-    private AccountAuthRepository accountAuthRepository;
+    private AccountBookAuthRepository accountBookAuthRepository;
 
     @Autowired
     private CategoryRepository categoryRepository;
-
-    @Autowired
-    private CategoryOptionRepository categoryOptionRepository;
-
-    @Autowired
-    private SubCategoryOptionRepository subCategoryOptionRepository;
 
     public MemberRepository getMember() {
         return memberRepository;
@@ -71,7 +63,7 @@ public class RepositoryFactory extends BaseApp {
     }
 
     public LoginTokenRepository getLoginToken() {
-        
+
         if (loginTokenRepository == null) {
             return loginTokenRepository;
         }
@@ -86,24 +78,16 @@ public class RepositoryFactory extends BaseApp {
         return loginTokenRepository;
     }
 
-    public AccountRepository getAccount() {
-        return accountRepository;
+    public AccountBookRepository getAccountBook() {
+        return accountBookRepository;
     }
-    
-    public AccountAuthRepository getAccountAuth() {
-        return accountAuthRepository;
+
+    public AccountBookAuthRepository getAccountBookAuth() {
+        return accountBookAuthRepository;
     }
 
     public CategoryRepository getCategory() {
         return categoryRepository;
-    }
-
-    public CategoryOptionRepository getCategoryOption() {
-        return categoryOptionRepository;
-    }
-
-    public SubCategoryOptionRepository getSubCategoryOption() {
-        return subCategoryOptionRepository;
     }
 
 }

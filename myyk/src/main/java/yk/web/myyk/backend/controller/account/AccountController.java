@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
-import yk.web.myyk.backend.dto.holder.account.AccountMainHolder;
+import yk.web.myyk.backend.dto.holder.account.AccountBookEditHolder;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.exception.SystemException;
@@ -24,7 +24,7 @@ public class AccountController extends BaseController {
      */
     @RequestMapping
     public String main(HttpServletRequest request) throws SystemException {
-        setHolder(request, new AccountMainHolder());
+        setHolder(request, new AccountBookEditHolder());
         return "account/main";
     }
 
@@ -36,8 +36,19 @@ public class AccountController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping("/book/edit")
-    public String edit(HttpServletRequest request) throws SystemException {
-        setHolder(request, new AccountMainHolder());
-        return "account/book/accountEdit";
+    public String accountBookEdit(HttpServletRequest request) throws SystemException {
+        setHolder(request, new AccountBookEditHolder());
+        return "account/book/accountBookEdit";
+    }
+
+    /**
+     * <p>카테고리 에디터 화면</p>
+     *
+     * @param reqeust 리퀘스트
+     * @return 뷰 이름
+     * @throws SystemException 시스템에러
+     */
+    public String categoryEdit(HttpServletRequest reqeust) throws SystemException {
+        return "account/category/categoryEdit";
     }
 }

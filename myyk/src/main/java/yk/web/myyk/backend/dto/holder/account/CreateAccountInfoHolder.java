@@ -1,19 +1,16 @@
 package yk.web.myyk.backend.dto.holder.account;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import yk.web.myyk.backend.dto.MemberDto;
-import yk.web.myyk.backend.dto.form.account.CreateAccountForm;
+import yk.web.myyk.backend.dto.form.account.CreateAccountInfoForm;
 import yk.web.myyk.backend.dto.holder.BaseHolder;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.Region;
 import yk.web.myyk.util.enumerated.TaxRate;
 
-public class CreateAccountHolder extends BaseHolder {
+/**
+ * <p>가계부 정보 생성 홀더.</p>
+ */
+public class CreateAccountInfoHolder extends BaseHolder {
 
     /**
      * <p>가계부 이름(한국어).</p>
@@ -41,38 +38,12 @@ public class CreateAccountHolder extends BaseHolder {
     private Currency currency = Currency.WON;
 
     /**
-     * <p>읽기 권한 목록.</p>
-     */
-    private Map<String, MemberDto> readAuthMap = new HashMap<>();
-
-    /**
-     * <p>쓰기 권한 목록.</p>
-     */
-    private Map<String, MemberDto> writeAuthMap = new HashMap<>();
-
-    /**
-     * <p>회원 리스트(본인 제외).</p>
-     */
-    private List<AccountMemberHolder> memberList = new ArrayList<>();
-
-    /**
      * <p>생성자.</p>
      *
-     * @param memberDtoList 회원 리스트(본인 제외)
+     * @param loginInfo 로그인 정보
      */
-    public CreateAccountHolder(List<MemberDto> memberDtoList) {
-        for (MemberDto dto : memberDtoList) {
-            memberList.add(new AccountMemberHolder(dto));
-        }
-    }
+    public CreateAccountInfoHolder(LoginInfo loginInfo) {
 
-    /**
-     * <p>생성자.</p>
-     *
-     * @param memberDtoList 회원 리스트(본인 제외)
-     */
-    public CreateAccountHolder(LoginInfo loginInfo, List<MemberDto> memberDtoList) {
-        this(memberDtoList);
         Region region = loginInfo.getRegion();
         switch (region) {
             case KOREA:
@@ -89,23 +60,16 @@ public class CreateAccountHolder extends BaseHolder {
     /**
      * <p>생성자.</p>
      *
-     * @param memberDtoList 회원 리스트(본인 제외)
-     * @param form 폼
+     * @param loginInfo 로그인 정보
+     * @param form 가계부 정보 생성 폼
      */
-    public CreateAccountHolder(List<MemberDto> memberDtoList, CreateAccountForm form, List<MemberDto> readAuthMembers, List<MemberDto> writeAuthMembers) {
-        this(memberDtoList);
+    public CreateAccountInfoHolder(LoginInfo loginInfo, CreateAccountInfoForm form) {
+        this(loginInfo);
         this.accountNameKr = form.getAccountNameKr();
         this.accountNameJp = form.getAccountNameJp();
         this.taxInclude = form.isTaxInclude();
         this.taxRate = form.getTaxRate();
         this.currency = form.getCurrency();
-
-        for (MemberDto readAuth : readAuthMembers) {
-            readAuthMap.put(String.valueOf(readAuth.getMemberIdx()), readAuth);
-        }
-        for (MemberDto writeAuth : writeAuthMembers) {
-            readAuthMap.put(String.valueOf(writeAuth.getMemberIdx()), writeAuth);
-        }
     }
 
     /**
@@ -151,32 +115,5 @@ public class CreateAccountHolder extends BaseHolder {
      */
     public Currency getCurrency() {
         return currency;
-    }
-
-    /**
-     * <p>읽기권한 리스트를 반환한다.</p>
-     *
-     * @return 읽기권한 맵
-     */
-    public Map<String, MemberDto> getReadAuthMap() {
-        return readAuthMap;
-    }
-
-    /**
-     * <p>쓰기권한 리스트를 반환한다.</p>
-     *
-     * @return 쓰기권한 맵
-     */
-    public Map<String, MemberDto> getWriteAuthMap() {
-        return writeAuthMap;
-    }
-
-    /**
-     * <p>회원 리스트(본인 제외)를 반환한다.</p>
-     *
-     * @return 회원 리스트(본인 제외)
-     */
-    public List<AccountMemberHolder> getMemberList() {
-        return memberList;
     }
 }

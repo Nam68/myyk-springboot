@@ -82,8 +82,13 @@ album:
 plan:
   name: "プラン"
 
+bookOrCategory: "家計簿およびカテゴリ編集"
+
 account:
-  name: "家計簿"
+  name: "家計後"
+  nameLang:
+    kr: "家計簿名（英語または韓国語）"
+    jp: "家計簿名"
   list: "家計簿リスト"
   createOrUpdate: "家計簿登録および編集"
   accountName: "家計簿名"
@@ -106,6 +111,9 @@ account:
     accountNameMax: "家計簿名は10字以内に入力してください。"
     accountNameDupl: "既に存在している家計簿名です。"
 
+category:
+  createOrUpdate: "カテゴリ登録および編集"
+
 board:
   name: "掲示板"
 
@@ -114,4 +122,3 @@ share:
   read: "閲覧権限"
   write: "編集権限"
   checkForRegister: "共有する会員を選んでください"
-  disabled: "編集権限は閲覧権限を設定してから付与できます。"

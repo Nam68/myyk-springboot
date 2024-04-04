@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
 import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.entity.member.MemberEntity;
@@ -13,6 +17,8 @@ import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
+@Service
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class FindAllMemberExceptMyselfLogic extends BaseLogic implements FindAllMemberExceptMyself {
 
     private MemberEntity memberEntity;

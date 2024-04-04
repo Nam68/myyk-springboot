@@ -115,7 +115,7 @@
 <#macro taxRateSelect>
     <select class="form-select" name="taxRate">
         <#list TaxRate as t>
-        <option value="${t.rate}"<#if holder.tax.value == t.value> selected</#if>>
+        <option value="${t.rate}"<#if holder.taxRate.value == t.value> selected</#if>>
             ${t.value}
         </option>
         </#list>
@@ -127,7 +127,7 @@
     <select class="form-select" name="currency">
         <#list Currency as c>
         <option value="${c.value}"<#if holder.currency.value == c.value> selected</#if>>
-            <@msg "account.currency.${c.value}"/>
+            <@msg "book.currency.${c.value}"/>
         </option>
         </#list>
     </select>
