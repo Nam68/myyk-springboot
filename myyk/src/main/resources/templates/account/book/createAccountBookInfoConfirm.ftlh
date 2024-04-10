@@ -22,14 +22,14 @@
         <#if '${selected_language}' == 'ko'>
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${selected_language}"/></label>
-          <div>${holder.accountNameKr}</div>
+          <div>${holder.accountBookNameKo}</div>
         </div>
         </#if>
 
         <#-- 가계부 이름(일본어) -->
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${unselected_language}"/></label>
-          <div>${holder.accountNameJp}</div>
+          <div>${holder.accountBookNameJp}</div>
         </div>
         
         
@@ -37,7 +37,7 @@
         <#if '${selected_language}' != 'ko'>
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${selected_language}"/></label>
-          <div>${holder.accountNameKr}</div>
+          <div>${holder.accountBookNameKo}</div>
         </div>
         </#if>
 

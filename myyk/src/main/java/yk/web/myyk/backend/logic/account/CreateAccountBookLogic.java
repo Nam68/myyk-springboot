@@ -16,7 +16,7 @@ import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
-import yk.web.myyk.backend.service.account.CreateAccount;
+import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.util.checker.AccountChecker;
 import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.TaxRate;
@@ -27,11 +27,11 @@ import yk.web.myyk.util.sort.SortUtil;
 
 @Service
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class CreateAccountLogic extends BaseLogic implements CreateAccount {
+public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBook {
 
-    private String accountNameKr;
+    private String accountBookNameKo;
 
-    private String accountNameJp;
+    private String accountBookNameJp;
 
     private boolean taxInclude;
 
@@ -44,13 +44,13 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
     private List<Long> writeAuthList;
 
     @Override
-    public void setAccountNameKr(String accountNameKr) {
-        this.accountNameKr = accountNameKr;
+    public void setAccountBookNameKo(String accountBookNameKo) {
+        this.accountBookNameKo = accountBookNameKo;
     }
 
     @Override
-    public void setAccountNameJp(String accountNameJp) {
-        this.accountNameJp = accountNameJp;
+    public void setAccountBookNameJp(String accountBookNameJp) {
+        this.accountBookNameJp = accountBookNameJp;
     }
 
     @Override
@@ -83,23 +83,23 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        errors.putAll(AccountChecker.checkAccountNameKr(accountNameKr));
-        errors.putAll(AccountChecker.checkAccountNameJp(accountNameJp));
+        errors.putAll(AccountChecker.checkAccountBookNameKo(accountBookNameKo));
+        errors.putAll(AccountChecker.checkAccountBookNameJp(accountBookNameJp));
 
         if (!errors.isEmpty()) {
             throw new AppException(errors);
         }
 
-        long loginIdx = getLoginInfo(CreateAccountLogic.class).getMemberIdx();
+        long loginIdx = getLoginInfo(CreateAccountBookLogic.class).getMemberIdx();
         Sort descSort = SortUtil.getRegisteredDateDesc();
         List<AccountBookAuthEntity> authList = getRepository().getAccountBookAuth().findByMemberMemberIdx(loginIdx, descSort);
 
         for (AccountBookAuthEntity auth : authList) {
-            if (auth.getAccount().getAccountBookNameKr().equals(accountNameKr)) {
+            if (auth.getAccount().getAccountBookNameKo().equals(accountBookNameKo)) {
                 setError(errors, ErrorCode.EE_AC_103);
                 break;
             }
-            if (auth.getAccount().getAccountBookNameJp().equals(accountNameJp)) {
+            if (auth.getAccount().getAccountBookNameJp().equals(accountBookNameJp)) {
                 setError(errors, ErrorCode.EE_AC_106);
                 break;
             }
@@ -118,7 +118,7 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
         saveAccountEntity();
 
         // 로그인 회원에게 모든 권한을 부여
-        long loginIdx = getLoginInfo(CreateAccountLogic.class).getMemberIdx();
+        long loginIdx = getLoginInfo(CreateAccountBookLogic.class).getMemberIdx();
         readAuthList.add(loginIdx);
         writeAuthList.add(loginIdx);
 
@@ -140,7 +140,7 @@ public class CreateAccountLogic extends BaseLogic implements CreateAccount {
 
     @Transactional
     private void saveAccountEntity() {
-        AccountBookEntity entity = new AccountBookEntity(accountNameKr, accountNameJp, taxInclude, taxRate, currency);
+        AccountBookEntity entity = new AccountBookEntity(accountBookNameKo, accountBookNameJp, taxInclude, taxRate, currency);
         getRepository().getAccountBook().save(entity);
     }
 

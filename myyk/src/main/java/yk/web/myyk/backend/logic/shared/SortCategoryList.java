@@ -3,7 +3,6 @@ package yk.web.myyk.backend.logic.shared;
 import java.util.ArrayList;
 import java.util.List;
 
-import yk.web.myyk.backend.dto.PrimeCategoryDTO;
 import yk.web.myyk.backend.entity.account.CategoryEntity;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -15,8 +14,6 @@ public class SortCategoryList extends BaseSharedLogic {
 	private List<CategoryEntity> categoryEntityList = new ArrayList<>();
 
 	private List<CategoryEntity> sortedCategoryEntityList;
-
-	private List<PrimeCategoryDTO> primeCategoryDto;
 
 	@Override
 	public void validate() throws SystemException {
@@ -31,7 +28,6 @@ public class SortCategoryList extends BaseSharedLogic {
 		validate();
 
 		List<CategoryEntity> entityResult = new ArrayList<>();
-		List<PrimeCategoryDTO> dtoResult = new ArrayList<>();
 
 		for (CategoryEntity entity : categoryEntityList) {
 //			if (entity.isPrime()) {
@@ -41,7 +37,6 @@ public class SortCategoryList extends BaseSharedLogic {
 		}
 
 		sortedCategoryEntityList = entityResult;
-		primeCategoryDto = dtoResult;
 	}
 
 	/**
@@ -60,15 +55,6 @@ public class SortCategoryList extends BaseSharedLogic {
 	 */
 	public List<CategoryEntity> getSortedCategoryEntityList() {
 		return sortedCategoryEntityList;
-	}
-
-	/**
-	 * <p>1차카테고리 DTO를 생성해서 반환한다.</p>
-	 *
-	 * @return 1차카테고리 DTO 리스트
-	 */
-	public List<PrimeCategoryDTO> getPrimeCategoryDto() {
-		return primeCategoryDto;
 	}
 
 }

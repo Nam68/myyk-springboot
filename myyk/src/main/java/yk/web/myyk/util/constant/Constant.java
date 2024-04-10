@@ -76,9 +76,13 @@ public class Constant {
     private int urlTry;
     private static int staticUrlTry;
 
-    @Value("${value.account.name.max}")
-    private int accountNameMax;
-    private static int staticAccountNameMax;
+    @Value("${value.book.name.max}")
+    private int bookNameMax;
+    private static int staticBookNameMax;
+
+    @Value("${value.category.name.max}")
+    private int categoryNameMax;
+    private static int staticCategoryNameMax;
 
     @PostConstruct
     public void init() {
@@ -99,7 +103,8 @@ public class Constant {
         Constant.staticTmpCodeLimitTimes = tmpCodeLimitTimes;
         Constant.staticUrlTimeout = urlTimeout;
         Constant.staticUrlTry = urlTry;
-        Constant.staticAccountNameMax = accountNameMax;
+        Constant.staticBookNameMax = bookNameMax;
+        Constant.staticCategoryNameMax = categoryNameMax;
     }
 
     /**
@@ -221,8 +226,15 @@ public class Constant {
     /**
      * @return 가계부 이름 최대 길이
      */
-    public static int getAccountNameMax() {
-        return staticAccountNameMax;
+    public static int getBookNameMax() {
+        return staticBookNameMax;
+    }
+
+    /**
+     * @return 카테고리 이름 최대 길이
+     */
+    public static int getCategoryNameMax() {
+        return staticCategoryNameMax;
     }
 
 }

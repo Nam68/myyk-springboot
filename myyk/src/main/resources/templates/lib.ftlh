@@ -1,7 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <#-- moment -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment-with-locales.min.js"></script>
@@ -25,9 +25,34 @@
 <#-- javascript constants -->
 <script>
 const globalError = '<@msg "global.error"/>';
+const iconHtml = '<i class="bi bi-%s"></i>';
 <#--
 const selectedLanguage = '${selected_language}';
 const unselectedLanguage = '${unselected_language}';
 const ajaxErrorMsg = '<@input "alert.error.ajax"/>';
 -->
+// 부트스트랩 아이콘 HTML 코드를 반환
+function getIcon(icon) {
+    return iconHtml.replace(/%s/g, icon);
+}
+
+// API가 성공인지 판단
+function isSuccess(response) {
+    return response == 'SUCCESS';
+}
+
+// ajax 에러 메시지 초기화
+function allErrorOff() {
+    $('.caution').toArray().forEach(msg => {
+        let errorCode = $(msg).attr('data-code');
+        if (errorCode != undefined && errorCode != '') {
+            $(msg).addClass('error-off');
+        }
+    });
+}
+
+// ajax 에러 메시지 보이기
+function errorOn(errorCode) {
+    $('[data-code=' + errorCode + ']').removeClass('error-off');
+}
 </script>

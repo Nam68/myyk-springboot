@@ -1,6 +1,6 @@
 package yk.web.myyk.backend.dto.holder.account;
 
-import yk.web.myyk.backend.dto.form.account.CreateAccountInfoForm;
+import yk.web.myyk.backend.dto.form.account.CreateAccountBookInfoForm;
 import yk.web.myyk.backend.dto.holder.BaseHolder;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.enumerated.Currency;
@@ -10,17 +10,17 @@ import yk.web.myyk.util.enumerated.TaxRate;
 /**
  * <p>가계부 정보 생성 홀더.</p>
  */
-public class CreateAccountInfoHolder extends BaseHolder {
+public class CreateAccountBookInfoHolder extends BaseHolder {
 
     /**
      * <p>가계부 이름(한국어).</p>
      */
-    private String accountNameKr = "";
+    private String accountBookNameKo = "";
 
     /**
      * <p>가계부 이름(일본어).</p>
      */
-    private String accountNameJp = "";
+    private String accountBookNameJp = "";
 
     /**
      * <p>세금 포함 여부.</p>
@@ -42,7 +42,7 @@ public class CreateAccountInfoHolder extends BaseHolder {
      *
      * @param loginInfo 로그인 정보
      */
-    public CreateAccountInfoHolder(LoginInfo loginInfo) {
+    public CreateAccountBookInfoHolder(LoginInfo loginInfo) {
 
         Region region = loginInfo.getRegion();
         switch (region) {
@@ -63,10 +63,10 @@ public class CreateAccountInfoHolder extends BaseHolder {
      * @param loginInfo 로그인 정보
      * @param form 가계부 정보 생성 폼
      */
-    public CreateAccountInfoHolder(LoginInfo loginInfo, CreateAccountInfoForm form) {
+    public CreateAccountBookInfoHolder(LoginInfo loginInfo, CreateAccountBookInfoForm form) {
         this(loginInfo);
-        this.accountNameKr = form.getAccountNameKr();
-        this.accountNameJp = form.getAccountNameJp();
+        this.accountBookNameKo = form.getAccountBookNameKo();
+        this.accountBookNameJp = form.getAccountBookNameJp();
         this.taxInclude = form.isTaxInclude();
         this.taxRate = form.getTaxRate();
         this.currency = form.getCurrency();
@@ -77,8 +77,8 @@ public class CreateAccountInfoHolder extends BaseHolder {
      *
      * @return 가계부 이름(한국어)
      */
-    public String getAccountNameKr() {
-        return accountNameKr;
+    public String getAccountBookNameKo() {
+        return accountBookNameKo;
     }
 
     /**
@@ -86,8 +86,8 @@ public class CreateAccountInfoHolder extends BaseHolder {
      *
      * @return 가계부 이름(일본어)
      */
-    public String getAccountNameJp() {
-        return accountNameJp;
+    public String getAccountBookNameJp() {
+        return accountBookNameJp;
     }
 
     /**

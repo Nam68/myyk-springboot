@@ -7,13 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
-import yk.web.myyk.backend.dto.form.account.CreateAccountForm;
-import yk.web.myyk.backend.dto.form.account.CreateAccountInfoForm;
-import yk.web.myyk.backend.dto.holder.account.CreateAccountCategoryHolder;
-import yk.web.myyk.backend.dto.holder.account.CreateAccountHolder;
-import yk.web.myyk.backend.dto.holder.account.CreateAccountInfoHolder;
+import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
+import yk.web.myyk.backend.dto.form.account.CreateAccountBookInfoForm;
+import yk.web.myyk.backend.dto.holder.account.CreateAccountBookInfoHolder;
+import yk.web.myyk.backend.dto.holder.account.CreateCategoryHolder;
 import yk.web.myyk.backend.dto.login.LoginInfo;
-import yk.web.myyk.backend.service.account.CreateAccount;
+import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.backend.service.member.FindAllMemberByIdx;
 import yk.web.myyk.backend.service.member.FindAllMemberExceptMyself;
 import yk.web.myyk.util.annotation.AccessCheck;
@@ -31,6 +30,11 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/account/book/create")
 public class CreateAccountBookController extends BaseController {
 
+    private static final String INFO_INPUT_VIEW = "account/book/createAccountBookInfoInput";
+    private static final String INFO_CONFIRM_VIEW = "account/book/createAccountBookInfoConfirm";
+    private static final String COMPLETE_REDIRECT = "redirect:/account/book/create/complete";
+    private static final String EDIT_REDIRECT = "redirect:/account/book/edit";
+
     /**
      * <p>가계부 정보 생성 입력화면.</p>
      *
@@ -38,34 +42,34 @@ public class CreateAccountBookController extends BaseController {
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
-    @RequestMapping("/input/info")
+    @RequestMapping("/info/input")
     @SetEnum(target = {TaxRate.class, Currency.class})
     public String inputInfo(HttpServletRequest request) throws SystemException {
         LoginInfo loginInfo = getLoginInfo(CreateAccountBookController.class);
-        setHolder(request, new CreateAccountInfoHolder(loginInfo));
-        return "account/book/createAccountInputInfo";
+        setHolder(request, new CreateAccountBookInfoHolder(loginInfo));
+        return INFO_INPUT_VIEW;
     }
 
-    @RequestMapping("/input/category")
-    public String inputCategory(CreateAccountInfoForm form, HttpSession session, HttpServletRequest request) throws SystemException {
+    @RequestMapping(path = "/input/category", method = RequestMethod.POST)
+    public String inputCategory(CreateAccountBookInfoForm form, HttpSession session, HttpServletRequest request) throws SystemException {
 
         LoginInfo loginInfo = getLoginInfo(CreateAccountBookController.class);
-        CreateAccount logic = getService().getCreateAccount();
+        CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountNameKr(form.getAccountNameKr());
-            logic.setAccountNameJp(form.getAccountNameJp());
+            logic.setAccountBookNameKo(form.getAccountBookNameKo());
+            logic.setAccountBookNameJp(form.getAccountBookNameJp());
             logic.validate();
         } catch (AppException e) {
             setErrors(request, e.getErrors());
-            setHolder(request, new CreateAccountInfoHolder(loginInfo, form));
-            return "account/book/createAccountInput";
+            setHolder(request, new CreateAccountBookInfoHolder(loginInfo, form));
+            return INFO_INPUT_VIEW;
         }
         setForm(session, form);
 
         // 회원이 가진 모든 카테고리를 반환.
 
-        setHolder(request, new CreateAccountCategoryHolder());
-        return "account/book/createAccountConfirm";
+        setHolder(request, new CreateCategoryHolder());
+        return INFO_CONFIRM_VIEW;
     }
 
     /**
@@ -79,7 +83,7 @@ public class CreateAccountBookController extends BaseController {
      */
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
     @SetEnum(target = {TaxRate.class, Currency.class})
-    public String confirm(CreateAccountForm form, HttpSession session, HttpServletRequest request) throws SystemException {
+    public String confirm(CreateAccountBookForm form, HttpSession session, HttpServletRequest request) throws SystemException {
 
         FindAllMemberExceptMyself findMembers = getService().getFindAllMemberExceptMyself();
         findMembers.excute();
@@ -92,19 +96,19 @@ public class CreateAccountBookController extends BaseController {
         findWriteAuthMembers.setMemberIdxList(form.getWriteAuthList());
         findWriteAuthMembers.excute();
 
-        CreateAccount logic = getService().getCreateAccount();
+        CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountNameKr(form.getAccountNameKr());
-            logic.setAccountNameJp(form.getAccountNameJp());
+            logic.setAccountBookNameKo(form.getAccountBookNameKo());
+            logic.setAccountBookNameJp(form.getAccountBookNameJp());
             logic.validate();
         } catch (AppException e) {
             setErrors(request, e.getErrors());
-            setHolder(request, new CreateAccountHolder(findMembers.getMemberList(), form, findReadAuthMembers.getMemberList(), findWriteAuthMembers.getMemberList()));
-            return "account/book/createAccountInput";
+//            setHolder(request, new CreateAccountBookInfoHolder(findMembers.getMemberList(), form, findReadAuthMembers.getMemberList(), findWriteAuthMembers.getMemberList()));
+            return INFO_INPUT_VIEW;
         }
         setForm(session, form);
-        setHolder(request, new CreateAccountHolder(findMembers.getMemberList(), form, findReadAuthMembers.getMemberList(), findWriteAuthMembers.getMemberList()));
-        return "account/book/createAccountConfirm";
+//        setHolder(request, new CreateAccountBookInfoHolder(findMembers.getMemberList(), form, findReadAuthMembers.getMemberList(), findWriteAuthMembers.getMemberList()));
+        return INFO_CONFIRM_VIEW;
     }
 
     /**
@@ -116,17 +120,17 @@ public class CreateAccountBookController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/execute", method = RequestMethod.POST)
-    @DataCheck(target = CreateAccountForm.class)
+    @DataCheck(target = CreateAccountBookForm.class)
     public String execute(HttpSession session, HttpServletRequest request) throws SystemException {
 
         FindAllMemberExceptMyself findMembers = getService().getFindAllMemberExceptMyself();
         findMembers.excute();
 
-        CreateAccountForm form = getForm(session, CreateAccountForm.class);
-        CreateAccount logic = getService().getCreateAccount();
+        CreateAccountBookForm form = getForm(session, CreateAccountBookForm.class);
+        CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountNameKr(form.getAccountNameKr());
-            logic.setAccountNameJp(form.getAccountNameJp());
+            logic.setAccountBookNameKo(form.getAccountBookNameKo());
+            logic.setAccountBookNameJp(form.getAccountBookNameJp());
             logic.setTaxInclude(form.isTaxInclude());
             logic.setTaxRate(form.getTaxRate());
             logic.setCurrency(form.getCurrency());
@@ -136,10 +140,10 @@ public class CreateAccountBookController extends BaseController {
         } catch (AppException e) {
             setForm(session, form);
 //            setHolder(request, new CreateAccountHolder(findMembers.getMemberList(), form));
-            removeForm(session, CreateAccountForm.class);
-            return "account/book/createAccountConfirm";
+            removeForm(session, CreateAccountBookForm.class);
+            return INFO_CONFIRM_VIEW;
         }
-        return "redirect:/account/book/create/complete";
+        return COMPLETE_REDIRECT;
     }
 
     /**
@@ -149,9 +153,9 @@ public class CreateAccountBookController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(params = "/complete", method = RequestMethod.POST)
-    @DataCheck(target = CreateAccountForm.class)
+    @DataCheck(target = CreateAccountBookForm.class)
     @SessionClear
     public String complete() throws SystemException {
-        return "redirect:/account/book/edit";
+        return EDIT_REDIRECT;
     }
 }

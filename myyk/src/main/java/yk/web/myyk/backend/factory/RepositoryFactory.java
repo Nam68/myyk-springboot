@@ -15,6 +15,7 @@ import yk.web.myyk.backend.repository.AccountBookRepository;
 import yk.web.myyk.backend.repository.CategoryRepository;
 import yk.web.myyk.backend.repository.LoginTokenRepository;
 import yk.web.myyk.backend.repository.MemberRepository;
+import yk.web.myyk.backend.repository.SubCategoryRepository;
 import yk.web.myyk.backend.repository.TmpCodeRepository;
 import yk.web.myyk.util.BaseApp;
 import yk.web.myyk.util.constant.Constant;
@@ -40,6 +41,9 @@ public class RepositoryFactory extends BaseApp {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private SubCategoryRepository subCategoryRepository;
 
     public MemberRepository getMember() {
         return memberRepository;
@@ -88,6 +92,10 @@ public class RepositoryFactory extends BaseApp {
 
     public CategoryRepository getCategory() {
         return categoryRepository;
+    }
+
+    public SubCategoryRepository getSubCategory() {
+        return subCategoryRepository;
     }
 
 }

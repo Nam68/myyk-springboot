@@ -3,8 +3,6 @@ package yk.web.myyk.backend.entity.account;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.NaturalId;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,7 +16,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import yk.web.myyk.backend.dto.form.account.CreateAccountForm;
+import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.TaxRate;
@@ -32,8 +30,8 @@ public class AccountBookEntity extends BaseEntityWithTime {
     @Column(name = "ACCOUNT_BOOK_IDX")
     private Long accountBookIdx;
 
-    @Column(name = "ACCOUNT_BOOK_NAME_KR")
-    private String accountBookNameKr;
+    @Column(name = "ACCOUNT_BOOK_NAME_KO")
+    private String accountBookNameKo;
 
     @Column(name = "ACCOUNT_BOOK_NAME_JP")
     private String accountBookNameJp;
@@ -64,13 +62,13 @@ public class AccountBookEntity extends BaseEntityWithTime {
         // 하이버네이트용
     }
 
-    public AccountBookEntity(CreateAccountForm form) {
+    public AccountBookEntity(CreateAccountBookForm form) {
         this.taxRate = form.getTaxRate();
         this.currency = form.getCurrency();
     }
 
-    public AccountBookEntity(String accountBookNameKr, String accountBookNameJp, boolean taxInclude, TaxRate taxRate, Currency currency) {
-        setAccountBookNameKr(accountBookNameKr);
+    public AccountBookEntity(String accountBookNameKo, String accountBookNameJp, boolean taxInclude, TaxRate taxRate, Currency currency) {
+        setAccountBookNameKo(accountBookNameKo);
         setAccountBookNameJp(accountBookNameJp);
         setTaxInclude(taxInclude);
         setTaxRate(taxRate);
@@ -82,8 +80,8 @@ public class AccountBookEntity extends BaseEntityWithTime {
      *
      * @return 가계부 이름
      */
-    public String getAccountBookNameKr() {
-        return accountBookNameKr;
+    public String getAccountBookNameKo() {
+        return accountBookNameKo;
     }
 
     /**
@@ -98,10 +96,10 @@ public class AccountBookEntity extends BaseEntityWithTime {
     /**
      * <p>가계부 이름을 설정한다.</p>
      *
-     * @param accountBookNameKr 가계부 이름
+     * @param accountBookNameKo 가계부 이름
      */
-    public void setAccountBookNameKr(String accountBookNameKr) {
-        this.accountBookNameKr = accountBookNameKr;
+    public void setAccountBookNameKo(String accountBookNameKo) {
+        this.accountBookNameKo = accountBookNameKo;
     }
 
     /**

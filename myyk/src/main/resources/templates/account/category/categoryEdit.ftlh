@@ -12,17 +12,17 @@
     <div id="wrapper">
 
       <h3 class="title">
-        <@msg "book.createOrUpdate"/>
+        <@msg "category.createOrUpdate"/>
       </h3>
 
       <form method="POST">
-        <div class="mb-4" id="account-book-list-holder">
-          <#if holder.accountBookList?has_content>
-            <#list holder.accountBookList as accountBook>
+        <div class="mb-4" id="category-list-holder">
+          <#if holder.categoryList?has_content>
+            <#list holder.categoryList as category>
             <div class="card mt-2 mb-2">
-              <div class="card-body position-relative" data-idx="${ accountBook.accountBookIdx }">
+              <div class="card-body position-relative" data-idx="${category.categoryIdx}">
                 <div class="d-inline">
-                  ${ accountBook.name }
+                  ${category.categoryName}
                 </div>
                 <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
                   <span class="me-3" role="button">
@@ -38,10 +38,9 @@
           </#if>
           <div class="card mt-2 mb-2">
             <div class="card-body position-relative" role="button">
-              <div class="d-inline"><i class="bi bi-plus-lg"></i>&nbsp;<@msg "book.create.name"/></div>
+              <div class="d-inline"><i class="bi bi-plus-lg"></i>&nbsp;<@msg "category.create.name"/></div>
             </div>
           </div>
-
         </div>
       </form>
 

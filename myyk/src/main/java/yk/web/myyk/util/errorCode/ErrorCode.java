@@ -143,38 +143,89 @@ public enum ErrorCode {
      * 엔티티 에러
      *
      * AC : 가계부
+     * CA : 카테고리
      * ME : 회원
      */
 
     /**
-     * <p>가계부 이름(한국어)이 비어있는 경우.</p>
+     * <p>가계부 이름이 비어있는 경우.</p>
      */
-    EE_AC_101("account name kr is empty."),
+    EE_AC_101("account book name is empty."),
 
     /**
-     * <p>가계부 이름 최대길이를 초과한 경우(한국어).</p>
+     * <p>가계부 이름 최대길이를 초과한 경우.</p>
      */
-    EE_AC_102("account name kr is too long."),
+    EE_AC_102("account book name is too long."),
 
     /**
-     * <p>가계부 이름(한국어)이 중복된 경우.</p>
+     * <p>가계부 이름이 중복된 경우.</p>
      */
-    EE_AC_103("this account name kr exists already."),
+    EE_AC_103("this account book name exists already."),
 
     /**
-     * <p>가계부 이름(일본어)이 비어있는 경우.</p>
+     * <p>가계부 이름(타언어)이 비어있는 경우.</p>
      */
-    EE_AC_104("account name jp is empty."),
+    EE_AC_104("account book name (other language) is empty."),
 
     /**
-     * <p>가계부 이름 최대길이를 초과한 경우(일본어).</p>
+     * <p>가계부 이름 최대길이를 초과한 경우(타언어).</p>
      */
-    EE_AC_105("account name jp is too long."),
+    EE_AC_105("account book name (other language) is too long."),
 
     /**
-     * <p>가계부 이름(일본어)이 중복된 경우.</p>
+     * <p>가계부 이름(타언어)이 중복된 경우.</p>
      */
-    EE_AC_106("this account name jp exists already."),
+    EE_AC_106("this account book name (other language) exists already."),
+
+    /**
+     * <p>카테고리 이름이 비어있는 경우.</p>
+     */
+    EE_CA_101("category name is empty."),
+
+    /**
+     * <p>카테고리 이름이 10자를 초과하는 경우.</p>
+     */
+    EE_CA_102("category name is too long."),
+
+    /**
+     * <p>다른 카테고리 이름이 이미 존재하는 경우.</p>
+     */
+    EE_CA_103("this category name exists already."),
+
+    /**
+     * <p>카테고리 이름(다언어)이 비어있는 경우.</p>
+     */
+    EE_CA_104("category name (other language) is empty."),
+
+    /**
+     * <p>카테고리 이름(다언어)이 10자를 초과하는 경우.</p>
+     */
+    EE_CA_105("category name (other language) is too long."),
+
+    /**
+     * <p>다른 카테고리 이름(다언어)이 이미 존재하는 경우.</p>
+     */
+    EE_CA_106("this category (other language) name exists already."),
+
+    /**
+     * <p>부트스트랩에 아이콘 이름이 비어있는 경우.</p>
+     */
+    EE_CA_107("icon name is empty."),
+
+    /**
+     * <p>부트스트랩에 아이콘 이름이 존재하지 않는 경우.</p>
+     */
+    EE_CA_108("this icon does not exist in bootstrap."),
+
+    /**
+     * <p>카테고리 색이 존재하지 않는 경우.</p>
+     */
+    EE_CA_109("category color is empty."),
+
+    /**
+     * <p>카테고리 색의 형식이 잘못된 경우.</p>
+     */
+    EE_CA_110("category color code is wrong."),
 
     /**
      * <p>이메일 로컬파트가 빈 값인 경우.</p>

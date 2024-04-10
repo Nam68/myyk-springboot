@@ -3,9 +3,6 @@ package yk.web.myyk.util.config;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
-
-import yk.web.myyk.util.enumerated.Error;
-import yk.web.myyk.util.exception.ApiException;
 import yk.web.myyk.util.exception.PermissionException;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -33,11 +30,5 @@ public class GeneralExceptionHandler {
         e.printStackTrace();
 
         return mav;
-    }
-
-    @ExceptionHandler({ApiException.class})
-    public String apiExceptionHandler(PermissionException e) {
-        e.printStackTrace();
-        return Error.ERROR.getValue();
     }
 }

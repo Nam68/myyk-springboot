@@ -291,6 +291,9 @@ footer {
 .caution {
     color: red;
 }
+.error-off {
+    display: none;
+}
 
 /*
     모달

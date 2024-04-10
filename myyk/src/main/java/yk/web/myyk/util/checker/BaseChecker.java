@@ -12,7 +12,7 @@ public class BaseChecker extends BaseApp {
 
     /**
      * <p>문자열이 비어있는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -26,7 +26,7 @@ public class BaseChecker extends BaseApp {
 
     /**
      * <p>에러 맵에 에러를 설정한다.</p>
-     * 
+     *
      * @param errors 에러 맵
      * @param error 에러
      */
@@ -36,7 +36,7 @@ public class BaseChecker extends BaseApp {
 
     /**
      * <p>문자열이 숫자를 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -57,7 +57,7 @@ public class BaseChecker extends BaseApp {
 
     /**
      * <p>문자열이 대문자를 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -74,12 +74,12 @@ public class BaseChecker extends BaseApp {
         }
 
         return result;
-        
+
     }
 
     /**
      * <p>문자열이 소문자를 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -100,7 +100,7 @@ public class BaseChecker extends BaseApp {
 
     /**
      * <p>문자열이 대소문자와 숫자를 모두 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -111,6 +111,27 @@ public class BaseChecker extends BaseApp {
         boolean lower = hasLowerCase(str);
 
         return number && upper && lower;
+    }
+
+    /**
+     * <p>컬러코드 형식에 맞는지 검증한다.</p>
+     *
+     * @param str 문자열
+     * @return 검증결과
+     */
+    protected static boolean isCorrectColorCode(String str) {
+
+        String colorCodeExample = "#AAAAAA";
+
+        char firstChar = str.charAt(0);
+        if (firstChar != colorCodeExample.charAt(0)) {
+            return false;
+        }
+
+        if (str.length() != colorCodeExample.length()) {
+            return false;
+        }
+        return true;
     }
 
 }

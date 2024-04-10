@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import yk.web.myyk.backend.api.BaseApi;
+import yk.web.myyk.backend.service.external.CheckBootstrapIcon;
 import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.exception.ApiException;
 
@@ -12,10 +13,16 @@ import yk.web.myyk.util.exception.ApiException;
 @RequestMapping("/bootstrap")
 public class BootstrapApi extends BaseApi {
 
-	@RequestMapping(path = "/checkIconName", method = RequestMethod.POST)
-	public String checkBootStrapIconName(String iconName) throws ApiException {
-		Error error = getService().getBootstrap().checkIconName(iconName);
-		return error.getValue();
-	}
-	
+    @RequestMapping(path = "/checkIconName", method = RequestMethod.POST)
+    public String checkBootStrapIconName(String iconName) {
+        try {
+            CheckBootstrapIcon logic = getService().getCheckBootstrapIcon();
+            logic.setIconName(iconName);
+            logic.validate();
+        } catch (ApiException e) {
+            return e.getCode();
+        }
+        return Error.SUCCESS.getValue();
+    }
+
 }

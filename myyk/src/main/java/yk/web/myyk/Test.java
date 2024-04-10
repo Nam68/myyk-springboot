@@ -1,19 +1,23 @@
 package yk.web.myyk;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Test {
 
     public static void main(String[] args) {
-        
-        String str = "AA1aF3S";
-        
-        System.out.println(hasAllCaseAndNumber(str));
+
+        Object obj = new ArrayList<>();
+        Map map = (HashMap) obj;
+
     }
-    
+
 
 
     /**
      * <p>문자열이 숫자를 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -34,7 +38,7 @@ public class Test {
 
     /**
      * <p>문자열이 대문자를 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -51,12 +55,12 @@ public class Test {
         }
 
         return result;
-        
+
     }
 
     /**
      * <p>문자열이 소문자를 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -77,7 +81,7 @@ public class Test {
 
     /**
      * <p>문자열이 대소문자와 숫자를 모두 포함하는지 검증한다.</p>
-     * 
+     *
      * @param str 문자열
      * @return 검증결과
      */
@@ -89,5 +93,5 @@ public class Test {
 
         return number && upper && lower;
     }
-    
+
 }

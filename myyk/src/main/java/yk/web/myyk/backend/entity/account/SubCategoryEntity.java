@@ -1,26 +1,33 @@
 package yk.web.myyk.backend.entity.account;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import yk.web.myyk.backend.entity.BaseEntityWithTime;
+import jakarta.persistence.Table;
+import yk.web.myyk.backend.entity.BaseEntity;
 
-public class SubCategoryEntity extends BaseEntityWithTime {
+@Entity
+@Table(name = "SUB_CATEGORY_TBL")
+public class SubCategoryEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SUB_CATEGORY_IDX")
     private Long subCategoryIdx;
 
-    @Column(name = "SUB_CATEGORY_NAME_KR")
-    private String subCategoryNameKr;
+    @Column(name = "SUB_CATEGORY_NAME_KO")
+    private String subCategoryNameKo;
 
     @Column(name = "SUB_CATEGORY_NAME_JP")
     private String subCategoryNameJp;
+
+    @Column(name = "SORT_NO")
+    private int sortNo;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = CategoryEntity.class)
     @JoinColumn(name = "CATEGORY_IDX")
@@ -45,17 +52,17 @@ public class SubCategoryEntity extends BaseEntityWithTime {
      *
      * @return 서브 카테고리 이름(한국어)
      */
-    public String getSubCategoryNameKr() {
-        return subCategoryNameKr;
+    public String getSubCategoryNameKo() {
+        return subCategoryNameKo;
     }
 
     /**
      * <p>서브 카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
      */
-    public void setSubCategoryNameKr(String subCategoryNameKr) {
-        this.subCategoryNameKr = subCategoryNameKr;
+    public void setSubCategoryNameKo(String subCategoryNameKo) {
+        this.subCategoryNameKo = subCategoryNameKo;
     }
 
     /**
@@ -90,7 +97,25 @@ public class SubCategoryEntity extends BaseEntityWithTime {
      *
      * @param category 카테고리
      */
-    private void setSubCategory(CategoryEntity category) {
+    public void setSubCategory(CategoryEntity category) {
         this.category = category;
+    }
+
+    /**
+     * <p>정렬 번호를 반환한다.</p>
+     *
+     * @return 정렬 번호
+     */
+    public int getSortNo() {
+        return sortNo;
+    }
+
+    /**
+     * <p>정렬 번호를 설정한다.</p>
+     *
+     * @param sortNo 정렬 번호
+     */
+    public void setSortNo(int sortNo) {
+        this.sortNo = sortNo;
     }
 }

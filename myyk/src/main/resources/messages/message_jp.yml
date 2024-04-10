@@ -59,12 +59,12 @@ signup:
   completeMessage: "アカウント登録が完了されました。<br>ログインでサービスがご利用できます。"
   error:
     passwordEmpty: "パスワードを入力してください"
-    passwordMin: "パスワードは8字以上に入力してください"
-    passwordMax: "パスワードは30字以内に入力してください"
+    passwordMin: "パスワードは8桁以上に入力してください"
+    passwordMax: "パスワードは30桁以内に入力してください"
     passwordForm: "パスワードはローマ字と数字を含めてください"
     passwordCheck: "パスワードが一致していません"
     nicknameEmpty: "ニックネームを入力してください"
-    nicknameMax: "ニックネームは10字以内に入力してください"
+    nicknameMax: "ニックネームは10桁以内に入力してください"
     nicknameDupl: "既に存在しているニックネームです"
 
 login:
@@ -91,7 +91,6 @@ account:
     jp: "家計簿名"
   list: "家計簿リスト"
   createOrUpdate: "家計簿登録および編集"
-  accountName: "家計簿名"
   rate:
     name: "消費税"
     include:
@@ -107,12 +106,29 @@ account:
   create:
     name: "家計簿登録"
   error:
-    accountNameEmpty: "家計簿名を入力してください。"
-    accountNameMax: "家計簿名は10字以内に入力してください。"
-    accountNameDupl: "既に存在している家計簿名です。"
+    nameEmpty: "家計簿名を入力してください。"
+    nameMax: "家計簿名は10桁以内に入力してください。"
+    nameDupl: "既に存在している家計簿名です。"
 
 category:
   createOrUpdate: "カテゴリ登録および編集"
+  name: "カテゴリ"
+  nameLang:
+    ko: "カテゴリ名（英語または韓国語）"
+    jp: "カテゴリ名"
+  icon:
+    name: "アイコン"
+    noHope: "欲しいアイコンがない場合"
+  color:
+    name: "色"
+  create:
+    name: "カテゴリ登録"
+  error:
+    nameEmpty: "カテゴリ名を入力してください。"
+    nameMax: "カテゴリ名は10桁以内に入力してください。"
+    nameDupl: "既に存在しているカテゴリ名です。"
+    iconEmpty: "アイコン名を入力してください。"
+    iconNotExist: "存在しないアイコンです。"
 
 board:
   name: "掲示板"
@@ -121,4 +137,4 @@ share:
   name: "共有設定"
   read: "閲覧権限"
   write: "編集権限"
-  checkForRegister: "共有する会員を選んでください"
+  checkForRegister: "共有する会員を選んでください。"

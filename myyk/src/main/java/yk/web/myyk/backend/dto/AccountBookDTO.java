@@ -17,8 +17,6 @@ public class AccountBookDTO {
 
 	private List<Integer> writableIdx;
 
-	private List<PrimeCategoryDTO> categoryList;
-
 	@Deprecated
 	public AccountBookDTO() {
 		// jpa용
@@ -82,10 +80,6 @@ public class AccountBookDTO {
 
 	public List<Integer> getWritableIdx() {
 		return writableIdx;
-	}
-
-	public List<PrimeCategoryDTO> getCategoryList() {
-		return categoryList;
 	}
 
 }

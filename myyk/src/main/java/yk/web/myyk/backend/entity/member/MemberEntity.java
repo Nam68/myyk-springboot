@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.MemberDto;
 import yk.web.myyk.backend.dto.login.AdminInfo;
 import yk.web.myyk.backend.dto.login.LoginInfo;
@@ -307,6 +308,16 @@ public class MemberEntity extends BaseEntityWithTime {
     @Deprecated
     public List<AccountBookAuthEntity> getAccountBookAuthList() {
         return accountBookAuthList;
+    }
+
+    /**
+     * <p>카테고리 리스트를 반환한다.</p>
+     *
+     * @return 카테고리 리스트
+     */
+    @Transactional
+    public List<CategoryEntity> getCategoryList() {
+        return categoryList;
     }
 
     /**

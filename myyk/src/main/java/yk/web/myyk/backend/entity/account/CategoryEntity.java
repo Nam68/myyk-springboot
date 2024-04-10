@@ -11,20 +11,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import yk.web.myyk.backend.entity.BaseEntityWithTime;
+import yk.web.myyk.backend.entity.BaseEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 
 @Entity
-@Table(name = "CATEGORY_ENTITY")
-public class CategoryEntity extends BaseEntityWithTime {
+@Table(name = "CATEGORY_TBL")
+public class CategoryEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CATEGORY_IDX")
     private Long categoryIdx;
 
-    @Column(name = "CATEGORY_NAME_KR")
-    private String categoryNameKr;
+    @Column(name = "CATEGORY_NAME_KO")
+    private String categoryNameKo;
 
     @Column(name = "CATEGORY_NAME_JP")
     private String categoryNameJp;
@@ -35,6 +35,9 @@ public class CategoryEntity extends BaseEntityWithTime {
     @Column(name = "CATEGORY_ICON")
     private String categoryIcon;
 
+    @Column(name = "SORT_NO")
+    private int sortNo;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
     private List<SubCategoryEntity> subCategoryList;
 
@@ -44,6 +47,14 @@ public class CategoryEntity extends BaseEntityWithTime {
     @Deprecated
     public CategoryEntity() {
         // nop
+    }
+
+    public CategoryEntity(String categoryNameKo, String categoryNameJp, String categoryColor, String categoryIcon, int sortNo) {
+        setCategoryNameKo(categoryNameKo);
+        setCategoryNameJp(categoryNameJp);
+        setCategoryColor(categoryColor);
+        setCategoryIcon(categoryIcon);
+        setSortNo(sortNo);
     }
 
     /**
@@ -60,17 +71,17 @@ public class CategoryEntity extends BaseEntityWithTime {
      *
      * @return 카테고리 이름(한국어)
      */
-    public String getCategoryNameKr() {
-        return categoryNameKr;
+    public String getCategoryNameKo() {
+        return categoryNameKo;
     }
 
     /**
      * <p>카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param categoryNameKr 카테고리 이름(한국어)
+     * @param categoryNameKo 카테고리 이름(한국어)
      */
-    public void setCategoryNameKr(String categoryNameKr) {
-        this.categoryNameKr = categoryNameKr;
+    public void setCategoryNameKo(String categoryNameKo) {
+        this.categoryNameKo = categoryNameKo;
     }
 
     /**
@@ -134,5 +145,23 @@ public class CategoryEntity extends BaseEntityWithTime {
      */
     public List<SubCategoryEntity> getSubCategoryList() {
         return subCategoryList;
+    }
+
+    /**
+     * <p>정렬 번호를 반환한다.</p>
+     *
+     * @return 정렬 번호
+     */
+    public int getSortNo() {
+        return sortNo;
+    }
+
+    /**
+     * <p>정렬 번호를 설정한다.</p>
+     *
+     * @param sortNo 정렬 번호
+     */
+    public void setSortNo(int sortNo) {
+        this.sortNo = sortNo;
     }
 }

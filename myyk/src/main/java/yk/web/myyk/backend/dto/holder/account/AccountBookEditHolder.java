@@ -6,7 +6,7 @@ import java.util.List;
 import yk.web.myyk.backend.dto.holder.BaseHolder;
 
 /**
- * <p>가계부 메인 홀더.</p>
+ * <p>가계부 에디터 홀더.</p>
  */
 public class AccountBookEditHolder extends BaseHolder {
 

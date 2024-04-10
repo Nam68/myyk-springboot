@@ -17,36 +17,23 @@
 
       <form action="/account/book/create/input/category" method="POST">
 
-        <#-- 가계부 이름(한국어) : 한국어 설정인 경우 -->
-        <#if '${selected_language}' == 'ko'>
+        <#-- 가계부 이름 -->
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${selected_language}"/></label>
-          <input type="text" class="form-control<@error ['EE_AC_101', 'EE_AC_102', 'EE_AC_103']/>" name="accountNameKr" value="${holder.accountNameKr}">
-          <@errorMsg ['EE_AC_101'] 'book.error.accountNameEmpty'/>
-          <@errorMsg ['EE_AC_102'] 'book.error.accountNameMax'/>
-          <@errorMsg ['EE_AC_103'] 'book.error.accountNameDupl'/>
+          <input type="text" class="form-control<@error ['EE_AC_101', 'EE_AC_102', 'EE_AC_103']/>" name="accountBookName${selected_language}" value="<@setLanguage '${selected_language}' '${holder.accountBookNameKo}' '${holder.accountBookNameJp}'/>">
+          <@errorMsg ['EE_AC_101'] 'book.error.nameEmpty'/>
+          <@errorMsg ['EE_AC_102'] 'book.error.nameMax'/>
+          <@errorMsg ['EE_AC_103'] 'book.error.nameDupl'/>
         </div>
-        </#if>
 
-        <#-- 가계부 이름(일본어) -->
+        <#-- 가계부 이름(타언어) -->
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${unselected_language}"/></label>
-          <input type="text" class="form-control<@error ['EE_AC_104', 'EE_AC_105', 'EE_AC_106']/>" name="accountNameJp" value="${holder.accountNameJp}">
-          <@errorMsg ['EE_AC_104'] 'book.error.accountNameEmpty'/>
-          <@errorMsg ['EE_AC_105'] 'book.error.accountNameMax'/>
-          <@errorMsg ['EE_AC_106'] 'book.error.accountNameDupl'/>
+          <input type="text" class="form-control<@error ['EE_AC_104', 'EE_AC_105', 'EE_AC_106']/>" name="accountBookName${unselected_language}" value="<@setLanguage '${unselected_language}' '${holder.accountBookNameKo}' '${holder.accountBookNameJp}'/>">
+          <@errorMsg ['EE_AC_104'] 'book.error.nameEmpty'/>
+          <@errorMsg ['EE_AC_105'] 'book.error.nameMax'/>
+          <@errorMsg ['EE_AC_106'] 'book.error.nameDupl'/>
         </div>
-
-        <#-- 가계부 이름(한국어) : 일본어 설정인 경우 -->
-        <#if '${selected_language}' != 'ko'>
-        <div class="mb-5">
-          <label class="form-label"><@msg "book.name.${selected_language}"/></label>
-          <input type="text" class="form-control<@error ['EE_AC_101', 'EE_AC_102', 'EE_AC_103']/>" name="accountNameKr" value="${holder.accountNameKr}">
-          <@errorMsg ['EE_AC_101'] 'book.error.accountNameEmpty'/>
-          <@errorMsg ['EE_AC_102'] 'book.error.accountNameMax'/>
-          <@errorMsg ['EE_AC_103'] 'book.error.accountNameDupl'/>
-        </div>
-        </#if>
 
         <#-- 세금 설정 -->
         <div class="mb-5">

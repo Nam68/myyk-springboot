@@ -9,21 +9,21 @@ import yk.web.myyk.util.enumerated.TaxRate;
 /**
  * <p>가계부 생성 서비스.</p>
  */
-public interface CreateAccount extends BaseService {
+public interface CreateAccountBook extends BaseService {
 
     /**
      * <p>가계부 이름(한국어)을 설정한다.</p>
      *
-     * @param accountNameKr 가계부 이름(한국어)
+     * @param accountBookNameKo 가계부 이름(한국어)
      */
-    public void setAccountNameKr(String accountNameKr);
+    public void setAccountBookNameKo(String accountBookNameKo);
 
     /**
      * <p>가계부 이름(일본어)을 설정한다.</p>
      *
-     * @param accountNameJp 가계부 이름(일본어)
+     * @param accountBookNameJp 가계부 이름(일본어)
      */
-    public void setAccountNameJp(String accountNameJp);
+    public void setAccountBookNameJp(String accountBookNameJp);
 
     /**
      * <p>세금포함 여부를 설정한다.</p>

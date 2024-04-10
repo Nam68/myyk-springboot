@@ -5,6 +5,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.dto.login.LoginInfo;
+import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.BaseApp;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
@@ -43,13 +44,19 @@ public class BaseMvc extends BaseApp {
      *
      * @return 로그인 정보
      */
-    protected static LoginInfo getLoginInfo(Class<? extends BaseMvc> clazz) {
+    protected LoginInfo getLoginInfo(Class<? extends BaseMvc> clazz) {
         HttpSession session = getCurrentSession();
         Object object = session.getAttribute(LOGIN_INFO);
-        if (object == null) {
-            throw new SystemException(ErrorCode.LG_101, clazz);
+
+        LoginInfo loginInfo = null;
+        if (object != null) {
+            try {
+                loginInfo = (LoginInfo) object;
+            } catch (ClassCastException e) {
+                throw new SystemException(ErrorCode.LG_101, clazz);
+            }
         }
-        return (LoginInfo) object;
+        return loginInfo;
     }
 
     /**
@@ -58,7 +65,7 @@ public class BaseMvc extends BaseApp {
      * @param email 이메일
      * @return 이메일 로컬파트
      */
-    protected static String getEmailLocalpart(String email) {
+    protected String getEmailLocalpart(String email) {
         return devideEmail(email)[EMAIL_LOCALPART];
     }
 
@@ -68,7 +75,7 @@ public class BaseMvc extends BaseApp {
      * @param email 이메일
      * @return 이메일 도메인
      */
-    protected static String getEmailDomain(String email) {
+    protected String getEmailDomain(String email) {
         return devideEmail(email)[EMAIL_DOMAIN];
     }
 
@@ -78,7 +85,7 @@ public class BaseMvc extends BaseApp {
      * @param email 이메일
      * @return 분리된 이메일의 문자열 배열
      */
-    private static String[] devideEmail(String email) {
+    private String[] devideEmail(String email) {
         String[] emailParts = email.split("@");
         if (emailParts.length != EMAIL_PARTS_NUMBER) {
             throw new SystemException(ErrorCode.EE_ME_103, BaseMvc.class);
@@ -86,7 +93,7 @@ public class BaseMvc extends BaseApp {
         return emailParts;
     }
 
-    protected static String getCombinedEmail(String emailLocalpart, String emailDomain) {
+    protected String getCombinedEmail(String emailLocalpart, String emailDomain) {
         return emailLocalpart + "@" + emailDomain;
     }
 

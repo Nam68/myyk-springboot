@@ -10,17 +10,17 @@ import yk.web.myyk.util.enumerated.TaxRate;
 /**
  * <p>가계부 생성 폼.</p>
  */
-public class CreateAccountForm extends BaseForm {
+public class CreateAccountBookForm extends BaseForm {
 
     /**
      * <p>가계부 이름(한국어).</p>
      */
-    private String accountNameKr = "";
+    private String accountBookNameKo = "";
 
     /**
      * <p>가계부 이름(일본어).</p>
      */
-    private String accountNameJp = "";
+    private String accountBookNameJp = "";
 
     /**
      * <p>세금포함 여부.</p>
@@ -52,17 +52,17 @@ public class CreateAccountForm extends BaseForm {
      *
      * @return 가계부 이름(한국어)
      */
-    public String getAccountNameKr() {
-        return accountNameKr;
+    public String getAccountBookNameKo() {
+        return accountBookNameKo;
     }
 
     /**
      * <p>가계부 이름(한국어)을 설정한다.</p>
      *
-     * @param accountNameKr 가계부 이름(한국어)
+     * @param accountBookNameKo 가계부 이름(한국어)
      */
-    public void setAccountNameKr(String accountNameKr) {
-        this.accountNameKr = accountNameKr;
+    public void setAccountBookNameKo(String accountBookNameKo) {
+        this.accountBookNameKo = accountBookNameKo;
     }
 
     /**
@@ -70,17 +70,17 @@ public class CreateAccountForm extends BaseForm {
      *
      * @return 가계부 이름(일본어)
      */
-    public String getAccountNameJp() {
-        return accountNameJp;
+    public String getAccountBookNameJp() {
+        return accountBookNameJp;
     }
 
     /**
      * <p>가계부 이름(일본어)을 설정한다.</p>
      *
-     * @param accountNameJp 가계부 이름(일본어)
+     * @param accountBookNameJp 가계부 이름(일본어)
      */
-    public void setAccountNameJp(String accountNameJp) {
-        this.accountNameJp = accountNameJp;
+    public void setAccountBookNameJp(String accountBookNameJp) {
+        this.accountBookNameJp = accountBookNameJp;
     }
 
     /**

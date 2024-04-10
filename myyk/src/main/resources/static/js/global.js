@@ -40,11 +40,12 @@ function centerAlignDiv(target, position) {
  * 서브밋 제어
  */
 
-function mySubmit(button) {
+function mySubmit() {
 
     openLoading();
 
     const form = $('form');
+    form.find('input').toArray().forEach(input => alert($(input).attr('name')));
     if (form.length > 1 || form.length <= 0) {
         alert(globalError);
         return false;

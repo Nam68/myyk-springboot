@@ -5,14 +5,12 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import yk.web.myyk.backend.service.account.AccountBookService;
-import yk.web.myyk.backend.service.account.CategoryService;
-import yk.web.myyk.backend.service.account.CreateAccount;
-import yk.web.myyk.backend.service.external.BootstrapService;
+import yk.web.myyk.backend.service.account.CreateAccountBook;
+import yk.web.myyk.backend.service.account.CreateCategory;
+import yk.web.myyk.backend.service.external.CheckBootstrapIcon;
 import yk.web.myyk.backend.service.login.Login;
 import yk.web.myyk.backend.service.member.CreateMember;
 import yk.web.myyk.backend.service.member.CreateTmpMember;
-import yk.web.myyk.backend.service.member.EmailService;
 import yk.web.myyk.backend.service.member.FindAllMemberByIdx;
 import yk.web.myyk.backend.service.member.FindAllMemberExceptMyself;
 import yk.web.myyk.backend.service.member.FindEmailByTmpCode;
@@ -40,44 +38,13 @@ public class ServiceFactory {
     private FindAllMemberByIdx findAllMemberByIdx;
 
     @Autowired
-    private CreateAccount createAccount;
-
-
-
-
+    private CreateAccountBook createAccountBook;
 
     @Autowired
-    private EmailService emailService;
+    private CreateCategory createCategory;
 
     @Autowired
-    private AccountBookService accountBookService;
-
-    @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
-    private BootstrapService bootstrapService;
-
-    public EmailService getEmail() {
-        return emailService;
-    }
-
-    public AccountBookService getAccountBook() {
-        return accountBookService;
-    }
-
-    public CategoryService getCategory() {
-        return categoryService;
-    }
-
-    public BootstrapService getBootstrap() {
-        return bootstrapService;
-    }
-
-
-
-
-
+    private CheckBootstrapIcon checkBootstrapIcon;
 
     public Login getLogin() {
         return login;
@@ -103,7 +70,15 @@ public class ServiceFactory {
         return findAllMemberByIdx;
     }
 
-    public CreateAccount getCreateAccount()  {
-        return createAccount;
+    public CreateAccountBook getCreateAccountBook()  {
+        return createAccountBook;
+    }
+
+    public CreateCategory getCreateCategory() {
+        return createCategory;
+    }
+
+    public CheckBootstrapIcon getCheckBootstrapIcon() {
+        return checkBootstrapIcon;
     }
 }

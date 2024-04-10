@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import yk.web.myyk.backend.BaseMvc;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.factory.RepositoryFactory;
@@ -13,6 +15,9 @@ import yk.web.myyk.util.mail.MailTemplate;
 import yk.web.myyk.util.mail.MailText;
 
 public class BaseLogic extends BaseMvc {
+
+    @PersistenceContext
+    protected EntityManager em;
 
     @Autowired
     private MailTemplate mailTemplate;

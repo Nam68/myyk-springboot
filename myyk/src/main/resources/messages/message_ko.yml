@@ -12,10 +12,10 @@ error:
     name: "시스템 에러"
     title: "시스템 에러가 발생했습니다"
     message: "에러 내용"
-    script: "에러가 반복될 경우 출력된 에러 내용을 첨부하여 관리자에게 문의해주십시오"
+    script: "에러가 반복될 경우 출력된 에러 내용을 첨부하여 관리자에게 문의해주십시오."
   noHandler:
     name: "존재하지 않는 페이지"
-    message: "잘못된 경로로 접근했습니다"
+    message: "잘못된 경로로 접근했습니다."
   permission:
     name: "접근권한이 없습니다"
     script: "회원님의 등급으로는 이용할 수 없는 서비스입니다. 자세한 내용은 관리자에게 문의해주십시오."
@@ -28,9 +28,9 @@ member:
     checkConfirm: "위의 이메일로 인증코드를 발송합니다. <span class=\"caution\">20분 이내</span>에 인증을 완료해주세요."
     send: "메일 발송"
     error:
-      empty: "메일을 입력해주세요"
-      form: "올바른 메일 형식을 입력해주세요"
-      dupl: "중복된 이메일입니다"
+      empty: "메일을 입력해주세요."
+      form: "올바른 메일 형식을 입력해주세요."
+      dupl: "중복된 이메일입니다."
   code:
     name: "인증코드"
     check: "인증코드 확인"
@@ -62,14 +62,14 @@ signup:
   complete: "회원가입 완료"
   completeMessage: "회원가입이 완료되었습니다.<br>로그인을 통해 서비스를 이용하실 수 있습니다."
   error:
-    passwordEmpty: "비밀번호를 입력해주세요"
-    passwordMin: "비밀번호는 8자 이상 입력해주세요"
-    passwordMax: "비밀번호는 30자 이내로 입력해주세요"
-    passwordForm: "비밀번호는 영문자 대소문자와 숫자가 포함되어야 합니다"
-    passwordCheck: "비밀번호가 일치하지 않습니다"
-    nicknameEmpty: "닉네임을 입력해주세요"
-    nicknameMax: "닉네임은 10자 이내로 입력해주세요"
-    nicknameDupl: "이미 존재하는 닉네임입니다"
+    passwordEmpty: "비밀번호를 입력해주세요."
+    passwordMin: "비밀번호는 8자 이상 입력해주세요."
+    passwordMax: "비밀번호는 30자 이내로 입력해주세요."
+    passwordForm: "비밀번호는 영문자 대소문자와 숫자가 포함되어야 합니다."
+    passwordCheck: "비밀번호가 일치하지 않습니다."
+    nicknameEmpty: "닉네임을 입력해주세요."
+    nicknameMax: "닉네임은 10자 이내로 입력해주세요."
+    nicknameDupl: "이미 존재하는 닉네임입니다."
 
 login:
   name: "로그인"
@@ -89,20 +89,19 @@ plan:
 bookOrCategory: "가계부 및 카테고리 편집"
 
 book:
+  createOrUpdate: "가계부 생성 및 편집"
   name: "가계부"
   nameLang:
     ko: "가계부 이름"
     jp: "가계부 이름(영어 또는 일본어)"
   list: "가계부 목록"
-  createOrUpdate: "가계부 생성 및 편집"
-  accountName: "가계부 이름"
   rate:
     name: "부가세"
     include:
       name: "부가세 포함 여부"
       always: "기본 포함"
       each: "기본 제외"
-      info: "가계부에 기록할 때에도 개별로 설정할 수 있습니다"
+      info: "가계부에 기록할 때에도 개별로 설정할 수 있습니다."
     base: "기본 세율"
   currency:
     name: "통화단위"
@@ -112,12 +111,29 @@ book:
     name: "가계부 생성"
     check: "가계부 생성 확인"
   error:
-    accountNameEmpty: "가계부 이름을 입력해주세요"
-    accountNameMax: "가계부 이름은 10자 이내로 입력해주세요"
-    accountNameDupl: "이미 존재하는 가계부 이름입니다"
+    nameEmpty: "가계부 이름을 입력해주세요."
+    nameMax: "가계부 이름은 10자 이내로 입력해주세요."
+    nameDupl: "이미 존재하는 가계부 이름입니다."
 
 category:
   createOrUpdate: "카테고리 생성 및 편집"
+  name: "카테고리"
+  nameLang:
+    ko: "카테고리 이름"
+    jp: "카테고리 이름(영어 또는 일본어)"
+  icon:
+    name: "아이콘"
+    noHope: "원하는 아이콘이 없는 경우"
+  color:
+    name: "색상"
+  create:
+    name: "카테고리 생성"
+  error:
+    nameEmpty: "카테고리 이름을 입력해주세요."
+    nameMax: "카테고리 이름은 10자 이내로 입력해주세요."
+    nameDupl: "이미 존재하는 카테고리 이름입니다."
+    iconEmpty: "아이콘 이름을 입력해주세요."
+    iconNotExist: "존재하지 않는 아이콘 이름입니다."
 
 board:
   name: "게시판"
@@ -126,4 +142,4 @@ share:
   name: "공유 설정"
   read: "읽기 권한"
   write: "쓰기 권한"
-  checkForRegister: "공유할 회원을 선택해주세요"
+  checkForRegister: "공유할 회원을 선택해주세요."
