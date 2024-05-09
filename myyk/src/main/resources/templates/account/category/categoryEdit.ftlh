@@ -22,7 +22,7 @@
             <div class="card mt-2 mb-2">
               <div class="card-body position-relative" data-idx="${category.categoryIdx}">
                 <div class="d-inline">
-                  ${category.categoryName}
+                  category Name
                 </div>
                 <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
                   <span class="me-3" role="button">

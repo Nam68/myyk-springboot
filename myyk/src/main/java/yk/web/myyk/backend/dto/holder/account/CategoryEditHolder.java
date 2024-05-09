@@ -16,6 +16,10 @@ public class CategoryEditHolder extends BaseHolder {
      */
     private List<CategoryDTO> categoryList = new ArrayList<>();
 
+    public CategoryEditHolder(List<CategoryDTO> categoryList) {
+        this.categoryList = categoryList;
+    }
+
     /**
      * <p>카테고리 리스트를 반환한다.</p>
      *

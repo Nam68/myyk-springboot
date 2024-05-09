@@ -12,21 +12,23 @@ import yk.web.myyk.util.exception.SystemException;
 @CategorySetter(Category.MEMBER)
 @RequestMapping("/member")
 public class EmailController extends BaseController {
-	
-	/**
-	 * <p>이메일 확인용 인풋 화면.</p>
-	 * 
-	 * @return 이메일 체크용 화면
-	 * @throws SystemException 시스템 예외
-	 */
-	@RequestMapping("/emailCheckInput")
-	public String input() throws SystemException {
-		return "member/emailCheckInput";
-	}
-	
+
+    private static final String INPUT = "member/emailCheckInput";
+
+    /**
+     * <p>이메일 확인용 인풋 화면.</p>
+     *
+     * @return 이메일 체크용 화면
+     * @throws SystemException 시스템 예외
+     */
+    @RequestMapping("/emailCheckInput")
+    public String input() throws SystemException {
+        return INPUT;
+    }
+
 	/**
 	 * <p>이메일 중복 체크.</p>
-	 * 
+	 *
 	 * @param email 체크 대상 이메일
 	 * @param request 리퀘스트
 	 * @return 검증코드 인증 화면
@@ -42,5 +44,5 @@ public class EmailController extends BaseController {
 //		getService().getEmail().sendEmailConfirm(email);
 //		return "member/checkTmpCodeInput";
 //	}
-	
+
 }

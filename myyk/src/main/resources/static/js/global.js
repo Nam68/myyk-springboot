@@ -45,7 +45,10 @@ function mySubmit() {
     openLoading();
 
     const form = $('form');
-    form.find('input').toArray().forEach(input => alert($(input).attr('name')));
+
+    // DEBUG CODE
+    // form.find('input').toArray().forEach(input => alert($(input).attr('name')));
+
     if (form.length > 1 || form.length <= 0) {
         alert(globalError);
         return false;

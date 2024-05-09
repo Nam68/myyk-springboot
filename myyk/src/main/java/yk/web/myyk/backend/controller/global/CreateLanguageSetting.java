@@ -9,9 +9,11 @@ import yk.web.myyk.util.exception.SystemException;
 @Controller
 public class CreateLanguageSetting extends BaseController {
 
+    private static final String INPUT = "createLanguageSetting";
+
     @RequestMapping("/languageSetting/create")
     public String input() throws SystemException {
-        return "createLanguageSetting";
+        return INPUT;
     }
 
 }

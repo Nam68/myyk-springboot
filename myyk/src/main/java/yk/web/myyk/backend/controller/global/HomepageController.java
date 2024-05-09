@@ -14,6 +14,8 @@ import yk.web.myyk.util.exception.SystemException;
 @Controller
 public class HomepageController extends BaseController {
 
+    private static final String HOMEPAGE = "homepage";
+
     /**
      * <p>홈페이지 화면.</p>
      *
@@ -22,7 +24,7 @@ public class HomepageController extends BaseController {
      */
     @RequestMapping({"/", "/homepage"})
     public String index() throws SystemException {
-        return "homepage";
+        return HOMEPAGE;
     }
 
     /**
@@ -35,6 +37,6 @@ public class HomepageController extends BaseController {
     @RequestMapping(path = "/member/update/passwordReset", method = RequestMethod.POST)
     public String passwordReset(MemberForm memberForm) throws SystemException {
 //        getService().getMember().resetPassword(memberForm);
-        return "homepage";
+        return HOMEPAGE;
     }
 }

@@ -23,6 +23,10 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/login")
 public class LoginController extends BaseController {
 
+    private static final String HOMEPAGE = "/";
+    private static final String HOMEPAGE_REDIRECT = "redirect:/";
+    private static final String INPUT = "login/loginInput";
+
     /**
      * <p>로그인 입력 화면.</p>
      *
@@ -35,10 +39,10 @@ public class LoginController extends BaseController {
     public String input(HttpSession session, HttpServletRequest request) throws SystemException {
         LoginInfo loginInfo = getLoginInfo(LoginController.class);
         if (loginInfo != null) {
-            return "/";
+            return HOMEPAGE;
         }
         setHolder(request, new LoginHolder());
-        return "login/loginInput";
+        return INPUT;
     }
 
     /**
@@ -63,14 +67,14 @@ public class LoginController extends BaseController {
         } catch (AppException e) {
             setErrors(request, e.getErrors());
             setHolder(request, new LoginHolder(form));
-            return "login/loginInput";
+            return INPUT;
         }
         session.setAttribute(LOGIN_INFO, logic.getCreatedLoginInfo());
         String tokenId = logic.getCreatedTokenId();
         if (tokenId != null && !"".equals(tokenId)) {
             CookieUtil.setCookie(AUTO_LOGIN, encrypt(tokenId), response);
         }
-        return "redirect:/";
+        return HOMEPAGE_REDIRECT;
     }
 
     /**
@@ -85,6 +89,6 @@ public class LoginController extends BaseController {
     public String logout(HttpSession session, HttpServletResponse response) throws SystemException {
         session.removeAttribute(LOGIN_INFO);
         CookieUtil.deleteCookie(AUTO_LOGIN, response);
-        return "redirect:/";
+        return HOMEPAGE_REDIRECT;
     }
 }

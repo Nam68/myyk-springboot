@@ -8,6 +8,8 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class Constant {
 
+    private static int first;
+
     @Value("${value.hashing.salt}")
     private String hashingSalt;
     private static String staticHashingSalt;
@@ -235,6 +237,14 @@ public class Constant {
      */
     public static int getCategoryNameMax() {
         return staticCategoryNameMax;
+    }
+
+
+    /**
+     * @return 첫 번째 번호 (1)
+     */
+    public static int getFirst() {
+        return first;
     }
 
 }

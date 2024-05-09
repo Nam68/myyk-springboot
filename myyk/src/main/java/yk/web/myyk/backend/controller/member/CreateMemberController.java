@@ -27,6 +27,12 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/member/create")
 public class CreateMemberController extends BaseController {
 
+    private static final String CHECK_TMP_MEMBER_CODE_INPUT = "member/checkTmpMemberCodeInput";
+    private static final String INPUT = "member/createMemberInput";
+    private static final String CONFIRM = "member/createMemberConfirm";
+    private static final String COMPLETE_REDIRECT = "redirect:/member/create/complete";
+    private static final String COMPLETE = "member/createMemberComplete";
+
     /**
      * <p>회원 생성 입력화면.</p>
      *
@@ -48,13 +54,13 @@ public class CreateMemberController extends BaseController {
             setHolder(request, new TmpCodeHolder(EMPTY));
             // 원래대로면 필요가 없어야하는 코드 [끝]
             setErrors(request, e.getErrors());
-            return "member/checkTmpMemberCodeInput";
+            return CHECK_TMP_MEMBER_CODE_INPUT;
         }
         MemberForm memberForm = new MemberForm();
         memberForm.setEmailLocalpart(logic.getEmailLocalpart());
         memberForm.setEmailDomain(logic.getEmailDomain());
         setHolder(request, new CreateMemberHolder(memberForm));
-        return "member/createMemberInput";
+        return INPUT;
     }
 
     /**
@@ -77,11 +83,11 @@ public class CreateMemberController extends BaseController {
         } catch (AppException e) {
             setHolder(request, new CreateMemberHolder(form));
             setErrors(request, e.getErrors());
-            return "member/createMemberInput";
+            return INPUT;
         }
         setHolder(request, new CreateMemberHolder(form));
         setForm(session, form);
-        return "member/createMemberConfirm";
+        return CONFIRM;
     }
 
     /**
@@ -104,9 +110,9 @@ public class CreateMemberController extends BaseController {
             setHolder(request, new CreateMemberHolder(form));
             setErrors(request, e.getErrors());
             removeForm(session, MemberForm.class);
-            return "member/createMemberConfirm";
+            return CONFIRM;
         }
-        return "redirect:/member/create/complete";
+        return COMPLETE_REDIRECT;
     }
 
     /**
@@ -120,7 +126,7 @@ public class CreateMemberController extends BaseController {
     @DataCheck(target = MemberForm.class)
     @SessionClear
     public String complete(HttpSession session) throws SystemException {
-        return "member/createMemberComplete";
+        return COMPLETE;
     }
 
     /**

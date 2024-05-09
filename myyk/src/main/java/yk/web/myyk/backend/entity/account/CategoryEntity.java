@@ -49,12 +49,13 @@ public class CategoryEntity extends BaseEntity {
         // nop
     }
 
-    public CategoryEntity(String categoryNameKo, String categoryNameJp, String categoryColor, String categoryIcon, int sortNo) {
+    public CategoryEntity(String categoryNameKo, String categoryNameJp, String categoryColor, String categoryIcon, int sortNo, MemberEntity member) {
         setCategoryNameKo(categoryNameKo);
         setCategoryNameJp(categoryNameJp);
         setCategoryColor(categoryColor);
         setCategoryIcon(categoryIcon);
         setSortNo(sortNo);
+        setMember(member);
     }
 
     /**
@@ -163,5 +164,14 @@ public class CategoryEntity extends BaseEntity {
      */
     public void setSortNo(int sortNo) {
         this.sortNo = sortNo;
+    }
+
+    /**
+     * <p>회원을 설정한다.</p>
+     *
+     * @param member 회원
+     */
+    public void setMember(MemberEntity member) {
+        this.member = member;
     }
 }

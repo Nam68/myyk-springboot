@@ -24,6 +24,8 @@ public class CreateCategoryController extends BaseController {
 
     private static final String INPUT = "account/category/createCategoryInput";
     private static final String CONFIRM = "account/category/createCategoryConfirm";
+    private static final String COMPLETE_REDIRECT = "redirect:/account/category/create/complete";
+    private static final String SUB_CATEGORY_INPUT_REDIRECT = "redirect:/account/category/sub/create/input";
 
     /**
      * <p>카테고리 생성 입력화면.</p>
@@ -85,7 +87,7 @@ public class CreateCategoryController extends BaseController {
             setHolder(request, new CreateCategoryHolder(form));
             return CONFIRM;
         }
-        return "redirect:/account/category/create/complete";
+        return COMPLETE_REDIRECT;
     }
 
     /**
@@ -94,10 +96,11 @@ public class CreateCategoryController extends BaseController {
      * @return 리다이렉트
      * @throws SystemException 시스템 에러
      */
-    @RequestMapping(path = "/complete", method = RequestMethod.POST)
+    @RequestMapping(path = "/complete")
+    @DataCheck(target = CreateCategoryForm.class)
     @SessionClear
     public String complete() throws SystemException {
-        return "redirect:/account/category/sub/create/input";
+        return SUB_CATEGORY_INPUT_REDIRECT;
     }
 
     /**

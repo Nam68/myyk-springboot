@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.backend.service.account.CreateCategory;
+import yk.web.myyk.backend.service.account.SearchCategoryByMemberIdx;
 import yk.web.myyk.backend.service.external.CheckBootstrapIcon;
 import yk.web.myyk.backend.service.login.Login;
 import yk.web.myyk.backend.service.member.CreateMember;
@@ -44,6 +45,9 @@ public class ServiceFactory {
     private CreateCategory createCategory;
 
     @Autowired
+    private SearchCategoryByMemberIdx searchCategoryByMemberIdx;
+
+    @Autowired
     private CheckBootstrapIcon checkBootstrapIcon;
 
     public Login getLogin() {
@@ -76,6 +80,10 @@ public class ServiceFactory {
 
     public CreateCategory getCreateCategory() {
         return createCategory;
+    }
+
+    public SearchCategoryByMemberIdx getSearchCategoryByMemberIdx() {
+        return searchCategoryByMemberIdx;
     }
 
     public CheckBootstrapIcon getCheckBootstrapIcon() {

@@ -15,14 +15,12 @@ public class SortCategoryList extends BaseSharedLogic {
 
 	private List<CategoryEntity> sortedCategoryEntityList;
 
-	@Override
 	public void validate() throws SystemException {
 		if (categoryEntityList == null) {
 			throw new SystemException("category entity list does not exist in SortCategoryList.");
 		}
 	}
 
-	@Override
 	public void execute() throws SystemException {
 
 		validate();

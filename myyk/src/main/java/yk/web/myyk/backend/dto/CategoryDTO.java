@@ -2,6 +2,8 @@ package yk.web.myyk.backend.dto;
 
 import java.util.Map;
 
+import yk.web.myyk.backend.entity.account.CategoryEntity;
+
 /**
  * <p>카테고리 DTO.</p>
  */
@@ -13,9 +15,14 @@ public class CategoryDTO {
     private long categoryIdx;
 
     /**
-     * <p>카테고리 이름.</p>
+     * <p>카테고리 이름(한국어).</p>
      */
-    private String categoryName;
+    private String categoryNameKo;
+
+    /**
+     * <p>카테고리 이름(일본어).</p>
+     */
+    private String categoryNameJp;
 
     /**
      * <p>카테고리 색.</p>
@@ -31,6 +38,18 @@ public class CategoryDTO {
      * <p>서브 카테고리 리스트.</p>
      */
     private Map<Long, String> subCategoryList;
+
+    public CategoryDTO() {
+        // nop
+    }
+
+    public CategoryDTO(CategoryEntity entity) {
+        setCategoryIdx(entity.getCategoryIdx());
+        setCategoryNameKo(entity.getCategoryNameKo());
+        setCategoryNameJp(entity.getCategoryNameJp());
+        setCategoryIcon(entity.getCategoryColor());
+        setCategoryIcon(entity.getCategoryIcon());
+    }
 
     /**
      * <p>카테고리 인덱스를 반환한다.</p>
@@ -51,21 +70,39 @@ public class CategoryDTO {
     }
 
     /**
-     * <p>카테고리 이름을 반환한다.</p>
+     * <p>카테고리 이름(한국어)을 반환한다.</p>
      *
-     * @return 카테고리 이름
+     * @return 카테고리 이름(한국어)
      */
-    public String getCategoryName() {
-        return categoryName;
+    public String getCategoryNameKo() {
+        return categoryNameKo;
     }
 
     /**
-     * <p>카테고리 이름을 설정한다.</p>
+     * <p>카테고리 이름(한국어)을 설정한다.</p>
      *
-     * @param categoryName 카테고리 이름
+     * @param categoryNameKo 카테고리 이름(한국어)
      */
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategoryNameKo(String categoryNameKo) {
+        this.categoryNameKo = categoryNameKo;
+    }
+
+    /**
+     * <p>카테고리 이름(일본어)을 반환한다.</p>
+     *
+     * @return 카테고리 이름(일본어)
+     */
+    public String getCategoryNameJp() {
+        return categoryNameJp;
+    }
+
+    /**
+     * <p>카테고리 이름(일본어)을 설정한다.</p>
+     *
+     * @param categoryNameJp 카테고리 이름(일본어)
+     */
+    public void setCategoryNameJp(String categoryNameJp) {
+        this.categoryNameJp = categoryNameJp;
     }
 
     /**
@@ -78,9 +115,9 @@ public class CategoryDTO {
     }
 
     /**
-     * <p>카테고리 이름을 설정한다.</p>
+     * <p>카테고리 색을 설정한다.</p>
      *
-     * @param categoryColor 카테고리 이름
+     * @param categoryColor 카테고리 색
      */
     public void setCategoryColor(String categoryColor) {
         this.categoryColor = categoryColor;

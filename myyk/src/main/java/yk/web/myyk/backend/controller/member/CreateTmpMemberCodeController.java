@@ -23,6 +23,11 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/member/tmp/code/create")
 public class CreateTmpMemberCodeController extends BaseController {
 
+    private static final String INPUT = "member/createTmpMemberCodeInput";
+    private static final String CONFIRM = "member/createTmpMemberCodeConfirm";
+    private static final String COMPLETE_REDIRECT = "redirect:/member/tmp/code/create/complete";
+    private static final String COMPLETE = "member/createTmpMemberCodeComplete";
+
     /**
      * <p>임시회원 코드 생성 입력화면.</p>
      *
@@ -33,7 +38,7 @@ public class CreateTmpMemberCodeController extends BaseController {
     @RequestMapping("/input")
     public String input(HttpServletRequest request) throws SystemException {
         setHolder(request, new EmailHolder());
-        return "member/createTmpMemberCodeInput";
+        return INPUT;
     }
 
     /**
@@ -56,11 +61,11 @@ public class CreateTmpMemberCodeController extends BaseController {
         } catch (AppException e) {
             setHolder(request, new EmailHolder(emailForm));
             setErrors(request, e.getErrors());
-            return "/member/createTmpMemberCodeInput";
+            return INPUT;
         }
         setHolder(request, new EmailHolder(emailForm));
         setForm(session, emailForm);
-        return "member/createTmpMemberCodeConfirm";
+        return CONFIRM;
     }
 
     /**
@@ -83,9 +88,9 @@ public class CreateTmpMemberCodeController extends BaseController {
         // 지금은 임시회원코드 입력화면에 임시회원코드를 넣기 위해서 홀더를 사용 중.
         // 원래는 이메일 홀더응 이용해 임시회원 생성 완료 화면으로 전환해야 함.
         setHolder(request, new TmpCodeHolder(logic.getTmpCode()));
-        return "member/checkTmpMemberCodeInput";
+        return INPUT;
 //      getService().getEmail().sendTmpMemberCode(emailForm, tmpCode);
-//      return "redirect:/member/tmp/code/create/complete";
+//      return COMPLETE_REDIRECT;
     }
 
     /**
@@ -102,6 +107,7 @@ public class CreateTmpMemberCodeController extends BaseController {
         // 원래는 임시회원코드 입력화면이 아니라, 그냥 완료 메시지만 보여주는 화면으로 전환해야 함.
         // 아직 이메일 기능이 없어서 임시로 입력화면으로 전환.
         return "member/checkTmpMemberCodeInput";
+//        return COMPLETE;
     }
 
 }

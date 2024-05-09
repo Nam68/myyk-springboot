@@ -19,6 +19,7 @@ import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.account.CreateCategory;
 import yk.web.myyk.util.checker.CategoryChecker;
+import yk.web.myyk.util.constant.Constant;
 import yk.web.myyk.util.enumerated.Region;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
@@ -38,6 +39,8 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
     private String categoryIcon;
 
     private Integer sortNo;
+
+    private MemberEntity member;
 
     @Override
     public void setCategoryNameKo(String categoryNameKo) {
@@ -79,11 +82,12 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
 
         LoginInfo loginInfo = getLoginInfo(CreateCategoryLogic.class);
         Optional<MemberEntity> memberOptional = getRepository().getMember().findById(loginInfo.getMemberIdx());
-        if (memberOptional.isPresent()) {
+        if (!memberOptional.isPresent()) {
             throw new SystemException(ErrorCode.LG_101, CreateCategoryLogic.class);
         }
+        this.member = memberOptional.get();
 
-        List<CategoryEntity> categoryList = memberOptional.get().getCategoryList();
+        List<CategoryEntity> categoryList = this.member.getCategoryList();
         for (CategoryEntity category : categoryList) {
 
             // 중복되는 이름이 있으면 에러 리스트에 추가
@@ -114,7 +118,12 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
     @Override
     public void excute() throws SystemException, AppException {
         validate();
-        CategoryEntity entity = new CategoryEntity(categoryNameKo, categoryNameJp, categoryColor, categoryIcon, sortNo);
+
+        if (this.sortNo == null) {
+            this.sortNo = Constant.getFirst();
+        }
+
+        CategoryEntity entity = new CategoryEntity(categoryNameKo, categoryNameJp, categoryColor, categoryIcon, sortNo, member);
         createCategory(entity);
     }
 

@@ -1,20 +1,29 @@
 package yk.web.myyk.backend.controller.account;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
+import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.holder.account.AccountBookEditHolder;
 import yk.web.myyk.backend.dto.holder.account.CategoryEditHolder;
+import yk.web.myyk.backend.service.account.SearchCategoryByMemberIdx;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.enumerated.MemberType;
+import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
 @Controller
 @AccessCheck(permitted = MemberType.MEMBER)
 @RequestMapping("/account")
 public class AccountController extends BaseController {
+
+    private static final String MAIN = "account/main";
+    private static final String ACCOUNT_BOOK_EDIT = "account/book/accountBookEdit";
+    private static final String CATEGORY_EDIT = "account/category/categoryEdit";
 
     /**
      * <p>가계부 메인 화면.</p>
@@ -26,7 +35,7 @@ public class AccountController extends BaseController {
     @RequestMapping
     public String main(HttpServletRequest request) throws SystemException {
         setHolder(request, new AccountBookEditHolder());
-        return "account/main";
+        return MAIN;
     }
 
     /**
@@ -39,7 +48,7 @@ public class AccountController extends BaseController {
     @RequestMapping("/book/edit")
     public String accountBookEdit(HttpServletRequest request) throws SystemException {
         setHolder(request, new AccountBookEditHolder());
-        return "account/book/accountBookEdit";
+        return ACCOUNT_BOOK_EDIT;
     }
 
     /**
@@ -51,7 +60,12 @@ public class AccountController extends BaseController {
      */
     @RequestMapping("/category/edit")
     public String categoryEdit(HttpServletRequest request) throws SystemException {
-        setHolder(request, new CategoryEditHolder());
-        return "account/category/categoryEdit";
+
+        SearchCategoryByMemberIdx logic = getService().getSearchCategoryByMemberIdx();
+        logic.excute();
+        List<CategoryDTO> list = logic.getCategoryList();
+
+        setHolder(request, new CategoryEditHolder(list));
+        return CATEGORY_EDIT;
     }
 }
