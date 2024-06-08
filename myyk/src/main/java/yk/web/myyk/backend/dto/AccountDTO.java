@@ -1,6 +1,6 @@
 package yk.web.myyk.backend.dto;
 
-public class AccountDTO {
+public class AccountDTO extends BaseDTO {
 
     private long categoryIdx;
 

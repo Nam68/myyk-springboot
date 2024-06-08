@@ -30,6 +30,8 @@ import yk.web.myyk.util.sort.SortUtil;
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
 
+    private long categoryIdx;
+
     private String categoryNameKo;
 
     private String categoryNameJp;
@@ -125,10 +127,17 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
 
         CategoryEntity entity = new CategoryEntity(categoryNameKo, categoryNameJp, categoryColor, categoryIcon, sortNo, member);
         createCategory(entity);
+
+        this.categoryIdx = entity.getCategoryIdx();
     }
 
     @Transactional
     private void createCategory(CategoryEntity entity) {
         getRepository().getCategory().save(entity);
+    }
+
+    @Override
+    public long getCategoryIdx() {
+        return categoryIdx;
     }
 }

@@ -7,7 +7,7 @@ import yk.web.myyk.backend.entity.account.CategoryEntity;
 /**
  * <p>카테고리 DTO.</p>
  */
-public class CategoryDTO {
+public class CategoryDTO extends BaseDTO {
 
     /**
      * <p>카테고리 인덱스.</p>

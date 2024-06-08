@@ -86,3 +86,29 @@ function backWithUrl(url) {
     form.submit();
     closeLoading();
 }
+
+// 모달 수동 오픈
+function showModal(modalId) {
+    const myModal = new bootstrap.Modal('#' + modalId);
+    myModal.show();
+}
+
+// ajax
+async function getAjaxResult(url, data) {
+    openLoading();
+    try {
+        return await sendAjax(url, data);
+    } catch (error) {
+        alert(ajaxErrorMsg);
+    } finally {
+        closeLoading();
+    }
+}
+
+function sendAjax(url, data) {
+    return $.ajax({
+        url: url,
+        method: 'POST',
+        data: data
+    });
+}

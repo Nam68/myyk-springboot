@@ -12,7 +12,7 @@
     <div id="wrapper">
 
       <h3 class="title">
-        <@msg "book.createOrUpdate"/>
+        <@msg "book.edit"/>
       </h3>
 
       <form method="POST">

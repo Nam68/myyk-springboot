@@ -3,7 +3,7 @@ import java.util.List;
 
 import yk.web.myyk.util.enumerated.Region;
 
-public class AccountBookDTO {
+public class AccountBookDTO extends BaseDTO {
 
 	private Long accountBookIdx;
 

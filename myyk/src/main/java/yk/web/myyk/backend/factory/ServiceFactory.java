@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.backend.service.account.CreateCategory;
-import yk.web.myyk.backend.service.account.SearchCategoryByMemberIdx;
+import yk.web.myyk.backend.service.account.FindCategory;
+import yk.web.myyk.backend.service.account.SearchSubCategoryByCategory;
+import yk.web.myyk.backend.service.account.SearchCategoryByMember;
 import yk.web.myyk.backend.service.external.CheckBootstrapIcon;
 import yk.web.myyk.backend.service.login.Login;
 import yk.web.myyk.backend.service.member.CreateMember;
@@ -45,7 +47,13 @@ public class ServiceFactory {
     private CreateCategory createCategory;
 
     @Autowired
-    private SearchCategoryByMemberIdx searchCategoryByMemberIdx;
+    private FindCategory findCategory;
+
+    @Autowired
+    private SearchCategoryByMember searchCategoryByMember;
+
+    @Autowired
+    private SearchSubCategoryByCategory searchSubCategoryByCategory;
 
     @Autowired
     private CheckBootstrapIcon checkBootstrapIcon;
@@ -82,8 +90,16 @@ public class ServiceFactory {
         return createCategory;
     }
 
-    public SearchCategoryByMemberIdx getSearchCategoryByMemberIdx() {
-        return searchCategoryByMemberIdx;
+    public FindCategory getFindCategory() {
+        return findCategory;
+    }
+
+    public SearchCategoryByMember getSearchCategoryByMember() {
+        return searchCategoryByMember;
+    }
+
+    public SearchSubCategoryByCategory getSearchSubCategoryByCategory() {
+        return searchSubCategoryByCategory;
     }
 
     public CheckBootstrapIcon getCheckBootstrapIcon() {

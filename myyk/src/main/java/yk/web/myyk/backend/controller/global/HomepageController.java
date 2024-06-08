@@ -4,8 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
+import yk.web.myyk.backend.dto.holder.account.CreateSubCategoryHolder;
 import yk.web.myyk.util.exception.SystemException;
 
 /**
@@ -38,5 +40,12 @@ public class HomepageController extends BaseController {
     public String passwordReset(MemberForm memberForm) throws SystemException {
 //        getService().getMember().resetPassword(memberForm);
         return HOMEPAGE;
+    }
+
+    @RequestMapping("/sample")
+    public String sample(HttpServletRequest request) throws SystemException {
+        // createSubCategory.ftlh
+        setHolder(request, new CreateSubCategoryHolder());
+        return "test/sample";
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import yk.web.myyk.backend.dto.MemberDto;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.member.CreateMember;
@@ -110,7 +110,7 @@ public class CreateMemberLogic extends BaseLogic implements CreateMember {
         validate();
 
         String email = combineEmail(emailLocalpart, emailDomain);
-        MemberDto dto = new MemberDto(email, password, nickname, nicknameLang, region);
+        MemberDTO dto = new MemberDTO(email, password, nickname, nicknameLang, region);
 
         createMember(dto);
         this.email = email;
@@ -122,7 +122,7 @@ public class CreateMemberLogic extends BaseLogic implements CreateMember {
     }
 
     @Transactional
-    private void createMember(MemberDto dto) {
+    private void createMember(MemberDTO dto) {
         MemberEntity entity = new MemberEntity(dto);
         getRepository().getMember().save(entity);
     }

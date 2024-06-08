@@ -5,8 +5,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.dto.login.LoginInfo;
-import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.BaseApp;
+import yk.web.myyk.util.KeyName;
+import yk.web.myyk.util.constant.MyLocale;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -42,6 +43,7 @@ public class BaseMvc extends BaseApp {
     /**
      * <p>현재 로그인 정보를 반환한다.</p>
      *
+     * @param clazz 메서드를 사용하는 클래스
      * @return 로그인 정보
      */
     protected LoginInfo getLoginInfo(Class<? extends BaseMvc> clazz) {
@@ -57,6 +59,31 @@ public class BaseMvc extends BaseApp {
             }
         }
         return loginInfo;
+    }
+
+    /**
+     * <p>세션에 설정되어있는 언어값의 문자열을 반환한다.</p>
+     *
+     * @param clazz 메서드를 사용하는 클래스
+     * @return 언어값
+     */
+    protected String getCurrentLanguage(Class<? extends BaseMvc> clazz) {
+        HttpSession session = getCurrentSession();
+
+        Object langObj = session.getAttribute(KeyName.SELECTED_LANGUAGE);
+        if (langObj == null) {
+            throw new SystemException(ErrorCode.SS_101, clazz);
+        }
+
+        try {
+            String lang = (String) langObj;
+            if (!MyLocale.isKorean(lang) && !MyLocale.isJapanese(lang)) {
+                throw new SystemException(ErrorCode.SS_103, clazz);
+            }
+            return lang;
+        } catch (ClassCastException e) {
+            throw new SystemException(ErrorCode.SS_102, clazz);
+        }
     }
 
     /**

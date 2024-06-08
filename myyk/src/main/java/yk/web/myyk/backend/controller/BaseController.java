@@ -117,4 +117,27 @@ public class BaseController extends BaseMvc {
     protected void setErrors(HttpServletRequest request, Map<String, ErrorCode> errors) {
         request.setAttribute(ERRORS, errors);
     }
+
+    /**
+     * <p>DTO를 세션에 저장한다.</p>
+     *
+     * @param session 세션
+     * @param dto DTO
+     */
+    protected <T> void setDTO(HttpSession session, T dto) {
+        session.setAttribute(dto.getClass().getSimpleName(), dto);
+    }
+
+    /**
+     * <p>세션에 저장된 DTO를 반환한다.</p>
+     *
+     * @param <T> DTO
+     * @param session 세션
+     * @param dto DTO
+     * @return DTO
+     */
+    @SuppressWarnings("unchecked")
+    protected <T> T getDTO(HttpSession session, Class<T> dto) {
+        return (T) session.getAttribute(dto.getSimpleName());
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import yk.web.myyk.backend.dto.MemberDto;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
@@ -23,7 +23,7 @@ public class FindAllMemberExceptMyselfLogic extends BaseLogic implements FindAll
 
     private MemberEntity memberEntity;
 
-    private List<MemberDto> memberList;
+    private List<MemberDTO> memberList;
 
     @Override
     public void validate() throws SystemException, AppException {
@@ -46,18 +46,18 @@ public class FindAllMemberExceptMyselfLogic extends BaseLogic implements FindAll
         validate();
 
         List<MemberEntity> memberEntityList = getRepository().getMember().findAll();
-        List<MemberDto> memberList = new ArrayList<>();
+        List<MemberDTO> memberList = new ArrayList<>();
 
         for (MemberEntity memberEntity : memberEntityList) {
             if (memberEntity.getMemberIdx() != this.memberEntity.getMemberIdx()) {
-                memberList.add(new MemberDto(memberEntity));
+                memberList.add(new MemberDTO(memberEntity));
             }
         }
         this.memberList = memberList;
     }
 
     @Override
-    public List<MemberDto> getMemberList() {
+    public List<MemberDTO> getMemberList() {
         return memberList;
     }
 

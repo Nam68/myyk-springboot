@@ -12,7 +12,7 @@
     <div id="wrapper">
 
       <h3 class="title">
-        <@msg "category.createOrUpdate"/>
+        <@msg "category.edit"/>
       </h3>
 
       <form method="POST">
@@ -22,7 +22,7 @@
             <div class="card mt-2 mb-2">
               <div class="card-body position-relative" data-idx="${category.categoryIdx}">
                 <div class="d-inline">
-                  category Name
+                  <@setLanguage selected_language category.categoryNameKo category.categoryNameJp/>
                 </div>
                 <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
                   <span class="me-3" role="button">

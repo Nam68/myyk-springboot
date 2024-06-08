@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import yk.web.myyk.backend.dto.MemberDto;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.member.FindAllMemberByIdx;
@@ -20,7 +20,7 @@ public class FindAllMemberByIdxLogic extends BaseLogic implements FindAllMemberB
 
     private List<Long> memberIdxList;
 
-    private List<MemberDto> memberList;
+    private List<MemberDTO> memberList;
 
     @Override
     public void setMemberIdxList(List<Long> memberIdxList) {
@@ -37,17 +37,17 @@ public class FindAllMemberByIdxLogic extends BaseLogic implements FindAllMemberB
         validate();
 
         List<MemberEntity> memberEntityList = getRepository().getMember().findAllById(memberIdxList);
-        List<MemberDto> memberList = new ArrayList<>();
+        List<MemberDTO> memberList = new ArrayList<>();
 
         for (MemberEntity entity : memberEntityList) {
-            MemberDto dto = new MemberDto(entity);
+            MemberDTO dto = new MemberDTO(entity);
             memberList.add(dto);
         }
         this.memberList = memberList;
     }
 
     @Override
-    public List<MemberDto> getMemberList() {
+    public List<MemberDTO> getMemberList() {
         return memberList;
     }
 

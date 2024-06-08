@@ -108,8 +108,7 @@ $('#icon-input-button').on('click', async function () {
     })
     .always(function () {
         closeLoading();
-    })
-    ;
+    });
 });
 
 // 직접입력창을 닫음
@@ -127,4 +126,48 @@ $('#category-color-picker').spectrum({
         const iconHolder = $('#category-icon-holder');
         iconHolder.css('color', tinycolor);
     }
+});
+
+/**
+ * 서브 카테고리
+ */
+
+// 서브 카테고리 편집 모달 열기
+$('.update-sub-category').on('click', function() {
+    setSubCategoryIdx('create-sub-category-modal', $(this));
+    showModal('create-sub-category-modal');
+});
+
+// 서브 카테고리 삭제 모달 열기
+$('.delete-sub-category').on('click', function() {
+    setSubCategoryIdx('delete-sub-category-modal', $(this));
+    showModal('delete-sub-category-modal');
+});
+
+// 서브 카테고리 생성 모달이 닫힐 때 내용 삭제
+$('#create-sub-category-modal').on('hidden.bs.modal', function() {
+    let inputs = $(this).find('input').toArray();
+    inputs.forEach(input => {
+        $(input).val('');                   // 입력 삭제
+        $(input).removeClass('is-invalid'); // 에러 클래스 삭제
+    });
+
+    let errors = $(this).find('.invalid-feedback').toArray();
+    errors.forEach(error => {
+        $(error).hidden();                  // 에러 메시지 삭제
+    });
+});
+
+// 각종 모달에 서브 카테고리 인덱스 전달
+function setSubCategoryIdx(modalId, targetElement) {
+    const subCategoryIdxInput = $('#' + modalId + ' [name=subCategoryIdx]');
+    let subCategoryIdx = targetElement.data('subCategoryIdx');
+    subCategoryIdxInput.val(subCategoryIdx);
+}
+
+// 서브 카테고리 생성 클릭
+$('#create-sub-category-modal .btn-primary').on('click', async function () {
+    let url = '';
+    let data = null;
+    getAjaxResult(url, data);
 });

@@ -31,4 +31,11 @@ public interface CreateCategory extends BaseService {
      * @param categoryIcon 카테고리 아이콘
      */
     public void setCategoryIcon(String categoryIcon);
+
+    /**
+     * <p>생성된 카테고리의 인덱스를 반환한다.</p>
+     *
+     * @return 카테고리 인덱스
+     */
+    public long getCategoryIdx();
 }

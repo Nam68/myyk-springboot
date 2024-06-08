@@ -17,6 +17,7 @@ public enum ErrorCode {
      * IC : 인터셉터
      * LG : 로그인
      * MA : 메일
+     * SS : 세션값
      */
 
     /**
@@ -50,34 +51,9 @@ public enum ErrorCode {
     CF_104("freemarker do not work."),
 
     /**
-     * <p>1차카테고리에 옵션이 없을 때의 에러.</p>
+     * <p>카테고리가 존재하지 않았을 때의 에러.</p>
      */
-    CG_101("this category does not have option."),
-
-    /**
-     * <p>1차카테고리에 서브카테고리가 없을 때의 에러.</p>
-     */
-    CG_102("this catetory does not have sub catogory."),
-
-    /**
-     * <p>1차카테고리를 서브카테고리로 취급했을 때의 에러.</p>
-     */
-    CG_103("this category is not sub category."),
-
-    /**
-     * <p>서브카테고리를 1차카테고리로 취급했을 때의 에러.</p>
-     */
-    CG_104("this category is not prime category."),
-
-    /**
-     * <p>베이직 카테고리를 만드는 생성자에 true를 매개변수로 전달했을 떄의 에러.</p>
-     */
-    CG_105("category cannot be created with boolean only."),
-
-    /**
-     * <p>카테고리 옵션이 아닌 클래스를 옵션으로 불러올 때의 에러.</p>
-     */
-    CG_106("this instance is not category option."),
+    CG_101("this category do not exist."),
 
     /**
      * <p>자동 메일이 기준치 이상으로 보내졌을 떄의 에러.</p>
@@ -139,12 +115,28 @@ public enum ErrorCode {
      */
     MA_103("failed to render freemarker."),
 
+    /**
+     * <p>세션 언어값이 비어있는 경우.</p>
+     */
+    SS_101("selected language is empty."),
+
+    /**
+     * <p>세션 언어값이 문자열이 아닌 경우.</p>
+     */
+    SS_102("selected language is not string."),
+
+    /**
+     * <p>세션 언어값이 잘못된 값일 경우.</p>
+     */
+    SS_103("selected language is unvalated."),
+
     /*
      * 엔티티 에러
      *
      * AC : 가계부
      * CA : 카테고리
      * ME : 회원
+     * SC : 서브카테고리
      */
 
     /**
@@ -298,6 +290,41 @@ public enum ErrorCode {
      * <p>닉네임이 10자를 넘어선 경우.</p>
      */
     EE_ME_114("nickname is too long."),
+
+    /**
+     * <p>카테고리가 존재하지 않는 경우.</p>
+     */
+    EE_SC_101("cateogry does not exist."),
+
+    /**
+     * <p>카테고리 이름(다언어)이 비어있는 경우.</p>
+     */
+    EE_SC_102("sub category name is empty."),
+
+    /**
+     * <p>카테고리 이름(다언어)이 10자를 초과하는 경우.</p>
+     */
+    EE_SC_103("sub category name is too long."),
+
+    /**
+     * <p>다른 카테고리 이름(다언어)이 이미 존재하는 경우.</p>
+     */
+    EE_SC_104("this sub category name exists already."),
+
+    /**
+     * <p>카테고리 이름(다언어)이 비어있는 경우.</p>
+     */
+    EE_SC_105("sub category name (other language) is empty."),
+
+    /**
+     * <p>카테고리 이름(다언어)이 10자를 초과하는 경우.</p>
+     */
+    EE_SC_106("sub category name (other language) is too long."),
+
+    /**
+     * <p>다른 카테고리 이름(다언어)이 이미 존재하는 경우.</p>
+     */
+    EE_SC_107("this sub category (other language) name exists already."),
 
 
     /*

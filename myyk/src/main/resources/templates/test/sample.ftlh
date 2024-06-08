@@ -19,8 +19,9 @@
         <#-- 카테고리 -->
         <div class="mb-4">
           <label class="form-label"><@msg 'category.name'/></label>
-          <div>${holder.categoryName}</div>
-          <input type="hidden" name="categoryIdx" value="${holder.categoryIdx}">
+          <div>${holder.categoryName} categoryName(35) </div>
+          <input type="hidden" name="categoryIdx" value="35">
+          <input type="hidden" name="asdfsdf" value="${holder.categoryIdx}">
           <@errorMsg ['EE_SC_101'] 'category.sub.error.category'/>
         </div>
 

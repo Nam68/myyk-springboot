@@ -1,11 +1,11 @@
 package yk.web.myyk.backend.dto.login;
 
-import yk.web.myyk.backend.dto.BaseDto;
+import yk.web.myyk.backend.dto.BaseDTO;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;
 
-public class AdminInfo extends BaseDto implements LoginInfo {
+public class AdminInfo extends BaseDTO implements LoginInfo {
 
     /**
      * <p>회원 IDX.</p>

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 import yk.web.myyk.util.BaseApp;
 
 @Component
-public class BaseDto extends BaseApp {
+public class BaseDTO extends BaseApp {
     // nop
 }

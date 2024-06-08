@@ -9,7 +9,7 @@ import yk.web.myyk.util.exception.SystemException;
 /**
  * <p>회원 IDX를 통해 카테고리 리스트를 반환하는 서비스.</p>
  */
-public interface SearchCategoryByMemberIdx extends BaseService {
+public interface SearchCategoryByMember extends BaseService {
 
     /**
      * <p>카테고리 리스트를 반환한다.</p>

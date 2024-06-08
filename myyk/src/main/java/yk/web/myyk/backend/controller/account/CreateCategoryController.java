@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
+import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.form.account.CreateCategoryForm;
 import yk.web.myyk.backend.dto.holder.account.CreateCategoryHolder;
 import yk.web.myyk.backend.service.account.CreateCategory;
@@ -25,7 +26,7 @@ public class CreateCategoryController extends BaseController {
     private static final String INPUT = "account/category/createCategoryInput";
     private static final String CONFIRM = "account/category/createCategoryConfirm";
     private static final String COMPLETE_REDIRECT = "redirect:/account/category/create/complete";
-    private static final String SUB_CATEGORY_INPUT_REDIRECT = "redirect:/account/category/sub/create/input";
+    private static final String COMPLETE = "account/category/createCategoryComplete";
 
     /**
      * <p>카테고리 생성 입력화면.</p>
@@ -82,6 +83,12 @@ public class CreateCategoryController extends BaseController {
         try {
             setAllParameters(logic, form);
             logic.excute();
+
+            // 인덱스 DTO 전달
+            CategoryDTO dto = new CategoryDTO();
+            dto.setCategoryIdx(logic.getCategoryIdx());
+            setDTO(session, dto);
+
         } catch (AppException e) {
             setErrors(request, e.getErrors());
             setHolder(request, new CreateCategoryHolder(form));
@@ -99,8 +106,10 @@ public class CreateCategoryController extends BaseController {
     @RequestMapping(path = "/complete")
     @DataCheck(target = CreateCategoryForm.class)
     @SessionClear
-    public String complete() throws SystemException {
-        return SUB_CATEGORY_INPUT_REDIRECT;
+    public String complete(HttpSession session, HttpServletRequest request) throws SystemException {
+        CategoryDTO dto = getDTO(session, CategoryDTO.class);
+        setHolder(request, new CreateCategoryHolder(dto.getCategoryIdx()));
+        return COMPLETE;
     }
 
     /**

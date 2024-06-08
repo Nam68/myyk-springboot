@@ -5,6 +5,11 @@ global:
   back: "돌아가기"
   toHome: "홈으로"
   error: "시스템 에러가 발생했습니다\\r\\n관리자에게 문의해주십시오"
+  close: "닫기"
+  alert:
+    delete:
+      info: "삭제하면 복구할 수 없습니다."
+      confirm: "정말로 삭제하시겠습니까?"
 
 error:
   name: 에러
@@ -89,7 +94,7 @@ plan:
 bookOrCategory: "가계부 및 카테고리 편집"
 
 book:
-  createOrUpdate: "가계부 생성 및 편집"
+  edit: "가계부 생성 및 편집"
   name: "가계부"
   nameLang:
     ko: "가계부 이름"
@@ -116,7 +121,7 @@ book:
     nameDupl: "이미 존재하는 가계부 이름입니다."
 
 category:
-  createOrUpdate: "카테고리 생성 및 편집"
+  edit: "카테고리 생성 및 편집"
   name: "카테고리"
   nameLang:
     ko: "카테고리 이름"
@@ -128,12 +133,30 @@ category:
     name: "색상"
   create:
     name: "카테고리 생성"
+  complete:
+    name: "카테고리가 생성되었습니다"
+    toCreateSub: "서브 카테고리 생성 화면으로"
+    toList: "카테고리 목록 화면으로"
   error:
     nameEmpty: "카테고리 이름을 입력해주세요."
     nameMax: "카테고리 이름은 10자 이내로 입력해주세요."
     nameDupl: "이미 존재하는 카테고리 이름입니다."
     iconEmpty: "아이콘 이름을 입력해주세요."
     iconNotExist: "존재하지 않는 아이콘 이름입니다."
+  sub:
+    nameLang:
+      ko: "서브 카테고리 이름"
+      jp: "서브 카테고리 이름(영어 또는 일본어)"
+    edit: "서브 카테고리 생성 및 편집"
+    create:
+      name: "서브 카테고리 생성"
+    delete:
+      name: "서브 카테고리 삭제"
+    error:
+      category: "이미 존재하지 않는 카테고리입니다."
+      nameEmpty: "서브 카테고리 이름을 입력해주세요."
+      nameMax: "서브 카테고리 이름은 10자 이내로 입력해주세요."
+      nameDupl: "이미 존재하는 서브 카테고리 이름입니다."
 
 board:
   name: "게시판"

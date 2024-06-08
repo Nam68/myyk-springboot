@@ -40,6 +40,12 @@
 <button onclick="closeLoading()" style="z-index:2000;">loading off</button>
 
 
+<br>
+<br>
+<br>
+
+<a href="/sample">sample</a>
+
     </div>
   </div>
 </body>

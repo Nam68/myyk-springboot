@@ -58,10 +58,10 @@
       <div class="modal-body">
         <div class="d-grid gap-2">
           <button class="btn btn-primary"  onclick="location.href='/account/book/edit'">
-            <@msg "book.createOrUpdate"/>
+            <@msg "book.edit"/>
           </button>
           <button class="btn btn-primary"  onclick="location.href='/account/category/edit'">
-            <@msg "category.createOrUpdate"/>
+            <@msg "category.edit"/>
           </button>
         </div>
       </div>

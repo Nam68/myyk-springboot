@@ -15,7 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
-import yk.web.myyk.backend.dto.MemberDto;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.dto.login.AdminInfo;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.dto.login.MemberInfo;
@@ -88,7 +88,7 @@ public class MemberEntity extends BaseEntityWithTime {
      *
      * @param dto DTO
      */
-    public MemberEntity(MemberDto dto) {
+    public MemberEntity(MemberDTO dto) {
         this(dto, Constant.getMemberIconDefault());
     }
 
@@ -98,7 +98,7 @@ public class MemberEntity extends BaseEntityWithTime {
      * @param dto DTO
      * @param memberIcon 회원 아이콘
      */
-    public MemberEntity(MemberDto dto, String memberIcon) {
+    public MemberEntity(MemberDTO dto, String memberIcon) {
         setEmail(dto.getEmail());
         setPasswordSalt(createPasswordSalt());
         setPassword(dto.getPassword());

@@ -11,14 +11,14 @@ import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.entity.account.CategoryEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
-import yk.web.myyk.backend.service.account.SearchCategoryByMemberIdx;
+import yk.web.myyk.backend.service.account.SearchCategoryByMember;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 import yk.web.myyk.util.sort.SortUtil;
 
 @Service
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class SearchCategoryByMemberIdxLogic extends BaseLogic implements SearchCategoryByMemberIdx {
+public class SearchCategoryByMemberLogic extends BaseLogic implements SearchCategoryByMember {
 
     private long memberIdx;
 

@@ -9,6 +9,11 @@ import yk.web.myyk.backend.dto.holder.BaseHolder;
 public class CreateCategoryHolder extends BaseHolder {
 
     /**
+     * <p>카테고리 인덱스.</p>
+     */
+    private long categoryIdx = 0;
+
+    /**
      * <p>카테고리 이름(한국어).</p>
      */
     private String categoryNameKo = "";
@@ -32,11 +37,24 @@ public class CreateCategoryHolder extends BaseHolder {
         // nop
     }
 
+    public CreateCategoryHolder(long categoryIdx) {
+        this.categoryIdx = categoryIdx;
+    }
+
     public CreateCategoryHolder(CreateCategoryForm form) {
         setCategoryNameKo(form.getCategoryNameKo());
         setCategoryNameJp(form.getCategoryNameJp());
         setCategoryColor(form.getCategoryColor());
         setCategoryIcon(form.getCategoryIcon());
+    }
+
+    /**
+     * <p>카테고리 인덱스를 반환한다.</p>
+     *
+     * @return 카테고리 인덱스
+     */
+    public long getCategoryIdx() {
+        return categoryIdx;
     }
 
     /**

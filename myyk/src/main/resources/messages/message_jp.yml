@@ -5,6 +5,11 @@ global:
   back: "戻る"
   error: "システムエラーが発生しました。\\r\\n管理者にお問い合わせください。"
   toHome: "ホームへ"
+  close: "閉じる"
+  alert:
+    delete:
+      info: "削除すると復元できません。"
+      confirm: "本当に削除しますか？"
 
 error:
   system:
@@ -89,8 +94,8 @@ account:
   nameLang:
     kr: "家計簿名（英語または韓国語）"
     jp: "家計簿名"
-  list: "家計簿リスト"
-  createOrUpdate: "家計簿登録および編集"
+  list: "家計簿一覧"
+  edit: "家計簿登録および編集"
   rate:
     name: "消費税"
     include:
@@ -111,7 +116,7 @@ account:
     nameDupl: "既に存在している家計簿名です。"
 
 category:
-  createOrUpdate: "カテゴリ登録および編集"
+  edit: "カテゴリ登録および編集"
   name: "カテゴリ"
   nameLang:
     ko: "カテゴリ名（英語または韓国語）"
@@ -123,12 +128,30 @@ category:
     name: "色"
   create:
     name: "カテゴリ登録"
+  complete:
+    name: "カテゴリが登録されました"
+    toCreateSub: "サブカテゴリ登録画面へ"
+    toList: "カテゴリ一覧画面へ"
   error:
     nameEmpty: "カテゴリ名を入力してください。"
     nameMax: "カテゴリ名は10桁以内に入力してください。"
     nameDupl: "既に存在しているカテゴリ名です。"
     iconEmpty: "アイコン名を入力してください。"
     iconNotExist: "存在しないアイコンです。"
+  sub:
+    nameLang:
+      ko: "サブカテゴリ名（英語または韓国語）"
+      jp: "サブカテゴリ名"
+    edit: "サブカテゴリ登録および編集"
+    create:
+      name: "サブカテゴリ登録"
+    delete:
+      name: "サブカテゴリ削除"
+    error:
+      category: "既に存在していないカテゴリです。"
+      nameEmpty: "サブカテゴリ名を入力してください。"
+      nameMax: "サブカテゴリ名は10桁以内に入力してください。"
+      nameDupl: "既に存在しているサブカテゴリ名です。"
 
 board:
   name: "掲示板"

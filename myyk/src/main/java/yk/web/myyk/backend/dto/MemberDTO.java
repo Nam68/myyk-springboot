@@ -3,7 +3,7 @@ package yk.web.myyk.backend.dto;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.util.enumerated.Region;
 
-public class MemberDto extends BaseDto {
+public class MemberDTO extends BaseDTO {
 
     private long memberIdx;
 
@@ -18,11 +18,11 @@ public class MemberDto extends BaseDto {
     private Region region;
 
     @Deprecated
-    public MemberDto() {
+    public MemberDTO() {
         // nop
     }
 
-    public MemberDto(MemberEntity entity) {
+    public MemberDTO(MemberEntity entity) {
         setMemberIdx(entity.getMemberIdx());
         setEmail(entity.getEmail());
         setPassword(entity.getPassword());
@@ -31,12 +31,12 @@ public class MemberDto extends BaseDto {
         setRegion(entity.getRegion());
     }
 
-    public MemberDto(long memberIdx, String email, String password, String nickname, String nicknameLang, Region region) {
+    public MemberDTO(long memberIdx, String email, String password, String nickname, String nicknameLang, Region region) {
         this(email, password, nickname, nicknameLang, region);
         setMemberIdx(memberIdx);
     }
 
-    public MemberDto(String email, String password, String nickname, String nicknameLang, Region region) {
+    public MemberDTO(String email, String password, String nickname, String nicknameLang, Region region) {
         setEmail(email);
         setPassword(password);
         setNickname(nickname);

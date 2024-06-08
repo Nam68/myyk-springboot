@@ -2,7 +2,7 @@ package yk.web.myyk.backend.service.member;
 
 import java.util.List;
 
-import yk.web.myyk.backend.dto.MemberDto;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.service.BaseService;
 
 public interface FindAllMemberExceptMyself extends BaseService {
@@ -12,5 +12,5 @@ public interface FindAllMemberExceptMyself extends BaseService {
      *d
      * @return 회원 리스트
      */
-    public List<MemberDto> getMemberList();
+    public List<MemberDTO> getMemberList();
 }
