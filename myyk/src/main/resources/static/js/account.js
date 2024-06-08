@@ -166,8 +166,43 @@ function setSubCategoryIdx(modalId, targetElement) {
 }
 
 // 서브 카테고리 생성 클릭
-$('#create-sub-category-modal .btn-primary').on('click', async function () {
-    let url = '';
+$('#create-sub-category-modal .btn-primary').on('click', function () {
+
+    let url = '/account/category/sub/create';
+    let data = getModalParameters('create-sub-category-modal');
+
+    $.ajax({
+    url:url,
+    method:'POST',
+    data:data,
+    beforeSned: function () {
+            openLoading();
+        }
+    })
+    .done(function (result) {
+        let errorCodes = getErrorCodes(result);
+        
+        if (errorCodes == false) {
+            // 등록된 서브 카테고리의 카드 추가
+            // 리로드 할 게 아니면, 편집이랑 삭제버튼의 이벤트 부여 방식을 변경해야함 :: 카테고리 인덱스도 있으니 리로드가 나을 거 같음
+        } else {
+            // data-error-code 비교해서 맞는 애가 있으면, 걔의 인풋에 is-invalid를 부여하는 것만으로도 그 에러 메시지가 보이게 됨
+        }
+    })
+    .fail(function () {
+        alert(globalError);
+    })
+    .always(function () {
+        closeLoading();
+    });
+});
+
+// 삭제 카테고리 생성 클릭
+$('#delete-sub-category-modal .btn-primary').on('click', async function () {
+    
+    getModalParameters('delete-sub-category-modal');
+    
+    let url = '/account/category/sub/create';
     let data = null;
-    getAjaxResult(url, data);
+    //getAjaxResult(url, data);
 });

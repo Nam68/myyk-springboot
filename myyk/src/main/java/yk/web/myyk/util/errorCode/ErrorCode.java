@@ -297,32 +297,32 @@ public enum ErrorCode {
     EE_SC_101("cateogry does not exist."),
 
     /**
-     * <p>카테고리 이름(다언어)이 비어있는 경우.</p>
+     * <p>서브 카테고리 이름이 비어있는 경우.</p>
      */
     EE_SC_102("sub category name is empty."),
 
     /**
-     * <p>카테고리 이름(다언어)이 10자를 초과하는 경우.</p>
+     * <p>서브 카테고리 이름이 10자를 초과하는 경우.</p>
      */
     EE_SC_103("sub category name is too long."),
 
     /**
-     * <p>다른 카테고리 이름(다언어)이 이미 존재하는 경우.</p>
+     * <p>다른 서브 카테고리 이름이 이미 존재하는 경우.</p>
      */
     EE_SC_104("this sub category name exists already."),
 
     /**
-     * <p>카테고리 이름(다언어)이 비어있는 경우.</p>
+     * <p>서브 카테고리 이름(다언어)이 비어있는 경우.</p>
      */
     EE_SC_105("sub category name (other language) is empty."),
 
     /**
-     * <p>카테고리 이름(다언어)이 10자를 초과하는 경우.</p>
+     * <p>서브 카테고리 이름(다언어)이 10자를 초과하는 경우.</p>
      */
     EE_SC_106("sub category name (other language) is too long."),
 
     /**
-     * <p>다른 카테고리 이름(다언어)이 이미 존재하는 경우.</p>
+     * <p>다른 서브 카테고리 이름(다언어)이 이미 존재하는 경우.</p>
      */
     EE_SC_107("this sub category (other language) name exists already."),
 

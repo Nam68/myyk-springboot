@@ -93,22 +93,27 @@ function showModal(modalId) {
     myModal.show();
 }
 
-// ajax
-async function getAjaxResult(url, data) {
-    openLoading();
-    try {
-        return await sendAjax(url, data);
-    } catch (error) {
-        alert(ajaxErrorMsg);
-    } finally {
-        closeLoading();
-    }
+// 모달의 ajax에 보낼 변수를 반환한다.
+function getModalParameters(modalId) {
+
+    let data = new Object();
+    let modalInputs = $('#' + modalId).find('input').toArray();
+
+    modalInputs.forEach(input => {
+        let name = $(input).attr('name');
+        let value = $(input).val();
+        data[name] = value;
+    });
+    
+    return data;
 }
 
-function sendAjax(url, data) {
-    return $.ajax({
-        url: url,
-        method: 'POST',
-        data: data
-    });
+// ajax가 에러인지 아닌지 판단한다.
+// 에러인 경우 : 에러 코드 배열을 반환
+// 에러가 아닌 경우 : false를 반환
+function getErrorCodes(json) {
+    if (json.isError == undefined || json.isError != true) {
+        return false;
+    }
+    return json.codes;
 }

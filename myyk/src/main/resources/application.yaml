@@ -60,3 +60,6 @@ value:
   category:
     name:
       max: 10 #카테고리 이름 최대길이
+    sub:
+      name:
+        max: 10 #서브 카테고리 이름 최대길이

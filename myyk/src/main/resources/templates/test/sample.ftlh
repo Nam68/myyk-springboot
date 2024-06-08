@@ -20,8 +20,6 @@
         <div class="mb-4">
           <label class="form-label"><@msg 'category.name'/></label>
           <div>${holder.categoryName} categoryName(35) </div>
-          <input type="hidden" name="categoryIdx" value="35">
-          <input type="hidden" name="asdfsdf" value="${holder.categoryIdx}">
           <@errorMsg ['EE_SC_101'] 'category.sub.error.category'/>
         </div>
 
@@ -34,13 +32,38 @@
               <div class="d-inline">
                 <@setLanguage selected_language sc.subCategoryNameKo sc.subCategoryNameJp/>
               </div>
-              <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3>
-                <span class="update-sub-category"><i class="bi bi-gear-fill"></i></span>
-                <span class="delete-sub-category"><i class="bi bi-x-lg"></i></span>
+              <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
+                <span class="update-sub-category me-3" role="button" data-sub-category-idx="${sc.subCategoryIdx}"><i class="bi bi-gear-fill"></i></span>
+                <span class="delete-sub-category"      role="button" data-sub-category-idx="${sc.subCategoryIdx}"><i class="bi bi-x-lg"></i></span>
               </div>
             </div>
           </div>
           </#list>
+          
+          
+          <div class="card mb-2">
+            <div class="card-body position-relative">
+              <div class="d-inline">
+                asdfsdfd
+              </div>
+              <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
+                <span class="update-sub-category me-3" role="button" data-sub-category-idx="123"><i class="bi bi-gear-fill"></i></span>
+                <span class="delete-sub-category"      role="button" data-sub-category-idx="123"><i class="bi bi-x-lg"></i></span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card mt-2 mb-2">
+            <div class="card-body position-relative" data-idx="123">
+              <div class="d-inline">
+                asdfsdfd
+              </div>
+              <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
+                <span class="update-sub-category me-3" role="button" data-sub-category-idx="abc"><i class="bi bi-gear-fill"></i></span>
+                <span class="delete-sub-category"      role="button" data-sub-category-idx="abc"><i class="bi bi-x-lg"></i></span>
+              </div>
+            </div>
+           </div>
 
           <#-- 서브 카테고리 생성 -->
           <div class="card mt-2 mb-2">
@@ -63,6 +86,9 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <#-- 카테고리 인덱스 -->
+              <input type="hidden" name="categoryIdx" value="35">
+              <input type="hidden" name="asdfsdf" value="${holder.categoryIdx}">
               <#-- 서브 카테고리 인덱스 -->
               <input type="hidden" name="subCategoryIdx">
               <#-- 서브 카테고리 -->
@@ -100,7 +126,7 @@
             </div>
             <div class="modal-body">
               <#-- 서브 카테고리 인덱스 -->
-              <input type="hidden" name="subCategoryIdx">
+              <input type="text" name="subCategoryIdx">
               <@msg 'global.alert.delete.info'/>
               <br>
               <@msg 'global.alert.delete.confirm'/>

@@ -39,6 +39,19 @@ public class SubCategoryEntity extends BaseEntity {
     }
 
     /**
+     * <p>생성자.</p>
+     *
+     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameJp 서브 카테고리 이름(일본어)
+     * @param sortNo 정렬번호
+     */
+    public SubCategoryEntity(String subCategoryNameKo, String subCategoryNameJp, int sortNo) {
+        setSubCategoryNameKo(subCategoryNameKo);
+        setSubCategoryNameJp(subCategoryNameJp);
+        setSortNo(sortNo);
+    }
+
+    /**
      * <p>서브 카테고리 인덱스를 반환한다.</p>
      *
      * @return 서브 카테고리 인덱스

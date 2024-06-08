@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.backend.service.account.CreateCategory;
+import yk.web.myyk.backend.service.account.CreateSubCategory;
 import yk.web.myyk.backend.service.account.FindCategory;
 import yk.web.myyk.backend.service.account.SearchSubCategoryByCategory;
 import yk.web.myyk.backend.service.account.SearchCategoryByMember;
@@ -53,6 +54,9 @@ public class ServiceFactory {
     private SearchCategoryByMember searchCategoryByMember;
 
     @Autowired
+    private CreateSubCategory createSubCategory;
+
+    @Autowired
     private SearchSubCategoryByCategory searchSubCategoryByCategory;
 
     @Autowired
@@ -96,6 +100,10 @@ public class ServiceFactory {
 
     public SearchCategoryByMember getSearchCategoryByMember() {
         return searchCategoryByMember;
+    }
+
+    public CreateSubCategory getCreateSubCategory() {
+        return createSubCategory;
     }
 
     public SearchSubCategoryByCategory getSearchSubCategoryByCategory() {

@@ -86,6 +86,10 @@ public class Constant {
     private int categoryNameMax;
     private static int staticCategoryNameMax;
 
+    @Value("${value.category.sub.name.max}")
+    private int subCategoryNameMax;
+    private static int staticSubCategoryNameMax;
+
     @PostConstruct
     public void init() {
         Constant.staticHashingSalt = hashingSalt;
@@ -107,6 +111,7 @@ public class Constant {
         Constant.staticUrlTry = urlTry;
         Constant.staticBookNameMax = bookNameMax;
         Constant.staticCategoryNameMax = categoryNameMax;
+        Constant.staticSubCategoryNameMax = subCategoryNameMax;
     }
 
     /**
@@ -237,6 +242,13 @@ public class Constant {
      */
     public static int getCategoryNameMax() {
         return staticCategoryNameMax;
+    }
+
+    /**
+     * @return 서브 카테고리 이름 최대 길이
+     */
+    public static int getSubCategoryNameMax() {
+        return staticSubCategoryNameMax;
     }
 
 

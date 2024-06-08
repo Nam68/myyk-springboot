@@ -7,7 +7,9 @@ import yk.web.myyk.backend.entity.account.SubCategoryEntity;
  */
 public class SubCategoryDTO extends BaseDTO {
 
-    private Long subCategoryIdx;
+    private long categoryIdx;
+
+    private long subCategoryIdx;
 
     private String subCategoryNameKo;
 
@@ -38,18 +40,36 @@ public class SubCategoryDTO extends BaseDTO {
     }
 
     /**
-     * <p>서브 카테고리 IDX를 반환한다.</p>
+     * <p>카테고리 인덱스를 반환한다.</p>
      *
-     * @return 서브 카테고리 IDX
+     * @return 카테고리 인덱스
+     */
+    public long getCategoryIdx() {
+        return categoryIdx;
+    }
+
+    /**
+     * <p>카테고리 인덱스를 설정한다.</p>
+     *
+     * @param categoryIdx 카테고리 인덱스
+     */
+    public void setCategoryIdx(long categoryIdx) {
+        this.categoryIdx = categoryIdx;
+    }
+
+    /**
+     * <p>서브 카테고리 인덱스를 반환한다.</p>
+     *
+     * @return 서브 카테고리 인덱스
      */
     public long getSubCategoryIdx() {
         return subCategoryIdx;
     }
 
     /**
-     * <p>서브 카테고리 IDX를 설정한다.</p>
+     * <p>서브 카테고리 인덱스를 설정한다.</p>
      *
-     * @param subCategoryIdx 서브 카테고리 IDX
+     * @param subCategoryIdx 서브 카테고리 인덱스
      */
     public void setSubCategoryIdx(long subCategoryIdx) {
         this.subCategoryIdx = subCategoryIdx;

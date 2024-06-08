@@ -1,5 +1,8 @@
 package yk.web.myyk.util.exception;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import yk.web.myyk.util.errorCode.ErrorCode;
 
 public class ApiException extends SystemException {
@@ -9,6 +12,8 @@ public class ApiException extends SystemException {
     private String code;
 
     private String message;
+
+    private Map<String, ErrorCode> errors = new HashMap<>();
 
     public ApiException() {
         super();
@@ -25,6 +30,11 @@ public class ApiException extends SystemException {
         this.message = ErrorCode.getErrorMessage(error, clazz);
     }
 
+    public ApiException(Map<String, ErrorCode> errors) {
+        super();
+        this.errors = errors;
+    }
+
     @Override
     public String getMessage() {
         return message;
@@ -32,6 +42,10 @@ public class ApiException extends SystemException {
 
     public String getCode() {
         return code;
+    }
+
+    public Map<String, ErrorCode> getErrors() {
+        return errors;
     }
 
 }
