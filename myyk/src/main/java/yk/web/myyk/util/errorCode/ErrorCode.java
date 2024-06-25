@@ -15,6 +15,7 @@ public enum ErrorCode {
      * EN : 이넘
      * ET : 엔티티
      * IC : 인터셉터
+     * LC : 로케일
      * LG : 로그인
      * MA : 메일
      * SS : 세션값
@@ -94,6 +95,16 @@ public enum ErrorCode {
      * <p>필수 데이터가 세팅되지 않았을 경우의 에러.</p>
      */
     IC_102("data is not set."),
+
+    /**
+     * <p>로케일이 존재하지 않을 경우의 에러.</p>
+     */
+    LC_101("locale does not exist."),
+
+    /**
+     * <p>로케일이 정확하지 않을 경우의 에러.</p>
+     */
+    LC_102("locale is not valid."),
 
     /**
      * <p>로그인 정보가 존재하지 않았을 경우의 에러.</p>

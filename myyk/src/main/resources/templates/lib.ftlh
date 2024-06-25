@@ -31,28 +31,4 @@ const selectedLanguage = '${selected_language}';
 const unselectedLanguage = '${unselected_language}';
 const ajaxErrorMsg = '<@input "alert.error.ajax"/>';
 -->
-// 부트스트랩 아이콘 HTML 코드를 반환
-function getIcon(icon) {
-    return iconHtml.replace(/%s/g, icon);
-}
-
-// API가 성공인지 판단
-function isSuccess(response) {
-    return response == 'SUCCESS';
-}
-
-// ajax 에러 메시지 초기화
-function allErrorOff() {
-    $('.caution').toArray().forEach(msg => {
-        let errorCode = $(msg).attr('data-code');
-        if (errorCode != undefined && errorCode != '') {
-            $(msg).addClass('error-off');
-        }
-    });
-}
-
-// ajax 에러 메시지 보이기
-function errorOn(errorCode) {
-    $('[data-code=' + errorCode + ']').removeClass('error-off');
-}
 </script>

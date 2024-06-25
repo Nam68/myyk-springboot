@@ -62,6 +62,7 @@ public class AccountController extends BaseController {
     public String categoryEdit(HttpServletRequest request) throws SystemException {
 
         SearchCategoryByMember logic = getService().getSearchCategoryByMember();
+        logic.setLocale(getCurrentLocale(AccountController.class));
         logic.excute();
         List<CategoryDTO> list = logic.getCategoryList();
 

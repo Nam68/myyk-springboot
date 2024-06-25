@@ -36,6 +36,34 @@ function centerAlignDiv(target, position) {
     target.css('top', newHeight);
 }
 
+// data-next-icon이 있는 경우 다음 아이콘을 세팅한다.
+function setNextIcon(target) {
+
+    let nextIcon = target.data().nextIcon;
+
+    if (nextIcon == undefined) {
+        nextIcon = target.attr('data-nextIcon');
+        if (nextIcon == undefined) {
+            return false;
+        }
+    }
+
+    let iconClassStartWith = 'bi ';         // 아이콘 시작 문자열
+    let iconClassEndWith = ' ';             // 아이콘 종료 문자열
+
+    let targetClass = target.attr('class');   // 아이콘 전체 클래스
+
+    let firstIndex = targetClass.indexOf(iconClassStartWith) + iconClassStartWith.length; // 더하기가 없으면 bi 도 포함되기 때문
+    let iconClass = targetClass.substring(firstIndex, targetClass.length);
+    
+    
+    let secondIndex = iconClass.indexOf(iconClassEndWith);
+    let currentIcon = iconClass.substring(0, secondIndex); // 현재 아이콘
+
+    target.data('nextIcon', currentIcon);
+    target.attr('class', targetClass.replace(currentIcon, nextIcon));
+}
+
 /**
  * 서브밋 제어
  */
@@ -94,26 +122,95 @@ function showModal(modalId) {
 }
 
 // 모달의 ajax에 보낼 변수를 반환한다.
-function getModalParameters(modalId) {
+function getParametersForModal(modalId) {
 
     let data = new Object();
-    let modalInputs = $('#' + modalId).find('input').toArray();
+    let modalInputs = $('#' + modalId).find('input');
 
-    modalInputs.forEach(input => {
-        let name = $(input).attr('name');
-        let value = $(input).val();
-        data[name] = value;
+    modalInputs.map(function () {
+        let name = $(this).attr('name');
+        let value = $(this).val();
+
+        // 값이 세팅된 경우만 세팅
+        // int 등 빈값으로 세팅할 수 없는 자료형을 위해
+        if (!$.isEmptyObject(value)) {
+            data[name] = value;
+        }
     });
-    
     return data;
 }
 
 // ajax가 에러인지 아닌지 판단한다.
 // 에러인 경우 : 에러 코드 배열을 반환
 // 에러가 아닌 경우 : false를 반환
-function getErrorCodes(json) {
+function getErrorCodesForApi(json) {
+
+    // json 타입이 아닌 경우 파싱
+    if (typeof json == 'string') {
+        json = JSON.parse(json);
+    }
     if (json.isError == undefined || json.isError != true) {
         return false;
     }
     return json.codes;
+}
+
+// ajax를 통해 얻은 에러 코드로 에러 메시지를 표시한다.
+function setErrorMsg(errorCodes) {
+    errorCodes.map(function () {
+        let errorCode = JSON.stringify($(this));
+        errorOn(errorCode);
+    });
+}
+
+// ajax를 통해 얻은 에러 코드로 에러 메시지를 표시한다(단, 표시범위를 모달로 한정).
+function setErrorMsgForModal(errorCodes, modalId) {
+
+    const modalErrorMsgs = $('#' + modalId + ' .invalid-feedback');
+    //errorCodes.map(function () {
+    //    let errorCode = JSON.stringify($(this));
+    //    modalErrorMsgs.find('[data-code=' + errorCode + ']').removeClass('error-off');
+    //});
+    
+    modalErrorMsgs.map(function () {
+        // 에러코드 목록에 없는 에러는 보이지 않도록 삭제
+        if (!inArray(errorCode)) {
+            $(this).addClass('error-off');
+        }
+    });
+    
+}
+
+
+/**
+ * 
+ * 원래 lib.ftlh에 있었던 함수들
+ * lib.ftlh에 있었던 이유가 파악되기 전까지 여기에 수납
+ * 이유가 파악되었다면 다시 lib.ftlh에 옮기고 그쪽에 있는 이유를 코멘트로 남기기
+ * 
+ */
+
+// 부트스트랩 아이콘 HTML 코드를 반환
+function getIcon(icon) {
+    return iconHtml.replace(/%s/g, icon);
+}
+
+// API가 성공인지 판단
+function isSuccess(response) {
+    return response == 'SUCCESS';
+}
+
+// ajax 에러 메시지 초기화
+function allErrorOff() {
+    $('.caution').map(function () {
+        let errorCode = $(this).attr('data-code');
+        if (errorCode != undefined && errorCode != '') {
+            $(this).addClass('error-off');
+        }
+    });
+}
+
+// ajax 에러 메시지 보이기
+function errorOn(errorCode) {
+    $('[data-code=' + errorCode + ']').removeClass('error-off');
 }

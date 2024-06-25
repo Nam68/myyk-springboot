@@ -22,19 +22,17 @@
  * 가계부 등록 편집
  */
 #account-book-list-holder .card,
-#category-list-holder .card,
 #sub-category-list-holder .card {
     color: var(--soft-black);
 }
 #account-book-list-holder .card:hover,
-#category-list-holder .card:hover,
 #sub-category-list-holder .card:hover {
     cursor: default;
     color: var(--soft-black);
 }
 #account-book-list-holder .card:last-child:hover,
-#category-list-holder .card:last-child:hover,
-#sub-category-list-holder .card:last-child:hover {
+#sub-category-list-holder .card:last-child:hover
+ {
     background-color: var(--primary-color-faint);
 }
 #auth-member-holder {
@@ -46,4 +44,17 @@
 #category-icon-holder {
     color: #9eeaf9;
     font-size: 2.5rem;
+}
+
+/*
+ * 카테고리
+ */
+
+#create-category-card:hover,
+.create-sub-category-card:hover {
+    background-color: var(--primary-color-faint);
+}
+
+.sub-category-card-holder {
+    display: none;
 }

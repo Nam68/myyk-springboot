@@ -1,5 +1,7 @@
 package yk.web.myyk.backend;
 
+import java.util.Locale;
+
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -81,6 +83,32 @@ public class BaseMvc extends BaseApp {
                 throw new SystemException(ErrorCode.SS_103, clazz);
             }
             return lang;
+        } catch (ClassCastException e) {
+            throw new SystemException(ErrorCode.SS_102, clazz);
+        }
+    }
+
+    /**
+     * <p>세션에 설정되어있는 로케일을 반환한다.</p>
+     *
+     * @param clazz 메서드를 사용하는 클래스
+     * @return 로케일
+     */
+    protected Locale getCurrentLocale(Class<? extends BaseMvc> clazz) {
+        HttpSession session = getCurrentSession();
+
+        Object langObj = session.getAttribute(KeyName.SELECTED_LANGUAGE);
+        if (langObj == null) {
+            throw new SystemException(ErrorCode.SS_101, clazz);
+        }
+
+        try {
+            String lang = (String) langObj;
+            if (!MyLocale.isKorean(lang) && !MyLocale.isJapanese(lang)) {
+                throw new SystemException(ErrorCode.SS_103, clazz);
+            }
+            return MyLocale.parseLocale(lang);
+
         } catch (ClassCastException e) {
             throw new SystemException(ErrorCode.SS_102, clazz);
         }

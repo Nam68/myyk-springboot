@@ -40,14 +40,6 @@
             </div>
           </div>
           </#list>
-
-          <#-- 서브 카테고리 생성 -->
-          <div class="card mt-2 mb-2">
-            <div class="card-body position-relative" role="button" data-bs-toggle="modal" data-bs-target="#create-sub-category-modal">
-              <div class="d-inline"><i class="bi bi-plus-lg"></i>&nbsp;<@msg 'category.sub.create.name'/></div>
-            </div>
-          </div>
-
         </div>
       </form>
 
@@ -62,6 +54,8 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <#-- 카테고리 인덱스 -->
+              <input type="hidden" name="categoryIdx" value="35">
               <#-- 서브 카테고리 인덱스 -->
               <input type="hidden" name="subCategoryIdx">
               <#-- 서브 카테고리 -->
