@@ -22,12 +22,12 @@
         <div id="category-list-holder">
           <#list holder.categoryList as category>
           <#-- 카테고리 카드 -->
-          <div class="card mb-2" data-idx="${category.categoryIdx}">
+          <div class="card mb-2 category-card" data-idx="${category.categoryIdx}">
 
             <div class="card-body">
               <@setLanguage selected_language category.categoryNameKo category.categoryNameJp/>
               <div class="d-inline position-absolute end-0 pe-3">
-                <span class="me-3" role="button"><div class="d-inline" data-bs-toggle="collapse" data-bs-target="#sub-category-list-holder-for-${category.categoryIdx}"><i class="safs f bi bi-caret-down-fill 213214" data-next-icon="bi-caret-up-fill"></i></div></span>
+                <span class="me-3" role="button"><i class="bi bi-caret-down-fill" data-next-icon="bi-caret-up-fill"></i></span>
                 <span class="me-3" role="button"><i class="bi bi-gear-fill"></i></span>
                 <span role="button"><i class="bi bi-x-lg"></i></span>
               </div>
@@ -43,8 +43,8 @@
                   <div class="card-body position-relative">
                     <div class="d-inline">${category.subCategoryList[subCategoryIdx]}</div>
                     <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3">
-                      <span class="update-sub-category me-3" role="button"><i class="bi bi-gear-fill" data-sub-category-idx="${subCategoryIdx}"></i></span>
-                      <span class="delete-sub-category me-3" role="button"><i class="bi bi-x-lg"></i></span>
+                      <span class="update-sub-category me-3" role="button" data-sub-category-idx="${subCategoryIdx}"><i class="bi bi-gear-fill"></i></span>
+                      <span class="delete-sub-category me-3" role="button" data-sub-category-idx="${subCategoryIdx}"><i class="bi bi-x-lg"></i></span>
                     </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@
               </#if>
 
                 <#-- 서브 카테고리 생성 카드 -->
-                <div class="card create-sub-category-card mb-2" role="button" data-bs-toggle="modal" data-bs-target="#create-sub-category-modal">
+                <div class="card create-sub-category-card mb-2" role="button">
                   <div class="card-body position-relative">
                     <div class="d-inline" role="button"><i class="bi bi-plus-lg"></i>&nbsp;<@msg "category.sub.create.name"/></div>
                   </div>
@@ -89,7 +89,7 @@
         </div>
         <div class="modal-body">
           <#-- 카테고리 인덱스 -->
-          <input type="hidden" name="categoryIdx" value="35">
+          <input type="hidden" name="categoryIdx">
           <#-- 서브 카테고리 인덱스 -->
           <input type="hidden" name="subCategoryIdx">
           <#-- 서브 카테고리 -->

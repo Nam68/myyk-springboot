@@ -307,7 +307,7 @@ footer {
     width: 120%;
     height: 120%;
     background-color: rgba(230, 230, 230, 0.7);
-    z-index: 1001;
+    z-index: 10001;
 }
 
 #loading-spinner {
@@ -315,7 +315,7 @@ footer {
     position: fixed;
     width: 2rem;
     height: 2rem;
-    z-index: 1001;
+    z-index: 10002;
 }
 
 

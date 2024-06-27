@@ -57,10 +57,12 @@ function setNextIcon(target) {
     let iconClass = targetClass.substring(firstIndex, targetClass.length);
     
     
-    let secondIndex = iconClass.indexOf(iconClassEndWith);
+    let secondIndex = iconClass.indexOf(iconClassEndWith) > 0 ? iconClass.indexOf(iconClassEndWith) : iconClass.length;
     let currentIcon = iconClass.substring(0, secondIndex); // 현재 아이콘
 
     target.data('nextIcon', currentIcon);
+    target.attr('data-next-icon', currentIcon);
+
     target.attr('class', targetClass.replace(currentIcon, nextIcon));
 }
 
@@ -115,12 +117,6 @@ function backWithUrl(url) {
     closeLoading();
 }
 
-// 모달 수동 오픈
-function showModal(modalId) {
-    const myModal = new bootstrap.Modal('#' + modalId);
-    myModal.show();
-}
-
 // 모달의 ajax에 보낼 변수를 반환한다.
 function getParametersForModal(modalId) {
 
@@ -165,22 +161,56 @@ function setErrorMsg(errorCodes) {
 
 // ajax를 통해 얻은 에러 코드로 에러 메시지를 표시한다(단, 표시범위를 모달로 한정).
 function setErrorMsgForModal(errorCodes, modalId) {
-
-    const modalErrorMsgs = $('#' + modalId + ' .invalid-feedback');
-    //errorCodes.map(function () {
-    //    let errorCode = JSON.stringify($(this));
-    //    modalErrorMsgs.find('[data-code=' + errorCode + ']').removeClass('error-off');
-    //});
-    
-    modalErrorMsgs.map(function () {
-        // 에러코드 목록에 없는 에러는 보이지 않도록 삭제
-        if (!inArray(errorCode)) {
-            $(this).addClass('error-off');
-        }
+    errorCodes.forEach(errorCode => {
+        const errorMsgHolder = $('#' + modalId + ' [data-error-code=' + errorCode + ']');
+        const errorInput = errorMsgHolder.parent().find('.form-control');
+        errorInput.addClass('is-invalid');
+        errorInput.parent().find('.invalid-feedback').hide();
+        errorMsgHolder.show();
     });
-    
 }
 
+// 모달 초기화
+function initModal(modalId) {
+    let inputs = $('#' + modalId).find('input').toArray();
+    inputs.forEach(input => {
+        $(input).val('');                   // 입력 삭제
+        $(input).removeClass('is-invalid'); // 에러 클래스 삭제
+    });
+}
+
+/**
+ * 부트스트랩 제어
+ */
+
+// 모달 열기
+function showModal(modalId) {
+    const myModal = new bootstrap.Modal('#' + modalId, {focus: true});
+    myModal.show();
+}
+
+// 콜랩스 열기
+function showCollapse(collapseId) {
+    const myCollapse = new bootstrap.Collapse('#' + collapseId, {toggle: false});
+    myCollapse.show();
+}
+
+// 콜랩스 닫기
+function hideCollapse(collapseId) {
+    const myCollapse = new bootstrap.Collapse('#' + collapseId, {toggle: false});
+    myCollapse.hide();
+}
+
+// 콜랩스 토글
+function toggleCollapse(collapseId) {
+    const collapse = $('#' + collapseId);
+    const myCollapse = new bootstrap.Collapse('#' + collapseId, {toggle: false});
+    if (collapse.attr('class').includes('show')) {
+        myCollapse.hide();
+    } else {
+        myCollapse.show();
+    }
+}
 
 /**
  * 

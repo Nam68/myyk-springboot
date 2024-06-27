@@ -59,19 +59,6 @@ function writeAuthTrigger(readAuth) {
  * 카테고리
  */
 
-// 서브카테고리 열기
-$('.bi-caret-down-fill').on('click', function () {
-    // 화살표 아이콘 반전
-    setNextIcon($(this));
-
-    // 다른 서브 카테고리 숨기기
-    //$('.sub-category-card-holder').slideUp();
-
-    // 서브 카테고리 표시
-    //const subCategoryCardHolder = $(this).parents('.card').next('.sub-category-card-holder');
-    //subCategoryCardHolder.slideDown();
-});
-
 // 카테고리 등록
 $('#category-list-holder .card-body:last').on('click', function () {
     location.href='/account/category/create/input';
@@ -86,7 +73,7 @@ $('.category-icon-dropdown-item li').on('click', function () {
 
     // 직접입력 창을 클릭한 것이 아닐 때
     if (icon != undefined) {
-        hideIconCollapse();
+        closeCollapse('icon-collapse');
         $('#category-icon-holder').html(getIcon(icon));
     } else {
         $('#category-icon-holder').html(' - ');
@@ -103,7 +90,7 @@ $('#icon-input-button').on('click', async function () {
         url:'/bootstrap/checkIconName',
         method:'POST',
         data:{iconName: iconName},
-        beforeSned: function () {
+        beforeSend: function () {
             openLoading();
         }
     })
@@ -116,7 +103,7 @@ $('#icon-input-button').on('click', async function () {
             setErrorMsg(errorCodes);
         } else {
             $('#category-icon-holder').html(getIcon(iconName));
-            hideIconCollapse();
+            hideCollapse('icon-collapse');
         }
     })
     .fail(function () {
@@ -126,12 +113,6 @@ $('#icon-input-button').on('click', async function () {
         closeLoading();
     });
 });
-
-// 직접입력창을 닫음
-function hideIconCollapse() {
-    const iconCollapse = new bootstrap.Collapse('#icon-collapse', {toggle: false});
-    iconCollapse.hide();
-}
 
 // 컬러피커
 $('#category-color-picker').spectrum({
@@ -148,6 +129,22 @@ $('#category-color-picker').spectrum({
  * 서브 카테고리
  */
 
+// 서브카테고리 콜랩스 열기
+$('.bi-caret-down-fill').on('click', function () {
+    
+    //
+    //
+    // TODO 서브 카테고리 리스트 얻어오는 모달
+    //
+    //
+    
+    // 화살표 아이콘 반전
+    setNextIcon($(this));
+
+    let targetSubCategoryHolder = $(this).parents('.category-card').find('.collapse').attr('id');
+    toggleCollapse(targetSubCategoryHolder);
+});
+
 // 서브 카테고리 편집 모달 열기
 $('.update-sub-category').on('click', function() {
     setSubCategoryIdx('create-sub-category-modal', $(this));
@@ -162,28 +159,7 @@ $('.delete-sub-category').on('click', function() {
 
 // 서브 카테고리 생성 모달이 닫힐 때 내용 삭제
 $('#create-sub-category-modal').on('hidden.bs.modal', function() {
-    let inputs = $(this).find('input').toArray();
-    inputs.forEach(input => {
-        if ($(input).attr('name') == 'categoryIdx') {
-            return;
-        }
-        $(input).val('');                   // 입력 삭제
-        $(input).removeClass('is-invalid'); // 에러 클래스 삭제
-    });
-
-    /**
-     * 
-     * 
-     * is-invalid 클래스를 없애는 것만으로는 여전히 보이는지 찾아보기
-     * 여전히 보인다면, 까먹지 않게 코멘트 남기기
-     * 
-     * 
-     */
-    
-    //let errors = $(this).find('.invalid-feedback').toArray();
-    //errors.forEach(error => {
-    //    $(error).hidden();                  // 에러 메시지 삭제
-    //});
+    initModal($(this).attr('id'));
 });
 
 // 각종 모달에 서브 카테고리 인덱스 전달
@@ -193,6 +169,25 @@ function setSubCategoryIdx(modalId, targetElement) {
     subCategoryIdxInput.val(subCategoryIdx);
 }
 
+// 서브 카테고리 생성 모달 열기
+$('.create-sub-category-card').on('click', function () {
+    const categoryCard = $(this).parents('.category-card');
+
+    // 서브 카테고리 콜랩스 닫기
+    let targetSubCategoryHolder = categoryCard.find('.collapse').attr('id');
+    hideCollapse(targetSubCategoryHolder);
+    // 화살표 아이콘 반전
+    const arrowIcon = $(this).parents('.category-card').find('.bi-caret-up-fill');
+    setNextIcon(arrowIcon);
+
+    // 서브 카테고리 생성 모달에 카테고리 인덱스 설정
+    let categoryIdx = categoryCard.data('idx');
+    $('#create-sub-category-modal [name=categoryIdx]').val(categoryIdx);
+
+    // 모달 오픈
+    showModal('create-sub-category-modal');
+});
+
 // 서브 카테고리 생성 클릭
 $('#create-sub-category-modal .btn-primary').on('click', function () {
 
@@ -200,25 +195,20 @@ $('#create-sub-category-modal .btn-primary').on('click', function () {
     let data = getParametersForModal('create-sub-category-modal');
 
     $.ajax({
-    url:url,
-    method:'POST',
-    data:data,
-    beforeSned: function () {
+        url:url,
+        method:'POST',
+        data:data,
+        beforeSend: function () {
             openLoading();
         }
     })
     .done(function (result) {
-
-        allErrorOff();
         let errorCodes = getErrorCodesForApi(result);
 
         if (errorCodes == false) {
-            // 등록된 서브 카테고리의 카드 추가
-            // 리로드 할 게 아니면, 편집이랑 삭제버튼의 이벤트 부여 방식을 변경해야함 :: 카테고리 인덱스도 있으니 리로드가 나을 거 같음
+            // 서브카테고리 등록되는지 확인하고 등록이 되는 거면 != false 로 수정
         } else {
-            // data-error-code 비교해서 맞는 애가 있으면, 걔의 인풋에 is-invalid를 부여하는 것만으로도 그 에러 메시지가 보이게 됨
-            
-            
+            setErrorMsgForModal(errorCodes, 'create-sub-category-modal');
         }
     })
     .fail(function () {
