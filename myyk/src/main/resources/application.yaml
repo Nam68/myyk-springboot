@@ -3,8 +3,8 @@ spring:
     import: 
       - application-data.yaml
       - application-mail.yaml
-      - classpath:/mail/yaml/mail-template-ko.yaml
-      - classpath:/mail/yaml/mail-template-jp.yaml
+      - mail-template-ko.yaml
+      - mail-template-jp.yaml
   jpa:
     show-sql: true
     hibernate:
@@ -58,8 +58,10 @@ value:
     name:
       max: 10 #가계부 이름 최대길이
   category:
+    limit: 20 #카테고리 최대치
     name:
       max: 10 #카테고리 이름 최대길이
     sub:
+      limit: 10 #서브 카테고리 최대치
       name:
         max: 10 #서브 카테고리 이름 최대길이

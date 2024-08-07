@@ -134,4 +134,21 @@ public class BaseChecker extends BaseApp {
         return true;
     }
 
+    /**
+     * <p>제한을 넘었는지 검증한다.
+     * <br>제한을 넘는다면 true를 반환한다.
+     * <br>제한과 동률이어도 true를 반환한다.</p>
+     *
+     * @param limit 제한
+     * @param targetLength 대상 숫자
+     * @return
+     */
+    protected static boolean isWithoutLimit(int limit, int targetLength) {
+
+        if (limit <= targetLength) {
+            return true;
+        }
+        return false;
+    }
+
 }

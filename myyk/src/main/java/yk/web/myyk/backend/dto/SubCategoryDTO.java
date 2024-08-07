@@ -7,15 +7,15 @@ import yk.web.myyk.backend.entity.account.SubCategoryEntity;
  */
 public class SubCategoryDTO extends BaseDTO {
 
-    private long categoryIdx;
+    private long categoryIdx = 0;
 
-    private long subCategoryIdx;
+    private long subCategoryIdx = 0;
 
-    private String subCategoryNameKo;
+    private String subCategoryNameKo = "";
 
-    private String subCategoryNameJp;
+    private String subCategoryNameJp = "";
 
-    private int sortNo;
+    private int sortNo = 0;
 
     /**
      * <p>생성자.</p>
@@ -33,6 +33,7 @@ public class SubCategoryDTO extends BaseDTO {
      * @param entity 엔티티
      */
     public SubCategoryDTO(SubCategoryEntity entity) {
+        setCategoryIdx(entity.getCategory().getCategoryIdx());
         setSubCategoryIdx(entity.getSubCategoryIdx());
         setSubCategoryNameKo(entity.getSubCategoryNameKo());
         setSubCategoryNameJp(entity.getSubCategoryNameJp());

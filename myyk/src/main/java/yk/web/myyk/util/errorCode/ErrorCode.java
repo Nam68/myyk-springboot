@@ -231,6 +231,11 @@ public enum ErrorCode {
     EE_CA_110("category color code is wrong."),
 
     /**
+     * <p>카테고리 최대치를 초과한 경우.</p>
+     */
+    EE_CA_111("category is full."),
+
+    /**
      * <p>이메일 로컬파트가 빈 값인 경우.</p>
      */
     EE_ME_101("local part of email can not empty."),
@@ -336,6 +341,11 @@ public enum ErrorCode {
      * <p>다른 서브 카테고리 이름(다언어)이 이미 존재하는 경우.</p>
      */
     EE_SC_107("this sub category (other language) name exists already."),
+
+    /**
+     * <p>서브 카테고리 최대치를 초과한 경우.</p>
+     */
+    EE_SC_108("sub category is full."),
 
 
     /*

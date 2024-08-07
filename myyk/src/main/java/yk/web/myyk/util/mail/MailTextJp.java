@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
  * <p>메일의 일본어 언어설정.</p>
  */
 @Configuration
-@PropertySource("classpath:/mail/yaml/mail-template-jp.yaml")
+@PropertySource("classpath:/mail-template-jp.yaml")
 public class MailTextJp implements MailText {
 
     ///////////////////////////////////////////
@@ -17,26 +17,29 @@ public class MailTextJp implements MailText {
 
     @Value("${signup.jp.subject}")
     private String signupSubject;
-    
+
     @Value("${signup.jp.text}")
     private String signupText;
 
     @Value("${signup.jp.code}")
     private String signupCode;
-    
+
     ///////////////////////////////////////////
     // 회원가입 이메일 확인
 
+    @Override
     @Autowired
     public String signupSubject() {
         return signupSubject;
     }
 
+    @Override
     @Autowired
     public String signupText() {
         return signupText;
     }
 
+    @Override
     @Autowired
     public String signupCode() {
         return signupCode;

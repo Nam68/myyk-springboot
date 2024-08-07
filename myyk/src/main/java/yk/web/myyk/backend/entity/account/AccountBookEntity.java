@@ -22,7 +22,7 @@ import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.TaxRate;
 
 @Entity
-@Table(name = "ACCOUNT_BOOK_TABLE")
+@Table(name = "ACCOUNT_BOOK_TBL")
 public class AccountBookEntity extends BaseEntityWithTime {
 
     @Id

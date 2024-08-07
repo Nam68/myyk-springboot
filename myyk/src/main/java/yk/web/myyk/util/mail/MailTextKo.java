@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
  * <p>메일의 한국어 설정.</p>
  */
 @Configuration
-@PropertySource("classpath:/mail/yaml/mail-template-ko.yaml")
+@PropertySource("classpath:/mail-template-ko.yaml")
 public class MailTextKo implements MailText {
 
     ///////////////////////////////////////////
@@ -17,26 +17,29 @@ public class MailTextKo implements MailText {
 
     @Value("${signup.ko.subject}")
     private String signupSubject;
-    
+
     @Value("${signup.ko.text}")
     private String signupText;
-    
+
     @Value("${signup.ko.code}")
     private String signupCode;
 
     ///////////////////////////////////////////
     // 회원가입 이메일 확인
 
+    @Override
     @Autowired
     public String signupSubject() {
         return signupSubject;
     }
 
+    @Override
     @Autowired
     public String signupText() {
         return signupText;
     }
 
+    @Override
     @Autowired
     public String signupCode() {
         return signupCode;

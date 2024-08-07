@@ -88,7 +88,7 @@ public class CreateTmpMemberCodeController extends BaseController {
         // 지금은 임시회원코드 입력화면에 임시회원코드를 넣기 위해서 홀더를 사용 중.
         // 원래는 이메일 홀더응 이용해 임시회원 생성 완료 화면으로 전환해야 함.
         setHolder(request, new TmpCodeHolder(logic.getTmpCode()));
-        return INPUT;
+        return "member/checkTmpMemberCodeInput";
 //      getService().getEmail().sendTmpMemberCode(emailForm, tmpCode);
 //      return COMPLETE_REDIRECT;
     }

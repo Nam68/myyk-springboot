@@ -32,11 +32,13 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
 
     private String subCategoryNameJp;
 
-    private long categoryIdx;
+    private Long categoryIdx;
 
     private SubCategoryDTO subCategory;
 
     private Integer sortNo;
+
+    private CategoryEntity category;
 
     @Override
     public void setSubCategoryNameKo(String subCategoryNameKo) {
@@ -65,8 +67,8 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
             throw new AppException(errors);
         }
 
-        /*
-         * 이름이 같은 카테고리가 있는지 검증
+        /**
+         * 로그인 정보를 통한 서브 카테고리 취득
          */
 
         LoginInfo loginInfo = getLoginInfo(CreateCategoryLogic.class);
@@ -79,8 +81,14 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
         if (!categoryOptional.isPresent()) {
             throw new SystemException(ErrorCode.EE_SC_101, CreateSubCategoryLogic.class);
         }
+        this.category = categoryOptional.get();
 
         List<SubCategoryEntity> subCategoryEntityList = categoryOptional.get().getSubCategoryList();
+
+        /**
+         * 이름이 같은 카테고리가 있는지 검증
+         */
+
         for (SubCategoryEntity subCategoryEntity : subCategoryEntityList) {
             // 중복되는 이름이 있으면 에러 리스트에 추가
             if (subCategoryEntity.getSubCategoryNameKo().equals(subCategoryNameKo)) {
@@ -105,6 +113,15 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
         if (!errors.isEmpty()) {
             throw new AppException(errors);
         }
+
+        /**
+         * 서브 카테고리 숫자가 최대치를 초과하는지 검증
+         */
+
+        errors.putAll(SubCategoryChecker.checkSubCategoryLimit(subCategoryEntityList.size()));
+        if (!errors.isEmpty()) {
+            throw new AppException(errors);
+        }
     }
 
     @Override
@@ -115,7 +132,7 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
             this.sortNo = Constant.getFirst();
         }
 
-        SubCategoryEntity entity = new SubCategoryEntity(subCategoryNameKo, subCategoryNameJp, sortNo);
+        SubCategoryEntity entity = new SubCategoryEntity(subCategoryNameKo, subCategoryNameJp, sortNo, category);
         createSubCategory(entity);
 
         this.subCategory = new SubCategoryDTO(entity);

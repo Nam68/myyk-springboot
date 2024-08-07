@@ -16,6 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import yk.web.myyk.util.constant.Constant;
+import yk.web.myyk.util.constant.KeyName;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 

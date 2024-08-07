@@ -53,4 +53,21 @@ public class SubCategoryChecker extends BaseChecker {
 
         return errors;
     }
+
+    /**
+     * <p>서브 카테고리 최대치를 검증한다.</p>
+     *
+     * @param currentSubCategoryLength 현재 서브 카테고리 수
+     * @return 에러 리스트
+     */
+    public static Map<String, ErrorCode> checkSubCategoryLimit(int currentSubCategoryLength) {
+
+        Map<String, ErrorCode> errors = new HashMap<>();
+
+        if (isWithoutLimit(Constant.getSubCategoryLimit(), currentSubCategoryLength)) {
+            setError(errors, ErrorCode.EE_SC_108);
+        }
+
+        return errors;
+    }
 }

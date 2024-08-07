@@ -8,7 +8,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.BaseApp;
-import yk.web.myyk.util.KeyName;
+import yk.web.myyk.util.constant.KeyName;
 import yk.web.myyk.util.constant.MyLocale;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;

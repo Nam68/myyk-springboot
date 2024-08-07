@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.backend.service.account.CreateCategory;
 import yk.web.myyk.backend.service.account.CreateSubCategory;
+import yk.web.myyk.backend.service.account.CreateSubCategoryCardHtml;
+import yk.web.myyk.backend.service.account.DeleteSubCategory;
 import yk.web.myyk.backend.service.account.FindCategory;
 import yk.web.myyk.backend.service.account.SearchSubCategoryByCategory;
 import yk.web.myyk.backend.service.account.SearchCategoryByMember;
@@ -53,11 +55,25 @@ public class ServiceFactory {
     @Autowired
     private SearchCategoryByMember searchCategoryByMember;
 
+    /**
+     * 서브 카테고리
+     */
+
     @Autowired
     private CreateSubCategory createSubCategory;
 
     @Autowired
+    private CreateSubCategoryCardHtml createSubCategoryCardHtml;
+
+    @Autowired
     private SearchSubCategoryByCategory searchSubCategoryByCategory;
+
+    @Autowired
+    private DeleteSubCategory deleteSubCategory;
+
+    /**
+     * 외부 접속
+     */
 
     @Autowired
     private CheckBootstrapIcon checkBootstrapIcon;
@@ -106,8 +122,16 @@ public class ServiceFactory {
         return createSubCategory;
     }
 
+    public CreateSubCategoryCardHtml getCreateSubCategoryCardHtml() {
+        return createSubCategoryCardHtml;
+    }
+
     public SearchSubCategoryByCategory getSearchSubCategoryByCategory() {
         return searchSubCategoryByCategory;
+    }
+
+    public DeleteSubCategory getDeleteSubCategory() {
+        return deleteSubCategory;
     }
 
     public CheckBootstrapIcon getCheckBootstrapIcon() {

@@ -40,6 +40,7 @@ public class MemberDTO extends BaseDTO {
         setEmail(email);
         setPassword(password);
         setNickname(nickname);
+        setNicknameLang(nicknameLang);
         setRegion(region);
     }
 

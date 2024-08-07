@@ -94,4 +94,20 @@ public class CategoryChecker extends BaseChecker {
 
         return errors;
     }
+
+    /**
+     * <p>카테고리 제한을 검증한다.</p>
+     *
+     * @param currentCategoryLength 현재 카테고리 수
+     * @return 에러 리스트
+     */
+    public static Map<String, ErrorCode> checkCategoryLimit(int currentCategoryLength) {
+
+        Map<String, ErrorCode> errors = new HashMap<>();
+
+        if (isWithoutLimit(Constant.getCategoryLimit(), currentCategoryLength)) {
+            setError(errors, ErrorCode.EE_CA_111);
+        }
+        return errors;
+    }
 }

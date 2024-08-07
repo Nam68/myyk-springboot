@@ -82,9 +82,17 @@ public class Constant {
     private int bookNameMax;
     private static int staticBookNameMax;
 
+    @Value("${value.category.limit}")
+    private int categoryLimit;
+    private static int staticCategoryLimit;
+
     @Value("${value.category.name.max}")
     private int categoryNameMax;
     private static int staticCategoryNameMax;
+
+    @Value("${value.category.sub.limit}")
+    private int subCategoryLimit;
+    private static int staticSubCategoryLimit;
 
     @Value("${value.category.sub.name.max}")
     private int subCategoryNameMax;
@@ -110,7 +118,9 @@ public class Constant {
         Constant.staticUrlTimeout = urlTimeout;
         Constant.staticUrlTry = urlTry;
         Constant.staticBookNameMax = bookNameMax;
+        Constant.staticCategoryLimit = categoryLimit;
         Constant.staticCategoryNameMax = categoryNameMax;
+        Constant.staticSubCategoryLimit = subCategoryLimit;
         Constant.staticSubCategoryNameMax = subCategoryNameMax;
     }
 
@@ -238,10 +248,24 @@ public class Constant {
     }
 
     /**
+     * @return 카테고리 최대치
+     */
+    public static int getCategoryLimit() {
+        return staticCategoryLimit;
+    }
+
+    /**
      * @return 카테고리 이름 최대 길이
      */
     public static int getCategoryNameMax() {
         return staticCategoryNameMax;
+    }
+
+    /**
+     * @return 서브 카테고리 최대치
+     */
+    public static int getSubCategoryLimit() {
+        return staticSubCategoryLimit;
     }
 
     /**

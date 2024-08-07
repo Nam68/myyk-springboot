@@ -10,10 +10,10 @@ public class MyConfig {
     @Primary
     @Bean
     public freemarker.template.Configuration freemarkerConfiguration() {
-        freemarker.template.Configuration freemarkerConfiguration = 
+        freemarker.template.Configuration freemarkerConfiguration =
             new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_31);
-        freemarkerConfiguration.setClassForTemplateLoading(this.getClass(), "/mail/");
+        freemarkerConfiguration.setClassForTemplateLoading(this.getClass(), "/module/");
         return freemarkerConfiguration;
     }
-	
+
 }

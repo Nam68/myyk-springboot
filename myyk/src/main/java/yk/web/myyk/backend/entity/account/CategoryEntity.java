@@ -8,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -38,7 +39,7 @@ public class CategoryEntity extends BaseEntity {
     @Column(name = "SORT_NO")
     private int sortNo;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<SubCategoryEntity> subCategoryList;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = MemberEntity.class)
@@ -47,6 +48,10 @@ public class CategoryEntity extends BaseEntity {
     @Deprecated
     public CategoryEntity() {
         // nop
+    }
+    @Deprecated
+    public CategoryEntity(long categoryIdx) {
+        this.categoryIdx = categoryIdx;
     }
 
     public CategoryEntity(String categoryNameKo, String categoryNameJp, String categoryColor, String categoryIcon, int sortNo, MemberEntity member) {
@@ -146,6 +151,15 @@ public class CategoryEntity extends BaseEntity {
      */
     public List<SubCategoryEntity> getSubCategoryList() {
         return subCategoryList;
+    }
+
+    /**
+     * <p>서브 카테고리 하나를 리스트에 추가한다.</p>
+     *
+     * @param subCategory 서브 카테고리
+     */
+    public void setSubCategory(SubCategoryEntity subCategory) {
+        subCategoryList.add(subCategory);
     }
 
     /**

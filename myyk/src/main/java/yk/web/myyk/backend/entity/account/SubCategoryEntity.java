@@ -6,7 +6,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.entity.BaseEntity;
@@ -29,8 +28,7 @@ public class SubCategoryEntity extends BaseEntity {
     @Column(name = "SORT_NO")
     private int sortNo;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = CategoryEntity.class)
-    @JoinColumn(name = "CATEGORY_IDX")
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CategoryEntity.class)
     private CategoryEntity category;
 
     @Deprecated
@@ -45,10 +43,11 @@ public class SubCategoryEntity extends BaseEntity {
      * @param subCategoryNameJp 서브 카테고리 이름(일본어)
      * @param sortNo 정렬번호
      */
-    public SubCategoryEntity(String subCategoryNameKo, String subCategoryNameJp, int sortNo) {
+    public SubCategoryEntity(String subCategoryNameKo, String subCategoryNameJp, int sortNo, CategoryEntity category) {
         setSubCategoryNameKo(subCategoryNameKo);
         setSubCategoryNameJp(subCategoryNameJp);
         setSortNo(sortNo);
+        setCategory(category);
     }
 
     /**
@@ -56,7 +55,7 @@ public class SubCategoryEntity extends BaseEntity {
      *
      * @return 서브 카테고리 인덱스
      */
-    public Long getSubCategoryIdx() {
+    public long getSubCategoryIdx() {
         return subCategoryIdx;
     }
 
@@ -103,6 +102,15 @@ public class SubCategoryEntity extends BaseEntity {
      */
     public CategoryEntity getCategory() {
         return category;
+    }
+
+    /**
+     * <p>카테고리를 설정한다.</p>
+     *
+     * @param category 카테고리
+     */
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
     }
 
     /**

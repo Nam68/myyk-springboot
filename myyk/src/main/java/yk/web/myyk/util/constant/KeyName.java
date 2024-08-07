@@ -1,4 +1,4 @@
-package yk.web.myyk.util;
+package yk.web.myyk.util.constant;
 
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 

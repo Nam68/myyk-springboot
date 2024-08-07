@@ -1,4 +1,4 @@
-package yk.web.myyk.util.mail;
+package yk.web.myyk.util.config;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,8 +13,11 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import yk.web.myyk.backend.dto.holder.BaseHolder;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
+import yk.web.myyk.util.mail.MailTemplateName;
+import yk.web.myyk.util.mail.MailText;
 import yk.web.myyk.util.mail.holder.BaseMailHolder;
 
 /**
@@ -41,9 +44,9 @@ public class FreeMarkerFactory {
     private Map<String, Object> parameter = new HashMap<>();
 
     /**
-     * <p>템플레이트 이름을 설정한다. 
+     * <p>템플레이트 이름을 설정한다.
      * <br>모든 템플레이트 이름은 {@link MailTemplateName}에 등록해서 사용한다.</p>
-     * 
+     *
      * @param templateName 템플레이트 이름
      * @return 메일템플레이트
      */
@@ -54,10 +57,10 @@ public class FreeMarkerFactory {
 
     /**
      * <p>프리마커 변수를 설정한다.
-     * 
+     *
      * @param key 프리마커 템플레이트 상의 변수 이름
      * @param value 유저에게 보여지는 내용. 다언어대응을 위해 모든 값은 {@link MailText}에 등록한 후 사용한다.</p>
-     * @return 메일템플레이트
+     * @return 템플레이트
      */
     public FreeMarkerFactory setParameter(String key, String value) {
         this.parameter.put(key, value);
@@ -66,7 +69,18 @@ public class FreeMarkerFactory {
 
     /**
      * <p>프리마커 변수를 설정한다.
-     * 
+     *
+     * @param holder 유저에게 보여지는 내용.</p>
+     * @return 템플레이트
+     */
+    public <T extends BaseHolder> FreeMarkerFactory setParameter(T holder) {
+        this.parameter.put("holder", holder);
+        return this;
+    }
+
+    /**
+     * <p>프리마커 변수를 설정한다.
+     *
      * @param holder 유저에게 보여지는 내용.</p>
      * @return 메일템플레이트
      */
@@ -77,19 +91,19 @@ public class FreeMarkerFactory {
 
     /**
      * <p>프리마커 변수를 설정한다.
-     * 
+     *
      * @param key 프리마커 템플레이트 상의 변수 이름
      * @param holder 유저에게 보여지는 내용.</p>
      * @return 메일템플레이트
      */
-    public <T extends BaseMailHolder> FreeMarkerFactory setParameter(String key, T holder) {
+    public <T extends BaseHolder> FreeMarkerFactory setParameter(String key, T holder) {
         this.parameter.put(key, holder);
         return this;
     }
 
     /**
      * <p>프리마커를 랜더링해서 반환한다.</p>
-     * 
+     *
      * @return 랜더링된 프리머커
      */
     public String get() {

@@ -117,6 +117,11 @@ function backWithUrl(url) {
     closeLoading();
 }
 
+// 모달 인스턴스를 반환한다.
+function getModal(modalId) {
+    return new bootstrap.Modal('#' + modalId, {focus:true});
+}
+
 // 모달의 ajax에 보낼 변수를 반환한다.
 function getParametersForModal(modalId) {
 
@@ -134,6 +139,18 @@ function getParametersForModal(modalId) {
         }
     });
     return data;
+}
+
+// 모달의 ajax를 송신한다.
+function returnModalAjaxResult(url, modalId) {
+
+    let data = getParametersForModal(modalId);
+
+    return $.ajax({
+        url:url,
+        method:'POST',
+        data:data
+    });
 }
 
 // ajax가 에러인지 아닌지 판단한다.
@@ -182,12 +199,6 @@ function initModal(modalId) {
 /**
  * 부트스트랩 제어
  */
-
-// 모달 열기
-function showModal(modalId) {
-    const myModal = new bootstrap.Modal('#' + modalId, {focus: true});
-    myModal.show();
-}
 
 // 콜랩스 열기
 function showCollapse(collapseId) {

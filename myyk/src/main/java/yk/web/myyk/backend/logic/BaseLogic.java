@@ -9,15 +9,15 @@ import jakarta.persistence.PersistenceContext;
 import yk.web.myyk.backend.BaseMvc;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.factory.RepositoryFactory;
+import yk.web.myyk.util.config.FreeMarkerFactory;
 import yk.web.myyk.util.errorCode.ErrorCode;
-import yk.web.myyk.util.mail.FreeMarkerFactory;
 import yk.web.myyk.util.mail.MailTemplate;
 import yk.web.myyk.util.mail.MailText;
 
 public class BaseLogic extends BaseMvc {
 
     @PersistenceContext
-    protected EntityManager em;
+    private EntityManager em;
 
     @Autowired
     private MailTemplate mailTemplate;
@@ -27,6 +27,10 @@ public class BaseLogic extends BaseMvc {
 
     @Autowired
     private RepositoryFactory repositoryFactory;
+
+    protected EntityManager getEm() {
+        return em;
+    }
 
     protected MailTemplate getMailTemplate() {
         return mailTemplate;

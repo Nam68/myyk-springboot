@@ -78,7 +78,7 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
             throw new AppException(errors);
         }
 
-        /*
+        /**
          * 이름이 같은 카테고리가 있는지 검증
          */
 
@@ -112,6 +112,14 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
             }
         }
 
+        if (!errors.isEmpty()) {
+            throw new AppException(errors);
+        }
+
+        /**
+         * 카테고리 최대치를 검증
+         */
+        errors.putAll(CategoryChecker.checkCategoryLimit(categoryList.size()));
         if (!errors.isEmpty()) {
             throw new AppException(errors);
         }
