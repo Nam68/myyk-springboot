@@ -70,6 +70,7 @@
         <div id="create-sub-category-modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="create-sub-category-modal-label"><@msg 'category.sub.create.name'/></h1>
+            <h1 class="modal-title fs-5" id="update-sub-category-modal-label"><@msg 'category.sub.update.name'/></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -98,7 +99,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@msg 'global.close'/></button>
+            <button type="button" class="btn btn-outline-secondary" id="create-sub-category-modal-button" data-bs-dismiss="modal"><@msg 'global.close'/></button>
+            <button type="button" class="btn btn-outline-secondary" id="update-sub-category-modal-button" data-bs-dismiss="modal"><@msg 'global.close'/></button>
             <button type="button" class="btn btn-primary"><@msg 'global.confirm'/></button>
           </div>
         </div>
@@ -112,11 +114,31 @@
       <div class="modal-content">
         <div id="create-complete-sub-category-modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="create-complete-sub-category-modal-label"><@msg 'category.sub.complete.name'/></h1>
+            <h1 class="modal-title fs-5" id="create-complete-sub-category-modal-label"><@msg 'category.sub.create.complete.name'/></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <@msg 'category.sub.complete.info'/>
+            <@msg 'category.sub.create.complete.info'/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@msg 'global.close'/></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <#-- 서브 카테고리 수정 완료 모달 -->
+  <div class="modal fade" id="update-complete-sub-category-modal" aria-labelledby="update-complete-sub-category-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div id="update-complete-sub-category-modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="update-complete-sub-category-modal-label"><@msg 'category.sub.update.complete.name'/></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <@msg 'category.sub.update.complete.info'/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@msg 'global.close'/></button>

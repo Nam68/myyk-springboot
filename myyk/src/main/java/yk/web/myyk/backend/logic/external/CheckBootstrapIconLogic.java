@@ -1,8 +1,5 @@
 package yk.web.myyk.backend.logic.external;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

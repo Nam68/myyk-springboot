@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
-import yk.web.myyk.backend.dto.holder.account.CreateSubCategoryHolder;
+import yk.web.myyk.backend.dto.holder.category.CreateSubCategoryHolder;
 import yk.web.myyk.util.exception.SystemException;
 
 /**

@@ -18,7 +18,7 @@ public class MyLocale {
 
     /**
      * <p>한국어 로케일(ko)을 반환한다.</p>
-     * 
+     *
      * @return 한국어(ko)
      */
     public static Locale getKorean() {
@@ -27,7 +27,7 @@ public class MyLocale {
 
     /**
      * <p>일본어 로케일(jp)을 반환한다.</p>
-     * 
+     *
      * @return 일본어(jp)
      */
     public static Locale getJapanese() {
@@ -37,7 +37,7 @@ public class MyLocale {
     /**
      * <p>기본 로케일을 전용 로케일로 파싱한다.<br>
      * 주로 ja로 되어 있는 일본어 로케일을 jp로 변형하는 데에 사용된다.</p>
-     * 
+     *
      * @param locale 기본 로케일
      * @return 전용 로케일
      */
@@ -51,7 +51,7 @@ public class MyLocale {
      * <li>한국어 코드 : ko &gt; 한국어 로케일(ko)</li>
      * <li>일본어 코드 : ja, jp &gt; 일본어 로케일(jp)</li>
      * </ul>
-     * 
+     *
      * @param lang 언어코드
      * @return 전용 로케일
      */
@@ -72,7 +72,7 @@ public class MyLocale {
      * <li>한국어를 설정하면 일본어를 반환</li>
      * <li>일본어를 설정하면 한국어를 반환</li>
      * </ul>
-     * 
+     *
      * @param locale 대상 로케일
      * @return 반대되는 로케일
      */
@@ -92,7 +92,7 @@ public class MyLocale {
      * <li>한국어를 설정하면 일본어를 반환</li>
      * <li>일본어를 설정하면 한국어를 반환</li>
      * </ul>
-     * 
+     *
      * @param lang 대상 언어코드
      * @return 반대되는 로케일
      */
@@ -101,12 +101,27 @@ public class MyLocale {
     }
 
     /**
+     * <p>반대되는 언어코드를 가져온다.</p>
+     * <ul>
+     * <li>한국어 언어코드를 설정하면 일본어 언어코드를 반환</li>
+     * <li>일본어 언어코드를 설정하면 한국어 언어코드를 반환</li>
+     * </ul>
+     *
+     * @param lang 대상 언어코드
+     * @return 반대되는 언어코드
+     */
+    public static String getOppositeLanguageCode(String lang) {
+        Locale oppositeLocale = getOppositeLocale(lang);
+        return toLanguageCode(oppositeLocale);
+    }
+
+    /**
      * <p>로케일을 언어코드로 변환한다.</p>
      * <ul>
      * <li>한국어 로케일(ko) &gt; 한국어 코드 : ko</li>
      * <li>일본어 로케일(ja, jp) &gt; 일본어 코드 : jp</li>
      * </ul>
-     * 
+     *
      * @param locale
      */
     public static String toLanguageCode(Locale locale) {
@@ -121,7 +136,7 @@ public class MyLocale {
 
     /**
      * <p>일본어 언어코드가 ja인 경우 jp로 변환한다.</p>
-     * 
+     *
      * @param lang 언어코드
      * @return 검증된 언어코드
      */
@@ -137,7 +152,7 @@ public class MyLocale {
 
     /**
      * <p>해당 로케일이 한국어 로케일(ko)인지 판단한다.</p>
-     * 
+     *
      * @param locale 로케일
      * @return 한국어면 true
      */
@@ -147,7 +162,7 @@ public class MyLocale {
 
     /**
      * <p>해당 언어코드가 한국어 코드(ko)인지 판단한다.</p>
-     * 
+     *
      * @param lang 언어코드
      * @return 한국어면 true
      */
@@ -157,7 +172,7 @@ public class MyLocale {
 
     /**
      * <p>해당 로케일이 일본어 로케일(ja, jp)인지 판단한다.</p>
-     * 
+     *
      * @param locale 로케일
      * @return 일본어면 true
      */
@@ -167,7 +182,7 @@ public class MyLocale {
 
     /**
      * <p>해당 언어코드가 일본어 코드(ja, jp)인지 판단한다.</p>
-     * 
+     *
      * @param lang 언어코드
      * @return 일본어면 true
      */

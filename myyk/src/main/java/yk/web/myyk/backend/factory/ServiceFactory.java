@@ -6,13 +6,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.CreateAccountBook;
-import yk.web.myyk.backend.service.account.CreateCategory;
-import yk.web.myyk.backend.service.account.CreateSubCategory;
-import yk.web.myyk.backend.service.account.CreateSubCategoryCardHtml;
-import yk.web.myyk.backend.service.account.DeleteSubCategory;
-import yk.web.myyk.backend.service.account.FindCategory;
-import yk.web.myyk.backend.service.account.SearchSubCategoryByCategory;
-import yk.web.myyk.backend.service.account.SearchCategoryByMember;
+import yk.web.myyk.backend.service.category.CreateCategory;
+import yk.web.myyk.backend.service.category.CreateSubCategory;
+import yk.web.myyk.backend.service.category.CreateSubCategoryCardHtml;
+import yk.web.myyk.backend.service.category.DeleteSubCategory;
+import yk.web.myyk.backend.service.category.FindCategory;
+import yk.web.myyk.backend.service.category.FindSubCategory;
+import yk.web.myyk.backend.service.category.SearchCategoryByMember;
+import yk.web.myyk.backend.service.category.SearchSubCategoryByCategory;
 import yk.web.myyk.backend.service.external.CheckBootstrapIcon;
 import yk.web.myyk.backend.service.login.Login;
 import yk.web.myyk.backend.service.member.CreateMember;
@@ -63,13 +64,16 @@ public class ServiceFactory {
     private CreateSubCategory createSubCategory;
 
     @Autowired
-    private CreateSubCategoryCardHtml createSubCategoryCardHtml;
+    private DeleteSubCategory deleteSubCategory;
+
+    @Autowired
+    private FindSubCategory findSubCategory;
 
     @Autowired
     private SearchSubCategoryByCategory searchSubCategoryByCategory;
 
     @Autowired
-    private DeleteSubCategory deleteSubCategory;
+    private CreateSubCategoryCardHtml createSubCategoryCardHtml;
 
     /**
      * 외부 접속
@@ -122,16 +126,20 @@ public class ServiceFactory {
         return createSubCategory;
     }
 
-    public CreateSubCategoryCardHtml getCreateSubCategoryCardHtml() {
-        return createSubCategoryCardHtml;
+    public DeleteSubCategory getDeleteSubCategory() {
+        return deleteSubCategory;
+    }
+
+    public FindSubCategory getFindSubCategory() {
+        return findSubCategory;
     }
 
     public SearchSubCategoryByCategory getSearchSubCategoryByCategory() {
         return searchSubCategoryByCategory;
     }
 
-    public DeleteSubCategory getDeleteSubCategory() {
-        return deleteSubCategory;
+    public CreateSubCategoryCardHtml getCreateSubCategoryCardHtml() {
+        return createSubCategoryCardHtml;
     }
 
     public CheckBootstrapIcon getCheckBootstrapIcon() {

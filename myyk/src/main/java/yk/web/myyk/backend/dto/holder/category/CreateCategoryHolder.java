@@ -1,54 +1,51 @@
-package yk.web.myyk.backend.dto;
+package yk.web.myyk.backend.dto.holder.category;
 
-import java.util.Map;
-
-import yk.web.myyk.backend.entity.category.CategoryEntity;
+import yk.web.myyk.backend.dto.form.category.CreateCategoryForm;
+import yk.web.myyk.backend.dto.holder.BaseHolder;
 
 /**
- * <p>카테고리 DTO.</p>
+ * <p>카테고리 생성 홀더.</p>
  */
-public class CategoryDTO extends BaseDTO {
+public class CreateCategoryHolder extends BaseHolder {
 
     /**
      * <p>카테고리 인덱스.</p>
      */
-    private long categoryIdx;
+    private long categoryIdx = 0;
 
     /**
      * <p>카테고리 이름(한국어).</p>
      */
-    private String categoryNameKo;
+    private String categoryNameKo = "";
 
     /**
      * <p>카테고리 이름(일본어).</p>
      */
-    private String categoryNameJp;
+    private String categoryNameJp = "";
 
     /**
      * <p>카테고리 색.</p>
      */
-    private String categoryColor;
+    private String categoryColor = "";
 
     /**
      * <p>카테고리 아이콘.</p>
      */
-    private String categoryIcon;
+    private String categoryIcon = "";
 
-    /**
-     * <p>서브 카테고리 리스트.</p>
-     */
-    private Map<Long, String> subCategoryList;
-
-    public CategoryDTO() {
+    public CreateCategoryHolder() {
         // nop
     }
 
-    public CategoryDTO(CategoryEntity entity) {
-        setCategoryIdx(entity.getCategoryIdx());
-        setCategoryNameKo(entity.getCategoryNameKo());
-        setCategoryNameJp(entity.getCategoryNameJp());
-        setCategoryIcon(entity.getCategoryColor());
-        setCategoryIcon(entity.getCategoryIcon());
+    public CreateCategoryHolder(long categoryIdx) {
+        this.categoryIdx = categoryIdx;
+    }
+
+    public CreateCategoryHolder(CreateCategoryForm form) {
+        setCategoryNameKo(form.getCategoryNameKo());
+        setCategoryNameJp(form.getCategoryNameJp());
+        setCategoryColor(form.getCategoryColor());
+        setCategoryIcon(form.getCategoryIcon());
     }
 
     /**
@@ -61,16 +58,7 @@ public class CategoryDTO extends BaseDTO {
     }
 
     /**
-     * <p>카테고리 인덱스를 설정한다.</p>
-     *
-     * @param categoryIdx 카테고리 인덱스
-     */
-    public void setCategoryIdx(long categoryIdx) {
-        this.categoryIdx = categoryIdx;
-    }
-
-    /**
-     * <p>카테고리 이름(한국어)을 반환한다.</p>
+     * <p>카테고리 이름(한국어)를 반환한다.</p>
      *
      * @return 카테고리 이름(한국어)
      */
@@ -79,7 +67,7 @@ public class CategoryDTO extends BaseDTO {
     }
 
     /**
-     * <p>카테고리 이름(한국어)을 설정한다.</p>
+     * <p>카테고리 이름(한국어)를 설정한다.</p>
      *
      * @param categoryNameKo 카테고리 이름(한국어)
      */
@@ -88,7 +76,7 @@ public class CategoryDTO extends BaseDTO {
     }
 
     /**
-     * <p>카테고리 이름(일본어)을 반환한다.</p>
+     * <p>카테고리 이름(일본어)를 반환한다.</p>
      *
      * @return 카테고리 이름(일본어)
      */
@@ -97,7 +85,7 @@ public class CategoryDTO extends BaseDTO {
     }
 
     /**
-     * <p>카테고리 이름(일본어)을 설정한다.</p>
+     * <p>카테고리 이름(일본어)를 설정한다.</p>
      *
      * @param categoryNameJp 카테고리 이름(일본어)
      */
@@ -140,23 +128,4 @@ public class CategoryDTO extends BaseDTO {
     public void setCategoryIcon(String categoryIcon) {
         this.categoryIcon = categoryIcon;
     }
-
-    /**
-     * <p>서브 카테고리 리스트를 반환한다.</p>
-     *
-     * @return 서브 카테고리 리스트
-     */
-    public Map<Long, String> getSubCategoryList() {
-        return subCategoryList;
-    }
-
-    /**
-     * <p>서브 카테고리 리스트를 설정한다.</p>
-     *
-     * @param subCategoryList 서브 카테고리 리스트
-     */
-    public void setSubCategoryList(Map<Long, String> subCategoryList) {
-        this.subCategoryList = subCategoryList;
-    }
-
 }

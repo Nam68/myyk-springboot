@@ -21,7 +21,7 @@ import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.dto.login.MemberInfo;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
-import yk.web.myyk.backend.entity.account.CategoryEntity;
+import yk.web.myyk.backend.entity.category.CategoryEntity;
 import yk.web.myyk.util.constant.Constant;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.enumerated.Region;

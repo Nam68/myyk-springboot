@@ -1,27 +1,13 @@
 const CREATE_MODAL = 'create-sub-category-modal';
+const CREATE_MODAL_LABEL = 'create-sub-category-modal-label';
+const CREATE_MODAL_BUTTON = 'create-sub-category-modal-button';
 const CREATE_COMPLETE_MODAL = 'create-complete-sub-category-modal';
+const UPDATE_MODAL_LABEL = 'update-sub-category-modal-label';
+const UPDATE_MODAL_BUTTON = 'update-sub-category-modal-button';
+const UPDATE_COMPLETE_MODAL = 'update-complete-sub-category-modal'
 const DELETE_MODAL = 'delete-sub-category-modal';
 const DELETE_COMPLETE_MODAL = 'delete-complete-sub-category-modal';
 const DELETE_FAIL_MODAL = 'delete-fail-sub-category-modal';
-
-// 서브 카테고리 리스트 html 입력
-function insertSubCategoryHtml(categoryCard, html) {
-    categoryCard.find('.accordion-body .sub-category-wrap').html(html);
-}
-
-// 각종 모달에 카테고리 인덱스 전달
-function setCategoryIdx(modalId, targetElement) {
-    const categoryIdxInput = $('#' + modalId + ' [name=categoryIdx]');
-    let categoryIdx = targetElement.parents('.category-card').data('idx');
-    categoryIdxInput.val(categoryIdx);
-}
-
-// 각종 모달에 서브 카테고리 인덱스 전달
-function setSubCategoryIdx(modalId, targetElement) {
-    const subCategoryIdxInput = $('#' + modalId + ' [name=subCategoryIdx]');
-    let subCategoryIdx = targetElement.parents('.sub-category-card').data('subCategoryIdx');
-    subCategoryIdxInput.val(subCategoryIdx);
-}
 
 // 서브카테고리 콜랩스 열기
 $('.bi-caret-down-fill').on('click', async function () {
@@ -61,10 +47,42 @@ $('.bi-caret-down-fill').on('click', async function () {
 });
 
 // 서브 카테고리 생성 모달 열기
-const createSubCategoryModal = new bootstrap.Modal('#' + CREATE_MODAL, {focus:true});
 $(document).on('click', '#create-sub-category-button', function () {
     setCategoryIdx(CREATE_MODAL, $(this));
-    createSubCategoryModal.show();
+    toggleCreateUpdateModal(true);
+    getModal(CREATE_MODAL).show();
+});
+
+// 서브 카테고리 생성 모달 열기 (업데이트)
+$(document).on('click', '.update-sub-category', async function() {
+
+    let subCategoryIdx = setSubCategoryIdx(CREATE_MODAL, $(this));
+
+    try {
+        let url = '/category/sub/find';
+        let data = {subCategoryIdx:subCategoryIdx};
+        let result = await returnAjaxResult(url, data);
+
+        // api 에러처리
+        let errorCodes = getErrorCodesForApi(result);
+        if (errorCodes != false) {
+            getModal(DELETE_MODAL).hide();
+            getModal(DELETE_FAIL_MODAL).show();
+            return;
+        }
+
+        // 수신된 값을 세팅
+        const koInput = $('#' + CREATE_MODAL).find('input[name=subCategoryNameKo]');
+        const jpInput = $('#' + CREATE_MODAL).find('input[name=subCategoryNameJp]');
+        koInput.val(result.subCategoryNameKo);
+        jpInput.val(result.subCategoryNameJp);
+
+        toggleCreateUpdateModal(false);
+        getModal(CREATE_MODAL).show();
+
+    } catch (error) {
+        alert(globalError);
+    }
 });
 
 // 서브 카테고리 생성 클릭
@@ -72,7 +90,7 @@ $('#' + CREATE_MODAL + ' .btn-primary').on('click', async function () {
     try {
         openLoading();
 
-        let url = '/account/category/sub/create';
+        let url = isCreateModal() ? '/category/sub/create' : '/category/sub/update';
         let result = await returnModalAjaxResult(url, CREATE_MODAL);
 
         // api 에러처리
@@ -89,9 +107,9 @@ $('#' + CREATE_MODAL + ' .btn-primary').on('click', async function () {
         insertSubCategoryHtml(categoryCard, subCategoryList);
 
         // 완료 모달
-        const completeSubCategoryModal = new bootstrap.Modal('#' + CREATE_COMPLETE_MODAL, {focus:true});
-        createSubCategoryModal.hide();
-        completeSubCategoryModal.show();
+        let completeModalId = isCreateModal() ? CREATE_COMPLETE_MODAL : UPDATE_COMPLETE_MODAL;
+        getModal(CREATE_MODAL).hide();
+        getModal(completeModalId).show();
 
     } catch (error) {
         alert(globalError);
@@ -105,14 +123,7 @@ $('#' + CREATE_MODAL).on('hidden.bs.modal', function() {
     initModal(CREATE_MODAL);
 });
 
-// 서브 카테고리 편집 모달 열기
-$('.update-sub-category').on('click', function() {
-    setSubCategoryIdx(CREATE_MODAL, $(this));
-    showModal(CREATE_MODAL);
-});
-
 // 서브 카테고리 삭제 모달이 열릴 때 서브 카테고리 인덱스 설정
-const deleteSubCategoryModal = new bootstrap.Modal('#' + DELETE_MODAL, {focus:true});
 function deleteSubCategory(targetElement) {
     setCategoryIdx(DELETE_MODAL, targetElement);
     setSubCategoryIdx(DELETE_MODAL, targetElement);
@@ -123,14 +134,13 @@ $('#' + DELETE_MODAL + ' .btn-primary').on('click', async function () {
     try {
         openLoading();
 
-        let url = '/account/category/sub/delete';
+        let url = '/category/sub/delete';
         let result = await returnModalAjaxResult(url, DELETE_MODAL);
 
         // api 에러처리
         if (!isSuccess(result)) {
-            const failSubCategoryModal = getModal(DELETE_FAIL_MODAL);
-            deleteSubCategoryModal.hide();
-            failSubCategoryModal.show();
+            getModal(DELETE_MODAL).hide();
+            getModal(DELETE_FAIL_MODAL).show();
             return;
         }
 
@@ -141,9 +151,8 @@ $('#' + DELETE_MODAL + ' .btn-primary').on('click', async function () {
         insertSubCategoryHtml(categoryCard, subCategoryList);
 
         // 완료 모달
-        const completeSubCategoryModal = getModal(DELETE_COMPLETE_MODAL);
-        deleteSubCategoryModal.hide();
-        completeSubCategoryModal.show();
+        getModal(DELETE_MODAL).hide();
+        getModal(DELETE_COMPLETE_MODAL).show();
 
     } catch (error) {
         alert(globalError);
@@ -152,11 +161,60 @@ $('#' + DELETE_MODAL + ' .btn-primary').on('click', async function () {
     }
 });
 
+// 서브 카테고리 리스트 html 입력
+function insertSubCategoryHtml(categoryCard, html) {
+    categoryCard.find('.accordion-body .sub-category-wrap').html(html);
+}
+
+// 각종 모달에 카테고리 인덱스 전달
+function setCategoryIdx(modalId, targetElement) {
+    const categoryIdxInput = $('#' + modalId + ' [name=categoryIdx]');
+    let categoryIdx = targetElement.parents('.category-card').data('idx');
+    categoryIdxInput.val(categoryIdx);
+
+    return categoryIdx;
+}
+
+// 각종 모달에 서브 카테고리 인덱스 전달
+function setSubCategoryIdx(modalId, targetElement) {
+    const subCategoryIdxInput = $('#' + modalId + ' [name=subCategoryIdx]');
+    let subCategoryIdx = targetElement.parents('.sub-category-card').data('subCategoryIdx');
+    subCategoryIdxInput.val(subCategoryIdx);
+
+    return subCategoryIdx;
+}
+
+// 서브 카테고리 생성/수정 모달 전환
+function toggleCreateUpdateModal(isCreate) {
+    let showLabelId = isCreate ? CREATE_MODAL_LABEL : UPDATE_MODAL_LABEL;
+    let hideLabelId = isCreate ? UPDATE_MODAL_LABEL : CREATE_MODAL_LABEL;
+    let showButtonId = isCreate ? CREATE_MODAL_BUTTON : UPDATE_MODAL_BUTTON;
+    let hideButtonId = isCreate ? UPDATE_MODAL_BUTTON : CREATE_MODAL_BUTTON;
+
+    $('#' + showLabelId).show();
+    $('#' + hideLabelId).hide();
+    $('#' + showButtonId).show();
+    $('#' + hideButtonId).hide();
+}
+
+// 서브 카테고리 생성 모달인지 수정 모달인지 판단
+function isCreateModal() {
+    let categoryIdx = $('#' + CREATE_MODAL).find('input[name=categoryIdx]').val();
+    let subCategoryIdx = $('#' + CREATE_MODAL).find('input[name=subCategoryIdx]').val();
+    
+    if ($.isNumeric(subCategoryIdx) && categoryIdx == '') {
+        return false;
+    }
+    if ($.isNumeric(categoryIdx) && subCategoryIdx == '') {
+        return true;
+    }
+    throw new Exception('Category index and sub category idx are not defined.');
+}
 
 // 카테고리에 속한 서브 카테고리 리스트를 가져오는 ajax
 function getSubCategoryList(categoryIdx) {
 
-    let url = '/account/category/sub/search/card';
+    let url = '/category/sub/search/card';
     let data = new Object();
     data['categoryIdx'] = categoryIdx;
 

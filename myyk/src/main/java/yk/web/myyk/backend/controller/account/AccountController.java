@@ -10,7 +10,7 @@ import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.holder.account.AccountBookEditHolder;
 import yk.web.myyk.backend.dto.holder.account.CategoryEditHolder;
-import yk.web.myyk.backend.service.account.SearchCategoryByMember;
+import yk.web.myyk.backend.service.category.SearchCategoryByMember;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.enumerated.MemberType;
 import yk.web.myyk.util.exception.AppException;

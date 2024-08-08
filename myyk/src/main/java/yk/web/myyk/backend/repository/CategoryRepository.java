@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.domain.Sort;
 
-import yk.web.myyk.backend.entity.account.CategoryEntity;
+import yk.web.myyk.backend.entity.category.CategoryEntity;
+
+import org.springframework.data.domain.Sort;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {

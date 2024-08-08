@@ -1,6 +1,6 @@
 package yk.web.myyk.backend.dto;
 
-import yk.web.myyk.backend.entity.account.SubCategoryEntity;
+import yk.web.myyk.backend.entity.category.SubCategoryEntity;
 
 /**
  * <p>서브 카테고리 DTO.</p>

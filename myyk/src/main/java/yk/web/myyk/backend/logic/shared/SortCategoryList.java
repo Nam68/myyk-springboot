@@ -3,7 +3,7 @@ package yk.web.myyk.backend.logic.shared;
 import java.util.ArrayList;
 import java.util.List;
 
-import yk.web.myyk.backend.entity.account.CategoryEntity;
+import yk.web.myyk.backend.entity.category.CategoryEntity;
 import yk.web.myyk.util.exception.SystemException;
 
 /**

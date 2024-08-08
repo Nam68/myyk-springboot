@@ -19,7 +19,7 @@ public class CreateLanguageInterceptor extends BaseInterceptor {
         if (request.getRequestURI().toString().equals(LANGUAGE_SETTING_URI)) {
                 return true;
         }
-        
+
         // 세션 언어 정보를 검색해서, 있으면 로컬쿠키에 등록한다
         Locale locale = getSessionAttribute(request, LANGUAGE_SETTING, Locale.class);
         if (locale != null && !isResource(request)) { // 이미지 등의 주소도 변환되므로 .이 포함된 URI는 제외한다.
@@ -41,7 +41,7 @@ public class CreateLanguageInterceptor extends BaseInterceptor {
                 // 있으면 로컬 쿠키를 통해 세션 언어 정보를 세팅
                 setSessionAttribute(request, LANGUAGE_SETTING, MyLocale.parseLocale(lang));
                 setSessionAttribute(request, SELECTED_LANGUAGE, MyLocale.getValidLanguageCode(lang));
-                setSessionAttribute(request, UNSELECTED_LANGUAGE, MyLocale.getOppositeLocale(lang));
+                setSessionAttribute(request, UNSELECTED_LANGUAGE, MyLocale.getOppositeLanguageCode(lang));
                 return true;
             }
         }

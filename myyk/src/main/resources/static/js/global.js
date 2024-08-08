@@ -153,6 +153,15 @@ function returnModalAjaxResult(url, modalId) {
     });
 }
 
+// data를 변수로 받아 ajax를 송신한다.
+function returnAjaxResult(url, data) {
+    return $.ajax({
+        url:url,
+        method:'POST',
+        data:data
+    });
+}
+
 // ajax가 에러인지 아닌지 판단한다.
 // 에러인 경우 : 에러 코드 배열을 반환
 // 에러가 아닌 경우 : false를 반환

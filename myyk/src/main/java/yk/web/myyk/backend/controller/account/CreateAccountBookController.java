@@ -10,7 +10,7 @@ import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookInfoForm;
 import yk.web.myyk.backend.dto.holder.account.CreateAccountBookInfoHolder;
-import yk.web.myyk.backend.dto.holder.account.CreateCategoryHolder;
+import yk.web.myyk.backend.dto.holder.category.CreateCategoryHolder;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.backend.service.member.FindAllMemberByIdx;

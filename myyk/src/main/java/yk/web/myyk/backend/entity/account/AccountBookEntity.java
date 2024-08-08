@@ -18,6 +18,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
+import yk.web.myyk.backend.entity.category.CategoryEntity;
 import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.TaxRate;
 
