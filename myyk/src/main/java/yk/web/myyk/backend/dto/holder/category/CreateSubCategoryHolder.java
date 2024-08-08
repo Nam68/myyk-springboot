@@ -3,11 +3,9 @@ package yk.web.myyk.backend.dto.holder.category;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.dto.holder.BaseHolder;
-import yk.web.myyk.util.constant.KeyName;
 import yk.web.myyk.util.constant.MyLocale;
 
 /**

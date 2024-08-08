@@ -15,24 +15,26 @@ public class SortCategoryList extends BaseSharedLogic {
 
 	private List<CategoryEntity> sortedCategoryEntityList;
 
-	public void validate() throws SystemException {
+	@Override
+    public void validate() throws SystemException {
 		if (categoryEntityList == null) {
 			throw new SystemException("category entity list does not exist in SortCategoryList.");
 		}
 	}
 
-	public void execute() throws SystemException {
+	@Override
+    public void execute() throws SystemException {
 
 		validate();
 
 		List<CategoryEntity> entityResult = new ArrayList<>();
 
-		for (CategoryEntity entity : categoryEntityList) {
+//		for (CategoryEntity entity : categoryEntityList) {
 //			if (entity.isPrime()) {
 //				entityResult.add(entity);
 //				dtoResult.add(new PrimeCategoryDTO(entity));
 //			}
-		}
+//		}
 
 		sortedCategoryEntityList = entityResult;
 	}

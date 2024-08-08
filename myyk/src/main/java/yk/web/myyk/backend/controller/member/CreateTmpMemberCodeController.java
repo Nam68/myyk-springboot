@@ -25,8 +25,8 @@ public class CreateTmpMemberCodeController extends BaseController {
 
     private static final String INPUT = "member/createTmpMemberCodeInput";
     private static final String CONFIRM = "member/createTmpMemberCodeConfirm";
-    private static final String COMPLETE_REDIRECT = "redirect:/member/tmp/code/create/complete";
-    private static final String COMPLETE = "member/createTmpMemberCodeComplete";
+//    private static final String COMPLETE_REDIRECT = "redirect:/member/tmp/code/create/complete";
+//    private static final String COMPLETE = "member/createTmpMemberCodeComplete";
 
     /**
      * <p>임시회원 코드 생성 입력화면.</p>

@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 
 import yk.web.myyk.backend.factory.ServiceFactory;
 import yk.web.myyk.util.BaseApp;
-import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.errorCode.ErrorCode;
 
 public class BaseApi extends BaseApp {

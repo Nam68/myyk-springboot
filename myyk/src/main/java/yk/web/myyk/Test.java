@@ -1,15 +1,11 @@
 package yk.web.myyk;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Test {
 
     public static void main(String[] args) {
 
-        Object obj = new ArrayList<>();
-        Map map = (HashMap) obj;
+//        Object obj = new ArrayList<>();
+//        Map map = (HashMap) obj;
 
     }
 
@@ -85,7 +81,7 @@ public class Test {
      * @param str 문자열
      * @return 검증결과
      */
-    private static boolean hasAllCaseAndNumber(String str) {
+    public static boolean hasAllCaseAndNumber(String str) {
 
         boolean number = hasNumber(str);
         boolean upper = hasUpperCase(str);

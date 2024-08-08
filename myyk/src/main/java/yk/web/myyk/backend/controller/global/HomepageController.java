@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
-import yk.web.myyk.backend.dto.holder.category.CreateSubCategoryHolder;
 import yk.web.myyk.util.exception.SystemException;
 
 /**
@@ -45,7 +44,7 @@ public class HomepageController extends BaseController {
     @RequestMapping("/sample")
     public String sample(HttpServletRequest request) throws SystemException {
         // createSubCategory.ftlh
-        setHolder(request, new CreateSubCategoryHolder());
+//        setHolder(request, new CreateSubCategoryHolder());
         return "test/sample";
     }
 }
