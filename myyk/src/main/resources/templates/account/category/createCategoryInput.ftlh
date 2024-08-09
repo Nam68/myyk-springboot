@@ -90,5 +90,5 @@
   </div>
 </body>
 <#include "/footer.ftlh">
-<script src="/js/account.js"></script>
+<script src="/js/category.js"></script>
 </html>

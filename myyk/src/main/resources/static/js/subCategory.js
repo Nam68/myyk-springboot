@@ -1,9 +1,7 @@
 const CREATE_MODAL = 'create-sub-category-modal';
 const CREATE_MODAL_LABEL = 'create-sub-category-modal-label';
-const CREATE_MODAL_BUTTON = 'create-sub-category-modal-button';
 const CREATE_COMPLETE_MODAL = 'create-complete-sub-category-modal';
 const UPDATE_MODAL_LABEL = 'update-sub-category-modal-label';
-const UPDATE_MODAL_BUTTON = 'update-sub-category-modal-button';
 const UPDATE_COMPLETE_MODAL = 'update-complete-sub-category-modal'
 const DELETE_MODAL = 'delete-sub-category-modal';
 const DELETE_COMPLETE_MODAL = 'delete-complete-sub-category-modal';
@@ -138,7 +136,8 @@ $('#' + DELETE_MODAL + ' .btn-primary').on('click', async function () {
         let result = await returnModalAjaxResult(url, DELETE_MODAL);
 
         // api 에러처리
-        if (!isSuccess(result)) {
+        let errorCodes = getErrorCodesForApi(result);
+        if (errorCodes != false) {
             getModal(DELETE_MODAL).hide();
             getModal(DELETE_FAIL_MODAL).show();
             return;
@@ -188,13 +187,9 @@ function setSubCategoryIdx(modalId, targetElement) {
 function toggleCreateUpdateModal(isCreate) {
     let showLabelId = isCreate ? CREATE_MODAL_LABEL : UPDATE_MODAL_LABEL;
     let hideLabelId = isCreate ? UPDATE_MODAL_LABEL : CREATE_MODAL_LABEL;
-    let showButtonId = isCreate ? CREATE_MODAL_BUTTON : UPDATE_MODAL_BUTTON;
-    let hideButtonId = isCreate ? UPDATE_MODAL_BUTTON : CREATE_MODAL_BUTTON;
 
     $('#' + showLabelId).show();
     $('#' + hideLabelId).hide();
-    $('#' + showButtonId).show();
-    $('#' + hideButtonId).hide();
 }
 
 // 서브 카테고리 생성 모달인지 수정 모달인지 판단

@@ -13,12 +13,13 @@ import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.dto.form.category.CreateSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.DeleteSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.FindSubCategoryForm;
+import yk.web.myyk.backend.dto.form.category.UpdateSubCategoryForm;
 import yk.web.myyk.backend.service.category.CreateSubCategory;
 import yk.web.myyk.backend.service.category.CreateSubCategoryCardHtml;
 import yk.web.myyk.backend.service.category.DeleteSubCategory;
 import yk.web.myyk.backend.service.category.FindSubCategory;
 import yk.web.myyk.backend.service.category.SearchSubCategoryByCategory;
-import yk.web.myyk.util.enumerated.Error;
+import yk.web.myyk.backend.service.category.UpdateSubCategory;
 import yk.web.myyk.util.exception.ApiException;
 import yk.web.myyk.util.exception.AppException;
 
@@ -43,8 +44,7 @@ public class CategoryApi extends BaseApi {
             logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
             logic.excute();
 
-            Gson gson = new Gson();
-            json = gson.toJson(logic.getSubCategory());
+            setJson(logic.getSubCategory());
 
         } catch (AppException e) {
             json = getErrorJson(e.getErrors());
@@ -53,11 +53,16 @@ public class CategoryApi extends BaseApi {
     }
 
     @RequestMapping("/sub/update")
-    public String updateSubCategory() throws ApiException {
+    public String updateSubCategory(UpdateSubCategoryForm form) throws ApiException {
         String json = "";
+        UpdateSubCategory logic = getService().getUpdateSubCategory();
         try {
+            logic.setSubCategoryIdx(form.getSubCategoryIdx());
+            logic.setSubCategoryNameKo(form.getSubCategoryNameKo());
+            logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
+            logic.excute();
 
-            Gson gson = new Gson();
+            setJson(logic.getSubCategory());
 
         } catch (AppException e) {
             json = getErrorJson(e.getErrors());
@@ -80,7 +85,7 @@ public class CategoryApi extends BaseApi {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
             logic.excute();
 
-            json = Error.SUCCESS.name();
+            json = success();
 
         } catch (AppException e) {
             json = getErrorJson(e.getErrors());

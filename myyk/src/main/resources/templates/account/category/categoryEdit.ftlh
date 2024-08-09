@@ -99,8 +99,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" id="create-sub-category-modal-button" data-bs-dismiss="modal"><@msg 'global.close'/></button>
-            <button type="button" class="btn btn-outline-secondary" id="update-sub-category-modal-button" data-bs-dismiss="modal"><@msg 'global.close'/></button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@msg 'global.close'/></button>
             <button type="button" class="btn btn-primary"><@msg 'global.confirm'/></button>
           </div>
         </div>

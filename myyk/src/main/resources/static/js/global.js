@@ -167,6 +167,11 @@ function returnAjaxResult(url, data) {
 // 에러가 아닌 경우 : false를 반환
 function getErrorCodesForApi(json) {
 
+    // 단순 성공여부 반환하는 JSON인 경우
+    if (isSuccess(json)) {
+        return false;
+    }
+
     // json 타입이 아닌 경우 파싱
     if (typeof json == 'string') {
         json = JSON.parse(json);
@@ -175,6 +180,11 @@ function getErrorCodesForApi(json) {
         return false;
     }
     return json.codes;
+}
+
+// API가 성공인지 판단
+function isSuccess(response) {
+    return response == 'SUCCESS';
 }
 
 // ajax를 통해 얻은 에러 코드로 에러 메시지를 표시한다.
@@ -243,11 +253,6 @@ function toggleCollapse(collapseId) {
 // 부트스트랩 아이콘 HTML 코드를 반환
 function getIcon(icon) {
     return iconHtml.replace(/%s/g, icon);
-}
-
-// API가 성공인지 판단
-function isSuccess(response) {
-    return response == 'SUCCESS';
 }
 
 // ajax 에러 메시지 초기화

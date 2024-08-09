@@ -1,28 +1,43 @@
 package yk.web.myyk.backend.logic.category;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.entity.category.SubCategoryEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
-import yk.web.myyk.backend.service.category.DeleteSubCategory;
+import yk.web.myyk.backend.service.category.UpdateSubCategory;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
 @Service
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class DeleteSubCategoryLogic extends BaseLogic implements DeleteSubCategory {
+public class UpdateSubCategoryLogic extends BaseLogic implements UpdateSubCategory {
 
     private long subCategoryIdx;
+
+    private String subCategoryNameKo;
+
+    private String subCategoryNameJp;
+
+    private SubCategoryDTO subCategory;
 
     @Override
     public void setSubCategoryIdx(long subCategoryIdx) {
         this.subCategoryIdx = subCategoryIdx;
+    }
+
+    @Override
+    public void setSubCategoryNameKo(String subCategoryNameKo) {
+        this.subCategoryNameKo = subCategoryNameKo;
+    }
+
+    @Override
+    public void setSubCategoryNameJp(String subCategoryNameJp) {
+        this.subCategoryNameJp = subCategoryNameJp;
     }
 
     @Override
@@ -37,12 +52,22 @@ public class DeleteSubCategoryLogic extends BaseLogic implements DeleteSubCatego
         validate();
 
         SubCategoryEntity entity = getRepository().getSubCategory().findById(subCategoryIdx).get();
-        delete(entity);
+        entity.setSubCategoryNameKo(subCategoryNameKo);
+        entity.setSubCategoryNameJp(subCategoryNameJp);
+
+        update(entity);
+
+        this.subCategory = new SubCategoryDTO(entity);
     }
 
     @Transactional
-    private void delete(SubCategoryEntity subCategoryEntity) {
-        getRepository().getSubCategory().delete(subCategoryEntity);
+    private void update(SubCategoryEntity entity) {
+        getRepository().getSubCategory().saveAndFlush(entity);
+    }
+
+    @Override
+    public SubCategoryDTO getSubCategory() {
+        return subCategory;
     }
 
 }

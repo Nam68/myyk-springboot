@@ -14,6 +14,7 @@ import yk.web.myyk.backend.service.category.FindCategory;
 import yk.web.myyk.backend.service.category.FindSubCategory;
 import yk.web.myyk.backend.service.category.SearchCategoryByMember;
 import yk.web.myyk.backend.service.category.SearchSubCategoryByCategory;
+import yk.web.myyk.backend.service.category.UpdateSubCategory;
 import yk.web.myyk.backend.service.external.CheckBootstrapIcon;
 import yk.web.myyk.backend.service.login.Login;
 import yk.web.myyk.backend.service.member.CreateMember;
@@ -62,6 +63,9 @@ public class ServiceFactory {
 
     @Autowired
     private CreateSubCategory createSubCategory;
+
+    @Autowired
+    private UpdateSubCategory updateSubCategory;
 
     @Autowired
     private DeleteSubCategory deleteSubCategory;
@@ -124,6 +128,10 @@ public class ServiceFactory {
 
     public CreateSubCategory getCreateSubCategory() {
         return createSubCategory;
+    }
+
+    public UpdateSubCategory getUpdateSubCategory() {
+        return updateSubCategory;
     }
 
     public DeleteSubCategory getDeleteSubCategory() {
