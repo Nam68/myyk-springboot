@@ -3,9 +3,18 @@ const CREATE_MODAL_LABEL = 'create-sub-category-modal-label';
 const CREATE_COMPLETE_MODAL = 'create-complete-sub-category-modal';
 const UPDATE_MODAL_LABEL = 'update-sub-category-modal-label';
 const UPDATE_COMPLETE_MODAL = 'update-complete-sub-category-modal'
+const UPDATE_FAIL_MODAL = 'update-fail-sub-category-modal';
 const DELETE_MODAL = 'delete-sub-category-modal';
 const DELETE_COMPLETE_MODAL = 'delete-complete-sub-category-modal';
 const DELETE_FAIL_MODAL = 'delete-fail-sub-category-modal';
+
+let createModal = getModal(CREATE_MODAL);
+let deleteModal = getModal(DELETE_MODAL);
+let createCompleteModal = getModal(CREATE_COMPLETE_MODAL);
+let updateCompleteModal = getModal(UPDATE_COMPLETE_MODAL);
+let deleteCompleteModal = getModal(DELETE_COMPLETE_MODAL);
+let updateFailteModal = getModal(UPDATE_FAIL_MODAL);
+let deleteFailteModal = getModal(DELETE_FAIL_MODAL);
 
 // 서브카테고리 콜랩스 열기
 $('.bi-caret-down-fill').on('click', async function () {
@@ -48,11 +57,13 @@ $('.bi-caret-down-fill').on('click', async function () {
 $(document).on('click', '#create-sub-category-button', function () {
     setCategoryIdx(CREATE_MODAL, $(this));
     toggleCreateUpdateModal(true);
-    getModal(CREATE_MODAL).show();
+    createModal.show();
 });
 
 // 서브 카테고리 생성 모달 열기 (업데이트)
 $(document).on('click', '.update-sub-category', async function() {
+
+    openLoading();
 
     let subCategoryIdx = setSubCategoryIdx(CREATE_MODAL, $(this));
 
@@ -64,22 +75,26 @@ $(document).on('click', '.update-sub-category', async function() {
         // api 에러처리
         let errorCodes = getErrorCodesForApi(result);
         if (errorCodes != false) {
-            getModal(DELETE_MODAL).hide();
-            getModal(DELETE_FAIL_MODAL).show();
+            createModal.hide();
+            updateFailteModal.show();
             return;
         }
 
         // 수신된 값을 세팅
         const koInput = $('#' + CREATE_MODAL).find('input[name=subCategoryNameKo]');
         const jpInput = $('#' + CREATE_MODAL).find('input[name=subCategoryNameJp]');
-        koInput.val(result.subCategoryNameKo);
-        jpInput.val(result.subCategoryNameJp);
+        const categoryIdx = $('#' + CREATE_MODAL).find('[name=categoryIdx]');
+        koInput.val(result.dto.subCategoryNameKo);
+        jpInput.val(result.dto.subCategoryNameJp);
+        categoryIdx.val(result.dto.categoryIdx);
 
         toggleCreateUpdateModal(false);
-        getModal(CREATE_MODAL).show();
+        createModal.show();
 
     } catch (error) {
         alert(globalError);
+    } finally {
+        closeLoading();
     }
 });
 
@@ -105,9 +120,9 @@ $('#' + CREATE_MODAL + ' .btn-primary').on('click', async function () {
         insertSubCategoryHtml(categoryCard, subCategoryList);
 
         // 완료 모달
-        let completeModalId = isCreateModal() ? CREATE_COMPLETE_MODAL : UPDATE_COMPLETE_MODAL;
-        getModal(CREATE_MODAL).hide();
-        getModal(completeModalId).show();
+        let completeModalId = isCreateModal() ? createCompleteModal : updateCompleteModal;
+        createModal.hide();
+        completeModalId.show();
 
     } catch (error) {
         alert(globalError);
@@ -138,8 +153,8 @@ $('#' + DELETE_MODAL + ' .btn-primary').on('click', async function () {
         // api 에러처리
         let errorCodes = getErrorCodesForApi(result);
         if (errorCodes != false) {
-            getModal(DELETE_MODAL).hide();
-            getModal(DELETE_FAIL_MODAL).show();
+            deleteModal.hide();
+            deleteFailteModal.show();
             return;
         }
 
@@ -150,8 +165,8 @@ $('#' + DELETE_MODAL + ' .btn-primary').on('click', async function () {
         insertSubCategoryHtml(categoryCard, subCategoryList);
 
         // 완료 모달
-        getModal(DELETE_MODAL).hide();
-        getModal(DELETE_COMPLETE_MODAL).show();
+        deleteModal.hide();
+        deleteCompleteModal.show();
 
     } catch (error) {
         alert(globalError);
@@ -161,8 +176,12 @@ $('#' + DELETE_MODAL + ' .btn-primary').on('click', async function () {
 });
 
 // 서브 카테고리 리스트 html 입력
-function insertSubCategoryHtml(categoryCard, html) {
-    categoryCard.find('.accordion-body .sub-category-wrap').html(html);
+function insertSubCategoryHtml(categoryCard, result) {
+    // 에러 확인
+    if (result.html == undefined) {
+        throw new Error(htmlApiError);
+    }
+    categoryCard.find('.accordion-body .sub-category-wrap').html(result.html);
 }
 
 // 각종 모달에 카테고리 인덱스 전달
@@ -197,13 +216,13 @@ function isCreateModal() {
     let categoryIdx = $('#' + CREATE_MODAL).find('input[name=categoryIdx]').val();
     let subCategoryIdx = $('#' + CREATE_MODAL).find('input[name=subCategoryIdx]').val();
     
-    if ($.isNumeric(subCategoryIdx) && categoryIdx == '') {
+    if ($.isNumeric(subCategoryIdx) && $.isNumeric(categoryIdx)) {
         return false;
     }
     if ($.isNumeric(categoryIdx) && subCategoryIdx == '') {
         return true;
     }
-    throw new Exception('Category index and sub category idx are not defined.');
+    throw new Error('Category index or sub category idx are not defined.');
 }
 
 // 카테고리에 속한 서브 카테고리 리스트를 가져오는 ajax

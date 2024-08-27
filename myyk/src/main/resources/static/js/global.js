@@ -173,9 +173,6 @@ function getErrorCodesForApi(json) {
     }
 
     // json 타입이 아닌 경우 파싱
-    if (typeof json == 'string') {
-        json = JSON.parse(json);
-    }
     if (json.isError == undefined || json.isError != true) {
         return false;
     }
@@ -184,11 +181,16 @@ function getErrorCodesForApi(json) {
 
 // API가 성공인지 판단
 function isSuccess(response) {
-    return response == 'SUCCESS';
+    if (typeof json == 'string') {
+        return response == 'SUCCESS';
+    } else {
+        return response.isSuccess;
+    }
 }
 
 // ajax를 통해 얻은 에러 코드로 에러 메시지를 표시한다.
 function setErrorMsg(errorCodes) {
+    // TODO
     errorCodes.map(function () {
         let errorCode = JSON.stringify($(this));
         errorOn(errorCode);

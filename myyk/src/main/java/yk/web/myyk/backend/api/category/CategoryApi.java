@@ -1,12 +1,12 @@
 package yk.web.myyk.backend.api.category;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.google.gson.Gson;
 
 import yk.web.myyk.backend.api.BaseApi;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
@@ -14,6 +14,7 @@ import yk.web.myyk.backend.dto.form.category.CreateSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.DeleteSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.FindSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.UpdateSubCategoryForm;
+import yk.web.myyk.backend.dto.holder.category.UpdateSubCategoryApiHolder;
 import yk.web.myyk.backend.service.category.CreateSubCategory;
 import yk.web.myyk.backend.service.category.CreateSubCategoryCardHtml;
 import yk.web.myyk.backend.service.category.DeleteSubCategory;
@@ -35,8 +36,10 @@ public class CategoryApi extends BaseApi {
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/create")
-    public String createSubCategory(CreateSubCategoryForm form) throws ApiException {
-        String json = "";
+    public Map<String, Object> createSubCategory(CreateSubCategoryForm form) throws ApiException {
+
+        Map<String, Object> json = new HashMap<>();
+
         CreateSubCategory logic = getService().getCreateSubCategory();
         try {
             logic.setCategoryIdx(form.getCategoryIdx());
@@ -44,7 +47,7 @@ public class CategoryApi extends BaseApi {
             logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
             logic.excute();
 
-            setJson(logic.getSubCategory());
+            json = getJson(logic.getSubCategory());
 
         } catch (AppException e) {
             json = getErrorJson(e.getErrors());
@@ -52,9 +55,18 @@ public class CategoryApi extends BaseApi {
         return json;
     }
 
+    /**
+     * <p>서브 카테고리를 갱신한다.</p>
+     *
+     * @param form 폼
+     * @return JSON
+     * @throws ApiException API예외
+     */
     @RequestMapping("/sub/update")
-    public String updateSubCategory(UpdateSubCategoryForm form) throws ApiException {
-        String json = "";
+    public UpdateSubCategoryApiHolder updateSubCategory(UpdateSubCategoryForm form) throws ApiException {
+
+        UpdateSubCategoryApiHolder holder = new UpdateSubCategoryApiHolder();
+
         UpdateSubCategory logic = getService().getUpdateSubCategory();
         try {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
@@ -62,12 +74,14 @@ public class CategoryApi extends BaseApi {
             logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
             logic.excute();
 
-            setJson(logic.getSubCategory());
+            SubCategoryDTO dto = logic.getSubCategory();
+            holder.setSubCategoryNameKo(dto.getSubCategoryNameKo());
+            holder.setSubCategoryNameJp(dto.getSubCategoryNameJp());
 
         } catch (AppException e) {
-            json = getErrorJson(e.getErrors());
+            holder.setErrorCodes(e.getErrors());
         }
-        return json;
+        return holder;
     }
 
     /**
@@ -78,8 +92,10 @@ public class CategoryApi extends BaseApi {
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/delete")
-    public String deleteSubCategory(DeleteSubCategoryForm form) throws ApiException {
-        String json = "";
+    public Map<String, Object> deleteSubCategory(DeleteSubCategoryForm form) throws ApiException {
+
+        Map<String, Object> json = new HashMap<>();
+
         DeleteSubCategory logic = getService().getDeleteSubCategory();
         try {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
@@ -101,15 +117,16 @@ public class CategoryApi extends BaseApi {
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/find")
-    public String findSubCategory(FindSubCategoryForm form) throws ApiException {
-        String json = "";
+    public Map<String, Object> findSubCategory(FindSubCategoryForm form) throws ApiException {
+
+        Map<String, Object> json = new HashMap<>();
+
         FindSubCategory logic = getService().getFindSubCategory();
         try {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
             logic.excute();
 
-            Gson gson = new Gson();
-            json = gson.toJson(logic.getSubCategory());
+            json = getJson(logic.getSubCategory());
 
         } catch (AppException e) {
             json = getErrorJson(e.getErrors());
@@ -125,8 +142,9 @@ public class CategoryApi extends BaseApi {
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/search/card")
-    public String createSubCategoryCardList(long categoryIdx) throws ApiException {
-        String html = "";
+    public Map<String, Object> createSubCategoryCardList(long categoryIdx) throws ApiException {
+
+        Map<String, Object> json = new HashMap<>();
 
         CreateSubCategoryCardHtml logic = getService().getCreateSubCategoryCardHtml();
         SearchSubCategoryByCategory searchSubCategory = getService().getSearchSubCategoryByCategory();
@@ -137,11 +155,11 @@ public class CategoryApi extends BaseApi {
 
             logic.setSubCategoryList(subCategoryList);
             logic.excute();
-            html = logic.getHtml();
+            json = getHtml(logic.getHtml());
 
         } catch (AppException e) {
-            html = getErrorJson(e.getErrors());
+            json = getErrorJson(e.getErrors());
         }
-        return html;
+        return json;
     }
 }

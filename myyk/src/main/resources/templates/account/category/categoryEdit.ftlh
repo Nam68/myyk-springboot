@@ -147,6 +147,26 @@
     </div>
   </div>
 
+  <#-- 서브 카테고리 수정 열람 실패 모달 -->
+  <div class="modal fade" id="update-fail-sub-category-modal" aria-labelledby="update-fail-sub-category-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div id="update-fail-sub-category-modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="delete-fail-sub-category-modal-label"><@msg 'category.sub.update.fail.name'/></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <@msg 'category.sub.update.fail.info'/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><@msg 'global.close'/></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <#-- 서브 카테고리 삭제 모달 -->
   <div class="modal fade" id="delete-sub-category-modal" aria-labelledby="delete-sub-category-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

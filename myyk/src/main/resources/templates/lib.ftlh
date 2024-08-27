@@ -26,6 +26,7 @@
 <script>
 const globalError = '<@msg "global.error"/>';
 const iconHtml = '<i class="bi bi-%s"></i>';
+const htmlApiError = 'html is undefined.';
 <#--
 const selectedLanguage = '${selected_language}';
 const unselectedLanguage = '${unselected_language}';

@@ -1,22 +1,30 @@
 package yk.web.myyk.backend.api;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.gson.Gson;
-
 import yk.web.myyk.backend.dto.BaseDTO;
 import yk.web.myyk.backend.dto.holder.BaseHolder;
 import yk.web.myyk.backend.factory.ServiceFactory;
 import yk.web.myyk.util.BaseApp;
-import yk.web.myyk.util.enumerated.Error;
 import yk.web.myyk.util.errorCode.ErrorCode;
 
 public class BaseApi extends BaseApp {
+
+    protected String IS_SUCCESS = "isSuccess";
+
+    protected String IS_ERROR = "isError";
+
+    protected String ERROR_CODES = "errorCodes";
+
+    protected String DTO = "dto";
+
+    protected String HTML = "html";
 
     @Autowired
     private ServiceFactory serviceFactory;
@@ -35,8 +43,16 @@ public class BaseApi extends BaseApp {
      *
      * @return 반환값이 없는 성공시 JSON.
      */
-    protected String success() {
-        return Error.SUCCESS.name();
+    protected Map<String, Object> success() {
+        Map<String, Object> map = new HashMap<>();
+        map.put(IS_SUCCESS, true);
+        return map;
+    }
+
+    protected Map<String, Object> getHtml(String html) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(HTML, html);
+        return map;
     }
 
     /**
@@ -46,8 +62,8 @@ public class BaseApi extends BaseApp {
      * @param dto DTO
      * @return JSON
      */
-    protected <T extends BaseDTO> String setJson(T dto) {
-        return setJsonWithGson(dto);
+    protected <T extends BaseDTO> Map<String, Object> getJson(T dto) {
+        return getJsonWithGson(dto);
     }
 
     /**
@@ -57,8 +73,8 @@ public class BaseApi extends BaseApp {
      * @param holder 홀더
      * @return JSON
      */
-    protected <T extends BaseHolder> String setJson(T holder) {
-        return setJsonWithGson(holder);
+    protected <T extends BaseHolder> Map<String, Object> getJson(T holder) {
+        return getJsonWithGson(holder);
     }
 
     /**
@@ -67,9 +83,10 @@ public class BaseApi extends BaseApp {
      * @param obj DTO나 홀더.
      * @return JSON
      */
-    private String setJsonWithGson(Object obj) {
-        Gson gson = new Gson();
-        return gson.toJson(obj);
+    private Map<String, Object> getJsonWithGson(Object obj) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(DTO, obj);
+        return map;
     }
 
     /**
@@ -78,31 +95,21 @@ public class BaseApi extends BaseApp {
      * @param errors 의도된 예외 맵
      * @return JSON
      */
-    protected String getErrorJson(Map<String, ErrorCode> errors) {
+    protected Map<String, Object> getErrorJson(Map<String, ErrorCode> errors) {
 
-        String json = "";
+        Map<String, Object> map = new HashMap<>();
 
-        ErrorDTO errorDTO = new ErrorDTO(errors);
+        // 에러인지 아닌지 설정
+        boolean isError = !errors.isEmpty();
+        map.put(IS_ERROR, isError);
 
-        Gson gson = new Gson();
-        json = gson.toJson(errorDTO);
-
-        return json;
-    }
-
-    private class ErrorDTO {
-
-        @SuppressWarnings("unused")
-        private boolean isError = true;
-
-        private List<String> codes = new ArrayList<>();
-
-        public ErrorDTO(Map<String, ErrorCode> errors) {
-            this.isError = !errors.isEmpty();
-            for (Entry<String, ErrorCode> entry : errors.entrySet()) {
-                codes.add(entry.getKey());
-            }
+        // 에러 코드 설정
+        List<String> codes = new ArrayList<>();
+        for (Entry<String, ErrorCode> entry : errors.entrySet()) {
+            codes.add(entry.getKey());
         }
-    }
+        map.put(ERROR_CODES, codes);
 
+        return map;
+    }
 }

@@ -308,7 +308,7 @@ public enum ErrorCode {
     EE_ME_114("nickname is too long."),
 
     /**
-     * <p>카테고리가 존재하지 않는 경우.</p>
+     * <p>서브 카테고리가 존재하지 않는 경우.</p>
      */
     EE_SC_101("cateogry does not exist."),
 
