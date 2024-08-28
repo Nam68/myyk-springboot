@@ -19,8 +19,8 @@ public class SubCategoryEntity extends BaseEntity {
     @Column(name = "SUB_CATEGORY_IDX")
     private Long subCategoryIdx;
 
-    @Column(name = "SUB_CATEGORY_NAME_KO")
-    private String subCategoryNameKo;
+    @Column(name = "SUB_CATEGORY_NAME_KR")
+    private String subCategoryNameKr;
 
     @Column(name = "SUB_CATEGORY_NAME_JP")
     private String subCategoryNameJp;
@@ -39,12 +39,12 @@ public class SubCategoryEntity extends BaseEntity {
     /**
      * <p>생성자.</p>
      *
-     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
      * @param subCategoryNameJp 서브 카테고리 이름(일본어)
      * @param sortNo 정렬번호
      */
-    public SubCategoryEntity(String subCategoryNameKo, String subCategoryNameJp, int sortNo, CategoryEntity category) {
-        setSubCategoryNameKo(subCategoryNameKo);
+    public SubCategoryEntity(String subCategoryNameKr, String subCategoryNameJp, int sortNo, CategoryEntity category) {
+        setSubCategoryNameKr(subCategoryNameKr);
         setSubCategoryNameJp(subCategoryNameJp);
         setSortNo(sortNo);
         setCategory(category);
@@ -64,17 +64,17 @@ public class SubCategoryEntity extends BaseEntity {
      *
      * @return 서브 카테고리 이름(한국어)
      */
-    public String getSubCategoryNameKo() {
-        return subCategoryNameKo;
+    public String getSubCategoryNameKr() {
+        return subCategoryNameKr;
     }
 
     /**
      * <p>서브 카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
      */
-    public void setSubCategoryNameKo(String subCategoryNameKo) {
-        this.subCategoryNameKo = subCategoryNameKo;
+    public void setSubCategoryNameKr(String subCategoryNameKr) {
+        this.subCategoryNameKr = subCategoryNameKr;
     }
 
     /**

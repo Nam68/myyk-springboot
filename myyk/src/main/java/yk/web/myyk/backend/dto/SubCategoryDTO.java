@@ -11,7 +11,7 @@ public class SubCategoryDTO extends BaseDTO {
 
     private long subCategoryIdx = 0;
 
-    private String subCategoryNameKo = "";
+    private String subCategoryNameKr = "";
 
     private String subCategoryNameJp = "";
 
@@ -35,7 +35,7 @@ public class SubCategoryDTO extends BaseDTO {
     public SubCategoryDTO(SubCategoryEntity entity) {
         setCategoryIdx(entity.getCategory().getCategoryIdx());
         setSubCategoryIdx(entity.getSubCategoryIdx());
-        setSubCategoryNameKo(entity.getSubCategoryNameKo());
+        setSubCategoryNameKr(entity.getSubCategoryNameKr());
         setSubCategoryNameJp(entity.getSubCategoryNameJp());
         setSortNo(entity.getSortNo());
     }
@@ -81,17 +81,17 @@ public class SubCategoryDTO extends BaseDTO {
      *
      * @return 서브 카테고리 이름(한국어)
      */
-    public String getSubCategoryNameKo() {
-        return subCategoryNameKo;
+    public String getSubCategoryNameKr() {
+        return subCategoryNameKr;
     }
 
     /**
      * <p>서브 카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
      */
-    public void setSubCategoryNameKo(String subCategoryNameKo) {
-        this.subCategoryNameKo = subCategoryNameKo;
+    public void setSubCategoryNameKr(String subCategoryNameKr) {
+        this.subCategoryNameKr = subCategoryNameKr;
     }
 
     /**

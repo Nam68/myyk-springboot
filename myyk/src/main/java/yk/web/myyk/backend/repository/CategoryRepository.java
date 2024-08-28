@@ -25,10 +25,10 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
      * <p>회원 인덱스와 카테고리 이름(한국어)를 통해 카테고리 리스트를 반환한다.</p>
      *
      * @param memberMemberIdx 회원 인덱스
-     * @param categoryNameKo 카테고리 이름(한국어)
+     * @param categoryNameKr 카테고리 이름(한국어)
      * @return 카테고리 리스트
      */
-    public List<CategoryEntity> findAllByMemberMemberIdxAndCategoryNameKo(long memberMemberIdx, String categoryNameKo);
+    public List<CategoryEntity> findAllByMemberMemberIdxAndCategoryNameKr(long memberMemberIdx, String categoryNameKr);
 
     /**
      * <p>회원 인덱스와 카테고리 이름(일본어)를 통해 카테고리 리스트를 반환한다.</p>

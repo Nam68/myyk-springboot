@@ -31,18 +31,11 @@ public class AccountBookEntity extends BaseEntityWithTime {
     @Column(name = "ACCOUNT_BOOK_IDX")
     private Long accountBookIdx;
 
-    @Column(name = "ACCOUNT_BOOK_NAME_KO")
-    private String accountBookNameKo;
+    @Column(name = "ACCOUNT_BOOK_NAME_KR")
+    private String accountBookNameKr;
 
     @Column(name = "ACCOUNT_BOOK_NAME_JP")
     private String accountBookNameJp;
-
-    @Column(name = "TAX_INCLUDE")
-    private boolean taxInclude;
-
-    @Column(name = "TAX_RATE")
-    @Enumerated(EnumType.STRING)
-    private TaxRate taxRate;
 
     @Column(name = "CURRENCY")
     @Enumerated(EnumType.STRING)
@@ -64,15 +57,12 @@ public class AccountBookEntity extends BaseEntityWithTime {
     }
 
     public AccountBookEntity(CreateAccountBookForm form) {
-        this.taxRate = form.getTaxRate();
         this.currency = form.getCurrency();
     }
 
-    public AccountBookEntity(String accountBookNameKo, String accountBookNameJp, boolean taxInclude, TaxRate taxRate, Currency currency) {
-        setAccountBookNameKo(accountBookNameKo);
+    public AccountBookEntity(String accountBookNameKr, String accountBookNameJp, Currency currency) {
+        setAccountBookNameKr(accountBookNameKr);
         setAccountBookNameJp(accountBookNameJp);
-        setTaxInclude(taxInclude);
-        setTaxRate(taxRate);
         setCurrency(currency);
     }
 
@@ -81,8 +71,17 @@ public class AccountBookEntity extends BaseEntityWithTime {
      *
      * @return 가계부 이름
      */
-    public String getAccountBookNameKo() {
-        return accountBookNameKo;
+    public String getAccountBookNameKr() {
+        return accountBookNameKr;
+    }
+
+    /**
+     * <p>가계부 이름을 설정한다.</p>
+     *
+     * @param accountBookNameKr 가계부 이름
+     */
+    public void setAccountBookNameKr(String accountBookNameKr) {
+        this.accountBookNameKr = accountBookNameKr;
     }
 
     /**
@@ -97,37 +96,10 @@ public class AccountBookEntity extends BaseEntityWithTime {
     /**
      * <p>가계부 이름을 설정한다.</p>
      *
-     * @param accountBookNameKo 가계부 이름
-     */
-    public void setAccountBookNameKo(String accountBookNameKo) {
-        this.accountBookNameKo = accountBookNameKo;
-    }
-
-    /**
-     * <p>가계부 이름을 설정한다.</p>
-     *
      * @param accountNameJp 가계부 이름
      */
     public void setAccountBookNameJp(String accountBookNameJp) {
         this.accountBookNameJp = accountBookNameJp;
-    }
-
-    /**
-     * <p>세금포함 여부를 설정한다.</p>
-     *
-     * @param taxInclude 세금포함 여부
-     */
-    public void setTaxInclude(boolean taxInclude) {
-        this.taxInclude = taxInclude;
-    }
-
-    /**
-     * <p>세율을 설정한다.</p>
-     *
-     * @param taxRate 세율
-     */
-    public void setTaxRate(TaxRate taxRate) {
-        this.taxRate = taxRate;
     }
 
     /**
@@ -137,6 +109,15 @@ public class AccountBookEntity extends BaseEntityWithTime {
      */
     public void setCurrency(Currency currency) {
         this.currency = currency;
+    }
+
+    /**
+     * <p>통화단위를 반환한다.</p>
+     *
+     * @return 통화단위
+     */
+    public Currency getCurrency() {
+        return currency;
     }
 
     /**

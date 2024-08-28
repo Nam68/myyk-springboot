@@ -28,7 +28,7 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
 
     private long categoryIdx;
 
-    private String categoryNameKo;
+    private String categoryNameKr;
 
     private String categoryNameJp;
 
@@ -41,8 +41,8 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
     private MemberEntity member;
 
     @Override
-    public void setCategoryNameKo(String categoryNameKo) {
-        this.categoryNameKo = categoryNameKo;
+    public void setCategoryNameKr(String categoryNameKr) {
+        this.categoryNameKr = categoryNameKr;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        errors.putAll(CategoryChecker.checkCategoryNameKo(categoryNameKo));
+        errors.putAll(CategoryChecker.checkCategoryNameKr(categoryNameKr));
         errors.putAll(CategoryChecker.checkCategoryNameJp(categoryNameJp));
         errors.putAll(CategoryChecker.checkCategoryIcon(categoryIcon));
         errors.putAll(CategoryChecker.checkCategoryColor(categoryColor));
@@ -89,7 +89,7 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
         for (CategoryEntity category : categoryList) {
 
             // 중복되는 이름이 있으면 에러 리스트에 추가
-            if (category.getCategoryNameKo().equals(categoryNameKo)) {
+            if (category.getCategoryNameKr().equals(categoryNameKr)) {
                 ErrorCode error = loginInfo.getRegion() == Region.KOREA ? ErrorCode.EE_CA_103 : ErrorCode.EE_CA_106;
                 setError(errors, error);
             }
@@ -129,7 +129,7 @@ public class CreateCategoryLogic extends BaseLogic implements CreateCategory {
             this.sortNo = Constant.getFirst();
         }
 
-        CategoryEntity entity = new CategoryEntity(categoryNameKo, categoryNameJp, categoryColor, categoryIcon, sortNo, member);
+        CategoryEntity entity = new CategoryEntity(categoryNameKr, categoryNameJp, categoryColor, categoryIcon, sortNo, member);
         createCategory(entity);
 
         this.categoryIdx = entity.getCategoryIdx();

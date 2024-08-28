@@ -28,7 +28,7 @@ import yk.web.myyk.util.exception.SystemException;
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCategory {
 
-    private String subCategoryNameKo;
+    private String subCategoryNameKr;
 
     private String subCategoryNameJp;
 
@@ -41,8 +41,8 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
     private CategoryEntity category;
 
     @Override
-    public void setSubCategoryNameKo(String subCategoryNameKo) {
-        this.subCategoryNameKo = subCategoryNameKo;
+    public void setSubCategoryNameKr(String subCategoryNameKr) {
+        this.subCategoryNameKr = subCategoryNameKr;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        errors.putAll(SubCategoryChecker.checkSubCategoryNameKo(subCategoryNameKo));
+        errors.putAll(SubCategoryChecker.checkSubCategoryNameKr(subCategoryNameKr));
         errors.putAll(SubCategoryChecker.checkSubCategoryNameJp(subCategoryNameJp));
 
         if (!errors.isEmpty()) {
@@ -91,7 +91,7 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
 
         for (SubCategoryEntity subCategoryEntity : subCategoryEntityList) {
             // 중복되는 이름이 있으면 에러 리스트에 추가
-            if (subCategoryEntity.getSubCategoryNameKo().equals(subCategoryNameKo)) {
+            if (subCategoryEntity.getSubCategoryNameKr().equals(subCategoryNameKr)) {
                 ErrorCode error = loginInfo.getRegion() == Region.KOREA ? ErrorCode.EE_SC_104 : ErrorCode.EE_SC_107;
                 setError(errors, error);
             }
@@ -132,7 +132,7 @@ public class CreateSubCategoryLogic extends BaseLogic implements CreateSubCatego
             this.sortNo = Constant.getFirst();
         }
 
-        SubCategoryEntity entity = new SubCategoryEntity(subCategoryNameKo, subCategoryNameJp, sortNo, category);
+        SubCategoryEntity entity = new SubCategoryEntity(subCategoryNameKr, subCategoryNameJp, sortNo, category);
         createSubCategory(entity);
 
         this.subCategory = new SubCategoryDTO(entity);

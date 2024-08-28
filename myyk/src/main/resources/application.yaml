@@ -3,12 +3,12 @@ spring:
     import: 
       - application-data.yaml
       - application-mail.yaml
-      - mail-template-ko.yaml
+      - mail-template-kr.yaml
       - mail-template-jp.yaml
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     generate-ddl: true
   freemarker: 
     template-loader-path: classpath:/templates

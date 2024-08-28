@@ -23,8 +23,8 @@ public class CategoryEntity extends BaseEntity {
     @Column(name = "CATEGORY_IDX")
     private Long categoryIdx;
 
-    @Column(name = "CATEGORY_NAME_KO")
-    private String categoryNameKo;
+    @Column(name = "CATEGORY_NAME_KR")
+    private String categoryNameKr;
 
     @Column(name = "CATEGORY_NAME_JP")
     private String categoryNameJp;
@@ -53,8 +53,8 @@ public class CategoryEntity extends BaseEntity {
         this.categoryIdx = categoryIdx;
     }
 
-    public CategoryEntity(String categoryNameKo, String categoryNameJp, String categoryColor, String categoryIcon, int sortNo, MemberEntity member) {
-        setCategoryNameKo(categoryNameKo);
+    public CategoryEntity(String categoryNameKr, String categoryNameJp, String categoryColor, String categoryIcon, int sortNo, MemberEntity member) {
+        setCategoryNameKr(categoryNameKr);
         setCategoryNameJp(categoryNameJp);
         setCategoryColor(categoryColor);
         setCategoryIcon(categoryIcon);
@@ -76,17 +76,17 @@ public class CategoryEntity extends BaseEntity {
      *
      * @return 카테고리 이름(한국어)
      */
-    public String getCategoryNameKo() {
-        return categoryNameKo;
+    public String getCategoryNameKr() {
+        return categoryNameKr;
     }
 
     /**
      * <p>카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param categoryNameKo 카테고리 이름(한국어)
+     * @param categoryNameKr 카테고리 이름(한국어)
      */
-    public void setCategoryNameKo(String categoryNameKo) {
-        this.categoryNameKo = categoryNameKo;
+    public void setCategoryNameKr(String categoryNameKr) {
+        this.categoryNameKr = categoryNameKr;
     }
 
     /**

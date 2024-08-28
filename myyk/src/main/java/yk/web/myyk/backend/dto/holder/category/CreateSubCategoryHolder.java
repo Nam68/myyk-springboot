@@ -17,7 +17,7 @@ public class CreateSubCategoryHolder extends BaseHolder {
 
     private String categoryName = "";
 
-    private String subCategoryNameKo = "";
+    private String subCategoryNameKr = "";
 
     private String subCategoryNameJp = "";
 
@@ -30,7 +30,7 @@ public class CreateSubCategoryHolder extends BaseHolder {
 
     public CreateSubCategoryHolder(CategoryDTO category, List<SubCategoryDTO> subCategoryList, String locale) {
         this.categoryIdx = category.getCategoryIdx();
-        this.categoryName = MyLocale.isKorean(locale) ? category.getCategoryNameKo() : category.getCategoryNameJp();
+        this.categoryName = MyLocale.isKorean(locale) ? category.getCategoryNameKr() : category.getCategoryNameJp();
         this.subCategoryList = subCategoryList;
     }
 
@@ -57,8 +57,8 @@ public class CreateSubCategoryHolder extends BaseHolder {
      *
      * @return 서브 카테고리 이름(한국어)
      */
-    public String getSubCategoryNameKo() {
-        return subCategoryNameKo;
+    public String getSubCategoryNameKr() {
+        return subCategoryNameKr;
     }
 
     /**

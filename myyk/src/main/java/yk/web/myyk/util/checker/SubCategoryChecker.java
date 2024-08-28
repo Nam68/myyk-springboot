@@ -13,19 +13,19 @@ public class SubCategoryChecker extends BaseChecker {
     /**
      * <p>서브 카테고리 이름(한국어)을 검증한다.</p>
      *
-     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
      * @return 에러 리스트
      */
-    public static Map<String, ErrorCode> checkSubCategoryNameKo(String subCategoryNameKo) {
+    public static Map<String, ErrorCode> checkSubCategoryNameKr(String subCategoryNameKr) {
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        if (isEmpty(subCategoryNameKo)) {
+        if (isEmpty(subCategoryNameKr)) {
             setError(errors, ErrorCode.EE_SC_102);
             return errors;
         }
 
-        if (subCategoryNameKo.length() > Constant.getSubCategoryNameMax()) {
+        if (subCategoryNameKr.length() > Constant.getSubCategoryNameMax()) {
             setError(errors, ErrorCode.EE_SC_103);
         }
 

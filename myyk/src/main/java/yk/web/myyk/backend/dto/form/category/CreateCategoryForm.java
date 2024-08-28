@@ -6,7 +6,7 @@ public class CreateCategoryForm extends BaseForm {
     /**
      * <p>카테고리 이름(한국어).</p>
      */
-    private String categoryNameKo = "";
+    private String categoryNameKr = "";
 
     /**
      * <p>카테고리 이름(일본어).</p>
@@ -28,17 +28,17 @@ public class CreateCategoryForm extends BaseForm {
      *
      * @return 카테고리 이름(한국어)
      */
-    public String getCategoryNameKo() {
-        return categoryNameKo;
+    public String getCategoryNameKr() {
+        return categoryNameKr;
     }
 
     /**
      * <p>카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param categoryNameKo 카테고리 이름(한국어)
+     * @param categoryNameKr 카테고리 이름(한국어)
      */
-    public void setCategoryNameKo(String categoryNameKo) {
-        this.categoryNameKo = categoryNameKo;
+    public void setCategoryNameKr(String categoryNameKr) {
+        this.categoryNameKr = categoryNameKr;
     }
 
     /**

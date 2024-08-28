@@ -29,8 +29,7 @@ public class FindCategoryLogic extends BaseLogic implements FindCategory {
 
     @Override
     public void validate() throws SystemException, AppException {
-        Optional<CategoryEntity> categoryOptional = getRepository().getCategory().findById(categoryIdx);
-        if (!categoryOptional.isPresent()) {
+        if (!getRepository().getCategory().existsById(categoryIdx)) {
             throw new AppException(ErrorCode.CG_101);
         }
     }

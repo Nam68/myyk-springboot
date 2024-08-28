@@ -29,7 +29,7 @@ import yk.web.myyk.util.sort.SortUtil;
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBook {
 
-    private String accountBookNameKo;
+    private String accountBookNameKr;
 
     private String accountBookNameJp;
 
@@ -44,23 +44,13 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
     private List<Long> writeAuthList;
 
     @Override
-    public void setAccountBookNameKo(String accountBookNameKo) {
-        this.accountBookNameKo = accountBookNameKo;
+    public void setAccountBookNameKr(String accountBookNameKr) {
+        this.accountBookNameKr = accountBookNameKr;
     }
 
     @Override
     public void setAccountBookNameJp(String accountBookNameJp) {
         this.accountBookNameJp = accountBookNameJp;
-    }
-
-    @Override
-    public void setTaxInclude(boolean taxInclude) {
-        this.taxInclude = taxInclude;
-    }
-
-    @Override
-    public void setTaxRate(TaxRate taxRate) {
-        this.taxRate = taxRate;
     }
 
     @Override
@@ -83,7 +73,7 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        errors.putAll(AccountChecker.checkAccountBookNameKo(accountBookNameKo));
+        errors.putAll(AccountChecker.checkAccountBookNameKr(accountBookNameKr));
         errors.putAll(AccountChecker.checkAccountBookNameJp(accountBookNameJp));
 
         if (!errors.isEmpty()) {
@@ -95,7 +85,7 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
         List<AccountBookAuthEntity> authList = getRepository().getAccountBookAuth().findByMemberMemberIdx(loginIdx, descSort);
 
         for (AccountBookAuthEntity auth : authList) {
-            if (auth.getAccount().getAccountBookNameKo().equals(accountBookNameKo)) {
+            if (auth.getAccount().getAccountBookNameKr().equals(accountBookNameKr)) {
                 setError(errors, ErrorCode.EE_AC_103);
                 break;
             }
@@ -140,7 +130,7 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
 
     @Transactional
     private void saveAccountEntity() {
-        AccountBookEntity entity = new AccountBookEntity(accountBookNameKo, accountBookNameJp, taxInclude, taxRate, currency);
+        AccountBookEntity entity = new AccountBookEntity(accountBookNameKr, accountBookNameJp, currency);
         getRepository().getAccountBook().save(entity);
     }
 

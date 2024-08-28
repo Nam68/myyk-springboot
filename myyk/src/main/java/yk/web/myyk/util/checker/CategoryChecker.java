@@ -14,19 +14,19 @@ public class CategoryChecker extends BaseChecker {
     /**
      * <p>카테고리 이름(한국어)을 검증한다.</p>
      *
-     * @param categoryNameKo 카테고리 이름(한국어)
+     * @param categoryNameKr 카테고리 이름(한국어)
      * @return 에러 리스트
      */
-    public static Map<String, ErrorCode> checkCategoryNameKo(String categoryNameKo) {
+    public static Map<String, ErrorCode> checkCategoryNameKr(String categoryNameKr) {
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        if (isEmpty(categoryNameKo)) {
+        if (isEmpty(categoryNameKr)) {
             setError(errors, ErrorCode.EE_CA_101);
             return errors;
         }
 
-        if (categoryNameKo.length() > Constant.getCategoryNameMax()) {
+        if (categoryNameKr.length() > Constant.getCategoryNameMax()) {
             setError(errors, ErrorCode.EE_CA_102);
         }
 

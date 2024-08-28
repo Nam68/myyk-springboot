@@ -11,50 +11,50 @@ import yk.web.myyk.util.exception.SystemException;
  */
 public class SortCategoryList extends BaseSharedLogic {
 
-	private List<CategoryEntity> categoryEntityList = new ArrayList<>();
+    private List<CategoryEntity> categoryEntityList = new ArrayList<>();
 
-	private List<CategoryEntity> sortedCategoryEntityList;
+    private List<CategoryEntity> sortedCategoryEntityList;
 
-	@Override
+    @Override
     public void validate() throws SystemException {
-		if (categoryEntityList == null) {
-			throw new SystemException("category entity list does not exist in SortCategoryList.");
-		}
-	}
+        if (categoryEntityList == null) {
+            throw new SystemException("category entity list does not exist in SortCategoryList.");
+        }
+    }
 
-	@Override
+    @Override
     public void execute() throws SystemException {
 
-		validate();
+        validate();
 
-		List<CategoryEntity> entityResult = new ArrayList<>();
+        List<CategoryEntity> entityResult = new ArrayList<>();
 
-//		for (CategoryEntity entity : categoryEntityList) {
-//			if (entity.isPrime()) {
-//				entityResult.add(entity);
-//				dtoResult.add(new PrimeCategoryDTO(entity));
-//			}
-//		}
+//      for (CategoryEntity entity : categoryEntityList) {
+//          if (entity.isPrime()) {
+//              entityResult.add(entity);
+//              dtoResult.add(new PrimeCategoryDTO(entity));
+//          }
+//      }
 
-		sortedCategoryEntityList = entityResult;
-	}
+        sortedCategoryEntityList = entityResult;
+    }
 
-	/**
-	 * <p>정렬이 필요한 카테고리 엔티티 리스트를 설정한다.</p>
-	 *
-	 * @param categoryEntityList 카테고리 엔티티 리스트
-	 */
-	public void setCatoryEntityList(List<CategoryEntity> categoryEntityList) {
-		this.categoryEntityList = categoryEntityList;
-	}
+    /**
+     * <p>정렬이 필요한 카테고리 엔티티 리스트를 설정한다.</p>
+     *
+     * @param categoryEntityList 카테고리 엔티티 리스트
+     */
+    public void setCatoryEntityList(List<CategoryEntity> categoryEntityList) {
+        this.categoryEntityList = categoryEntityList;
+    }
 
-	/**
-	 * <p>1차카테고리 엔티티만을 반환한다.</p>
-	 *
-	 * @return 1차카테고리 엔티티 리스트
-	 */
-	public List<CategoryEntity> getSortedCategoryEntityList() {
-		return sortedCategoryEntityList;
-	}
+    /**
+     * <p>1차카테고리 엔티티만을 반환한다.</p>
+     *
+     * @return 1차카테고리 엔티티 리스트
+     */
+    public List<CategoryEntity> getSortedCategoryEntityList() {
+        return sortedCategoryEntityList;
+    }
 
 }

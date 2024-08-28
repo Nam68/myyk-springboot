@@ -17,7 +17,7 @@ public class CategoryDTO extends BaseDTO {
     /**
      * <p>카테고리 이름(한국어).</p>
      */
-    private String categoryNameKo;
+    private String categoryNameKr;
 
     /**
      * <p>카테고리 이름(일본어).</p>
@@ -45,7 +45,7 @@ public class CategoryDTO extends BaseDTO {
 
     public CategoryDTO(CategoryEntity entity) {
         setCategoryIdx(entity.getCategoryIdx());
-        setCategoryNameKo(entity.getCategoryNameKo());
+        setCategoryNameKr(entity.getCategoryNameKr());
         setCategoryNameJp(entity.getCategoryNameJp());
         setCategoryIcon(entity.getCategoryColor());
         setCategoryIcon(entity.getCategoryIcon());
@@ -74,17 +74,17 @@ public class CategoryDTO extends BaseDTO {
      *
      * @return 카테고리 이름(한국어)
      */
-    public String getCategoryNameKo() {
-        return categoryNameKo;
+    public String getCategoryNameKr() {
+        return categoryNameKr;
     }
 
     /**
      * <p>카테고리 이름(한국어)을 설정한다.</p>
      *
-     * @param categoryNameKo 카테고리 이름(한국어)
+     * @param categoryNameKr 카테고리 이름(한국어)
      */
-    public void setCategoryNameKo(String categoryNameKo) {
-        this.categoryNameKo = categoryNameKo;
+    public void setCategoryNameKr(String categoryNameKr) {
+        this.categoryNameKr = categoryNameKr;
     }
 
     /**

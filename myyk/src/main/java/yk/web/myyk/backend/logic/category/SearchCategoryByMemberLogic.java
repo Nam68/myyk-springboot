@@ -80,7 +80,7 @@ public class SearchCategoryByMemberLogic extends BaseLogic implements SearchCate
         for (SubCategoryEntity subCategory : entity.getSubCategoryList()) {
 
             long subCategoryIdx = subCategory.getSubCategoryIdx();
-            String subCategoryName = MyLocale.isKorean(locale) ? subCategory.getSubCategoryNameKo() : subCategory.getSubCategoryNameJp();
+            String subCategoryName = MyLocale.isKorean(locale) ? subCategory.getSubCategoryNameKr() : subCategory.getSubCategoryNameJp();
 
             subCategoryList.put(subCategoryIdx, subCategoryName);
         }

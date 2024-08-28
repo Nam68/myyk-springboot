@@ -7,8 +7,11 @@ import yk.web.myyk.util.exception.SystemException;
 
 public class MyLocale {
 
-    // ko
-    private static final Locale KOREA = Locale.KOREA;
+    // ko - 기본 로케일 설정값이지만, 이 어플리케이션에서는 kr를 기본으로 사용하기 때문에 파싱해야 함
+    private static final Locale KOREA_KO = Locale.KOREA;
+
+    // kr
+    private static final Locale KOREA_KR = new Locale("kr", "KR");
 
     // ja - 기본 로케일 설정값이지만, 이 어플리케이션에서는 jp를 기본으로 사용하기 때문에 파싱해야 함
     private static final Locale JAPAN_JA = Locale.JAPAN;
@@ -17,12 +20,12 @@ public class MyLocale {
     private static final Locale JAPAN_JP = new Locale("jp", "JP");
 
     /**
-     * <p>한국어 로케일(ko)을 반환한다.</p>
+     * <p>한국어 로케일(kr)을 반환한다.</p>
      *
-     * @return 한국어(ko)
+     * @return 한국어(kr)
      */
     public static Locale getKorean() {
-        return KOREA;
+        return KOREA_KR;
     }
 
     /**
@@ -36,7 +39,7 @@ public class MyLocale {
 
     /**
      * <p>기본 로케일을 전용 로케일로 파싱한다.<br>
-     * 주로 ja로 되어 있는 일본어 로케일을 jp로 변형하는 데에 사용된다.</p>
+     * ja > jp // ko > kr</p>
      *
      * @param locale 기본 로케일
      * @return 전용 로케일
@@ -48,7 +51,7 @@ public class MyLocale {
     /**
      * <p>언어 코드를 받아서 전용 로케일을 반환한다.</p>
      * <ul>
-     * <li>한국어 코드 : ko &gt; 한국어 로케일(ko)</li>
+     * <li>한국어 코드 : ko, kr &gt; 한국어 로케일(kr)</li>
      * <li>일본어 코드 : ja, jp &gt; 일본어 로케일(jp)</li>
      * </ul>
      *
@@ -135,14 +138,16 @@ public class MyLocale {
     }
 
     /**
-     * <p>일본어 언어코드가 ja인 경우 jp로 변환한다.</p>
+     * <p>한국어 언어코드가 ko인 경우 kr로, 일본어 언어코드가 ja인 경우 jp로 변환한다.</p>
      *
      * @param lang 언어코드
      * @return 검증된 언어코드
      */
     public static String getValidLanguageCode(String lang) {
-        if (KOREA.getLanguage().equals(lang) || JAPAN_JP.getLanguage().equals(lang)) {
+        if (KOREA_KR.getLanguage().equals(lang) || JAPAN_JP.getLanguage().equals(lang)) {
             return lang;
+        } else if (KOREA_KO.getLanguage().equals(lang)) {
+            return KOREA_KR.getLanguage();
         } else if (JAPAN_JA.getLanguage().equals(lang)) {
             return JAPAN_JP.getLanguage();
         } else {
@@ -167,7 +172,7 @@ public class MyLocale {
      * @return 한국어면 true
      */
     public static boolean isKorean(String lang) {
-        return KOREA.getLanguage().equals(lang);
+        return KOREA_KO.getLanguage().equals(lang) || KOREA_KR.getLanguage().equals(lang);
     }
 
     /**

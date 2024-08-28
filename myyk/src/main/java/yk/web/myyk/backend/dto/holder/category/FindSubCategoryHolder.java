@@ -7,7 +7,7 @@ import yk.web.myyk.backend.dto.holder.BaseHolder;
  */
 public class FindSubCategoryHolder extends BaseHolder {
 
-    private String subCategoryNameKo;
+    private String subCategoryNameKr;
 
     private String subCategoryNameJp;
 
@@ -16,17 +16,17 @@ public class FindSubCategoryHolder extends BaseHolder {
      *
      * @return 서브 카테고리 이름(한국어)
      */
-    public String getSubCategoryNameKo() {
-        return subCategoryNameKo;
+    public String getSubCategoryNameKr() {
+        return subCategoryNameKr;
     }
 
     /**
      * <p>서브 카테고리 이름(한국어)을 설정한다.</p>
      *
-     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
      */
-    public void setSubCategoryNameKo(String subCategoryNameKo) {
-        this.subCategoryNameKo = subCategoryNameKo;
+    public void setSubCategoryNameKr(String subCategoryNameKr) {
+        this.subCategoryNameKr = subCategoryNameKr;
     }
 
     /**

@@ -12,7 +12,7 @@ import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.SystemException;
 import yk.web.myyk.util.mail.MailText;
 import yk.web.myyk.util.mail.MailTextJp;
-import yk.web.myyk.util.mail.MailTextKo;
+import yk.web.myyk.util.mail.MailTextKr;
 
 /**
  * <p>메일 설정.
@@ -26,7 +26,7 @@ import yk.web.myyk.util.mail.MailTextKo;
 public class MailConfig {
 
     @Autowired
-    private MailTextKo mailTextKo;
+    private MailTextKr mailTextKo;
 
     @Autowired
     private MailTextJp mailTextJp;
@@ -36,7 +36,7 @@ public class MailConfig {
 
     /**
      * <p>메일 언어 설정을 가져온다.</p>
-     * 
+     *
      * @return 메일 언어 설정
      */
     public MailText getTextConfig() {
@@ -53,7 +53,7 @@ public class MailConfig {
 
     /**
      * <p>관리자 주소를 가져온다.</p>
-     * 
+     *
      * @return 관리자 주소.
      */
     protected String getAdminAddress() {

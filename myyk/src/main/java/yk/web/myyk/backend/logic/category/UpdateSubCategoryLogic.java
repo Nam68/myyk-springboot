@@ -19,7 +19,7 @@ public class UpdateSubCategoryLogic extends BaseLogic implements UpdateSubCatego
 
     private long subCategoryIdx;
 
-    private String subCategoryNameKo;
+    private String subCategoryNameKr;
 
     private String subCategoryNameJp;
 
@@ -31,8 +31,8 @@ public class UpdateSubCategoryLogic extends BaseLogic implements UpdateSubCatego
     }
 
     @Override
-    public void setSubCategoryNameKo(String subCategoryNameKo) {
-        this.subCategoryNameKo = subCategoryNameKo;
+    public void setSubCategoryNameKr(String subCategoryNameKr) {
+        this.subCategoryNameKr = subCategoryNameKr;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class UpdateSubCategoryLogic extends BaseLogic implements UpdateSubCatego
         validate();
 
         SubCategoryEntity entity = getRepository().getSubCategory().findById(subCategoryIdx).get();
-        entity.setSubCategoryNameKo(subCategoryNameKo);
+        entity.setSubCategoryNameKr(subCategoryNameKr);
         entity.setSubCategoryNameJp(subCategoryNameJp);
 
         update(entity);

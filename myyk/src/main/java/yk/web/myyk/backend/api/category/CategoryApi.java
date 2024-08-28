@@ -40,7 +40,7 @@ public class CategoryApi extends BaseApi {
         CreateSubCategory logic = getService().getCreateSubCategory();
         try {
             logic.setCategoryIdx(form.getCategoryIdx());
-            logic.setSubCategoryNameKo(form.getSubCategoryNameKo());
+            logic.setSubCategoryNameKr(form.getSubCategoryNameKr());
             logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
             logic.excute();
 
@@ -58,7 +58,7 @@ public class CategoryApi extends BaseApi {
         UpdateSubCategory logic = getService().getUpdateSubCategory();
         try {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
-            logic.setSubCategoryNameKo(form.getSubCategoryNameKo());
+            logic.setSubCategoryNameKr(form.getSubCategoryNameKr());
             logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
             logic.excute();
 

@@ -18,9 +18,9 @@ public interface UpdateSubCategory extends BaseService {
     /**
      * <p>서브 카테고리 이름(한국어)을 설정한다.</p>
      *
-     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
      */
-    public void setSubCategoryNameKo(String subCategoryNameKo);
+    public void setSubCategoryNameKr(String subCategoryNameKr);
 
     /**
      * <p>서브 카테고리 이름(일본어)을 설정한다.</p>

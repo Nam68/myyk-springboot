@@ -6,7 +6,7 @@ public class CreateSubCategoryForm extends BaseForm {
 
     private long categoryIdx = 0;
 
-    private String subCategoryNameKo = "";
+    private String subCategoryNameKr = "";
 
     private String subCategoryNameJp = "";
 
@@ -33,17 +33,17 @@ public class CreateSubCategoryForm extends BaseForm {
      *
      * @return 서브 카테고리 이름(한국어)
      */
-    public String getSubCategoryNameKo() {
-        return subCategoryNameKo;
+    public String getSubCategoryNameKr() {
+        return subCategoryNameKr;
     }
 
     /**
      * <p>서브 카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param subCategoryNameKo 서브 카테고리 이름(한국어)
+     * @param subCategoryNameKr 서브 카테고리 이름(한국어)
      */
-    public void setSubCategoryNameKo(String subCategoryNameKo) {
-        this.subCategoryNameKo = subCategoryNameKo;
+    public void setSubCategoryNameKr(String subCategoryNameKr) {
+        this.subCategoryNameKr = subCategoryNameKr;
     }
 
     /**

@@ -16,7 +16,7 @@ public class CreateCategoryHolder extends BaseHolder {
     /**
      * <p>카테고리 이름(한국어).</p>
      */
-    private String categoryNameKo = "";
+    private String categoryNameKr = "";
 
     /**
      * <p>카테고리 이름(일본어).</p>
@@ -42,7 +42,7 @@ public class CreateCategoryHolder extends BaseHolder {
     }
 
     public CreateCategoryHolder(CreateCategoryForm form) {
-        setCategoryNameKo(form.getCategoryNameKo());
+        setCategoryNameKr(form.getCategoryNameKr());
         setCategoryNameJp(form.getCategoryNameJp());
         setCategoryColor(form.getCategoryColor());
         setCategoryIcon(form.getCategoryIcon());
@@ -62,17 +62,17 @@ public class CreateCategoryHolder extends BaseHolder {
      *
      * @return 카테고리 이름(한국어)
      */
-    public String getCategoryNameKo() {
-        return categoryNameKo;
+    public String getCategoryNameKr() {
+        return categoryNameKr;
     }
 
     /**
      * <p>카테고리 이름(한국어)를 설정한다.</p>
      *
-     * @param categoryNameKo 카테고리 이름(한국어)
+     * @param categoryNameKr 카테고리 이름(한국어)
      */
-    public void setCategoryNameKo(String categoryNameKo) {
-        this.categoryNameKo = categoryNameKo;
+    public void setCategoryNameKr(String categoryNameKr) {
+        this.categoryNameKr = categoryNameKr;
     }
 
     /**

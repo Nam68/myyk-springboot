@@ -14,18 +14,18 @@ public class AccountChecker extends BaseChecker {
     /**
      * <p>가계부 이름(한국어)을 검증한다.</p>
      *
-     * @param accountBookNameKo 가계부 이름(한국어)
+     * @param accountBookNameKr 가계부 이름(한국어)
      * @return 에러 리스트
      */
-    public static Map<String, ErrorCode> checkAccountBookNameKo(String accountBookNameKo) {
+    public static Map<String, ErrorCode> checkAccountBookNameKr(String accountBookNameKr) {
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
-        if (isEmpty(accountBookNameKo)) {
+        if (isEmpty(accountBookNameKr)) {
             setError(errors, ErrorCode.EE_AC_101);
             return errors;
         }
-        if (accountBookNameKo.length() > Constant.getBookNameMax()) {
+        if (accountBookNameKr.length() > Constant.getBookNameMax()) {
             setError(errors, ErrorCode.EE_AC_102);
             return errors;
         }

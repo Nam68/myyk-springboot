@@ -119,7 +119,7 @@ public class CreateCategoryController extends BaseController {
      * @param form 폼
      */
     private void setAllParameters(CreateCategory logic, CreateCategoryForm form) {
-        logic.setCategoryNameKo(form.getCategoryNameKo());
+        logic.setCategoryNameKr(form.getCategoryNameKr());
         logic.setCategoryNameJp(form.getCategoryNameJp());
         logic.setCategoryIcon(form.getCategoryIcon());
         logic.setCategoryColor(form.getCategoryColor());

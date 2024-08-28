@@ -33,10 +33,7 @@ public class SearchSubCategoryByCategoryLogic extends BaseLogic implements Searc
 
     @Override
     public void validate() throws SystemException, AppException {
-
-        Optional<CategoryEntity> categoryEntity = getRepository().getCategory().findById(categoryIdx);
-
-        if (!categoryEntity.isPresent()) {
+        if (!getRepository().getCategory().existsById(categoryIdx)) {
             throw new AppException(ErrorCode.CG_101);
         }
     }

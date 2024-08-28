@@ -45,7 +45,7 @@ public class CreateSubCategoryCardHtmlLogic extends BaseLogic implements CreateS
 
         for (SubCategoryDTO subCategory : subCategoryList) {
             long subCategoryIdx = subCategory.getSubCategoryIdx();
-            String subCategoryName = MyLocale.isKorean(language) ? subCategory.getSubCategoryNameKo() : subCategory.getSubCategoryNameJp();
+            String subCategoryName = MyLocale.isKorean(language) ? subCategory.getSubCategoryNameKr() : subCategory.getSubCategoryNameJp();
             subCategoryCardList.add(new SubCategoryCardDTO(subCategoryIdx, subCategoryName));
         }
 

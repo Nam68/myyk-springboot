@@ -11,15 +11,15 @@ import yk.web.myyk.util.exception.ApiException;
 @Service
 public class BootstrapLogic extends BaseExternalLogic implements BootstrapService {
 
-	@Override
-	public Error checkIconName(String iconName) throws ApiException {
-		HttpsURLConnection conn = getConn(ExternalURL.BOOTSTRAP_ICON);
-		String html = read(conn);
-		if (html.contains(iconName)) {
-			return Error.SUCCESS;
-		} else {
-			return Error.ERROR;
-		}
-	}
+    @Override
+    public Error checkIconName(String iconName) throws ApiException {
+        HttpsURLConnection conn = getConn(ExternalURL.BOOTSTRAP_ICON);
+        String html = read(conn);
+        if (html.contains(iconName)) {
+            return Error.SUCCESS;
+        } else {
+            return Error.ERROR;
+        }
+    }
 
 }

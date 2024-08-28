@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
-import yk.web.myyk.backend.dto.form.account.CreateAccountBookInfoForm;
 import yk.web.myyk.backend.dto.holder.account.CreateAccountBookInfoHolder;
 import yk.web.myyk.backend.dto.holder.category.CreateCategoryHolder;
 import yk.web.myyk.backend.dto.login.LoginInfo;
@@ -51,12 +50,12 @@ public class CreateAccountBookController extends BaseController {
     }
 
     @RequestMapping(path = "/input/category", method = RequestMethod.POST)
-    public String inputCategory(CreateAccountBookInfoForm form, HttpSession session, HttpServletRequest request) throws SystemException {
+    public String inputCategory(CreateAccountBookForm form, HttpSession session, HttpServletRequest request) throws SystemException {
 
         LoginInfo loginInfo = getLoginInfo(CreateAccountBookController.class);
         CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountBookNameKo(form.getAccountBookNameKo());
+            logic.setAccountBookNameKr(form.getAccountBookNameKr());
             logic.setAccountBookNameJp(form.getAccountBookNameJp());
             logic.validate();
         } catch (AppException e) {
@@ -98,7 +97,7 @@ public class CreateAccountBookController extends BaseController {
 
         CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountBookNameKo(form.getAccountBookNameKo());
+            logic.setAccountBookNameKr(form.getAccountBookNameKr());
             logic.setAccountBookNameJp(form.getAccountBookNameJp());
             logic.validate();
         } catch (AppException e) {
@@ -129,10 +128,8 @@ public class CreateAccountBookController extends BaseController {
         CreateAccountBookForm form = getForm(session, CreateAccountBookForm.class);
         CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountBookNameKo(form.getAccountBookNameKo());
+            logic.setAccountBookNameKr(form.getAccountBookNameKr());
             logic.setAccountBookNameJp(form.getAccountBookNameJp());
-            logic.setTaxInclude(form.isTaxInclude());
-            logic.setTaxRate(form.getTaxRate());
             logic.setCurrency(form.getCurrency());
             logic.setReadAuthList(form.getReadAuthList());
             logic.setWriteAuthList(form.getWriteAuthList());
