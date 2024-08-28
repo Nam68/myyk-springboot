@@ -1,5 +1,8 @@
 package yk.web.myyk.backend.logic.category;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.entity.category.SubCategoryEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.category.UpdateSubCategory;
+import yk.web.myyk.util.checker.SubCategoryChecker;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
@@ -42,8 +46,18 @@ public class UpdateSubCategoryLogic extends BaseLogic implements UpdateSubCatego
 
     @Override
     public void validate() throws SystemException, AppException {
+
         if (!getRepository().getSubCategory().existsById(subCategoryIdx)) {
             throw new AppException(ErrorCode.EE_SC_101);
+        }
+
+        Map<String, ErrorCode> errors = new HashMap<>();
+
+        errors.putAll(SubCategoryChecker.checkSubCategoryNameKo(subCategoryNameKo));
+        errors.putAll(SubCategoryChecker.checkSubCategoryNameJp(subCategoryNameJp));
+
+        if (!errors.isEmpty()) {
+            throw new AppException(errors);
         }
     }
 

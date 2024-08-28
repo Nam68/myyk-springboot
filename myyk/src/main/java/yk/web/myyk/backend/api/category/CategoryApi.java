@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-
 import yk.web.myyk.backend.api.BaseApi;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.dto.form.category.CreateSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.DeleteSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.FindSubCategoryForm;
 import yk.web.myyk.backend.dto.form.category.UpdateSubCategoryForm;
+import yk.web.myyk.backend.dto.holder.BaseApiHolder;
+import yk.web.myyk.backend.dto.holder.HtmlHolder;
+import yk.web.myyk.backend.dto.holder.category.FindSubCategoryApiHolder;
 import yk.web.myyk.backend.service.category.CreateSubCategory;
 import yk.web.myyk.backend.service.category.CreateSubCategoryCardHtml;
 import yk.web.myyk.backend.service.category.DeleteSubCategory;
@@ -31,102 +32,111 @@ public class CategoryApi extends BaseApi {
      * <p>서브 카테고리를 생성한다.</p>
      *
      * @param form 폼
-     * @return JSON
+     * @return API홀더
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/create")
-    public String createSubCategory(CreateSubCategoryForm form) throws ApiException {
-        String json = "";
+    public BaseApiHolder createSubCategory(CreateSubCategoryForm form) throws ApiException {
+
+        BaseApiHolder holder = new BaseApiHolder();
+
         CreateSubCategory logic = getService().getCreateSubCategory();
         try {
             logic.setCategoryIdx(form.getCategoryIdx());
             logic.setSubCategoryNameKo(form.getSubCategoryNameKo());
             logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
             logic.excute();
-
-            setJson(logic.getSubCategory());
-
         } catch (AppException e) {
-            json = getErrorJson(e.getErrors());
+            holder.setErrorCodes(e.getErrors());
         }
-        return json;
+        return holder;
     }
 
+    /**
+     * <p>서브 카테고리를 갱신한다.</p>
+     *
+     * @param form 폼
+     * @return API홀더
+     * @throws ApiException API예외
+     */
     @RequestMapping("/sub/update")
-    public String updateSubCategory(UpdateSubCategoryForm form) throws ApiException {
-        String json = "";
+    public BaseApiHolder updateSubCategory(UpdateSubCategoryForm form) throws ApiException {
+
+        BaseApiHolder holder = new BaseApiHolder();
+
         UpdateSubCategory logic = getService().getUpdateSubCategory();
         try {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
             logic.setSubCategoryNameKo(form.getSubCategoryNameKo());
             logic.setSubCategoryNameJp(form.getSubCategoryNameJp());
             logic.excute();
-
-            setJson(logic.getSubCategory());
-
         } catch (AppException e) {
-            json = getErrorJson(e.getErrors());
+            holder.setErrorCodes(e.getErrors());
         }
-        return json;
+        return holder;
     }
 
     /**
      * <p>서브 카테고리를 삭제한다.</p>
      *
      * @param form 폼
-     * @return JSON
+     * @return API홀더
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/delete")
-    public String deleteSubCategory(DeleteSubCategoryForm form) throws ApiException {
-        String json = "";
+    public BaseApiHolder deleteSubCategory(DeleteSubCategoryForm form) throws ApiException {
+
+        BaseApiHolder holder = new BaseApiHolder();
+
         DeleteSubCategory logic = getService().getDeleteSubCategory();
         try {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
             logic.excute();
-
-            json = success();
-
         } catch (AppException e) {
-            json = getErrorJson(e.getErrors());
+            holder.setErrorCodes(e.getErrors());
         }
-        return json;
+        return holder;
     }
 
     /**
      * <p>서브 카테고리를 검색한다.</p>
      *
      * @param form 폼
-     * @return JSON
+     * @return API홀더
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/find")
-    public String findSubCategory(FindSubCategoryForm form) throws ApiException {
-        String json = "";
+    public FindSubCategoryApiHolder findSubCategory(FindSubCategoryForm form) throws ApiException {
+
+        FindSubCategoryApiHolder holder = new FindSubCategoryApiHolder();
+
         FindSubCategory logic = getService().getFindSubCategory();
         try {
             logic.setSubCategoryIdx(form.getSubCategoryIdx());
             logic.excute();
 
-            Gson gson = new Gson();
-            json = gson.toJson(logic.getSubCategory());
+            SubCategoryDTO dto = logic.getSubCategory();
+            holder.setCategoryIdx(dto.getCategoryIdx());
+            holder.setSubCategoryNameKo(dto.getSubCategoryNameKo());
+            holder.setSubCategoryNameJp(dto.getSubCategoryNameJp());
 
         } catch (AppException e) {
-            json = getErrorJson(e.getErrors());
+            holder.setErrorCodes(e.getErrors());
         }
-        return json;
+        return holder;
     }
 
     /**
      * <p>서브 카테고리 카드 리스트 HTML을 생성한다.</p>
      *
      * @param categoryIdx 카테고리 인덱스
-     * @return HTML
+     * @return API홀더
      * @throws ApiException API예외
      */
     @RequestMapping("/sub/search/card")
-    public String createSubCategoryCardList(long categoryIdx) throws ApiException {
-        String html = "";
+    public HtmlHolder createSubCategoryCardList(long categoryIdx) throws ApiException {
+
+        HtmlHolder holder = new HtmlHolder();
 
         CreateSubCategoryCardHtml logic = getService().getCreateSubCategoryCardHtml();
         SearchSubCategoryByCategory searchSubCategory = getService().getSearchSubCategoryByCategory();
@@ -137,11 +147,11 @@ public class CategoryApi extends BaseApi {
 
             logic.setSubCategoryList(subCategoryList);
             logic.excute();
-            html = logic.getHtml();
+            holder.setHtml(logic.getHtml());
 
         } catch (AppException e) {
-            html = getErrorJson(e.getErrors());
+            holder.setErrorCodes(e.getErrors());
         }
-        return html;
+        return holder;
     }
 }

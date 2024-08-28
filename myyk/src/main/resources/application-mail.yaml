@@ -1,9 +1,9 @@
 spring:
   mail:
-    host: {{host}}
-    port: {{port}}
-    username: {{main address}}
-    password: {{password}}
+    host: smtp.office365.com
+    port: 587
+    username: myyk.system@outlook.com
+    password: Tractatus1#
     properties:
       mail:
         smtp:

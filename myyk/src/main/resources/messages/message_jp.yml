@@ -100,8 +100,8 @@ account:
     name: "消費税"
     include:
       name: "消費税設定"
-      always: "税込が基本"
-      each: "税抜きが基本"
+      always: "税込"
+      each: "税抜"
       info: "家計簿に記録する際にも個別設定ができます"
     base: "基本税率"
   currency:

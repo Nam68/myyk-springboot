@@ -1,10 +1,6 @@
 /**
- * pc면 가계부 일람을 왼쪽으로 이동
+ * 가계부 생성 버튼 클릭
  */
-$(document).ready(function() {
-    if (!isMobile()) {
-        $('.account-pannel-left').addClass('text-start');
-        $('.account-pannel-left').addClass('col-4');
-        $('.account-pannel-right').addClass('col');
-    }
+$('#create-book-button').on('click', function() {
+    location.href = '/account/book/create/input';
 });

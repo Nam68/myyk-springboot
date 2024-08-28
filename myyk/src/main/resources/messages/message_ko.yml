@@ -104,8 +104,8 @@ book:
     name: "부가세"
     include:
       name: "부가세 포함 여부"
-      always: "기본 포함"
-      each: "기본 제외"
+      always: "포함"
+      each: "제외"
       info: "가계부에 기록할 때에도 개별로 설정할 수 있습니다."
     base: "기본 세율"
   currency:

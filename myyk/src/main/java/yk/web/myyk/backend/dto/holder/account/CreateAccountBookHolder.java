@@ -7,10 +7,7 @@ import yk.web.myyk.util.enumerated.Currency;
 import yk.web.myyk.util.enumerated.Region;
 import yk.web.myyk.util.enumerated.TaxRate;
 
-/**
- * <p>가계부 정보 생성 홀더.</p>
- */
-public class CreateAccountBookInfoHolder extends BaseHolder {
+public class CreateAccountBookHolder extends BaseHolder {
 
     /**
      * <p>가계부 이름(한국어).</p>
@@ -42,7 +39,7 @@ public class CreateAccountBookInfoHolder extends BaseHolder {
      *
      * @param loginInfo 로그인 정보
      */
-    public CreateAccountBookInfoHolder(LoginInfo loginInfo) {
+    public CreateAccountBookHolder(LoginInfo loginInfo) {
 
         Region region = loginInfo.getRegion();
         switch (region) {
@@ -65,7 +62,7 @@ public class CreateAccountBookInfoHolder extends BaseHolder {
      * @param loginInfo 로그인 정보
      * @param form 가계부 정보 생성 폼
      */
-    public CreateAccountBookInfoHolder(LoginInfo loginInfo, CreateAccountBookInfoForm form) {
+    public CreateAccountBookHolder(LoginInfo loginInfo, CreateAccountBookInfoForm form) {
         this(loginInfo);
         this.accountBookNameKo = form.getAccountBookNameKo();
         this.accountBookNameJp = form.getAccountBookNameJp();

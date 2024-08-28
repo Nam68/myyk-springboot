@@ -16,7 +16,7 @@
       </h3>
 
       <div class="mb-3">
-        <button id="create-category-button" class="btn btn-primary">
+        <button id="create-category-button" class="btn btn-outline-primary">
           <i class="bi bi-plus-lg"></i>&nbsp;<@msg "category.create.name"/>
         </button>
       </div>
@@ -44,7 +44,7 @@
               <div class="accordion-body">
                 <#-- 서브 카테고리 생성 버튼 -->
                 <hr>
-                <a id="create-sub-category-button" class="btn btn-primary mb-3">
+                <a id="create-sub-category-button" class="btn btn-outline-primary mb-3">
                   <i class="bi bi-plus-lg"></i>&nbsp;<@msg "category.sub.create.name"/>
                 </a>
                 <#-- 서브 카테고리 리스트 -->

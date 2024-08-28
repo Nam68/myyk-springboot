@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookInfoForm;
+import yk.web.myyk.backend.dto.holder.account.CreateAccountBookHolder;
 import yk.web.myyk.backend.dto.holder.account.CreateAccountBookInfoHolder;
 import yk.web.myyk.backend.dto.holder.category.CreateCategoryHolder;
 import yk.web.myyk.backend.dto.login.LoginInfo;
@@ -30,7 +31,7 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/account/book/create")
 public class CreateAccountBookController extends BaseController {
 
-    private static final String INFO_INPUT_VIEW = "account/book/createAccountBookInfoInput";
+    private static final String INFO_INPUT_VIEW = "account/book/createAccountBookInput";
     private static final String INFO_CONFIRM_VIEW = "account/book/createAccountBookInfoConfirm";
     private static final String COMPLETE_REDIRECT = "redirect:/account/book/create/complete";
     private static final String EDIT_REDIRECT = "redirect:/account/book/edit";
@@ -42,11 +43,11 @@ public class CreateAccountBookController extends BaseController {
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
-    @RequestMapping("/info/input")
+    @RequestMapping("/input")
     @SetEnum(target = {TaxRate.class, Currency.class})
     public String inputInfo(HttpServletRequest request) throws SystemException {
         LoginInfo loginInfo = getLoginInfo(CreateAccountBookController.class);
-        setHolder(request, new CreateAccountBookInfoHolder(loginInfo));
+        setHolder(request, new CreateAccountBookHolder(loginInfo));
         return INFO_INPUT_VIEW;
     }
 

@@ -270,7 +270,7 @@ footer {
 }
 
 /*
-    button
+    하단 버튼
 */
 .bottom-btn-set {
     display:grid;
@@ -287,6 +287,14 @@ footer {
 }
 
 /*
+    라디오버튼
+*/
+.form-check-input:hover,
+.form-check-label:hover {
+    cursor: pointer;
+}
+
+/*
     글자
 */
 .caution {
@@ -294,6 +302,10 @@ footer {
 }
 .error-off {
     display: none;
+}
+.info {
+    color: var(--soft-black);
+    font-size: 0.8rem;
 }
 
 /*

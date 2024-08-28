@@ -166,25 +166,10 @@ function returnAjaxResult(url, data) {
 // 에러인 경우 : 에러 코드 배열을 반환
 // 에러가 아닌 경우 : false를 반환
 function getErrorCodesForApi(json) {
-
-    // 단순 성공여부 반환하는 JSON인 경우
-    if (isSuccess(json)) {
+    if (json.error == undefined || json.error != true) {
         return false;
     }
-
-    // json 타입이 아닌 경우 파싱
-    if (typeof json == 'string') {
-        json = JSON.parse(json);
-    }
-    if (json.isError == undefined || json.isError != true) {
-        return false;
-    }
-    return json.codes;
-}
-
-// API가 성공인지 판단
-function isSuccess(response) {
-    return response == 'SUCCESS';
+    return json.errorCodes;
 }
 
 // ajax를 통해 얻은 에러 코드로 에러 메시지를 표시한다.
