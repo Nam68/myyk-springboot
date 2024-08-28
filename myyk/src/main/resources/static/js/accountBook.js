@@ -1,10 +1,21 @@
-/**
- * pc면 가계부 일람을 왼쪽으로 이동
- */
-$(document).ready(function() {
-    if (!isMobile()) {
-        $('.account-pannel-left').addClass('text-start');
-        $('.account-pannel-left').addClass('col-4');
-        $('.account-pannel-right').addClass('col');
-    }
+// 가계부 등록 화면
+$('#create-book-button').on('click', function () {
+    location.href = '/account/book/create/input';
 });
+
+// 가계부 등록 권한설정 트리거
+$('[name=readAuthList]').on('change', function() {
+    writeAuthTrigger($(this));
+});
+
+// 가계부 등록 권한설정 트리거 본체
+function writeAuthTrigger(readAuth) {
+    const writhAuth = readAuth.closest('.member-holder').find('[name=writeAuthList]');
+
+    if (readAuth.prop('checked')) {
+        writhAuth.prop('disabled', false);
+    } else {
+        writhAuth.prop('checked', false);
+        writhAuth.prop('disabled', true);
+    }
+}

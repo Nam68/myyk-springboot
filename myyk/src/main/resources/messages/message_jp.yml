@@ -96,14 +96,6 @@ account:
     jp: "家計簿名"
   list: "家計簿一覧"
   edit: "家計簿登録および編集"
-  rate:
-    name: "消費税"
-    include:
-      name: "消費税設定"
-      always: "税込が基本"
-      each: "税抜きが基本"
-      info: "家計簿に記録する際にも個別設定ができます"
-    base: "基本税率"
   currency:
     name: "通貨単位"
     won: "ウォン"

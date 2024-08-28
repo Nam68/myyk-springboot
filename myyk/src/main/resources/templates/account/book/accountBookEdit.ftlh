@@ -15,8 +15,15 @@
         <@msg "book.edit"/>
       </h3>
 
+      <div class="mb-3">
+        <button id="create-book-button" class="btn btn-outline-primary">
+          <i class="bi bi-plus-lg"></i>&nbsp;<@msg "book.create.name"/>
+        </button>
+      </div>
+
       <form method="POST">
         <div class="mb-4" id="account-book-list-holder">
+
           <#if holder.accountBookList?has_content>
             <#list holder.accountBookList as accountBook>
             <div class="card mt-2 mb-2">
@@ -36,11 +43,6 @@
             </div>
             </#list>
           </#if>
-          <div class="card mt-2 mb-2">
-            <div class="card-body position-relative" role="button">
-              <div class="d-inline"><i class="bi bi-plus-lg"></i>&nbsp;<@msg "book.create.name"/></div>
-            </div>
-          </div>
 
         </div>
       </form>

@@ -18,6 +18,7 @@ public enum ErrorCode {
      * LC : 로케일
      * LG : 로그인
      * MA : 메일
+     * ME : 회원
      * SS : 세션값
      */
 
@@ -125,6 +126,11 @@ public enum ErrorCode {
      * <p>프리마커 템플레이트 랜더링 실패.</p>
      */
     MA_103("failed to render freemarker."),
+
+    /**
+     * <p>회원 인덱스로 회원을 찾을 수 없는 경우의 에러.</p>
+     */
+    ME_101("member idx missing."),
 
     /**
      * <p>세션 언어값이 비어있는 경우.</p>

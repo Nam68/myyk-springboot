@@ -1,5 +1,7 @@
 package yk.web.myyk.backend.controller.account;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
+import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
-import yk.web.myyk.backend.dto.holder.account.CreateAccountBookInfoHolder;
+import yk.web.myyk.backend.dto.holder.account.CreateAccountBookHolder;
 import yk.web.myyk.backend.dto.holder.category.CreateCategoryHolder;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.service.account.CreateAccountBook;
@@ -29,8 +32,8 @@ import yk.web.myyk.util.exception.SystemException;
 @RequestMapping("/account/book/create")
 public class CreateAccountBookController extends BaseController {
 
-    private static final String INFO_INPUT_VIEW = "account/book/createAccountBookInfoInput";
-    private static final String INFO_CONFIRM_VIEW = "account/book/createAccountBookInfoConfirm";
+    private static final String INPUT = "account/book/createAccountBookInput";
+    private static final String CONFIRM = "account/book/createAccountBookConfirm";
     private static final String COMPLETE_REDIRECT = "redirect:/account/book/create/complete";
     private static final String EDIT_REDIRECT = "redirect:/account/book/edit";
 
@@ -41,34 +44,18 @@ public class CreateAccountBookController extends BaseController {
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
-    @RequestMapping("/info/input")
-    @SetEnum(target = {TaxRate.class, Currency.class})
+    @RequestMapping("/input")
+    @SetEnum(target = {Currency.class})
     public String inputInfo(HttpServletRequest request) throws SystemException {
+
+        // 로그인 정보
         LoginInfo loginInfo = getLoginInfo(CreateAccountBookController.class);
-        setHolder(request, new CreateAccountBookInfoHolder(loginInfo));
-        return INFO_INPUT_VIEW;
-    }
 
-    @RequestMapping(path = "/input/category", method = RequestMethod.POST)
-    public String inputCategory(CreateAccountBookForm form, HttpSession session, HttpServletRequest request) throws SystemException {
+        // 본인 이외의 회원 리스트
+        List<MemberDTO> memberList = getMemberListExceptLoginedMember();
 
-        LoginInfo loginInfo = getLoginInfo(CreateAccountBookController.class);
-        CreateAccountBook logic = getService().getCreateAccountBook();
-        try {
-            logic.setAccountBookNameKr(form.getAccountBookNameKr());
-            logic.setAccountBookNameJp(form.getAccountBookNameJp());
-            logic.validate();
-        } catch (AppException e) {
-            setErrors(request, e.getErrors());
-            setHolder(request, new CreateAccountBookInfoHolder(loginInfo, form));
-            return INFO_INPUT_VIEW;
-        }
-        setForm(session, form);
-
-        // 회원이 가진 모든 카테고리를 반환.
-
-        setHolder(request, new CreateCategoryHolder());
-        return INFO_CONFIRM_VIEW;
+        setHolder(request, new CreateAccountBookHolder(loginInfo, memberList));
+        return INPUT;
     }
 
     /**
@@ -81,33 +68,33 @@ public class CreateAccountBookController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
-    @SetEnum(target = {TaxRate.class, Currency.class})
+    @SetEnum(target = {Currency.class})
     public String confirm(CreateAccountBookForm form, HttpSession session, HttpServletRequest request) throws SystemException {
 
-        FindAllMemberExceptMyself findMembers = getService().getFindAllMemberExceptMyself();
-        findMembers.excute();
-
-        FindAllMemberByIdx findReadAuthMembers = getService().getFindAllMemberByIdx();
-        findReadAuthMembers.setMemberIdxList(form.getReadAuthList());
-        findReadAuthMembers.excute();
-
-        FindAllMemberByIdx findWriteAuthMembers = getService().getFindAllMemberByIdx();
-        findWriteAuthMembers.setMemberIdxList(form.getWriteAuthList());
-        findWriteAuthMembers.excute();
+        FindAllMemberByIdx findreadAuthList = getService().getFindAllMemberByIdx();
+        FindAllMemberByIdx findwriteAuthList = getService().getFindAllMemberByIdx();
 
         CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountBookNameKr(form.getAccountBookNameKr());
-            logic.setAccountBookNameJp(form.getAccountBookNameJp());
+            findreadAuthList.setMemberIdxList(form.getReadAuthList());
+            findreadAuthList.excute();
+
+            findwriteAuthList.setMemberIdxList(form.getWriteAuthList());
+            findwriteAuthList.excute();
+
+            setAllParameters(logic, form);
             logic.validate();
         } catch (AppException e) {
+            // 본인 이외의 회원 리스트
+            List<MemberDTO> memberList = getMemberListExceptLoginedMember();
+
             setErrors(request, e.getErrors());
-//            setHolder(request, new CreateAccountBookInfoHolder(findMembers.getMemberList(), form, findReadAuthMembers.getMemberList(), findWriteAuthMembers.getMemberList()));
-            return INFO_INPUT_VIEW;
+            setHolder(request, new CreateAccountBookHolder(memberList, form, findreadAuthList.getMemberList(), findwriteAuthList.getMemberList()));
+            return INPUT;
         }
         setForm(session, form);
-//        setHolder(request, new CreateAccountBookInfoHolder(findMembers.getMemberList(), form, findReadAuthMembers.getMemberList(), findWriteAuthMembers.getMemberList()));
-        return INFO_CONFIRM_VIEW;
+        setHolder(request, new CreateAccountBookHolder(form, findreadAuthList.getMemberList(), findwriteAuthList.getMemberList()));
+        return CONFIRM;
     }
 
     /**
@@ -122,23 +109,16 @@ public class CreateAccountBookController extends BaseController {
     @DataCheck(target = CreateAccountBookForm.class)
     public String execute(HttpSession session, HttpServletRequest request) throws SystemException {
 
-        FindAllMemberExceptMyself findMembers = getService().getFindAllMemberExceptMyself();
-        findMembers.excute();
-
         CreateAccountBookForm form = getForm(session, CreateAccountBookForm.class);
         CreateAccountBook logic = getService().getCreateAccountBook();
         try {
-            logic.setAccountBookNameKr(form.getAccountBookNameKr());
-            logic.setAccountBookNameJp(form.getAccountBookNameJp());
-            logic.setCurrency(form.getCurrency());
-            logic.setReadAuthList(form.getReadAuthList());
-            logic.setWriteAuthList(form.getWriteAuthList());
+            setAllParameters(logic, form);
             logic.excute();
         } catch (AppException e) {
             setForm(session, form);
 //            setHolder(request, new CreateAccountHolder(findMembers.getMemberList(), form));
             removeForm(session, CreateAccountBookForm.class);
-            return INFO_CONFIRM_VIEW;
+            return CONFIRM;
         }
         return COMPLETE_REDIRECT;
     }
@@ -154,5 +134,25 @@ public class CreateAccountBookController extends BaseController {
     @SessionClear
     public String complete() throws SystemException {
         return EDIT_REDIRECT;
+    }
+
+    private List<MemberDTO> getMemberListExceptLoginedMember() {
+        // 로그인 정보
+        LoginInfo loginInfo = getLoginInfo(CreateAccountBookController.class);
+
+        // 본인 이외의 회원 리스트
+        FindAllMemberExceptMyself findMemberList = getService().getFindAllMemberExceptMyself();
+        findMemberList.setMemberIdx(loginInfo.getMemberIdx());
+        findMemberList.excute();
+
+        return findMemberList.getMemberList();
+    }
+
+    private void setAllParameters(CreateAccountBook logic, CreateAccountBookForm form) {
+        logic.setAccountBookNameKr(form.getAccountBookNameKr());
+        logic.setAccountBookNameJp(form.getAccountBookNameJp());
+        logic.setCurrency(form.getCurrency());
+        logic.setReadAuthList(form.getReadAuthList());
+        logic.setWriteAuthList(form.getWriteAuthList());
     }
 }

@@ -21,24 +21,20 @@ import yk.web.myyk.util.exception.SystemException;
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class FindAllMemberExceptMyselfLogic extends BaseLogic implements FindAllMemberExceptMyself {
 
-    private MemberEntity memberEntity;
+    private long memberIdx;
 
     private List<MemberDTO> memberList;
 
     @Override
+    public void setMemberIdx(long memberIdx) {
+        this.memberIdx = memberIdx;
+    }
+
+    @Override
     public void validate() throws SystemException, AppException {
-
-        LoginInfo loginInfo = getLoginInfo(FindAllMemberExceptMyselfLogic.class);
-        if (loginInfo == null) {
+        if (!getRepository().getMember().existsById(memberIdx)) {
             throw new SystemException(ErrorCode.LG_101, FindAllMemberExceptMyselfLogic.class);
         }
-
-        Optional<MemberEntity> memberOptional = getRepository().getMember().findById(loginInfo.getMemberIdx());
-        if (!memberOptional.isPresent()) {
-            throw new SystemException(ErrorCode.LG_101, FindAllMemberExceptMyselfLogic.class);
-        }
-
-        this.memberEntity = memberOptional.get();
     }
 
     @Override
@@ -49,7 +45,7 @@ public class FindAllMemberExceptMyselfLogic extends BaseLogic implements FindAll
         List<MemberDTO> memberList = new ArrayList<>();
 
         for (MemberEntity memberEntity : memberEntityList) {
-            if (memberEntity.getMemberIdx() != this.memberEntity.getMemberIdx()) {
+            if (memberEntity.getMemberIdx() != memberIdx) {
                 memberList.add(new MemberDTO(memberEntity));
             }
         }
@@ -60,5 +56,4 @@ public class FindAllMemberExceptMyselfLogic extends BaseLogic implements FindAll
     public List<MemberDTO> getMemberList() {
         return memberList;
     }
-
 }

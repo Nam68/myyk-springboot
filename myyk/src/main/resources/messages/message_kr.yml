@@ -94,20 +94,12 @@ plan:
 bookOrCategory: "가계부 및 카테고리 편집"
 
 book:
-  edit: "가계부 생성 및 편집"
   name: "가계부"
   nameLang:
     kr: "가계부 이름"
     jp: "가계부 이름(영어 또는 일본어)"
   list: "가계부 목록"
-  rate:
-    name: "부가세"
-    include:
-      name: "부가세 포함 여부"
-      always: "기본 포함"
-      each: "기본 제외"
-      info: "가계부에 기록할 때에도 개별로 설정할 수 있습니다."
-    base: "기본 세율"
+  edit: "가계부 생성 및 편집"
   currency:
     name: "통화단위"
     won: "원"

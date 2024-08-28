@@ -11,6 +11,8 @@ html {
 
     --soft-black:#666666;
     --soft-gray: #BDBDBD;
+    
+    --strong-gray: #AAAAAA;
 }
 body {
     text-decoration: none;
@@ -270,7 +272,7 @@ footer {
 }
 
 /*
-    button
+    하단 버튼
 */
 .bottom-btn-set {
     display:grid;
@@ -294,6 +296,10 @@ footer {
 }
 .error-off {
     display: none;
+}
+.info {
+    color: var(--strong-gray);
+    font-size: 0.8rem;
 }
 
 /*

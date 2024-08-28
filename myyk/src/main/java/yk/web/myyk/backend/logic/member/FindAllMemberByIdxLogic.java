@@ -11,6 +11,7 @@ import yk.web.myyk.backend.dto.MemberDTO;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.member.FindAllMemberByIdx;
+import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -29,7 +30,13 @@ public class FindAllMemberByIdxLogic extends BaseLogic implements FindAllMemberB
 
     @Override
     public void validate() throws SystemException, AppException {
-        // nop
+
+        List<MemberEntity> memberEntityList = getRepository().getMember().findAllById(memberIdxList);
+
+        // 권한을 부여하려는 회원 인덱스 수와, 실제 회원 수가 맞지 않을 때
+        if (memberEntityList.size() != memberIdxList.size()) {
+            throw new AppException(ErrorCode.ME_101);
+        }
     }
 
     @Override
