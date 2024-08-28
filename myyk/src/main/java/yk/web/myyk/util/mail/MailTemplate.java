@@ -27,7 +27,7 @@ public class MailTemplate extends MailConfig {
     /**
      * <p>메일 샌더.</p>
      */
-    @Autowired
+//    @Autowired
     private JavaMailSender mailSender;
 
     /**
@@ -37,7 +37,7 @@ public class MailTemplate extends MailConfig {
 
     /**
      * <p>메일의 수신자를 설정한다.</p>
-     * 
+     *
      * @param to 수신자
      * @return 메일템플레이트
      */
@@ -48,7 +48,7 @@ public class MailTemplate extends MailConfig {
 
     /**
      * <p>메일의 제목을 설정한다.</p>
-     * 
+     *
      * @param subject 제목
      * @return 메일템플레이트
      */

@@ -31,7 +31,7 @@ public class MailConfig {
     @Autowired
     private MailTextJp mailTextJp;
 
-    @Value("${spring.mail.username}")
+//    @Value("${spring.mail.username}")
     private String adminAddress;
 
     /**

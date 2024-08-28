@@ -2,7 +2,7 @@ spring:
   mail:
     host: {{host}}
     port: {{port}}
-    username: {{main address}}
+    username: {{mail address}}
     password: {{password}}
     properties:
       mail:

@@ -1,0 +1,188 @@
+global:
+  title: "MYYK"
+  confirm: "확인"
+  next: "다음으로"
+  back: "돌아가기"
+  toHome: "홈으로"
+  error: "시스템 에러가 발생했습니다\\r\\n관리자에게 문의해주십시오"
+  close: "닫기"
+  alert:
+    delete:
+      info: "삭제하면 복구할 수 없습니다."
+      confirm: "정말로 삭제하시겠습니까?"
+
+error:
+  name: 에러
+  system:
+    name: "시스템 에러"
+    title: "시스템 에러가 발생했습니다"
+    message: "에러 내용"
+    script: "에러가 반복될 경우 출력된 에러 내용을 첨부하여 관리자에게 문의해주십시오."
+  noHandler:
+    name: "존재하지 않는 페이지"
+    message: "잘못된 경로로 접근했습니다."
+  permission:
+    name: "접근권한이 없습니다"
+    script: "회원님의 등급으로는 이용할 수 없는 서비스입니다. 자세한 내용은 관리자에게 문의해주십시오."
+
+member:
+  name: "회원"
+  email:
+    name: "이메일"
+    check: "이메일 확인"
+    checkConfirm: "위의 이메일로 인증코드를 발송합니다. <span class=\"caution\">20분 이내</span>에 인증을 완료해주세요."
+    send: "메일 발송"
+    error:
+      empty: "메일을 입력해주세요."
+      form: "올바른 메일 형식을 입력해주세요."
+      dupl: "중복된 이메일입니다."
+  code:
+    name: "인증코드"
+    check: "인증코드 확인"
+    notReady: "메일 기능의 점검으로 인해, 인증코드 확인은 생략됩니다.<br><span class=\"caution\">20분 이내</span>에 회원가입을 완료해주세요."
+    error: "존재하지 않는 코드입니다. 입력하신 코드를 확인해주세요."
+  password:
+    name: "비밀번호"
+    check: "비밀번호 확인"
+  nickname:
+    name: "닉네임"
+  nicknameLang:
+    name: "닉네임(영어 또는 일본어)"
+  region:
+    name: "지역"
+    ko: "대한민국"
+    jp: "일본"
+  type:
+    name: "회원등급"
+    banned: "회원정지"
+    withdraw: "탈퇴"
+    tmpMember: "임시회원"
+    member: "정회원"
+    admin: "관리자"
+
+signup:
+  name: "회원가입"
+  check: "회원가입 확인"
+  checkConfirm: "위 정보로 가입합니다."
+  complete: "회원가입 완료"
+  completeMessage: "회원가입이 완료되었습니다.<br>로그인을 통해 서비스를 이용하실 수 있습니다."
+  error:
+    passwordEmpty: "비밀번호를 입력해주세요."
+    passwordMin: "비밀번호는 8자 이상 입력해주세요."
+    passwordMax: "비밀번호는 30자 이내로 입력해주세요."
+    passwordForm: "비밀번호는 영문자 대소문자와 숫자가 포함되어야 합니다."
+    passwordCheck: "비밀번호가 일치하지 않습니다."
+    nicknameEmpty: "닉네임을 입력해주세요."
+    nicknameMax: "닉네임은 10자 이내로 입력해주세요."
+    nicknameDupl: "이미 존재하는 닉네임입니다."
+
+login:
+  name: "로그인"
+  toLogin: "로그인 화면으로"
+  remember: "로그인 정보를 저장합니다"
+  error: "등록되지 않은 이메일 또는 잘못된 비밀번호입니다."
+
+logout:
+  name: "로그아웃"
+
+album:
+  name: "앨범"
+
+plan:
+  name: "계획표"
+
+bookOrCategory: "가계부 및 카테고리 편집"
+
+book:
+  edit: "가계부 생성 및 편집"
+  name: "가계부"
+  nameLang:
+    ko: "가계부 이름"
+    jp: "가계부 이름(영어 또는 일본어)"
+  list: "가계부 목록"
+  rate:
+    name: "부가세"
+    include:
+      name: "부가세 포함 여부"
+      always: "기본 포함"
+      each: "기본 제외"
+      info: "가계부에 기록할 때에도 개별로 설정할 수 있습니다."
+    base: "기본 세율"
+  currency:
+    name: "통화단위"
+    won: "원"
+    yen: "엔"
+  create:
+    name: "가계부 생성"
+    check: "가계부 생성 확인"
+  error:
+    nameEmpty: "가계부 이름을 입력해주세요."
+    nameMax: "가계부 이름은 10자 이내로 입력해주세요."
+    nameDupl: "이미 존재하는 가계부 이름입니다."
+
+category:
+  edit: "카테고리 생성 및 편집"
+  name: "카테고리"
+  nameLang:
+    ko: "카테고리 이름"
+    jp: "카테고리 이름(영어 또는 일본어)"
+  icon:
+    name: "아이콘"
+    noHope: "원하는 아이콘이 없는 경우"
+  color:
+    name: "색상"
+  create:
+    name: "카테고리 생성"
+  complete:
+    name: "카테고리가 생성되었습니다"
+    toCreateSub: "서브 카테고리 생성 화면으로"
+    toList: "카테고리 목록 화면으로"
+  error:
+    nameEmpty: "카테고리 이름을 입력해주세요."
+    nameMax: "카테고리 이름은 10자 이내로 입력해주세요."
+    nameDupl: "이미 존재하는 카테고리 이름입니다."
+    iconEmpty: "아이콘 이름을 입력해주세요."
+    iconNotExist: "존재하지 않는 아이콘 이름입니다."
+    limit: "작성할 수 있는 카테고리 수를 초과했습니다."
+  sub:
+    nameLang:
+      ko: "서브 카테고리 이름"
+      jp: "서브 카테고리 이름(영어 또는 일본어)"
+    edit: "서브 카테고리 생성 및 편집"
+    create:
+      name: "서브 카테고리 생성"
+      complete:
+        name: "서브 카테고리 등록 완료"
+        info: "서브 카테고리의 등록이 완료되었습니다."
+    update:
+      name: "서브 카테고리 수정"
+      complete:
+        name: "서브 카테고리 수정 완료"
+        info: "서브 카테고리의 수정이 완료되었습니다."
+      fail:
+        name: "서브 카테고리 수정 실패"
+        info: "대상을 찾을 수 없습니다.<br>화면 새로고침 후 서브 카테고리를 다시 확인해주세요."
+    delete:
+      name: "서브 카테고리 삭제"
+      info: "서브 카테고리를 삭제하면 복구할 수 없습니다.<br>삭제하시겠습니까?"
+      complete:
+        name: "서브 카테고리 삭제 완료"
+        info: "서브 카테고리의 삭제가 완료되었습니다."
+      fail:
+        name: "서브 카테고리 삭제 실패"
+        info: "서브 카테고리의 삭제에 실패했습니다.<br>화면 새로고침 후 서브 카테고리를 다시 확인해주세요."
+    error:
+      category: "이미 존재하지 않는 카테고리입니다."
+      nameEmpty: "서브 카테고리 이름을 입력해주세요."
+      nameMax: "서브 카테고리 이름은 10자 이내로 입력해주세요."
+      nameDupl: "이미 존재하는 서브 카테고리 이름입니다."
+      limit: "작성할 수 있는 서브 카테고리 수를 초과했습니다."
+
+board:
+  name: "게시판"
+
+share:
+  name: "공유 설정"
+  read: "읽기 권한"
+  write: "쓰기 권한"
+  checkForRegister: "공유할 회원을 선택해주세요."
