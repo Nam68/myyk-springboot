@@ -4,16 +4,16 @@ import yk.web.myyk.backend.dto.holder.BaseApiHolder;
 
 public class UpdateSubCategoryApiHolder extends BaseApiHolder {
 
-    private String subCategoryNameKo;
+    private String subCategoryNameKr;
 
     private String subCategoryNameJp;
 
-    public void setSubCategoryNameKo(String subCategoryNameKo) {
-        this.subCategoryNameKo = subCategoryNameKo;
+    public void setSubCategoryNameKr(String subCategoryNameKr) {
+        this.subCategoryNameKr = subCategoryNameKr;
     }
 
-    public String getSubCategoryNameKo() {
-        return subCategoryNameKo;
+    public String getSubCategoryNameKr() {
+        return subCategoryNameKr;
     }
 
     public void setSubCategoryNameJp(String subCategoryNameJp) {

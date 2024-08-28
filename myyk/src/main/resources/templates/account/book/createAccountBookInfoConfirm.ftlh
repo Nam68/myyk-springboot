@@ -19,10 +19,10 @@
       
       
         <#-- 가계부 이름(한국어) : 한국어 설정인 경우 -->
-        <#if '${selected_language}' == 'ko'>
+        <#if '${selected_language}' == 'kr'>
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${selected_language}"/></label>
-          <div>${holder.accountBookNameKo}</div>
+          <div>${holder.accountBookNameKr}</div>
         </div>
         </#if>
 
@@ -34,10 +34,10 @@
         
         
         <#-- 가계부 이름(한국어) : 일본어 설정인 경우 -->
-        <#if '${selected_language}' != 'ko'>
+        <#if '${selected_language}' != 'kr'>
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${selected_language}"/></label>
-          <div>${holder.accountBookNameKo}</div>
+          <div>${holder.accountBookNameKr}</div>
         </div>
         </#if>
 

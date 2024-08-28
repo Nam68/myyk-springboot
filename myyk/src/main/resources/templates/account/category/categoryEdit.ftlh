@@ -31,7 +31,7 @@
           <div class="card mb-2 category-card" data-idx="${category.categoryIdx}">
 
             <div class="card-body">
-              <@setLanguage selected_language category.categoryNameKo category.categoryNameJp/>
+              <@setLanguage selected_language category.categoryNameKr category.categoryNameJp/>
               <div class="d-inline position-absolute end-0 pe-3">
                 <span class="me-3" role="button"><i class="bi bi-caret-down-fill arrow-icon" data-next-icon="bi-caret-up-fill"></i></span>
                 <span class="me-3" role="button"><i class="bi bi-gear-fill"></i></span>

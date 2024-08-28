@@ -2,14 +2,12 @@ package yk.web.myyk.backend.logic.category;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import yk.web.myyk.backend.dto.SubCategoryDTO;
-import yk.web.myyk.backend.entity.category.CategoryEntity;
 import yk.web.myyk.backend.entity.category.SubCategoryEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.category.SearchSubCategoryByCategory;

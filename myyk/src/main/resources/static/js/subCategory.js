@@ -81,10 +81,10 @@ $(document).on('click', '.update-sub-category', async function() {
         }
 
         // 수신된 값을 세팅
-        const koInput = $('#' + CREATE_MODAL).find('input[name=subCategoryNameKo]');
+        const koInput = $('#' + CREATE_MODAL).find('input[name=subCategoryNameKr]');
         const jpInput = $('#' + CREATE_MODAL).find('input[name=subCategoryNameJp]');
         const categoryIdx = $('#' + CREATE_MODAL).find('[name=categoryIdx]');
-        koInput.val(result.dto.subCategoryNameKo);
+        koInput.val(result.dto.subCategoryNameKr);
         jpInput.val(result.dto.subCategoryNameJp);
         categoryIdx.val(result.dto.categoryIdx);
 

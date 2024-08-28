@@ -75,7 +75,7 @@ public class CategoryApi extends BaseApi {
             logic.excute();
 
             SubCategoryDTO dto = logic.getSubCategory();
-            holder.setSubCategoryNameKo(dto.getSubCategoryNameKo());
+            holder.setSubCategoryNameKr(dto.getSubCategoryNameKr());
             holder.setSubCategoryNameJp(dto.getSubCategoryNameJp());
 
         } catch (AppException e) {

@@ -20,7 +20,7 @@
         <#-- 가계부 이름 -->
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${selected_language}"/></label>
-          <input type="text" class="form-control<@error ['EE_AC_101', 'EE_AC_102', 'EE_AC_103']/>" name="accountBookName${selected_language}" value="<@setLanguage '${selected_language}' '${holder.accountBookNameKo}' '${holder.accountBookNameJp}'/>">
+          <input type="text" class="form-control<@error ['EE_AC_101', 'EE_AC_102', 'EE_AC_103']/>" name="accountBookName${selected_language}" value="<@setLanguage '${selected_language}' '${holder.accountBookNameKr}' '${holder.accountBookNameJp}'/>">
           <@errorMsg ['EE_AC_101'] 'book.error.nameEmpty'/>
           <@errorMsg ['EE_AC_102'] 'book.error.nameMax'/>
           <@errorMsg ['EE_AC_103'] 'book.error.nameDupl'/>
@@ -29,7 +29,7 @@
         <#-- 가계부 이름(타언어) -->
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${unselected_language}"/></label>
-          <input type="text" class="form-control<@error ['EE_AC_104', 'EE_AC_105', 'EE_AC_106']/>" name="accountBookName${unselected_language}" value="<@setLanguage '${unselected_language}' '${holder.accountBookNameKo}' '${holder.accountBookNameJp}'/>">
+          <input type="text" class="form-control<@error ['EE_AC_104', 'EE_AC_105', 'EE_AC_106']/>" name="accountBookName${unselected_language}" value="<@setLanguage '${unselected_language}' '${holder.accountBookNameKr}' '${holder.accountBookNameJp}'/>">
           <@errorMsg ['EE_AC_104'] 'book.error.nameEmpty'/>
           <@errorMsg ['EE_AC_105'] 'book.error.nameMax'/>
           <@errorMsg ['EE_AC_106'] 'book.error.nameDupl'/>

@@ -19,7 +19,6 @@ import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.account.CreateAccountBook;
 import yk.web.myyk.util.checker.AccountChecker;
 import yk.web.myyk.util.enumerated.Currency;
-import yk.web.myyk.util.enumerated.TaxRate;
 import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
@@ -32,10 +31,6 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
     private String accountBookNameKr;
 
     private String accountBookNameJp;
-
-    private boolean taxInclude;
-
-    private TaxRate taxRate;
 
     private Currency currency;
 

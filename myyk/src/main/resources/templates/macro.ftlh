@@ -4,8 +4,8 @@
 </#macro>
 
 <#-- 다국어설정 확인 -->
-<#macro setLanguage selected_language ko jp>
-<#if selected_language == 'ko'>${ko}<#else>${jp}</#if>
+<#macro setLanguage selected_language kr jp>
+<#if selected_language == 'kr'>${kr}<#else>${jp}</#if>
 </#macro>
 
 <#-- 다국어 입력 -->

@@ -3,7 +3,6 @@ package yk.web.myyk.util.config;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.util.constant.MyLocale;
@@ -26,7 +25,7 @@ import yk.web.myyk.util.mail.MailTextKr;
 public class MailConfig {
 
     @Autowired
-    private MailTextKr mailTextKo;
+    private MailTextKr mailTextKr;
 
     @Autowired
     private MailTextJp mailTextJp;
@@ -43,7 +42,7 @@ public class MailConfig {
         Locale locale = CookieUtil.getLocale();
 
         if (MyLocale.isKorean(locale)) {
-            return mailTextKo;
+            return mailTextKr;
         } else if (MyLocale.isJapanese(locale)) {
             return mailTextJp;
         } else {

@@ -31,7 +31,7 @@
           <div class="card mb-2">
             <div class="card-body position-relative">
               <div class="d-inline">
-                <@setLanguage selected_language sc.subCategoryNameKo sc.subCategoryNameJp/>
+                <@setLanguage selected_language sc.subCategoryNameKr sc.subCategoryNameJp/>
               </div>
               <div class="d-inline position-absolute top-50 end-0 translate-middle-y pe-3>
                 <span class="update-sub-category"><i class="bi bi-gear-fill"></i></span>
@@ -61,7 +61,7 @@
               <#-- 서브 카테고리 -->
               <div class="mb-3">
                 <label class="form-label"><@msg 'category.sub.nameLang.${selected_language}'/></label>
-                <input type="text" class="form-control" name="subCategoryName${selected_language?capitalize}" value="<@setLanguage '${selected_language}' '${holder.subCategoryNameKo}' '${holder.subCategoryNameJp}'/>">
+                <input type="text" class="form-control" name="subCategoryName${selected_language?capitalize}" value="<@setLanguage '${selected_language}' '${holder.subCategoryNameKr}' '${holder.subCategoryNameJp}'/>">
                 <div class="invalid-feedback" data-error-code="EE_SC_102"><@msg 'category.sub.error.nameEmpty'/></div>
                 <div class="invalid-feedback" data-error-code="EE_SC_103"><@msg 'category.sub.error.nameMax'/></div>
                 <div class="invalid-feedback" data-error-code="EE_SC_104"><@msg 'category.sub.error.nameDupl'/></div>
@@ -69,7 +69,7 @@
               <#-- 서브 카테고리 (타언어) -->
               <div class="mb-3">
                 <label class="form-label"><@msg 'category.sub.nameLang.${unselected_language}'/></label>
-                <input type="text" class="form-control" name="subCategoryName${unselected_language?capitalize}" value="<@setLanguage '${unselected_language}' '${holder.subCategoryNameKo}' '${holder.subCategoryNameJp}'/>">
+                <input type="text" class="form-control" name="subCategoryName${unselected_language?capitalize}" value="<@setLanguage '${unselected_language}' '${holder.subCategoryNameKr}' '${holder.subCategoryNameJp}'/>">
                 <div class="invalid-feedback" data-error-code="EE_SC_105"><@msg 'category.sub.error.nameEmpty'/></div>
                 <div class="invalid-feedback" data-error-code="EE_SC_106"><@msg 'category.sub.error.nameMax'/></div>
                 <div class="invalid-feedback" data-error-code="EE_SC_107"><@msg 'category.sub.error.nameDupl'/></div>

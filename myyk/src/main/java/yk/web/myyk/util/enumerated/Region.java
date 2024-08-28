@@ -11,7 +11,7 @@ public enum Region implements BaseEnum {
     /**
      * <p>한국.</p>
      */
-    KOREA("ko"),
+    KOREA("kr"),
 
     /**
      * <p>일본.</p>
@@ -27,7 +27,7 @@ public enum Region implements BaseEnum {
 
     /**
      * <p>생성자.</p>
-     * 
+     *
      * @param value 지역
      */
     Region(String value) {
@@ -41,7 +41,7 @@ public enum Region implements BaseEnum {
 
     /**
      * <p>문자열을 통해 지역 이넘을 반환한다.</p>
-     * 
+     *
      * @param region 문자열
      * @return 지역
      */

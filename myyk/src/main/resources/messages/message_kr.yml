@@ -50,7 +50,7 @@ member:
     name: "닉네임(영어 또는 일본어)"
   region:
     name: "지역"
-    ko: "대한민국"
+    kr: "대한민국"
     jp: "일본"
   type:
     name: "회원등급"
@@ -97,7 +97,7 @@ book:
   edit: "가계부 생성 및 편집"
   name: "가계부"
   nameLang:
-    ko: "가계부 이름"
+    kr: "가계부 이름"
     jp: "가계부 이름(영어 또는 일본어)"
   list: "가계부 목록"
   rate:
@@ -124,7 +124,7 @@ category:
   edit: "카테고리 생성 및 편집"
   name: "카테고리"
   nameLang:
-    ko: "카테고리 이름"
+    kr: "카테고리 이름"
     jp: "카테고리 이름(영어 또는 일본어)"
   icon:
     name: "아이콘"
@@ -146,7 +146,7 @@ category:
     limit: "작성할 수 있는 카테고리 수를 초과했습니다."
   sub:
     nameLang:
-      ko: "서브 카테고리 이름"
+      kr: "서브 카테고리 이름"
       jp: "서브 카테고리 이름(영어 또는 일본어)"
     edit: "서브 카테고리 생성 및 편집"
     create:
