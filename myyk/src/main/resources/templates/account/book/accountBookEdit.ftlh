@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <#include "/lib.ftlh">
 <title><@msg "global.title"/></title>
-<link rel="stylesheet" href="/css/account.css"/>
+<link rel="stylesheet" href="/css/accountBook.css"/>
 </head>
 <#include "/header.ftlh">
 <body>
@@ -53,5 +53,5 @@
   </div>
 </body>
 <#include "/footer.ftlh">
-<script src="/js/account.js"></script>
+<script src="/js/accountBook.js"></script>
 </html>

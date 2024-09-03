@@ -9,6 +9,8 @@ public class MemberDTO extends BaseDTO {
 
     private String email;
 
+    private String maskedEmail;
+
     private String password;
 
     private String nickname;
@@ -22,9 +24,24 @@ public class MemberDTO extends BaseDTO {
         // nop
     }
 
+    /**
+     * <p>회원 인덱스만 필요한 경우의 생성자.</p>
+     *
+     * @param memberIdx 회원 인덱스
+     */
+    public MemberDTO(long memberIdx) {
+        setMemberIdx(memberIdx);
+        setEmail("");
+        setPassword("");
+        setNickname("");
+        setNicknameLang("");
+        setRegion(Region.KOREA);
+    }
+
     public MemberDTO(MemberEntity entity) {
         setMemberIdx(entity.getMemberIdx());
         setEmail(entity.getEmail());
+        setMaskedEmail(entity.getEmail());
         setPassword(entity.getPassword());
         setNickname(entity.getNickname());
         setNicknameLang(entity.getNicknameLang());
@@ -58,6 +75,14 @@ public class MemberDTO extends BaseDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getMaskedEmail() {
+        return maskedEmail;
+    }
+
+    public void setMaskedEmail(String email) {
+        this.maskedEmail = getMaskedEmail(email);
     }
 
     public String getPassword() {

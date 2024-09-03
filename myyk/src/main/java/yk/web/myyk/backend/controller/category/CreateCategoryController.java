@@ -92,6 +92,7 @@ public class CreateCategoryController extends BaseController {
         } catch (AppException e) {
             setErrors(request, e.getErrors());
             setHolder(request, new CreateCategoryHolder(form));
+            removeForm(session, CreateCategoryForm.class);
             return CONFIRM;
         }
         return COMPLETE_REDIRECT;
@@ -109,6 +110,7 @@ public class CreateCategoryController extends BaseController {
     public String complete(HttpSession session, HttpServletRequest request) throws SystemException {
         CategoryDTO dto = getDTO(session, CategoryDTO.class);
         setHolder(request, new CreateCategoryHolder(dto.getCategoryIdx()));
+        removeForm(session, CreateCategoryForm.class);
         return COMPLETE;
     }
 

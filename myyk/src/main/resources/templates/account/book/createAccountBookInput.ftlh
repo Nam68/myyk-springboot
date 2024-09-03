@@ -15,12 +15,12 @@
         <@msg "book.create.name"/>
       </h3>
 
-      <form action="/account/book/create/input/category" method="POST">
+      <form action="/account/book/create/confirm" method="POST">
 
         <#-- 가계부 이름 -->
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${selected_language}"/></label>
-          <input type="text" class="form-control<@error ['EE_AC_101', 'EE_AC_102', 'EE_AC_103']/>" name="accountBookName${selected_language}" value="<@setLanguage '${selected_language}' '${holder.accountBookNameKr}' '${holder.accountBookNameJp}'/>">
+          <input type="text" class="form-control<@error ['EE_AC_101', 'EE_AC_102', 'EE_AC_103']/>" name="accountBookName${selected_language?capitalize}" value="<@setLanguage '${selected_language}' '${holder.accountBookNameKr}' '${holder.accountBookNameJp}'/>">
           <@errorMsg ['EE_AC_101'] 'book.error.nameEmpty'/>
           <@errorMsg ['EE_AC_102'] 'book.error.nameMax'/>
           <@errorMsg ['EE_AC_103'] 'book.error.nameDupl'/>
@@ -29,7 +29,7 @@
         <#-- 가계부 이름(타언어) -->
         <div class="mb-5">
           <label class="form-label"><@msg "book.nameLang.${unselected_language}"/></label>
-          <input type="text" class="form-control<@error ['EE_AC_104', 'EE_AC_105', 'EE_AC_106']/>" name="accountBookName${unselected_language}" value="<@setLanguage '${unselected_language}' '${holder.accountBookNameKr}' '${holder.accountBookNameJp}'/>">
+          <input type="text" class="form-control<@error ['EE_AC_104', 'EE_AC_105', 'EE_AC_106']/>" name="accountBookName${unselected_language?capitalize}" value="<@setLanguage '${unselected_language}' '${holder.accountBookNameKr}' '${holder.accountBookNameJp}'/>">
           <@errorMsg ['EE_AC_104'] 'book.error.nameEmpty'/>
           <@errorMsg ['EE_AC_105'] 'book.error.nameMax'/>
           <@errorMsg ['EE_AC_106'] 'book.error.nameDupl'/>
@@ -51,14 +51,9 @@
 
                 <#-- 닉네임 -->
                 <div class="d-inline">
-                  <#assign idx = m.memberIdx>
-                  <#--
-                    형변환하는 이유를 알 떄까지 코멘트아웃
-                    위 태그로 대신함
-                    형변환한 이유를 알았다면 홀더도 Long에서 String으로 바꿔야...
-                    <#assign idx = m.memberIdx?string>
-                  -->
-                  ${ m.nickname }&nbsp;(<@maskedEmail "${m.emailLocalpart}" "${m.emailDomain}"/>)
+                  <#-- []태그를 사용하기 위해서는 키값이 문자열이어야함 -->
+                  <#assign idx = m.memberIdx?string>
+                  ${m.nickname}&nbsp;(${m.maskedEmail})
                 </div>
 
                 <#-- 권한 토글 -->
@@ -72,7 +67,7 @@
                   <div class="form-check form-switch col">
                     <#assign writable = false>
                     <#if holder.writeAuthMap?has_content><#if holder.writeAuthMap[idx]?has_content><#assign writable = true></#if></#if>
-                    <input class="form-check-input" id="write-${idx}" type="checkbox" name="writeAuthList" value="${idx}" role="switch" <#if writable>checked<#else>disabled</#if>>
+                    <input class="form-check-input" id="write-${idx}" type="checkbox" name="writeAuthList" value="${idx}" role="switch" <#if writable>checked</#if>>
                     <label class="form-check-label" for="write-${idx}"><@msg "share.write"/></label>
                   </div>
                 </div>
@@ -81,6 +76,11 @@
               </#list>
             </div>
           </div>
+
+          <#-- 에러메시지 출력용 (권한을 설정한 회원이 존재하지 않는 경우) -->
+          <input type="hidden" class="form-control<@error ['ME_101']/>"/>
+          <@errorMsg ['ME_101'] 'share.error.missing'/>
+
         </div>
 
       </form>

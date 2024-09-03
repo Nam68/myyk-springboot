@@ -4,90 +4,23 @@ public class Test {
 
     public static void main(String[] args) {
 
-//        Object obj = new ArrayList<>();
-//        Map map = (HashMap) obj;
-
+        String email = "epoche02@naver.com";
+        System.out.println(getMaskedEmail(email));
     }
 
+    protected static String getMaskedEmail(String email) {
+
+        String mask = "****";
+
+        String[] emailSet = email.split("@");
+        String localpart = emailSet[0];
+        String domain = emailSet[1];
+
+        String maskedLocalpart = localpart.substring(0, 4) + mask;
+        String maskedEmail = maskedLocalpart + "@" + domain;
 
 
-    /**
-     * <p>문자열이 숫자를 포함하는지 검증한다.</p>
-     *
-     * @param str 문자열
-     * @return 검증결과
-     */
-    private static boolean hasNumber(String str) {
-
-        boolean result = false;
-
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (c >= '0' && c <= '9') {
-                result = true;
-                break;
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * <p>문자열이 대문자를 포함하는지 검증한다.</p>
-     *
-     * @param str 문자열
-     * @return 검증결과
-     */
-    private static boolean hasUpperCase(String str) {
-
-        boolean result = false;
-
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (c >= 'A' && c <= 'Z') {
-                result = true;
-                break;
-            }
-        }
-
-        return result;
-
-    }
-
-    /**
-     * <p>문자열이 소문자를 포함하는지 검증한다.</p>
-     *
-     * @param str 문자열
-     * @return 검증결과
-     */
-    private static boolean hasLowerCase(String str) {
-
-        boolean result = false;
-
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (c >= 'a' && c <= 'z') {
-                result = true;
-                break;
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * <p>문자열이 대소문자와 숫자를 모두 포함하는지 검증한다.</p>
-     *
-     * @param str 문자열
-     * @return 검증결과
-     */
-    public static boolean hasAllCaseAndNumber(String str) {
-
-        boolean number = hasNumber(str);
-        boolean upper = hasUpperCase(str);
-        boolean lower = hasLowerCase(str);
-
-        return number && upper && lower;
+        return maskedEmail;
     }
 
 }

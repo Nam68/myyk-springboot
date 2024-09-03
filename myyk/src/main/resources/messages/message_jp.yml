@@ -173,3 +173,5 @@ share:
   read: "閲覧権限"
   write: "編集権限"
   checkForRegister: "共有する会員を選んでください。"
+  error:
+    missing: "存在しない会員を設定しました。しばらくしてからもう一度やり直してください。"

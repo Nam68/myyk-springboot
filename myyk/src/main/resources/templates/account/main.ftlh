@@ -48,27 +48,31 @@
 
       <@toHomeBtn/>
 
-<#-- 가계부 에디터인지 카테고리 에디터인지 선택하는 모달 -->
-<div class="modal fade" id="account-item-edit-modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="text-end">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="d-grid gap-2">
-          <button class="btn btn-outline-primary"  onclick="location.href='/account/book/edit'">
-            <@msg "book.edit"/>
-          </button>
-          <button class="btn btn-outline-primary"  onclick="location.href='/account/category/edit'">
-            <@msg "category.edit"/>
-          </button>
+    </div>
+  </div>
+
+  <#-- 가계부 에디터인지 카테고리 에디터인지 선택하는 모달 -->
+  <div class="modal fade" id="account-item-edit-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="text-end">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-primary"  onclick="location.href='/account/book/edit'">
+              <@msg "book.edit"/>
+            </button>
+            <button class="btn btn-outline-primary"  onclick="location.href='/account/category/edit'">
+              <@msg "category.edit"/>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+</body>
 <#include "/footer.ftlh">
 <script src="/js/account.js"></script>
 </html>

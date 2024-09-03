@@ -2,6 +2,7 @@ package yk.web.myyk.backend.service.account;
 
 import java.util.List;
 
+import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.service.BaseService;
 import yk.web.myyk.util.enumerated.Currency;
 
@@ -44,4 +45,11 @@ public interface CreateAccountBook extends BaseService {
      * @param writeAuthList 쓰기권한 리스트
      */
     public void setWriteAuthList(List<Long> writeAuthList);
+
+    /**
+     * <p>가계부를 반환한다.</p>
+     *
+     * @return 가계부
+     */
+    public AccountBookDTO getAccountBook();
 }

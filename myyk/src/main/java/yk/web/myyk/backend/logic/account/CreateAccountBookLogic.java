@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.entity.account.AccountBookAuthEntity;
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;
@@ -37,6 +38,10 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
     private List<Long> readAuthList;
 
     private List<Long> writeAuthList;
+
+    private AccountBookEntity accountBookEntity;
+
+    private List<AccountBookAuthEntity> accountBookAuthEntityList;
 
     @Override
     public void setAccountBookNameKr(String accountBookNameKr) {
@@ -100,7 +105,7 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
         validate();
 
         // 가계부 생성
-        saveAccountEntity();
+        this.accountBookEntity = saveAccountEntity();
 
         // 로그인 회원에게 모든 권한을 부여
         long loginIdx = getLoginInfo(CreateAccountBookLogic.class).getMemberIdx();
@@ -120,22 +125,31 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
         }
 
         // 생성한 권한을 저장
-        saveAccountAuthList(authMap);
+        this.accountBookAuthEntityList = saveAccountAuthList(authMap);
+    }
+
+    @Override
+    public AccountBookDTO getAccountBook() {
+        AccountBookDTO dto = new AccountBookDTO(accountBookEntity);
+//        AccountBookDTO dto = new AccountBookDTO(accountBookEntity, accountBookAuthEntityList);
+        return dto;
     }
 
     @Transactional
-    private void saveAccountEntity() {
+    private AccountBookEntity saveAccountEntity() {
         AccountBookEntity entity = new AccountBookEntity(accountBookNameKr, accountBookNameJp, currency);
         getRepository().getAccountBook().save(entity);
+        return entity;
     }
 
     @Transactional
-    private void saveAccountAuthList(Map<Long, AccountBookAuthEntity> authMap) {
+    private List<AccountBookAuthEntity> saveAccountAuthList(Map<Long, AccountBookAuthEntity> authMap) {
         List<AccountBookAuthEntity> authList = new ArrayList<>();
         for (Entry<Long, AccountBookAuthEntity> entry : authMap.entrySet()) {
             authList.add(entry.getValue());
         }
         getRepository().getAccountBookAuth().saveAll(authList);
+        return authList;
     }
 
 }

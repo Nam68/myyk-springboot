@@ -175,3 +175,5 @@ share:
   read: "읽기 권한"
   write: "쓰기 권한"
   checkForRegister: "공유할 회원을 선택해주세요."
+  error:
+    missing: "존재하지 않는 회원이 설정되어 있습니다. 잠시 후 다시 시도해주세요."

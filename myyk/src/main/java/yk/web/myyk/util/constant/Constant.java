@@ -8,7 +8,8 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class Constant {
 
-    private static int first;
+    private static int FIRST = 0;
+    private static String MASK = "****";
 
     @Value("${value.hashing.salt}")
     private String hashingSalt;
@@ -275,12 +276,24 @@ public class Constant {
         return staticSubCategoryNameMax;
     }
 
+    /*
+     * 어플리케이션 파일에 없는 정수
+     */
 
     /**
-     * @return 첫 번째 번호 (1)
+     * @return 첫 번째 번호 (0)
      */
     public static int getFirst() {
-        return first;
+        return FIRST;
+    }
+
+    /**
+     * <p>마스크 문자열(****)</p>
+     *
+     * @return 마스크 문자열
+     */
+    public static String getMask() {
+        return MASK;
     }
 
 }
