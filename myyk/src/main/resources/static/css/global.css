@@ -289,8 +289,25 @@ footer {
 }
 
 /*
+    체크박스
+*/
+input[type=checkbox] {
+    accent-color: var(--primary-color);
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+}
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/*
     글자
 */
+label {
+    vertical-align: middle;
+}
 .caution {
     color: red;
 }
