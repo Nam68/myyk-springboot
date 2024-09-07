@@ -37,10 +37,13 @@ public class AccountBookAuthEntity extends BaseEntityWithTime {
     /**
      * <p>생성자.</p>
      *
+     * @param accountBookEntity 가계부 엔티티
      * @param memberEntity 회원 엔티티
      */
-    public AccountBookAuthEntity(MemberEntity memberEntity) {
-
+    public AccountBookAuthEntity(AccountBookEntity accountBookEntity, MemberEntity memberEntity) {
+        this.accountBook = accountBookEntity;
+        this.member = memberEntity;
+        setDeleted(false);
     }
 
     public AccountBookEntity getAccount() {

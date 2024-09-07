@@ -131,10 +131,13 @@ public class CreateAccountBookController extends BaseController {
      * @return 뷰 이름
      * @throws SystemException 시스템에러
      */
-    @RequestMapping(params = "/complete", method = RequestMethod.POST)
-    @DataCheck(target = CreateAccountBookForm.class)
+    @RequestMapping(path = "/complete")
+    @DataCheck(target = AccountBookDTO.class)
     @SessionClear
     public String complete(HttpSession session, HttpServletRequest request) throws SystemException {
+        AccountBookDTO dto = getDTO(session, AccountBookDTO.class);
+        CreateAccountBookHolder holder = new CreateAccountBookHolder(dto.getAccountBookIdx());
+        setHolder(request, holder);
         return COMPLETE;
     }
 

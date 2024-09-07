@@ -17,7 +17,7 @@
 
       <form action="/account/book/create/category/input" method="POST">
         <div class="d-grid gap-2 mx-auto">
-          <input type="hidden" name="accountBookIdx" value="">
+          <input type="hidden" name="accountBookIdx" value="${holder.accountBookIdx}">
           <a class="btn btn-primary" role="button"><@msg "book.complete.toCategorySetting"/></a>
         </div>
       </form>

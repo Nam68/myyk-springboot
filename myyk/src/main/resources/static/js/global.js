@@ -5,6 +5,53 @@ function preventDoubleClick(button) {
     button.addClass('btn-disabled');
 }
 
+// 라벨 클릭 등으로 체크박스 값이 변했을 때 체크박스 이미지도 변경
+$(document).on('change', '.my-checkbox-holder :checkbox', function () {
+
+    const input = $(this);
+    const holder = input.parent();
+    const checkbox = holder.find('.my-checkbox');
+    
+    const hasClass = checkbox.hasClass('checked');
+    const checked = input.prop('checked');
+    
+    if (checked && !hasClass) {
+        checkbox.addClass('checked');
+    } else if (!checked && hasClass) {
+        checkbox.removeClass('checked');
+    }
+    
+});
+
+// 체크박스 이미지 클릭으로 진짜 체크박스 값 변경
+function checkboxToggle(checkbox) {
+
+    const holder = checkbox.parent();
+    const input = holder.find(':checkbox');
+    const checked = checkbox.hasClass('checked');
+
+    if (checked) {
+        input.prop('checked', false);
+        checkbox.removeClass('checked');
+    } else {
+        input.prop('checked', true);
+        checkbox.addClass('checked');
+    }
+}
+
+// 체크박스가 체크된 상태로 화면이 로드될 때 체크박스 이미지에도 체크 추가
+$(function() {
+    $('.my-checkbox-holder :checkbox').toArray().forEach(input => {
+
+        const checked = $(input).prop('checked');
+        const checkbox = $(input).parent().find('.my-checkbox');
+
+        if (checked) {
+            checkbox.addClass('checked');
+        }
+    });
+});
+
 /**
  * CSS 제어
  */

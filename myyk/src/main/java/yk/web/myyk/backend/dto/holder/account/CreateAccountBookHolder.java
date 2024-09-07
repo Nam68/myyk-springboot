@@ -19,6 +19,11 @@ import yk.web.myyk.util.enumerated.Region;
 public class CreateAccountBookHolder extends BaseHolder {
 
     /**
+     * <p>가계부 인덱스</p>
+     */
+    private long accountBookIdx;
+
+    /**
      * <p>가계부 이름(한국어).</p>
      */
     private String accountBookNameKr = "";
@@ -47,6 +52,15 @@ public class CreateAccountBookHolder extends BaseHolder {
      * <p>쓰기 권한 목록.</p>
      */
     private Map<String, MemberDTO> writeAuthMap = new HashMap<>();
+
+    /**
+     * <p>완료화면용 홀더.</p>
+     *
+     * @param accountBookIdx 가계부 인덱스
+     */
+    public CreateAccountBookHolder(long accountBookIdx) {
+        this.accountBookIdx = accountBookIdx;
+    }
 
     /**
      * <p>생성자.</p>
@@ -122,6 +136,15 @@ public class CreateAccountBookHolder extends BaseHolder {
             MemberDTO pseudoDto = new MemberDTO(writeAuthIdx);
             writeAuthMap.put(String.valueOf(writeAuthIdx), pseudoDto);
         }
+    }
+
+    /**
+     * <p>가계부 인덱스를 반환한다.</p>
+     *
+     * @return 가계부 인덱스
+     */
+    public long getAccountBookIdx() {
+        return accountBookIdx;
     }
 
     /**

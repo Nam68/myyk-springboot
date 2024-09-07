@@ -6,6 +6,11 @@ import yk.web.myyk.util.enumerated.Currency;
 public class AccountBookDTO extends BaseDTO {
 
     /**
+     * <p>가계부 인덱스.</p>
+     */
+    private long accountBookIdx;
+
+    /**
      * <p>가계부 이름(한국어).</p>
      */
     private String accountBookNameKr;
@@ -26,14 +31,20 @@ public class AccountBookDTO extends BaseDTO {
      * @param entity 엔티티
      */
     public AccountBookDTO(AccountBookEntity entity) {
+        this.accountBookIdx = entity.getAccountBookIdx();
         this.accountBookNameKr = entity.getAccountBookNameKr();
         this.accountBookNameJp = entity.getAccountBookNameJp();
         this.currency = entity.getCurrency();
     }
-//    public AccountBookDTO(AccountBookEntity entity, List<AccountBookAuthEntity> authList) {
-//        this(entity);
-//        // 권한 세팅
-//    }
+
+    /**
+     * <p>가계부 인덱스를 반환한다.</p>
+     *
+     * @return 가계부 인덱스
+     */
+    public long getAccountBookIdx() {
+        return accountBookIdx;
+    }
 
     /**
      * <p>가계부 이름(한국어)을 반환한다.</p>

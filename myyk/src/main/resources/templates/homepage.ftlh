@@ -39,6 +39,35 @@
 <button onclick="openLoading()">loading on</button>
 <button onclick="closeLoading()" style="z-index:2000;">loading off</button>
 
+<br>
+<br>
+<br>
+
+<br>
+<label>label</label>
+<br>
+
+<@checkbox 'test' 'A' 'test_a' false/><label for="test_a" class="pointer">test a</label>
+
+<@checkbox 'test' 'B' 'test_b' false/><label for="test_b" class="pointer">test b</label> 
+
+<@checkbox 'test' 'C' 'test_c' true/><label for="test_c" class="pointer">test c</label> 
+
+
+<button onclick="testGo()">go!</button>
+<script>
+function testGo() {
+    $('[name=test]').toArray().forEach(checkbox => {
+        var i = $(checkbox);
+        if (i.is(':checked')) {
+            alert(i.val());
+        }
+    });
+}
+</script>
+<br>
+
+
 
 <br>
 <br>

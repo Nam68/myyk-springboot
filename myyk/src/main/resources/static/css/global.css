@@ -301,6 +301,44 @@ input[type=checkbox] {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
 }
+.my-checkbox-holder {
+    display: inline-block;
+}
+.my-checkbox-holder input[type=checkbox] {
+    display: none;
+}
+.my-checkbox {
+    display: inline-block;
+    border: solid var(--strong-gray) 0.09rem;
+    border-radius: 0.15rem;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+    position: relative;
+}
+.my-checkbox.checked {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+}
+.my-checkbox.pointer {
+    cursor: pointer;
+}
+.my-checkbox > i.bi-check {
+    width: 1rem;
+    height: 1rem;
+    font-size: 1.4rem;
+    position: absolute;
+    top: -0.65rem;
+    left: -0.32rem;
+    color: white;
+    display: none;
+}
+.my-checkbox.checked > i.bi-check {
+    display: block;
+}
+label.pointer {
+    cursor: pointer;
+}
 
 /*
     글자

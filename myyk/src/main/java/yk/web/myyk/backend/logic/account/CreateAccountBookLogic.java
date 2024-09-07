@@ -41,8 +41,6 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
 
     private AccountBookEntity accountBookEntity;
 
-    private List<AccountBookAuthEntity> accountBookAuthEntityList;
-
     @Override
     public void setAccountBookNameKr(String accountBookNameKr) {
         this.accountBookNameKr = accountBookNameKr;
@@ -116,7 +114,7 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
         List<MemberEntity> memberList = getRepository().getMember().findByMemberIdxIn(readAuthList);
         Map<Long, AccountBookAuthEntity> authMap = new HashMap<>();
         for (MemberEntity member : memberList) {
-            AccountBookAuthEntity auth = new AccountBookAuthEntity(member);
+            AccountBookAuthEntity auth = new AccountBookAuthEntity(accountBookEntity, member);
             authMap.put(member.getMemberIdx(), auth);
         }
         for (long memberIdx : writeAuthList) {
@@ -124,14 +122,13 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
             auth.setWritable(true);
         }
 
-        // 생성한 권한을 저장
-        this.accountBookAuthEntityList = saveAccountAuthList(authMap);
+        // 권한 생성
+        saveAccountAuthList(authMap);
     }
 
     @Override
     public AccountBookDTO getAccountBook() {
         AccountBookDTO dto = new AccountBookDTO(accountBookEntity);
-//        AccountBookDTO dto = new AccountBookDTO(accountBookEntity, accountBookAuthEntityList);
         return dto;
     }
 
@@ -143,13 +140,12 @@ public class CreateAccountBookLogic extends BaseLogic implements CreateAccountBo
     }
 
     @Transactional
-    private List<AccountBookAuthEntity> saveAccountAuthList(Map<Long, AccountBookAuthEntity> authMap) {
+    private void saveAccountAuthList(Map<Long, AccountBookAuthEntity> authMap) {
         List<AccountBookAuthEntity> authList = new ArrayList<>();
         for (Entry<Long, AccountBookAuthEntity> entry : authMap.entrySet()) {
             authList.add(entry.getValue());
         }
         getRepository().getAccountBookAuth().saveAll(authList);
-        return authList;
     }
 
 }

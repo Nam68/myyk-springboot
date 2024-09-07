@@ -137,3 +137,19 @@
 <#macro maskedEmail emailLocalpart emailDomain>
 ${emailLocalpart[0..3]?right_pad(8, '*')}@${emailDomain}
 </#macro>
+
+<#-- 체크박스 -->
+<#macro checkbox name value id isChecked>
+<div class="my-checkbox-holder">
+    <div class="my-checkbox pointer" onclick="checkboxToggle($(this))"><i class="bi bi-check"></i></div>
+    <input type="checkbox" name="${name}" value="${value}" id="${id}"<#if isChecked> checked</#if>>
+</div>
+</#macro>
+
+<#-- 체크박스(포인터 없음) -->
+<#macro checkboxNoPointer name value id isChecked>
+<div class="my-checkbox-holder">
+    <div class="my-checkbox" onclick="checkboxToggle($(this))"><i class="bi bi-check"></i></div>
+    <input type="checkbox" name="${name}" value="${value}" id="${id}"<#if isChecked> checked</#if>>
+</div>
+</#macro>

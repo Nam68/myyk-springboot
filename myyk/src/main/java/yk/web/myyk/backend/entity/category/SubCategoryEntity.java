@@ -48,6 +48,7 @@ public class SubCategoryEntity extends BaseEntity {
         setSubCategoryNameJp(subCategoryNameJp);
         setSortNo(sortNo);
         setCategory(category);
+        setDeleted(false);
     }
 
     /**

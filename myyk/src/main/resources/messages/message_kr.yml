@@ -107,6 +107,10 @@ book:
   create:
     name: "가계부 생성"
     check: "가계부 생성 확인"
+  complete:
+    name: "가계부가 생성되었습니다"
+    toCategorySetting: "카테고리 설정 화면으로"
+    toList: "가계부 목록 화면으로"
   error:
     nameEmpty: "가계부 이름을 입력해주세요."
     nameMax: "가계부 이름은 10자 이내로 입력해주세요."

@@ -44,18 +44,19 @@ public class LoginToken extends BaseEntityWithTime {
 
     /**
      * <p>생성자.</p>
-     * 
+     *
      * @param member 회원 엔티티
      */
     public LoginToken(MemberEntity member) {
         this.tokenId = getRandomString(20);
         this.member = member;
         updateLastUsedTime();
+        setDeleted(false);
     }
 
     /**
      * <p>토큰 아이디를 반환한다.</p>
-     * 
+     *
      * @return 토큰 아이디
      */
     public String getTokenId() {
@@ -64,7 +65,7 @@ public class LoginToken extends BaseEntityWithTime {
 
     /**
      * <p>회원 엔티티를 반환한다.</p>
-     * 
+     *
      * @return 회원 엔티티
      */
     public MemberEntity getMemberEntity() {
@@ -73,7 +74,7 @@ public class LoginToken extends BaseEntityWithTime {
 
     /**
      * <p>마지막 사용 시각을 반환한다.</p>
-     * 
+     *
      * @return 마지막 사용 시각
      */
     public LocalDateTime getLastUsedTime() {

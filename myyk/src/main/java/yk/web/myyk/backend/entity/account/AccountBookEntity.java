@@ -63,6 +63,16 @@ public class AccountBookEntity extends BaseEntityWithTime {
         setAccountBookNameKr(accountBookNameKr);
         setAccountBookNameJp(accountBookNameJp);
         setCurrency(currency);
+        setDeleted(false);
+    }
+
+    /**
+     * <p>가계부 인덱스를 반환한다.</p>
+     *
+     * @return 가계부 인덱스
+     */
+    public long getAccountBookIdx() {
+        return accountBookIdx;
     }
 
     /**

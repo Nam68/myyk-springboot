@@ -38,6 +38,9 @@ public class CategoryEntity extends BaseEntity {
     @Column(name = "SORT_NO")
     private int sortNo;
 
+    @Column(name = "BASIC")
+    private boolean basic;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<SubCategoryEntity> subCategoryList;
 
@@ -60,6 +63,8 @@ public class CategoryEntity extends BaseEntity {
         setCategoryIcon(categoryIcon);
         setSortNo(sortNo);
         setMember(member);
+        setDeleted(false);
+        setBasic(false);
     }
 
     /**
@@ -177,6 +182,24 @@ public class CategoryEntity extends BaseEntity {
      */
     public void setSortNo(int sortNo) {
         this.sortNo = sortNo;
+    }
+
+    /**
+     * <p>기본 여부를 반환한다.</p>
+     *
+     * @return 기본 여부
+     */
+    public boolean isBasic() {
+        return basic;
+    }
+
+    /**
+     * <p>기본 여부를 설정한다.</p>
+     *
+     * @param basic 기본 여부
+     */
+    public void setBasic(boolean basic) {
+        this.basic = basic;
     }
 
     /**

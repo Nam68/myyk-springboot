@@ -22,7 +22,7 @@ public class TmpCodeEntity extends BaseEntityWithTime {
 
     @Column(name = "EMAIL")
     private String email;
-    
+
     @Deprecated
     public TmpCodeEntity() {
         // nop
@@ -30,18 +30,19 @@ public class TmpCodeEntity extends BaseEntityWithTime {
 
     /**
      * <p>생성자.</p>
-     * 
+     *
      * @param tmpCode 임시코드
      * @param email 이메일
      */
     public TmpCodeEntity(String tmpCode, String email) {
         this.tmpCode = hashing(tmpCode);
         this.email = encrypt(email);
+        setDeleted(false);
     }
 
     /**
      * <p>이메일을 반환한다.</p>
-     * 
+     *
      * @return 이메일
      */
     public String getEmail() {

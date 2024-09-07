@@ -107,6 +107,7 @@ public class MemberEntity extends BaseEntityWithTime {
         setRegion(dto.getRegion());
         setMemberType(MemberType.TMP_MEMBER);
         setMemberIcon(memberIcon);
+        setDeleted(false);
     }
 
     /**

@@ -24,9 +24,9 @@
       <@errorMsgIndpt ['LE_LG_101'] 'login.error'/>
 
       <div class="form-check text-start mt-3 my-3">
-        <input class="form-check-input" type="checkbox" name="autoLogin" id="flexCheckDefault"<#if holder.autoLogin> checked</#if>>
-        <label class="form-check-label" for="flexCheckDefault">
-          <@msg "login.remember"/>
+        <@checkbox 'autoLogin' 'true' 'auto-login' holder.autoLogin/>
+        <label class="pointer" for="auto-login">
+          <@msg "login.remember"/>  
         </label>
       </div>
     </form>
