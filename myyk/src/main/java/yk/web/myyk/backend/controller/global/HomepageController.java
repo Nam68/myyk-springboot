@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
+import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
+import yk.web.myyk.backend.dto.holder.account.CreateAccountBookCategoryHolder;
+import yk.web.myyk.backend.service.account.FindAccountBookByWriteAuth;
 import yk.web.myyk.util.exception.SystemException;
 
 /**
@@ -43,8 +46,14 @@ public class HomepageController extends BaseController {
 
     @RequestMapping("/sample")
     public String sample(HttpServletRequest request) throws SystemException {
-        // createSubCategory.ftlh
-//        setHolder(request, new CreateSubCategoryHolder());
+
+        FindAccountBookByWriteAuth logic = getService().getFindBookByWriteAuth();
+        logic.setAccountBookIdx(1);
+        logic.excute();
+        AccountBookDTO dto = logic.getAccountBook();
+
+        CreateAccountBookCategoryHolder holder = new CreateAccountBookCategoryHolder(dto);
+        setHolder(request, holder);
         return "test/sample";
     }
 }

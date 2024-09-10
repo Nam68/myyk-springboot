@@ -111,6 +111,11 @@ book:
     name: "가계부가 생성되었습니다"
     toCategorySetting: "카테고리 설정 화면으로"
     toList: "가계부 목록 화면으로"
+  category:
+    name: "카테고리 설정"
+    basic: "기본 카테고리 목록"
+    created: "생성된 카테고리 목록"
+    info: "가계부에서 사용할 카테고리를 체크해주세요"
   error:
     nameEmpty: "가계부 이름을 입력해주세요."
     nameMax: "가계부 이름은 10자 이내로 입력해주세요."

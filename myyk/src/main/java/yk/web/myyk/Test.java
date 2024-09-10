@@ -4,8 +4,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-        String email = "epoche02@naver.com";
-        System.out.println(getMaskedEmail(email));
+        System.out.println("TESTTEST".substring(0,3).toLowerCase());
     }
 
     protected static String getMaskedEmail(String email) {

@@ -71,7 +71,7 @@ public class CreateAccountBookController extends BaseController {
     public String confirm(CreateAccountBookForm form, HttpSession session, HttpServletRequest request) throws SystemException {
 
         FindAllMemberByIdx findMemberList = getService().getFindAllMemberByIdx();
-        CreateAccountBook logic = getService().getCreateAccountBook();
+        CreateAccountBook logic = getService().getCreateBook();
         try {
             findMemberList.setMemberIdxList(form.getReadAuthList());
             findMemberList.validate();
@@ -107,7 +107,7 @@ public class CreateAccountBookController extends BaseController {
     public String execute(HttpSession session, HttpServletRequest request) throws SystemException {
 
         CreateAccountBookForm form = getForm(session, CreateAccountBookForm.class);
-        CreateAccountBook logic = getService().getCreateAccountBook();
+        CreateAccountBook logic = getService().getCreateBook();
         try {
             setAllParameters(logic, form);
             logic.excute();

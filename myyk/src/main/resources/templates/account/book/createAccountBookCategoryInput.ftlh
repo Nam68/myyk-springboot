@@ -22,7 +22,9 @@
         </div>
       </form>
 
-      <@confirmBackWithUrl '/account/book/edit'/>
+      <div class="d-grid gap-2 mx-auto mt-3">
+        <a class="btn btn-outline-secondary" role="button" href="/account/book/edit"><@msg "book.complete.toList"/></a>
+      </div>
 
     </div>
   </div>

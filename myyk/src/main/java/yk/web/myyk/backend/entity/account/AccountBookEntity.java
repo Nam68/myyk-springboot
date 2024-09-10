@@ -130,6 +130,15 @@ public class AccountBookEntity extends BaseEntityWithTime {
     }
 
     /**
+     * <p>가계부 권한 리스트를 반환한다.</p>
+     *
+     * @return 가계부 권한 리스트.
+     */
+    public List<AccountBookAuthEntity> getAccountBookAuthList() {
+        return accountBookAuthList;
+    }
+
+    /**
      * <p>카테고리 리스트를 반환한다.</p>
      *
      * @deprecated 정렬이 가능하도록 가급적 쿼리를 통해 반환받는다.

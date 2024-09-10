@@ -46,11 +46,39 @@ public class AccountBookAuthEntity extends BaseEntityWithTime {
         setDeleted(false);
     }
 
+    /**
+     * <p>가계부를 반환한다.</p>
+     *
+     * @return 가계부
+     */
     public AccountBookEntity getAccount() {
         return accountBook;
     }
 
+    /**
+     * <p>쓰기권한 여부를 설정한다.</p>
+     *
+     * @param writable 쓰기권한 여부
+     */
     public void setWritable(boolean writable) {
         this.writable = writable;
+    }
+
+    /**
+     * <p>쓰기권한 여부를 반환한다.</p>
+     *
+     * @return 쓰기권한 여부
+     */
+    public boolean isWritable() {
+        return writable;
+    }
+
+    /**
+     * <p>회원을 반환한다.</p>
+     *
+     * @return 회원
+     */
+    public MemberEntity getMember() {
+        return member;
     }
 }

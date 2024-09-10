@@ -106,6 +106,11 @@ account:
     name: "家計簿が登録されました"
     toCategorySetting: "カテゴリ設定画面へ"
     toList: "家計簿一覧画面へ"
+  category:
+    name: "カテゴリ設定"
+    basic: "基本カテゴリ一覧"
+    created: "作成したカテゴリ一覧"
+    info: "家計簿で使うカテゴリをチェックしてください"
   error:
     nameEmpty: "家計簿名を入力してください。"
     nameMax: "家計簿名は10桁以内に入力してください。"

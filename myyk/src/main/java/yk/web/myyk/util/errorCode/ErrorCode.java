@@ -19,6 +19,7 @@ public enum ErrorCode {
      * LG : 로그인
      * MA : 메일
      * ME : 회원
+     * QB : 쿼리빌더
      * SS : 세션값
      */
 
@@ -26,6 +27,21 @@ public enum ErrorCode {
      * <p>가계부 엔티티를 찾을 수 없을 때의 에러.</p>
      */
     AB_101("account book entity does not exist."),
+
+    /**
+     * <p>가계부 엔티티가 논리삭제 되었을 때의 에러.</p>
+     */
+    AB_102("account book entity is already deleted."),
+
+    /**
+     * <p>가계부 읽기 권한이 없을 때의 에러.</p>
+     */
+    AB_103("no read authority for account book."),
+
+    /**
+     * <p>가계부 쓰기 권한이 없을 때의 에러.</p>
+     */
+    AB_104("no write authority for account book."),
 
     /**
      * <p>회계 엔티티 생성에 실패했을 때의 에러.</p>
@@ -131,6 +147,16 @@ public enum ErrorCode {
      * <p>회원 인덱스로 회원을 찾을 수 없는 경우의 에러.</p>
      */
     ME_101("member idx missing."),
+
+    /**
+     * <p>JPQL 작성에 실패했을 경우의 에러.</p>
+     */
+    QB_101("failed to write JPQL."),
+
+    /**
+     * <p>TypedQuery 생성에 실패했을 경우의 에러.</p>
+     */
+    QB_102("failed to create TypedQuery."),
 
     /**
      * <p>세션 언어값이 비어있는 경우.</p>

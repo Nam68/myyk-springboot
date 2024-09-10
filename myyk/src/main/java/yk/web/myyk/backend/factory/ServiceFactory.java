@@ -6,12 +6,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.CreateAccountBook;
+import yk.web.myyk.backend.service.account.FindAccountBookByIdx;
+import yk.web.myyk.backend.service.account.FindAccountBookByWriteAuth;
 import yk.web.myyk.backend.service.category.CreateCategory;
 import yk.web.myyk.backend.service.category.CreateSubCategory;
 import yk.web.myyk.backend.service.category.CreateSubCategoryCardHtml;
 import yk.web.myyk.backend.service.category.DeleteSubCategory;
 import yk.web.myyk.backend.service.category.FindCategory;
 import yk.web.myyk.backend.service.category.FindSubCategory;
+import yk.web.myyk.backend.service.category.SearchBasicCategory;
 import yk.web.myyk.backend.service.category.SearchCategoryByMember;
 import yk.web.myyk.backend.service.category.SearchSubCategoryByCategory;
 import yk.web.myyk.backend.service.category.UpdateSubCategory;
@@ -45,8 +48,22 @@ public class ServiceFactory {
     @Autowired
     private FindAllMemberByIdx findAllMemberByIdx;
 
+    /**
+     * 가계부
+     */
+
     @Autowired
     private CreateAccountBook createAccountBook;
+
+    @Autowired
+    private FindAccountBookByIdx findAccountBookByIdx;
+
+    @Autowired
+    private FindAccountBookByWriteAuth findAccountBookByWriteAuth;
+
+    /**
+     * 카테고리
+     */
 
     @Autowired
     private CreateCategory createCategory;
@@ -56,6 +73,9 @@ public class ServiceFactory {
 
     @Autowired
     private SearchCategoryByMember searchCategoryByMember;
+
+    @Autowired
+    private SearchBasicCategory searchBasicCategory;
 
     /**
      * 서브 카테고리
@@ -110,8 +130,16 @@ public class ServiceFactory {
         return findAllMemberByIdx;
     }
 
-    public CreateAccountBook getCreateAccountBook()  {
+    public CreateAccountBook getCreateBook()  {
         return createAccountBook;
+    }
+
+    public FindAccountBookByIdx getFindBookByIdx() {
+        return findAccountBookByIdx;
+    }
+
+    public FindAccountBookByWriteAuth getFindBookByWriteAuth() {
+        return findAccountBookByWriteAuth;
     }
 
     public CreateCategory getCreateCategory() {
@@ -124,6 +152,10 @@ public class ServiceFactory {
 
     public SearchCategoryByMember getSearchCategoryByMember() {
         return searchCategoryByMember;
+    }
+
+    public SearchBasicCategory getSearchBasicCategory() {
+        return searchBasicCategory;
     }
 
     public CreateSubCategory getCreateSubCategory() {
