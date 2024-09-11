@@ -1,5 +1,7 @@
 package yk.web.myyk.backend.controller.global;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.AccountBookDTO;
+import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.holder.account.CreateAccountBookCategoryHolder;
 import yk.web.myyk.backend.service.account.FindAccountBookByWriteAuth;
+import yk.web.myyk.backend.service.category.SearchBasicCategory;
 import yk.web.myyk.util.exception.SystemException;
 
 /**
@@ -52,7 +56,11 @@ public class HomepageController extends BaseController {
         logic.excute();
         AccountBookDTO dto = logic.getAccountBook();
 
-        CreateAccountBookCategoryHolder holder = new CreateAccountBookCategoryHolder(dto);
+        SearchBasicCategory basicCategoryLogic = getService().getSearchBasicCategory();
+        basicCategoryLogic.excute();
+        List<CategoryDTO> basicCategoryList = basicCategoryLogic.getBasicCategory();
+
+        CreateAccountBookCategoryHolder holder = new CreateAccountBookCategoryHolder(dto, basicCategoryList);
         setHolder(request, holder);
         return "test/sample";
     }

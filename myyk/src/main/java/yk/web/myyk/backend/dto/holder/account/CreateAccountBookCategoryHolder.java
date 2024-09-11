@@ -1,6 +1,9 @@
 package yk.web.myyk.backend.dto.holder.account;
 
+import java.util.List;
+
 import yk.web.myyk.backend.dto.AccountBookDTO;
+import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.holder.BaseHolder;
 
 /**
@@ -24,14 +27,26 @@ public class CreateAccountBookCategoryHolder extends BaseHolder {
     private String accountBookNameJp;
 
     /**
+     * <p>기본 카테고리.</p>
+     */
+    private List<CategoryDTO> basicCategoryList;
+
+    /**
+     * <p>회원 카테고리.</p>
+     */
+    private List<CategoryDTO> memberCategoryList;
+
+    /**
      * <p>생성자 : 초기화면용</p>
      *
      * @param accountBookIdx 가계부 인덱스
      */
-    public CreateAccountBookCategoryHolder(AccountBookDTO dto) {
+    public CreateAccountBookCategoryHolder(AccountBookDTO dto, List<CategoryDTO> basicCategoryList, List<CategoryDTO> memberCategoryList) {
         this.accountBookIdx = dto.getAccountBookIdx();
         this.accountBookNameKr = dto.getAccountBookNameKr();
         this.accountBookNameJp = dto.getAccountBookNameJp();
+        this.basicCategoryList = basicCategoryList;
+        this.memberCategoryList = memberCategoryList;
     }
 
     /**
@@ -59,5 +74,23 @@ public class CreateAccountBookCategoryHolder extends BaseHolder {
      */
     public String getAccountBookNameJp() {
         return accountBookNameJp;
+    }
+
+    /**
+     * <p>기본 카테고리 리스트를 반환한다.</p>
+     *
+     * @return 기본 카테고리
+     */
+    public List<CategoryDTO> getBasicCategoryList() {
+        return basicCategoryList;
+    }
+
+    /**
+     * <p>회원 카테고리 리스트를 반환한다.</p>
+     *
+     * @return 회원 카테고리
+     */
+    public List<CategoryDTO> getMemberCategoryList() {
+        return memberCategoryList;
     }
 }

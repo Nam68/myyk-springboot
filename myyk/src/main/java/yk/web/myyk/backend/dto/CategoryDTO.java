@@ -1,5 +1,6 @@
 package yk.web.myyk.backend.dto;
 
+import java.util.List;
 import java.util.Map;
 
 import yk.web.myyk.backend.entity.category.CategoryEntity;
@@ -37,7 +38,7 @@ public class CategoryDTO extends BaseDTO {
     /**
      * <p>서브 카테고리 리스트.</p>
      */
-    private Map<Long, String> subCategoryList;
+    private List<SubCategoryDTO> subCategoryList;
 
     public CategoryDTO() {
         // nop
@@ -146,7 +147,7 @@ public class CategoryDTO extends BaseDTO {
      *
      * @return 서브 카테고리 리스트
      */
-    public Map<Long, String> getSubCategoryList() {
+    public List<SubCategoryDTO> getSubCategoryList() {
         return subCategoryList;
     }
 
@@ -155,7 +156,7 @@ public class CategoryDTO extends BaseDTO {
      *
      * @param subCategoryList 서브 카테고리 리스트
      */
-    public void setSubCategoryList(Map<Long, String> subCategoryList) {
+    public void setSubCategoryList(List<SubCategoryDTO> subCategoryList) {
         this.subCategoryList = subCategoryList;
     }
 
