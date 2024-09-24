@@ -5,6 +5,25 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 public class KeyName {
 
     /**
+     * 에러
+     */
+
+    /**
+     * <p>시스템 에러 화면 메시지.</p>
+     */
+    public static final String ERROR_MESSAGE = "errorMessage";
+
+    /**
+     * <p>권한 에러 스테이터스.</p>
+     */
+    public static final String PERMISSION_STATUS = "status";
+
+    /**
+     * <p>권한 에러 회원 등급.</p>
+     */
+    public static final String PERMISSION_TYPE = "memberType";
+
+    /**
      * 언어정보
      */
 

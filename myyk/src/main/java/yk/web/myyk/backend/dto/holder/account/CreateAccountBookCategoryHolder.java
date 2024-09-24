@@ -1,5 +1,6 @@
 package yk.web.myyk.backend.dto.holder.account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import yk.web.myyk.backend.dto.AccountBookDTO;
@@ -14,39 +15,39 @@ public class CreateAccountBookCategoryHolder extends BaseHolder {
     /**
      * <p>가계부 인덱스.</p>
      */
-    private long accountBookIdx;
+    private long accountBookIdx = 0;
 
     /**
      * <p>가계부 이름(한국어).</p>
      */
-    private String accountBookNameKr;
+    private String accountBookNameKr = "";
 
     /**
      * <p>가계부 이름(일본어).</p>
      */
-    private String accountBookNameJp;
+    private String accountBookNameJp = "";
 
     /**
      * <p>기본 카테고리.</p>
      */
-    private List<CategoryDTO> basicCategoryList;
+    private List<CategoryDTO> basicCategoryList = new ArrayList<>();
 
     /**
      * <p>회원 카테고리.</p>
      */
-    private List<CategoryDTO> memberCategoryList;
+    private List<CategoryDTO> createdCategoryList = new ArrayList<>();
 
     /**
      * <p>생성자 : 초기화면용</p>
      *
      * @param accountBookIdx 가계부 인덱스
      */
-    public CreateAccountBookCategoryHolder(AccountBookDTO dto, List<CategoryDTO> basicCategoryList, List<CategoryDTO> memberCategoryList) {
+    public CreateAccountBookCategoryHolder(AccountBookDTO dto, List<CategoryDTO> basicCategoryList, List<CategoryDTO> createdCategoryList) {
         this.accountBookIdx = dto.getAccountBookIdx();
         this.accountBookNameKr = dto.getAccountBookNameKr();
         this.accountBookNameJp = dto.getAccountBookNameJp();
         this.basicCategoryList = basicCategoryList;
-        this.memberCategoryList = memberCategoryList;
+        this.createdCategoryList = createdCategoryList;
     }
 
     /**
@@ -86,11 +87,11 @@ public class CreateAccountBookCategoryHolder extends BaseHolder {
     }
 
     /**
-     * <p>회원 카테고리 리스트를 반환한다.</p>
+     * <p>생성된 카테고리 리스트를 반환한다.</p>
      *
-     * @return 회원 카테고리
+     * @return 생성된 카테고리
      */
-    public List<CategoryDTO> getMemberCategoryList() {
-        return memberCategoryList;
+    public List<CategoryDTO> getCreatedCategoryList() {
+        return createdCategoryList;
     }
 }

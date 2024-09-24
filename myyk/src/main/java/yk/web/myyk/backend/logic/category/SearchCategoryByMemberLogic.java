@@ -10,9 +10,11 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import yk.web.myyk.backend.dto.CategoryDTO;
-import yk.web.myyk.backend.dto.login.LoginInfo;
+import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.entity.category.CategoryEntity;
+import yk.web.myyk.backend.entity.category.SubCategoryEntity;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.category.SearchCategoryByMember;
 import yk.web.myyk.util.checker.LocaleChecker;
@@ -25,11 +27,23 @@ import yk.web.myyk.util.sort.SortUtil;
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class SearchCategoryByMemberLogic extends BaseLogic implements SearchCategoryByMember {
 
+    private boolean needSubCategory;
+
     private Locale locale;
 
     private long memberIdx;
 
     private List<CategoryDTO> categoryList;
+
+    @Override
+    public void setNeedSubCategory(boolean needSubCategory) {
+        this.needSubCategory = needSubCategory;
+    }
+
+    @Override
+    public void setMemberIdx(long memberIdx) {
+        this.memberIdx = memberIdx;
+    }
 
     @Override
     public void setLocale(Locale locale) {
@@ -38,8 +52,6 @@ public class SearchCategoryByMemberLogic extends BaseLogic implements SearchCate
 
     @Override
     public void validate() throws SystemException, AppException {
-        LoginInfo loginInfo = getLoginInfo(CreateCategoryLogic.class);
-        this.memberIdx = loginInfo.getMemberIdx();
 
         Map<String, ErrorCode> errors = new HashMap<>();
 
@@ -58,11 +70,20 @@ public class SearchCategoryByMemberLogic extends BaseLogic implements SearchCate
 
         List<CategoryDTO> list = new ArrayList<>();
         for (CategoryEntity entity : entityList) {
+
+            // 기본 카테고리 || 삭제 카테고리를 제외
             if (entity.isBasic() || entity.isDeleted()) {
-                // 기본 카테고리 || 삭제 카테고리를 제외
                 continue;
             }
+
+            // 서브 카테고리 검색
+            List<SubCategoryDTO> subCategoryList = new ArrayList<>();
+            if (needSubCategory) {
+                subCategoryList = getSubCategoryList(entity);
+            }
+
             CategoryDTO dto = new CategoryDTO(entity);
+            dto.setSubCategoryList(subCategoryList);
             list.add(dto);
         }
         this.categoryList = list;
@@ -71,6 +92,17 @@ public class SearchCategoryByMemberLogic extends BaseLogic implements SearchCate
     @Override
     public List<CategoryDTO> getCategoryList() {
         return categoryList;
+    }
+
+    @Transactional
+    public List<SubCategoryDTO> getSubCategoryList(CategoryEntity entity) {
+
+        List<SubCategoryDTO> subCategoryList = new ArrayList<>();
+
+        for (SubCategoryEntity subCategory : entity.getSubCategoryList()) {
+            subCategoryList.add(new SubCategoryDTO(subCategory));
+        }
+        return subCategoryList;
     }
 
 }

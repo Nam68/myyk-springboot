@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.servlet.http.HttpServletRequest;
 import yk.web.myyk.backend.controller.BaseController;
+import yk.web.myyk.backend.controller.account.CreateAccountBookCategoryController;
 import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.form.member.MemberForm;
 import yk.web.myyk.backend.dto.holder.account.CreateAccountBookCategoryHolder;
+import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.service.account.FindAccountBookByWriteAuth;
 import yk.web.myyk.backend.service.category.SearchBasicCategory;
+import yk.web.myyk.backend.service.category.SearchCategoryByMember;
 import yk.web.myyk.util.exception.SystemException;
 
 /**
@@ -51,16 +54,29 @@ public class HomepageController extends BaseController {
     @RequestMapping("/sample")
     public String sample(HttpServletRequest request) throws SystemException {
 
-        FindAccountBookByWriteAuth logic = getService().getFindBookByWriteAuth();
-        logic.setAccountBookIdx(1);
-        logic.excute();
-        AccountBookDTO dto = logic.getAccountBook();
+        LoginInfo loginInfo = getLoginInfo(HomepageController.class);
 
+        // 쓰기 권한을 가진 가계부 DTO를 검색
+        FindAccountBookByWriteAuth accountLogic = getService().getFindBookByWriteAuth();
+        accountLogic.setAccountBookIdx(2);
+        accountLogic.setMemberIdx(loginInfo.getMemberIdx());
+        accountLogic.excute();
+        AccountBookDTO dto = accountLogic.getAccountBook();
+
+        // 기본 카테고리를 검색
         SearchBasicCategory basicCategoryLogic = getService().getSearchBasicCategory();
         basicCategoryLogic.excute();
         List<CategoryDTO> basicCategoryList = basicCategoryLogic.getBasicCategory();
 
-        CreateAccountBookCategoryHolder holder = new CreateAccountBookCategoryHolder(dto, basicCategoryList);
+        // 작성한 카테고리를 검색
+        SearchCategoryByMember createdCategoryLogic = getService().getSearchCategoryByMember();
+        createdCategoryLogic.setLocale(getCurrentLocale(CreateAccountBookCategoryController.class));
+        createdCategoryLogic.setMemberIdx(loginInfo.getMemberIdx());
+        createdCategoryLogic.setNeedSubCategory(true);
+        createdCategoryLogic.excute();
+        List<CategoryDTO> createdCategoryList = createdCategoryLogic.getCategoryList();
+
+        CreateAccountBookCategoryHolder holder = new CreateAccountBookCategoryHolder(dto, basicCategoryList, createdCategoryList);
         setHolder(request, holder);
         return "test/sample";
     }

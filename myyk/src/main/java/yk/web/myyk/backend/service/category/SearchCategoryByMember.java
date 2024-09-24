@@ -13,6 +13,20 @@ import yk.web.myyk.util.exception.SystemException;
 public interface SearchCategoryByMember extends BaseService {
 
     /**
+     * <p>서브 카테고리도 함께 반환할지 설정한다.</p>
+     *
+     * @param needSubCategory 서브 카테고리 반환 여부
+     */
+    public void setNeedSubCategory(boolean needSubCategory);
+
+    /**
+     * <p>회원 인덱스를 설정한다.</p>
+     *
+     * @param memberIdx 회원 인덱스
+     */
+    public void setMemberIdx(long memberIdx);
+
+    /**
      * <p>로케일을 설정한다.</p>
      *
      * @param locale 로케일

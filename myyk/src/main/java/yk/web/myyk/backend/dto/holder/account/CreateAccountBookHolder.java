@@ -21,7 +21,7 @@ public class CreateAccountBookHolder extends BaseHolder {
     /**
      * <p>가계부 인덱스</p>
      */
-    private long accountBookIdx;
+    private long accountBookIdx = 0;
 
     /**
      * <p>가계부 이름(한국어).</p>

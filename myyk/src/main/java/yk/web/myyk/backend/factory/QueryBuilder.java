@@ -20,7 +20,7 @@ public class QueryBuilder {
 
     private Map<String, Operator> whereMap;
     private Map<String, Order> orderMap;
-    private Map<String, String> parameterMap;
+    private Map<String, Object> parameterMap;
 
     private String jpql;
     private TypedQuery<? extends BaseEntity> query;
@@ -72,17 +72,22 @@ public class QueryBuilder {
     }
 
     public QueryBuilder setParameter(String key, int value) {
-        parameterMap.put(key, String.valueOf(value));
+        parameterMap.put(key, value);
         return this;
     }
 
     public QueryBuilder setParameter(String key, long value) {
-        parameterMap.put(key, String.valueOf(value));
+        parameterMap.put(key, value);
         return this;
     }
 
-    public QueryBuilder setParameter(String key, Bool bool) {
-        parameterMap.put(key, bool.getBool());
+    public QueryBuilder setParameter(String key, boolean value) {
+        parameterMap.put(key, value);
+        return this;
+    }
+
+    public QueryBuilder setParameter(String key, Bool value) {
+        parameterMap.put(key, value.getBool());
         return this;
     }
 
@@ -105,7 +110,7 @@ public class QueryBuilder {
 
     public QueryBuilder notDeleted() {
         this.andWhere("deleted = :notDeleted");
-        this.setParameter("notDeleted", Bool.FALSE);
+        this.setParameter("notDeleted", false);
         return this;
     }
 
@@ -129,14 +134,14 @@ public class QueryBuilder {
     public QueryBuilder createQuery() throws AppException {
 
         try {
-            // select
-            String select = "*";
-
             // from
             Entry<String, Class<? extends BaseEntity>> fromEntry = fromMap.entrySet().iterator().next();
             String from = fromEntry.getValue().getSimpleName();
             String as = fromEntry.getKey();
             from += " " + as;
+
+            // select
+            String select = as;
 
             // where
             String where = "";
@@ -169,10 +174,10 @@ public class QueryBuilder {
                 jpql += "order by %order by%";
             }
 
-            jpql.replaceAll("%select%", select);
-            jpql.replaceAll("%from%", from);
-            jpql.replaceAll("%where%", where);
-            jpql.replaceAll("%order by%", orderBy);
+            jpql = jpql.replaceAll("%select%", select);
+            jpql = jpql.replaceAll("%from%", from);
+            jpql = jpql.replaceAll("%where%", where);
+            jpql = jpql.replaceAll("%order by%", orderBy);
             this.jpql = jpql;
 
         } catch (Exception e) {
@@ -182,7 +187,7 @@ public class QueryBuilder {
 
         try {
             this.query = em.createQuery(jpql, this.from);
-            for (Entry<String, String> parameter : parameterMap.entrySet()) {
+            for (Entry<String, Object> parameter : parameterMap.entrySet()) {
                 query.setParameter(parameter.getKey(), parameter.getValue());
             }
         } catch (Exception e) {

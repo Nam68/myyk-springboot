@@ -12,6 +12,7 @@ import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookCategoryForm;
 import yk.web.myyk.backend.dto.holder.account.CreateAccountBookCategoryHolder;
+import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.service.account.FindAccountBookByWriteAuth;
 import yk.web.myyk.backend.service.category.SearchBasicCategory;
 import yk.web.myyk.backend.service.category.SearchCategoryByMember;
@@ -42,9 +43,12 @@ public class CreateAccountBookCategoryController extends BaseController {
 
         // 에러인 경우 그대로 에러 화면으로 넘어가면 되므로 try-catch 불필요
 
+        LoginInfo loginInfo = getLoginInfo(CreateAccountBookCategoryController.class);
+
         // 쓰기 권한을 가진 가계부 DTO를 검색
         FindAccountBookByWriteAuth accountLogic = getService().getFindBookByWriteAuth();
         accountLogic.setAccountBookIdx(form.getAccountBookIdx());
+        accountLogic.setMemberIdx(loginInfo.getMemberIdx());
         accountLogic.excute();
         AccountBookDTO dto = accountLogic.getAccountBook();
 
@@ -55,7 +59,9 @@ public class CreateAccountBookCategoryController extends BaseController {
 
         // 작성한 카테고리를 검색
         SearchCategoryByMember memberCategoryLogic = getService().getSearchCategoryByMember();
-        memberCategoryLogic.setLocale(getCurrentLocale(AccountController.class));
+        memberCategoryLogic.setLocale(getCurrentLocale(CreateAccountBookCategoryController.class));
+        memberCategoryLogic.setMemberIdx(loginInfo.getMemberIdx());
+        memberCategoryLogic.setNeedSubCategory(true);
         memberCategoryLogic.excute();
         List<CategoryDTO> memberCategoryList = memberCategoryLogic.getCategoryList();
 

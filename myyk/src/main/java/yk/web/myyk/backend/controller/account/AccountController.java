@@ -10,6 +10,7 @@ import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.holder.account.AccountBookEditHolder;
 import yk.web.myyk.backend.dto.holder.account.CategoryEditHolder;
+import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.service.category.SearchCategoryByMember;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.enumerated.MemberType;
@@ -60,8 +61,13 @@ public class AccountController extends BaseController {
     @RequestMapping("/category/edit")
     public String categoryEdit(HttpServletRequest request) throws SystemException {
 
+        LoginInfo loginInfo = getLoginInfo(AccountController.class);
+
         SearchCategoryByMember logic = getService().getSearchCategoryByMember();
+
         logic.setLocale(getCurrentLocale(AccountController.class));
+        logic.setMemberIdx(loginInfo.getMemberIdx());
+        logic.setNeedSubCategory(false);
         logic.excute();
         List<CategoryDTO> list = logic.getCategoryList();
 

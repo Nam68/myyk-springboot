@@ -13,7 +13,6 @@ import yk.web.myyk.backend.dto.SubCategoryDTO;
 import yk.web.myyk.backend.entity.category.CategoryEntity;
 import yk.web.myyk.backend.entity.category.SubCategoryEntity;
 import yk.web.myyk.backend.factory.QueryBuilder;
-import yk.web.myyk.backend.factory.QueryBuilder.Bool;
 import yk.web.myyk.backend.logic.BaseLogic;
 import yk.web.myyk.backend.service.category.SearchBasicCategory;
 import yk.web.myyk.util.exception.AppException;
@@ -34,7 +33,7 @@ public class SearchBasicCategoryLogic extends BaseLogic implements SearchBasicCa
                 .setFrom("cat", CategoryEntity.class)
                 .where("cat.basic = :basic")
                 .notDeleted()
-                .setParameter("basic", Bool.TRUE)
+                .setParameter("basic", true)
                 .createQuery();
         List<CategoryEntity> categoryList = qb.getResult();
         this.entityList = categoryList;
@@ -47,9 +46,16 @@ public class SearchBasicCategoryLogic extends BaseLogic implements SearchBasicCa
         List<CategoryDTO> categoryList = new ArrayList<>();
 
         for (CategoryEntity entity : entityList) {
+
+            // 서브 카테고리 리스트 취득
             List<SubCategoryDTO> subCategoryList = getSubCategoryList(entity);
+
+            // 카테고리DTO 생성
             CategoryDTO dto = new CategoryDTO(entity);
             dto.setSubCategoryList(subCategoryList);
+
+            // 카테고리DTO에 세팅
+            categoryList.add(dto);
         }
 
         this.categoryList = categoryList;

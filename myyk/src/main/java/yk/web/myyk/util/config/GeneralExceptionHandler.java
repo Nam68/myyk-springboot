@@ -1,9 +1,14 @@
 package yk.web.myyk.util.config;
 
+import java.util.Map.Entry;
+
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import yk.web.myyk.util.constant.KeyName;
+import yk.web.myyk.util.errorCode.ErrorCode;
+import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.PermissionException;
 import yk.web.myyk.util.exception.SystemException;
 
@@ -14,7 +19,22 @@ public class GeneralExceptionHandler {
     public ModelAndView systemExceptionHandler(Exception e) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("error/systemError");
-        mav.addObject("errorMessage", e.getMessage());
+        mav.addObject(KeyName.ERROR_MESSAGE, e.getMessage());
+
+        e.printStackTrace();
+
+        return mav;
+    }
+
+    @ExceptionHandler({AppException.class})
+    public ModelAndView systemExceptionHandler(AppException e) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("error/systemError");
+
+        Entry<String, ErrorCode> firstEntry = e.getErrors().entrySet().iterator().next();
+        String errorMessage = ErrorCode.getErrorMessage(firstEntry.getValue(), getClass());
+
+        mav.addObject(KeyName.ERROR_MESSAGE, errorMessage);
 
         e.printStackTrace();
 
@@ -25,8 +45,8 @@ public class GeneralExceptionHandler {
     public ModelAndView permissionExceptionHandler(PermissionException e) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("error/permissionError");
-        mav.addObject("status", e.getPermissionStatus());
-        mav.addObject("memberType", e.getMemberType());
+        mav.addObject(KeyName.PERMISSION_STATUS, e.getPermissionStatus());
+        mav.addObject(KeyName.PERMISSION_TYPE, e.getMemberType());
 
         e.printStackTrace();
 
