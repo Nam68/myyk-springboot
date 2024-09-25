@@ -1,6 +1,8 @@
 package yk.web.myyk.backend.controller.global;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,6 +79,18 @@ public class HomepageController extends BaseController {
         List<CategoryDTO> createdCategoryList = createdCategoryLogic.getCategoryList();
 
         CreateAccountBookCategoryHolder holder = new CreateAccountBookCategoryHolder(dto, basicCategoryList, createdCategoryList);
+
+        // 가짜 선택자
+        Map<String, Boolean> selectedCategory = new HashMap<>();
+        selectedCategory.put("1", true);
+        selectedCategory.put("2", true);
+
+        Map<String, Boolean> selectedSubCategory = new HashMap<>();
+        selectedSubCategory.put("2", true);
+
+        holder.setSelectedCategory(selectedCategory);
+        holder.setSelectedSubCategory(selectedSubCategory);
+
         setHolder(request, holder);
         return "test/sample";
     }
