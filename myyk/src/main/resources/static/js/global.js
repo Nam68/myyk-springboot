@@ -11,16 +11,24 @@ $(document).on('change', '.my-checkbox-holder :checkbox', function () {
     const input = $(this);
     const holder = input.parent();
     const checkbox = holder.find('.my-checkbox');
-    
+
     const hasClass = checkbox.hasClass('checked');
     const checked = input.prop('checked');
-    
+
     if (checked && !hasClass) {
         checkbox.addClass('checked');
     } else if (!checked && hasClass) {
         checkbox.removeClass('checked');
     }
+
+    const hasDisabled = checkbox.hasClass('disabled');
+    const disabled = input.prop('disabled');
     
+    if (disabled && !hasDisabled) {
+        checkbox.addClass('disabled');
+    } else if (!disabled && hasDisabled) {
+        checkbox.removeClass('disabled');
+    }
 });
 
 // 체크박스 이미지 클릭으로 진짜 체크박스 값 변경
@@ -31,10 +39,10 @@ function checkboxToggle(checkbox) {
     const checked = checkbox.hasClass('checked');
 
     if (checked) {
-        input.prop('checked', false);
+        input.prop('checked', false).change();
         checkbox.removeClass('checked');
     } else {
-        input.prop('checked', true);
+        input.prop('checked', true).change();
         checkbox.addClass('checked');
     }
 }

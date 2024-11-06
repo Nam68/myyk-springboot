@@ -68,6 +68,7 @@ public class CreateAccountBookController extends BaseController {
      * @throws SystemException 시스템에러
      */
     @RequestMapping(path = "/confirm", method = RequestMethod.POST)
+    @SetEnum(target = {Currency.class})
     public String confirm(CreateAccountBookForm form, HttpSession session, HttpServletRequest request) throws SystemException {
 
         FindAllMemberByIdx findMemberList = getService().getFindAllMemberByIdx();

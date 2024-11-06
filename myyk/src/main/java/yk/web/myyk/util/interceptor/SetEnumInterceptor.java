@@ -14,7 +14,7 @@ import yk.web.myyk.util.exception.SystemException;
 
 /**
  * <p>이넘의 모든 값을 설정하는 인터셉터.</p>
- * 
+ *
  * "EnumName.ENUM_ITEM" = value
  */
 public class SetEnumInterceptor extends BaseInterceptor {

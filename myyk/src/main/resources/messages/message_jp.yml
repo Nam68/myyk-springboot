@@ -111,6 +111,9 @@ account:
     basic: "基本カテゴリ一覧"
     created: "作成したカテゴリ一覧"
     info: "家計簿で使うカテゴリをチェックしてください"
+    selected:
+      basic: "選択された基本カテゴリ"
+      created: "選択された作成したカテゴリ"
   error:
     nameEmpty: "家計簿名を入力してください。"
     nameMax: "家計簿名は10桁以内に入力してください。"
@@ -182,5 +185,6 @@ share:
   read: "閲覧権限"
   write: "編集権限"
   checkForRegister: "共有する会員を選んでください。"
+  empty: "共有しない"
   error:
     missing: "存在しない会員を設定しました。しばらくしてからもう一度やり直してください。"

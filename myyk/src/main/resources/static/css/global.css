@@ -11,7 +11,7 @@ html {
 
     --soft-black:#666666;
     --soft-gray: #BDBDBD;
-    
+    --very-soft-gray: #CCCCCC;
     --strong-gray: #AAAAAA;
 }
 body {
@@ -319,6 +319,10 @@ input[type=checkbox] {
     border-color: var(--primary-color);
     background-color: var(--primary-color);
 }
+.my-checkbox.disabled {
+    border-color: var(--very-soft-gray);
+    background-color: var(--very-soft-gray);
+}
 .my-checkbox.pointer {
     cursor: pointer;
 }
@@ -333,6 +337,9 @@ input[type=checkbox] {
     display: none;
 }
 .my-checkbox.checked > i.bi-check {
+    display: block;
+}
+.my-checkbox.disabled > i.bi-check {
     display: block;
 }
 label.pointer {

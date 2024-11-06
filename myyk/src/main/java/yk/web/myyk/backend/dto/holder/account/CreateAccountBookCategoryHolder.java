@@ -51,8 +51,6 @@ public class CreateAccountBookCategoryHolder extends BaseHolder {
 
     /**
      * <p>생성자 : 초기화면용</p>
-     *
-     * @param accountBookIdx 가계부 인덱스
      */
     public CreateAccountBookCategoryHolder(AccountBookDTO dto, List<CategoryDTO> basicCategoryList, List<CategoryDTO> createdCategoryList) {
         this.accountBookIdx = dto.getAccountBookIdx();
@@ -60,6 +58,17 @@ public class CreateAccountBookCategoryHolder extends BaseHolder {
         this.accountBookNameJp = dto.getAccountBookNameJp();
         this.basicCategoryList = basicCategoryList;
         this.createdCategoryList = createdCategoryList;
+    }
+
+    /**
+     * <p>생성자.</p>
+     *
+     * @param dto
+     */
+    public CreateAccountBookCategoryHolder(AccountBookDTO dto) {
+        this.accountBookIdx = dto.getAccountBookIdx();
+        this.accountBookNameKr = dto.getAccountBookNameKr();
+        this.accountBookNameJp = dto.getAccountBookNameJp();
     }
 
     /**

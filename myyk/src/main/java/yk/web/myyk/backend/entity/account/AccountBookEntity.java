@@ -19,6 +19,7 @@ import jakarta.persistence.Table;
 import yk.web.myyk.backend.dto.form.account.CreateAccountBookForm;
 import yk.web.myyk.backend.entity.BaseEntityWithTime;
 import yk.web.myyk.backend.entity.category.CategoryEntity;
+import yk.web.myyk.backend.entity.category.SubCategoryEntity;
 import yk.web.myyk.util.enumerated.Currency;
 
 @Entity
@@ -49,6 +50,13 @@ public class AccountBookEntity extends BaseEntityWithTime {
             joinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"),
             inverseJoinColumns = @JoinColumn(name = "CATEGORY_IDX"))
     private List<CategoryEntity> categoryList;
+
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = SubCategoryEntity.class)
+    @JoinTable(
+            name = "ACCOUNT_BOOK_SUB_CATEGORY_RTBL",
+            joinColumns = @JoinColumn(name = "ACCOUNT_BOOK_IDX"),
+            inverseJoinColumns = @JoinColumn(name = "SUB_CATEGORY_IDX"))
+    private List<SubCategoryEntity> subCategoryList;
 
     @Deprecated
     public AccountBookEntity() {
@@ -136,6 +144,24 @@ public class AccountBookEntity extends BaseEntityWithTime {
      */
     public List<AccountBookAuthEntity> getAccountBookAuthList() {
         return accountBookAuthList;
+    }
+
+    /**
+     * <p>가계부 카테고리를 설정한다.</p>
+     *
+     * @param categoryList 가계부 카테고리
+     */
+    public void setCategoryList(List<CategoryEntity> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    /**
+     * <p>가계부 서브 카테고리를 설정한다.</p>
+     *
+     * @param subCategoryList 가계부 서브 카테고리
+     */
+    public void setSubCategoryList(List<SubCategoryEntity> subCategoryList) {
+        this.subCategoryList = subCategoryList;
     }
 
     /**

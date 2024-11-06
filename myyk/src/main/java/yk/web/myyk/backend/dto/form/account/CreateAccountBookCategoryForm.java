@@ -1,5 +1,6 @@
 package yk.web.myyk.backend.dto.form.account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import yk.web.myyk.backend.dto.form.BaseForm;
@@ -12,27 +13,17 @@ public class CreateAccountBookCategoryForm extends BaseForm {
     /**
      * <p>가계부 인덱스.</p>
      */
-    private long accountBookIdx;
+    private long accountBookIdx = 0;
 
     /**
-     * <p>기본 카테고리 인덱스.</p>
+     * <p>카테고리 인덱스.</p>
      */
-    private List<Long> basicCategoryIdx;
+    private List<Long> categoryIdx = new ArrayList<>();
 
     /**
-     * <p>기본 서브 카테고리 인덱스.</p>
+     * <p>서브 카테고리 인덱스.</p>
      */
-    private List<Long> basicSubCategoryIdx;
-
-    /**
-     * <p>생성된 카테고리 인덱스.</p>
-     */
-    private List<Long> createdCategoryIdx;
-
-    /**
-     * <p>생성된 서브 카테고리 인덱스.</p>
-     */
-    private List<Long> createdSubCategoryIdx;
+    private List<Long> subCategoryIdx = new ArrayList<>();
 
     /**
      * <p>가계부 인덱스를 반환한다.</p>
@@ -53,74 +44,38 @@ public class CreateAccountBookCategoryForm extends BaseForm {
     }
 
     /**
-     * <p>기본 카테고리 인덱스를 반환한다.</p>
+     * <p>카테고리 인덱스를 반환한다.</p>
      *
      * @return 기본 카테고리 인덱스
      */
-    public List<Long> getBasicCategoryIdx() {
-        return basicCategoryIdx;
+    public List<Long> getCategoryIdx() {
+        return categoryIdx;
     }
 
     /**
-     * <p>기본 카테고리 인덱스를 설정한다.</p>
+     * <p>카테고리 인덱스를 설정한다.</p>
      *
-     * @param basicCategoryIdx 기본 카테고리 인덱스
+     * @param categoryIdx 카테고리 인덱스
      */
-    public void setBasicCategoryIdx(List<Long> basicCategoryIdx) {
-        this.basicCategoryIdx = basicCategoryIdx;
+    public void setCategoryIdx(List<Long> categoryIdx) {
+        this.categoryIdx = categoryIdx;
     }
 
     /**
-     * <p>기본 서브 카테고리 인덱스를 반환한다.</p>
+     * <p>서브 카테고리 인덱스를 반환한다.</p>
      *
-     * @return 기본 서브 카테고리 인덱스
+     * @return 서브 카테고리 인덱스
      */
-    public List<Long> getBasicSubCategoryIdx() {
-        return basicSubCategoryIdx;
+    public List<Long> getSubCategoryIdx() {
+        return subCategoryIdx;
     }
 
     /**
-     * <p>기본 서브 카테고리 인덱스를 설정한다.</p>
+     * <p>서브 카테고리 인덱스를 설정한다.</p>
      *
-     * @param basicSubCategoryIdx 기본 서브 카테고리 인덱스
+     * @param subCategoryIdx 서브 카테고리 인덱스
      */
-    public void setBasicSubCategoryIdx(List<Long> basicSubCategoryIdx) {
-        this.basicSubCategoryIdx = basicSubCategoryIdx;
-    }
-
-    /**
-     * <p>생성된 카테고리 인덱스를 반환한다.</p>
-     *
-     * @return 생성된 카테고리 인덱스
-     */
-    public List<Long> getCreatedCategoryIdx() {
-        return createdCategoryIdx;
-    }
-
-    /**
-     * <p>생성된 카테고리 인덱스를 설정한다.</p>
-     *
-     * @param createdCategoryIdx 생성된 카테고리 인덱스
-     */
-    public void setCreatedCategoryIdx(List<Long> createdCategoryIdx) {
-        this.createdCategoryIdx = createdCategoryIdx;
-    }
-
-    /**
-     * <p>생성된 서브 카테고리 인덱스를 반환한다.</p>
-     *
-     * @return 생성된 서브 카테고리 인덱스
-     */
-    public List<Long> getCreatedSubCategoryIdx() {
-        return createdSubCategoryIdx;
-    }
-
-    /**
-     * <p>생성된 서브 카테고리 인덱스를 설정한다.</p>
-     *
-     * @param createdSubCategoryIdx 생성된 서브 카테고리 인덱스
-     */
-    public void setCreatedSubCategoryIdx(List<Long> createdSubCategoryIdx) {
-        this.createdSubCategoryIdx = createdSubCategoryIdx;
+    public void setSubCategoryIdx(List<Long> subCategoryIdx) {
+        this.subCategoryIdx = subCategoryIdx;
     }
 }

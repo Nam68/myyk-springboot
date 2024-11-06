@@ -116,7 +116,7 @@
 
       </form>
 
-      <@confirmBackWithUrl '/account/book/edit'/>
+      <@confirmBack/>
 
     </div>
   </div>

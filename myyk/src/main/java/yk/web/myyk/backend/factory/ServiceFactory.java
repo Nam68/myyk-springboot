@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import yk.web.myyk.backend.service.account.CreateAccountBook;
+import yk.web.myyk.backend.service.account.CreateAccountBookCategory;
 import yk.web.myyk.backend.service.account.FindAccountBookByIdx;
 import yk.web.myyk.backend.service.account.FindAccountBookByWriteAuth;
 import yk.web.myyk.backend.service.category.CreateCategory;
@@ -54,6 +55,9 @@ public class ServiceFactory {
 
     @Autowired
     private CreateAccountBook createAccountBook;
+
+    @Autowired
+    private CreateAccountBookCategory createAccountBookCategory;
 
     @Autowired
     private FindAccountBookByIdx findAccountBookByIdx;
@@ -130,8 +134,12 @@ public class ServiceFactory {
         return findAllMemberByIdx;
     }
 
-    public CreateAccountBook getCreateBook()  {
+    public CreateAccountBook getCreateBook() {
         return createAccountBook;
+    }
+
+    public CreateAccountBookCategory getCreateAccountBookCategory() {
+        return createAccountBookCategory;
     }
 
     public FindAccountBookByIdx getFindBookByIdx() {

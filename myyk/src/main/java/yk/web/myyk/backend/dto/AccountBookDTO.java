@@ -1,5 +1,7 @@
 package yk.web.myyk.backend.dto;
 
+import java.util.List;
+
 import yk.web.myyk.backend.entity.account.AccountBookEntity;
 import yk.web.myyk.util.enumerated.Currency;
 
@@ -26,6 +28,16 @@ public class AccountBookDTO extends BaseDTO {
     private Currency currency;
 
     /**
+     * <p>카테고리 리스트.</p>
+     */
+    private List<CategoryDTO> categoryList;
+
+    /**
+     * <p>서브 카테고리 리스트.</p>
+     */
+    private List<SubCategoryDTO> subCategoryList;
+
+    /**
      * <p>생성자.</p>
      *
      * @param entity 엔티티
@@ -35,6 +47,19 @@ public class AccountBookDTO extends BaseDTO {
         this.accountBookNameKr = entity.getAccountBookNameKr();
         this.accountBookNameJp = entity.getAccountBookNameJp();
         this.currency = entity.getCurrency();
+    }
+
+    /**
+     * <p>생성자.</p>
+     *
+     * @param entity 엔티티
+     * @param categoryList 카테고리 리스트
+     * @param subCategoryList 서브 카테고리 리스트
+     */
+    public AccountBookDTO(AccountBookEntity entity, List<CategoryDTO> categoryList, List<SubCategoryDTO> subCategoryList) {
+        this(entity);
+        this.categoryList = categoryList;
+        this.subCategoryList = subCategoryList;
     }
 
     /**

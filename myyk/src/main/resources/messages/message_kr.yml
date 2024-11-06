@@ -116,6 +116,9 @@ book:
     basic: "기본 카테고리 목록"
     created: "생성된 카테고리 목록"
     info: "가계부에서 사용할 카테고리를 체크해주세요"
+    selected:
+      basic: "선택된 기본 카테고리"
+      created: "선택된 생성된 카테고리"
   error:
     nameEmpty: "가계부 이름을 입력해주세요."
     nameMax: "가계부 이름은 10자 이내로 입력해주세요."
@@ -184,5 +187,6 @@ share:
   read: "읽기 권한"
   write: "쓰기 권한"
   checkForRegister: "공유할 회원을 선택해주세요."
+  empty: "공유하지 않음"
   error:
     missing: "존재하지 않는 회원이 설정되어 있습니다. 잠시 후 다시 시도해주세요."

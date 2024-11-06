@@ -40,6 +40,10 @@
           <label class="form-label"><@msg "share.name"/></label>
           <div id="auth-member-holder" class="card mt-2 mb-2">
             <div class="card-body">
+              <#-- 권한 설정을 하지 않았을 때 -->
+              <#if !holder.readAuthMap?has_content>
+                <@msg "share.empty"/>
+              </#if>
               <#list holder.readAuthMap?keys as readKey>
               <div class="position-relative">
 

@@ -159,6 +159,11 @@ public enum ErrorCode {
     QB_102("failed to create TypedQuery."),
 
     /**
+     * <p>서브 카테고리 엔티티가 존재하지 않았을 경우의 에러.</p>
+     */
+    SC_101("sub category entity does not exist."),
+
+    /**
      * <p>세션 언어값이 비어있는 경우.</p>
      */
     SS_101("selected language is empty."),
