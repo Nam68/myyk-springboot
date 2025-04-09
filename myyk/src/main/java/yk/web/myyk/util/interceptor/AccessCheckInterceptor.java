@@ -3,8 +3,8 @@ package yk.web.myyk.util.interceptor;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.annotation.AccessCheck;
 import yk.web.myyk.util.enumerated.MemberType;

@@ -1,48 +1,58 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.0.5'
-	id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'war'
 }
 
 group = 'yk.web'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)  // Java 8로 설정
+    }
+}
+
 
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	// spring
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-	
-	// freemarker
-	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
-	
-	// JPA 
+
+    // freemarker
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+
+    // JPA 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	runtimeOnly 'com.h2database:h2'
-	
-	// MySQL
-	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
-	
-	// Language
-	implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
-	
-	// Mail
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	
-	// Json
-	implementation 'com.google.code.gson:gson:2.10.1'
+    runtimeOnly 'com.h2database:h2'
+
+    // MySQL
+    runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+
+    // cafe24 tomcat
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
+    // Language
+    implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
+
+    // Mail
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // Json
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

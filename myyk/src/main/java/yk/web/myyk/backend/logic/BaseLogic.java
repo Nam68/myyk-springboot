@@ -4,8 +4,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import yk.web.myyk.backend.BaseMvc;
 import yk.web.myyk.backend.dto.form.member.EmailForm;
 import yk.web.myyk.backend.factory.RepositoryFactory;

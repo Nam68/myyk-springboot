@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import yk.web.myyk.backend.controller.BaseController;
 import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.dto.MemberDTO;

@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.transaction.Transactional;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.entity.member.MemberEntity;
 import yk.web.myyk.backend.entity.token.LoginToken;

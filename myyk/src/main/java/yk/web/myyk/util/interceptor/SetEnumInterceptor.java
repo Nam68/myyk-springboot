@@ -2,8 +2,8 @@ package yk.web.myyk.util.interceptor;
 
 import org.springframework.web.method.HandlerMethod;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import yk.web.myyk.util.annotation.SetEnum;
 import yk.web.myyk.util.enumerated.BaseEnum;
 import yk.web.myyk.util.enumerated.Currency;

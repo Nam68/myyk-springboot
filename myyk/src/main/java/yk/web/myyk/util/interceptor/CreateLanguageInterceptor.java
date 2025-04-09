@@ -2,8 +2,8 @@ package yk.web.myyk.util.interceptor;
 
 import java.util.Locale;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import yk.web.myyk.util.constant.MyLocale;
 import yk.web.myyk.util.cookie.CookieUtil;
 

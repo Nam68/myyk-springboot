@@ -4,9 +4,9 @@ import java.util.Enumeration;
 
 import org.springframework.web.method.HandlerMethod;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import yk.web.myyk.backend.dto.BaseDTO;
 import yk.web.myyk.backend.dto.form.BaseForm;
 import yk.web.myyk.util.annotation.SessionClear;

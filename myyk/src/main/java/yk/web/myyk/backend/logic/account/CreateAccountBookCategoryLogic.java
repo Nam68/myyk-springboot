@@ -3,7 +3,11 @@ package yk.web.myyk.backend.logic.account;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import yk.web.myyk.backend.dto.AccountBookDTO;
 import yk.web.myyk.backend.dto.CategoryDTO;
 import yk.web.myyk.backend.dto.SubCategoryDTO;
@@ -16,6 +20,8 @@ import yk.web.myyk.util.errorCode.ErrorCode;
 import yk.web.myyk.util.exception.AppException;
 import yk.web.myyk.util.exception.SystemException;
 
+@Service
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CreateAccountBookCategoryLogic extends BaseLogic implements CreateAccountBookCategory {
 
     private long accountBookIdx;

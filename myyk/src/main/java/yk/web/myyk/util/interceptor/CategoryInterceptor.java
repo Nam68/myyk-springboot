@@ -3,8 +3,8 @@ package yk.web.myyk.util.interceptor;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import yk.web.myyk.util.annotation.CategorySetter;
 
 /**
@@ -15,19 +15,19 @@ public class CategoryInterceptor extends BaseInterceptor implements HandlerInter
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        
+
         HandlerMethod handlerMethod = getHandlerMethod(handler);
         if (handlerMethod == null) {
             return true;
         }
-        
+
         CategorySetter category = getAnnotation(CategorySetter.class, handlerMethod);
         if (category != null) {
 //            request.setAttribute(KeyName.CATEGORY, category.value().toString());
             return true;
         }
 //        request.setAttribute(KeyName.CATEGORY, Category.HOME.getValue());
-        return true;    
+        return true;
 //      throw new SystemException(ErrorCode.getErrorMessage(ErrorCode.IC_101, getClass()));
     }
 

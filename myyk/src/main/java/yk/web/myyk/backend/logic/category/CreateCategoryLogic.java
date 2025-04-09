@@ -9,7 +9,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.backend.entity.category.CategoryEntity;
 import yk.web.myyk.backend.entity.member.MemberEntity;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import yk.web.myyk.util.BaseApp;
 
 public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
@@ -18,7 +18,7 @@ public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
 
     /**
      * <p>리퀘스트를 통해 세션값을 가져온다.</p>
-     * 
+     *
      * @param request 리퀘스트
      * @param key 세션키
      * @return 세션값
@@ -30,7 +30,7 @@ public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
 
     /**
      * <p>리퀘스트를 통해 세션에 값을 세팅한다.</p>
-     * 
+     *
      * @param request 리퀘스트
      * @param key 세션키
      * @param value 세션값
@@ -41,7 +41,7 @@ public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
 
     /**
      * <p>해당 리퀘스트의 URI가 리소스에 대한 것인지 판단한다.</p>
-     * 
+     *
      * @param request 리퀘스트
      * @return 리소스 URI(이미지 등)이면 true
      */
@@ -51,7 +51,7 @@ public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
 
     /**
      * <p>인터셉터에 필요한 리포지토리가 있는지 확인한다.</p>
-     * 
+     *
      * @param repositories 필수 리포지토리
      * @return 전부 갖추고 있으면 true
      */
@@ -71,7 +71,7 @@ public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
      * <li>자원에 대한 핸들러인지</li>
      * <li>api용 컨트롤러인지</li>
      * </ul>
-     * 
+     *
      * @return 핸들러
      */
     protected HandlerMethod getHandlerMethod(Object handler) {
@@ -79,8 +79,8 @@ public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
         if (!(handler instanceof HandlerMethod)) {
             return null;
         }
-        HandlerMethod handlerMethod = (HandlerMethod) handler;  
-        
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+
         // API용 컨트롤러면 통과시키기
         RestController controller = handlerMethod.getBeanType().getAnnotation(RestController.class);
         if(controller != null) {
@@ -91,7 +91,7 @@ public class BaseInterceptor extends BaseApp implements HandlerInterceptor {
 
     /**
      * <p>지정한 어노테이션을 반환한다.</p>
-     * 
+     *
      * @param <T> 어노테이션
      * @param annotationClass 어노테이션.class
      * @param handlerMethod 핸들러메서드

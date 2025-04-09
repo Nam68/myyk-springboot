@@ -5,7 +5,7 @@ import java.util.Locale;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import yk.web.myyk.backend.dto.login.LoginInfo;
 import yk.web.myyk.util.BaseApp;
 import yk.web.myyk.util.constant.KeyName;

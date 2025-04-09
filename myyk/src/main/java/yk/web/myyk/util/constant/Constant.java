@@ -3,7 +3,7 @@ package yk.web.myyk.util.constant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 
 @Component
 public class Constant {

@@ -1,7 +1,7 @@
 package yk.web.myyk.backend.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import yk.web.myyk.backend.BaseMvc;
 
 @MappedSuperclass
